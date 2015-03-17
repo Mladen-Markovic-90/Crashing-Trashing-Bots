@@ -33,9 +33,7 @@
 
 int main(int argc,char ** argv)
 {
-    reshape.set_width(500);
-    reshape.set_height(500);
-    glut::init(argc,argv,reshape.get_width(),reshape.get_height(),(char *)"Crashing Trashing Bots");
+    glut::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
     glutDisplayFunc(onDisplay);
     /*glut::display(prozor.show);*/
     glutKeyboardFunc(onKey);
@@ -43,7 +41,7 @@ int main(int argc,char ** argv)
     glutReshapeFunc(onReshape);
     glutMouseFunc(onMouse);
     glutMotionFunc(onMotion);
-    glutTimerFunc(TIMER,onTimer,modus);
+    glutTimerFunc(TIMER,onTimer,0);
     glut::start();
     return 0;
 }

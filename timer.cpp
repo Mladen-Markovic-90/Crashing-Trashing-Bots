@@ -22,17 +22,6 @@
 
 void Timer::timer(int id) const
 {
-    if(id==MODUS_START)
-    {
-        modus=MODUS_MENI;
-        id=MODUS_MENI;
-    }
-    else if(id==MODUS_MENI)
-    {
-        modus=MODUS_START;
-        id=MODUS_START;
-    }
-
-    glutPostRedisplay();
+    glut::reDisplay();
     glutTimerFunc(TIMER,onTimer,id);
 }

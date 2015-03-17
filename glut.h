@@ -17,11 +17,15 @@
 */
 
 
+/* omotac za freeglut biblioteku */
+
+
 #ifndef GLUT_H
 #define GLUT_H
 
 
 #include <GL/freeglut.h>
+#include <iostream>
 #include "tacka.h"
 
 
@@ -32,27 +36,112 @@
 class glut
 {
 public:
-    static void init(int argc, char ** argv, int width, int heigth, char * name);
-    static void start();    //glMainLoop
-    static void begin(GLenum);  //glBegin
-    static void end();  //glEnd
+    /* inicijalizacija freeglut */
+    static void init(int argc, char ** argv, int width, int heigth, std::string name);
+
+    /* glMainLoop() -> glut petlja */
+    static void start();
+
+    /* glBegin() -> zapocinjemo crtanje */
+    static void begin(GLenum);
+
+    /* glEnd() -> zavrsavamo crtanje */
+    static void end();
+
     /*static void display(void (*func)(void));*/
+
+    /* boja nezavisno od svetla */
     static void color(float r,float g,float b,float a);
+
+    /* ukljucivanje ili iskljucivanje svetla sa normalama */
     static void light(int arg);
-    static void lightposition(float x, float y, float z, float w);
+
+    /* pozicija svetla */
+    static void lightPosition(float x, float y, float z, float w);
+
+    /* sluzi za rad u 3D */
     static void projection3D(int width, int height,int ugao,int arg1,int arg2);
+
+    /* sluzi za rad u 2D */
     static void projection2D(int width, int height);
-    static void modelview3D(float x,float y,float z);
-    static void modelview2D();
+
+    /* sluzi za prikazivanje u 3D */
+    static void modelView3D(float x,float y,float z);
+
+    /* sluzi za prikazivanje u 2D */
+    static void modelView2D();
+
+    /* tacka sa 3 koordinate i homogena koordinata */
     static void vertex(float x, float y, float z, float w);
+
+    /* tacka sa 3 koordinate */
     static void vertex(float x, float y, float z);
+
+    /* tacka koja prima tacku */
     static void vertex(Tacka t);
+
+    /* tacka koja prima tacku i homogenu koordinatu */
     static void vertex(Tacka t,float w);
+
+    /* normala definisana sa 3 koordinate i homogena koordinata */
     static void normal(float x, float y, float z, float w);
+
+    /* normala definisana sa 3 koordinate */
     static void normal(float x, float y, float z);
+
+    /* normala definisana sa tackom i homogenom koordinatom */
     static void normal(Tacka t, float w);
+
+    /* normala definisana sa tackom */
     static void normal(Tacka t);
+
+    /* pravougaonik definisan sa 4 tacke */
     static void pravougaonik(Tacka a,Tacka b,Tacka c,Tacka d);
+
+    /* tekst na ekranu sa proizvoljnim fontom */
+    static void text(float x,float y,std::string s,void * font);
+
+    /* tekst na ekranu sa GLUT_BITMAP_HELVETICA_18 fontom */
+    static void text(float x, float y, std::string s);
+
+    /* funkcija transformacije za rotaciju koordinatnog sistema za ugao i odredjene koordinate */
+    static void rotate(float ugao, float x, float y, float z);
+
+    /* funkcija transformacije za rotaciju koordinatnog sistema za ugao sa koordinatama tacke */
+    static void rotate(float ugao, Tacka t);
+
+    /* funkcija transformacije za pomeranje koordinatnog sistema pomocu 3 koordinate kao vektor */
+    static void translate(float x, float y, float z);
+
+    /* funkcija transformacije za pomeranje koordinatnog sistema za tacku kao vektor */
+    static void translate(Tacka t);
+
+    /* stavljanje matrice za transformaciju na steck */
+    static void push();
+
+    /* skidanje matrice za transformaciju sa stecka */
+    static void pop();
+
+    /* kocka odredjenih dimenzija */
+    static void cube(float size);
+
+    /* ponovo iscrtavanje */
+    static void reDisplay();
+
+    /* brisanje buffera */
+    static void clear(GLenum);
+
+    /* zamena buffera */
+    static void swapBuffers();
+
+    /* podesavanja za velicinu prozora */
+    static void reshapeWindow(int width,int height);
+
+    /* funkcija transformacije za skaliranje pomocu koordinata */
+    static void scale(float x,float y,float z);
+
+    /* funkcija transformacije za skaliranje pomocu tacke */
+    static void scale(Tacka t);
 };
 
 

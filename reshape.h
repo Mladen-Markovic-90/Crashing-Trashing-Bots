@@ -25,14 +25,6 @@ class Reshape
 {
 public:
     void reshape(int width,int height) const;
-
-    int get_width() const;
-    int get_height() const;
-    void set_width(const int width);
-    void set_height(const int height);
-private:
-    int width;
-    int height;
 };
 
 

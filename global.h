@@ -17,6 +17,9 @@
 */
 
 
+/* klasa koja je globalna i ukljucuje sve includes */
+
+
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
@@ -32,6 +35,7 @@
 #include "timer.h"
 
 
+/* definicije za trenutni prozor */
 #define MODUS_MENI 0
 #define MODUS_START 1
 #define MODUS_ARENA 2
@@ -42,9 +46,14 @@
 #define MODUS_7 7
 
 
-int modus=MODUS_MENI;
+int modus=MODUS_MENI; /* trenutni prozor */
+
+/* sirina i visina */
+int window_width=500;
+int window_height=500;
 
 
+/* specijalne globalne promenljive */
 Keys keyboard_keys;
 Mouse mouse;
 Reshape reshape;
@@ -52,6 +61,9 @@ Special_keys special_keys;
 Motion motion;
 Display display;
 Timer timer;
+
+
+/* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
 
 
 static void onTimer(int id)

@@ -17,6 +17,9 @@
 */
 
 
+/* klasa koja sluzi za prikaz sadrzaja prozora */
+
+
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
@@ -24,8 +27,13 @@
 class Display
 {
 public:
+    /* prikazuje sadrzaj prozora */
     void show() const;
+
+    /* prikazuje meni */
     void meni() const;
+
+    /* prikazuje meni->start */
     void start() const;
 };
 

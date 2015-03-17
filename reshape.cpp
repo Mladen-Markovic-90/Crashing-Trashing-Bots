@@ -22,28 +22,10 @@
 
 void Reshape::reshape(int width, int height) const
 {
-
-}
-
-
-void Reshape::set_height(const int height)
-{
-    this->height=height;
-}
-
-void Reshape::set_width(const int width)
-{
-    this->width=width;
-}
-
-
-int Reshape::get_height() const
-{
-    return this->height;
-}
-
-
-int Reshape::get_width() const
-{
-    return this->width;
+    window_width=width;
+    window_height=height;
+    if(modus==MODUS_MENI)
+        glut::projection2D(width,height);
+    else if(modus==MODUS_START)
+        glut::projection3D(width,height,45,1,1000);
 }
