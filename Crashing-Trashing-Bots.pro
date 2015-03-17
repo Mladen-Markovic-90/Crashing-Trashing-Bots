@@ -10,19 +10,14 @@ CONFIG +=c++11
 LIBS += libfreeglut -lopengl32 -lglu32 -luser32
 
 
-SOURCES += main.cpp \
-    glut.cpp \
-    special_keys.cpp \
-    display.cpp \
-    keys.cpp \
-    reshape.cpp \
-    mouse.cpp
+SOURCES += main.cpp
 HEADERS += glut.h \
     special_keys.h \
     keys.h \
     display.h \
     reshape.h \
-    mouse.h
+    mouse.h \
+    tacka.h
 
 
 include(deployment.pri)
