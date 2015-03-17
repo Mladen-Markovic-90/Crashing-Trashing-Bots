@@ -25,7 +25,16 @@ void Keys::keys(unsigned char key, int x, int y) const
 
     switch(key)
     {
-
+        case '1':
+            modus=MODUS_MENI;
+            glut::reshapeWindow(window_width,window_height);
+            glut::reDisplay();
+            break;
+        case '2':
+            modus=MODUS_START;
+            glut::reshapeWindow(window_width,window_height);
+            glut::reDisplay();
+            break;
     }
 
 }
