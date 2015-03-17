@@ -24,13 +24,15 @@
 #include "mouse.cpp"
 #include "reshape.cpp"
 #include "tacka.cpp"
+#include "motion.cpp"
+#include "timer.cpp"
 
 
-Display display;
 Keys keyboard_keys;
 Mouse mouse;
 Reshape reshape;
 Special_keys special_keys;
+Motion motion;
 
 
 static void onDisplay(void)
@@ -63,15 +65,25 @@ static void onMouse(int button,int state,int x,int y)
 }
 
 
+static void onMotion(int x,int y)
+{
+    motion.motion(x,y);
+}
+
+
 int main(int argc,char ** argv)
 {
-    glut::init(argc,argv,500,500,(char *)"Crashing Trashing Bots");
+    reshape.set_width(500);
+    reshape.set_height(500);
+    glut::init(argc,argv,reshape.get_width(),reshape.get_height(),(char *)"Crashing Trashing Bots");
     glutDisplayFunc(onDisplay);
     /*glut::display(prozor.show);*/
     glutKeyboardFunc(onKey);
     glutSpecialFunc(onSpecKey);
     glutReshapeFunc(onReshape);
     glutMouseFunc(onMouse);
+    glutMotionFunc(onMotion);
+    glutTimerFunc(TIMER,onTimer,modus);
     glut::start();
     return 0;
 }
