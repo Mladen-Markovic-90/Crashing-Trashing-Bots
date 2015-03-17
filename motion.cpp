@@ -21,7 +21,7 @@
 #include "glut.h"
 
 
-Motion::motion(int x,int y)
+void Motion::motion(int x,int y)
 {
 
 }

@@ -24,7 +24,7 @@
 class Motion
 {
 public:
-    motion(int x, int y);
+    void motion(int x, int y);
 };
 
 

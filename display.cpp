@@ -42,10 +42,10 @@ void Display::meni()
     Tacka t(1,2,3);
     std::cout << t.get_x() << t.get_y() << t.get_z() << std::endl;
     glut::begin(GL_QUADS);
-        glVertex3f(0.5,0.5,0);
-        glVertex3f(-0.5,0.5,0);
-        glVertex3f(-0.5,-0.5,0);
-        glVertex3f(0.5,-0.5,0);
+        glVertex3f(1,1,0);
+        glVertex3f(1,-1,0);
+        glVertex3f(0,-1,0);
+        glVertex3f(0,1,0);
     glut::end();
     //Display::modus++; TEST
     glutSwapBuffers();
@@ -57,10 +57,10 @@ void Display::start()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glut::color(0,0,0,1);
     glut::begin(GL_QUADS);
-        glVertex3f(0.5,0.5,0);
-        glVertex3f(-0.5,0.5,0);
-        glVertex3f(-0.5,-0.5,0);
-        glVertex3f(0.5,-0.5,0);
+        glVertex3f(-1,1,0);
+        glVertex3f(-1,-1,0);
+        glVertex3f(0,-1,0);
+        glVertex3f(0,1,0);
     glut::end();
     glutSwapBuffers();
 }
