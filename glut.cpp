@@ -17,11 +17,14 @@
 */
 
 
+/* omotac za freeglut biblioteku */
+
+
 #include "glut.h"
-#include "tacka.h"
 
 
-void glut::init(int argc,char ** argv,int width,int heigth,char * name)
+/* inicijalizacija freeglut */
+void glut::init(int argc,char ** argv,int width,int heigth,std::string name)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB |  GLUT_DEPTH |  GLUT_DOUBLE);
@@ -29,37 +32,39 @@ void glut::init(int argc,char ** argv,int width,int heigth,char * name)
     /*glutInitWindowSize(2*(X_2D+margineX),2*(Y_2D+margineY));*/
     glutInitWindowSize(width,heigth);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow(name);
+    glutCreateWindow(name.c_str());
 
-    const GLfloat lightambient[4]={0.5f,0.5f,0.5f,1.0f};
-    const GLfloat lightdiffuse[4]={0.7f,0.7f,0.7f,1.0f};
-    const GLfloat lightspecular[4]={0.9f,0.9f,0.9f,1.0f};
+    GLfloat lightambient[4]={0.3f,0.3f,0.3f,1.0f};
+    GLfloat lightdiffuse[4]={0.5f,0.5f,0.5f,1.0f};
+    GLfloat lightspecular[4]={0.7f,0.7f,0.7f,1.0f};
     glLightfv(GL_LIGHT0,GL_AMBIENT,lightambient);
     glLightfv(GL_LIGHT0,GL_DIFFUSE,lightdiffuse);
     glLightfv(GL_LIGHT0,GL_SPECULAR,lightspecular);
 
-
-
-    glClearColor(1,1,1,1);
+    glClearColor(0,0,0,1);
 }
 
 
+/* glMainLoop() -> glut petlja */
 void glut::start()
 {
     glutMainLoop();
 }
 
 
+/* glBegin() -> zapocinjemo crtanje */
 void glut::begin(GLenum arg)
 {
     glBegin(arg);
 }
 
 
+/* glEnd() -> zavrsavamo crtanje */
 void glut::end()
 {
     glEnd();
 }
+
 
 /*
 void glut::display(void (*func)(void))
@@ -68,35 +73,42 @@ void glut::display(void (*func)(void))
 }*/
 
 
+/* ukljucivanje ili iskljucivanje svetla sa normalama */
 void glut::light(int arg)
 {
     if(arg==GL_ON)
         {
-        glEnable(GL_NORMALIZE);
-        glEnable(GL_LIGHT0);
         glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glEnable(GL_NORMALIZE);
         }
     else
         {
-        glDisable(GL_NORMALIZE);
-        glDisable(GL_LIGHT0);
         glDisable(GL_LIGHTING);
+        glDisable(GL_LIGHT0);
+        glDisable(GL_NORMALIZE);
         }
 }
 
 
+/* boja nezavisno od svetla */
 void glut::color(float r, float g, float b, float a)
 {
-    glColor4f(r,g,b,a);
-    const GLfloat colorambient[4]={r*0.5f,g*0.5f,b*0.5f,a};
-    const GLfloat colordiffuse[4]={r*0.7f,g*0.7f,b*0.7f,a};
-    const GLfloat colorspecular[4]={r*0.9f,g*0.9f,b*0.9f,a};
-    glMaterialfv(GL_DIFFUSE,GL_FRONT_AND_BACK,colordiffuse);
-    glMaterialfv(GL_AMBIENT,GL_FRONT_AND_BACK,colorambient);
-    glMaterialfv(GL_SPECULAR,GL_FRONT_AND_BACK,colorspecular);
+    if(glIsEnabled(GL_LIGHTING))
+    {
+        float colorambient[4]={r*0.5f,g*0.5f,b*0.5f,a};
+        float colordiffuse[4]={r*0.7f,g*0.7f,b*0.7f,a};
+        float colorspecular[4]={r*0.9f,g*0.9f,b*0.9f,a};
+        glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,colorambient);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,colordiffuse);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,colorspecular);
+    }
+    else
+        glColor4f(r,g,b,a);
 }
 
 
+/* sluzi za rad u 3D */
 void glut::projection3D(int width, int height, int ugao, int arg1,int arg2)
 {
     glEnable(GL_DEPTH_TEST);
@@ -108,6 +120,7 @@ void glut::projection3D(int width, int height, int ugao, int arg1,int arg2)
 }
 
 
+/* sluzi za rad u 2D */
 void glut::projection2D(int width,int height)
 {
     glDisable(GL_DEPTH_TEST);
@@ -119,59 +132,69 @@ void glut::projection2D(int width,int height)
 }
 
 
-void glut::modelview2D()
+/* sluzi za prikazivanje u 2D */
+void glut::modelView2D()
 {
+    glut::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
 
-void glut::modelview3D(float x,float y,float z)
+/* sluzi za prikazivanje u 3D */
+void glut::modelView3D(float x,float y,float z)
 {
+    glut::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(x,y,z,0, 0, 0, 0, 1, 0);
 }
 
 
-void glut::lightposition(float x, float y, float z,float w)
+/* pozicija svetla */
+void glut::lightPosition(float x, float y, float z,float w)
 {
     float array[4]={x,y,z,w};
     glLightfv(GL_LIGHT0,GL_POSITION,array);
 }
 
 
+/* tacka sa 3 koordinate i homogena koordinata */
 void glut::vertex(float x, float y, float z,float w)
 {
     glVertex4f(x,y,z,w);
 }
 
 
+/* tacka sa 3 koordinate */
 void glut::vertex(float x, float y, float z)
 {
     glVertex3f(x,y,z);
 }
 
 
-
+/* tacka koja prima tacku */
 void glut::vertex(Tacka t)
 {
     glVertex3f(t.get_x(),t.get_y(),t.get_z());
 }
 
 
+/* tacka koja prima tacku i homogenu koordinatu */
 void glut::vertex(Tacka t, float w)
 {
     glVertex4f(t.get_x(),t.get_y(),t.get_z(),w);
 }
 
 
+/* normala definisana sa 3 koordinate */
 void glut::normal(float x, float y, float z)
 {
     glNormal3f(x,y,z);
 }
 
 
+/* normala definisana sa 3 koordinate i homogena koordinata */
 void glut::normal(float x, float y, float z, float w)
 {
     if(w>0.001 && w<-0.001)
@@ -181,18 +204,21 @@ void glut::normal(float x, float y, float z, float w)
 }
 
 
+/* normala definisana sa tackom */
 void glut::normal(Tacka t)
 {
     glut::normal(t.get_x(),t.get_y(),t.get_z());
 }
 
 
+/* normala definisana sa tackom i homogenom koordinatom */
 void glut::normal(Tacka t, float w)
 {
     glut::normal(t.get_x(),t.get_y(),t.get_z(),w);
 }
 
 
+/* pravougaonik definisan sa 4 tacke */
 void glut::pravougaonik(Tacka a, Tacka b, Tacka c, Tacka d)
 {
     glut::begin(GL_QUADS);
@@ -201,4 +227,113 @@ void glut::pravougaonik(Tacka a, Tacka b, Tacka c, Tacka d)
         glut::vertex(c);
         glut::vertex(d);
     glut::end();
+}
+
+
+/* tekst na ekranu sa GLUT_BITMAP_HELVETICA_18 fontom */
+void glut::text(float x, float y, std::string s)
+{
+    glut::text(x,y,s,GLUT_BITMAP_HELVETICA_18);
+}
+
+
+/* tekst na ekranu sa proizvoljnim fontom */
+void glut::text(float x, float y, std::string s, void * font)
+{
+    glRasterPos2f(x,y);
+    for(char c : s) {
+        glutBitmapCharacter(font,c);
+
+    }
+}
+
+
+/* funkcija transformacije za rotaciju koordinatnog sistema za ugao i odredjene koordinate */
+void glut::rotate(float ugao, float x, float y, float z)
+{
+    glRotatef(ugao,x,y,z);
+}
+
+
+/* funkcija transformacije za rotaciju koordinatnog sistema za ugao sa koordinatama tacke */
+void glut::rotate(float ugao, Tacka t)
+{
+    glut::rotate(ugao,t.get_x(),t.get_y(),t.get_z());
+}
+
+
+/* funkcija transformacije za pomeranje koordinatnog sistema pomocu 3 koordinate kao vektor */
+void glut::translate(float x, float y, float z)
+{
+    glTranslatef(x,y,z);
+}
+
+
+/* funkcija transformacije za pomeranje koordinatnog sistema za tacku kao vektor */
+void glut::translate(Tacka t)
+{
+    glut::translate(t.get_x(),t.get_y(),t.get_z());
+}
+
+
+/* stavljanje matrice za transformaciju na steck */
+void glut::push()
+{
+    glPushMatrix();
+}
+
+
+/* skidanje matrice za transformaciju sa stecka */
+void glut::pop()
+{
+    glPopMatrix();
+}
+
+
+/* kocka odredjenih dimenzija */
+void glut::cube(float size)
+{
+    glutSolidCube(size);
+}
+
+
+/* ponovo iscrtavanje */
+void glut::reDisplay()
+{
+    glutPostRedisplay();
+}
+
+
+/* brisanje buffera */
+void glut::clear(GLenum arg)
+{
+    glClear(arg);
+}
+
+
+/* zamena buffera */
+void glut::swapBuffers()
+{
+    glutSwapBuffers();
+}
+
+
+/* podesavanja za velicinu prozora */
+void glut::reshapeWindow(int width, int height)
+{
+    glutReshapeWindow(width,height);
+}
+
+
+/* funkcija transformacije za skaliranje pomocu koordinata */
+void glut::scale(float x, float y, float z)
+{
+    glScalef(x,y,z);
+}
+
+
+/* funkcija transformacije za skaliranje pomocu tacke */
+void glut::scale(Tacka t)
+{
+    glScalef(t.get_x(),t.get_y(),t.get_z());
 }
