@@ -16,13 +16,61 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <iostream>
 
-using namespace std;
+#include "glut.h"
+#include "display.h"
+#include "special_keys.h"
+#include "keys.h"
+#include "mouse.h"
+#include "reshape.h"
 
-int main()
+
+Display display;
+Keys keyboard_keys;
+Mouse mouse;
+Reshape reshape;
+Special_keys special_keys;
+
+
+static void onDisplay(void)
 {
-    cout << "Test Git" << endl;
-    return 0;
+    display.show();
 }
 
+
+static void onKey(unsigned char key, int x, int y)
+{
+    keyboard_keys.keys(key,x,y);
+}
+
+
+static void onSpecKey(int key, int x, int y)
+{
+    special_keys.keys(key,x,y);
+}
+
+
+static void onReshape(int width,int height)
+{
+    reshape.reshape(width,height);
+}
+
+
+static void onMouse(int button,int state,int x,int y)
+{
+    mouse.mouse(button,state,x,y);
+}
+
+
+int main(int argc,char ** argv)
+{
+    glut::init(argc,argv,500,500,(char *)"Crashing Trashing Bots");
+    glutDisplayFunc(onDisplay);
+    /*glut::display(prozor.show);*/
+    glutKeyboardFunc(onKey);
+    glutSpecialFunc(onSpecKey);
+    glutReshapeFunc(onReshape);
+    glutMouseFunc(onMouse);
+    glut::start();
+    return 0;
+}
