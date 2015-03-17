@@ -17,12 +17,13 @@
 */
 
 
-#include "glut.h"
-#include "display.h"
-#include "special_keys.h"
-#include "keys.h"
-#include "mouse.h"
-#include "reshape.h"
+#include "glut.cpp"
+#include "display.cpp"
+#include "special_keys.cpp"
+#include "keys.cpp"
+#include "mouse.cpp"
+#include "reshape.cpp"
+#include "tacka.cpp"
 
 
 Display display;
