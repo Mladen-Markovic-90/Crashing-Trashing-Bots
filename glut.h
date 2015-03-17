@@ -21,18 +21,12 @@
 #define GLUT_H
 
 
+#include <GL/freeglut.h>
+#include "tacka.h"
+
+
 #define GL_OFF 0
 #define GL_ON 1
-
-
-#define MODUS_MENI 0
-#define MODUS_START 1
-#define MODUS_ARENA 2
-#define MODUS_3 3
-#define MODUS_4 4
-#define MODUS_5 5
-#define MODUS_6 6
-#define MODUS_7 7
 
 
 class glut
@@ -45,10 +39,21 @@ public:
     /*static void display(void (*func)(void));*/
     static void color(float r,float g,float b,float a);
     static void light(int arg);
+    static void lightposition(float x, float y, float z, float w);
+    static void projection3D(int width, int height,int ugao,int arg1,int arg2);
+    static void projection2D(int width, int height);
+    static void modelview3D(float x,float y,float z);
+    static void modelview2D();
+    static void vertex(float x, float y, float z, float w);
+    static void vertex(float x, float y, float z);
+    static void vertex(Tacka t);
+    static void vertex(Tacka t,float w);
+    static void normal(float x, float y, float z, float w);
+    static void normal(float x, float y, float z);
+    static void normal(Tacka t, float w);
+    static void normal(Tacka t);
+    static void pravougaonik(Tacka a,Tacka b,Tacka c,Tacka d);
 };
-
-
-int modus=MODUS_MENI;
 
 
 #endif // GLUT_H
