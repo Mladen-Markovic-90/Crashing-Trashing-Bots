@@ -17,10 +17,14 @@
 */
 
 
+/* klasa koja sluzi za prikaz sadrzaja prozora */
+
+
 #include <iostream>
 #include "global.h"
 
 
+/* prikazuje sadrzaj prozora */
 void Display::show(void) const
 {
     if(modus==MODUS_MENI)
@@ -30,32 +34,36 @@ void Display::show(void) const
 }
 
 
+/* prikazuje meni */
 void Display::meni() const
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glut::light(GL_OFF);
+    glut::modelView2D();
+
+
     glut::color(1,0,0,1);
-    Tacka t(1,2,3);
-    std::cout << t.get_x() << t.get_y() << t.get_z() << std::endl;
     glut::begin(GL_QUADS);
-        glVertex3f(1,1,0);
-        glVertex3f(1,-1,0);
-        glVertex3f(0,-1,0);
-        glVertex3f(0,1,0);
+        glut::vertex(1,1,0);
+        glut::vertex(1,-1,0);
+        glut::vertex(0,-1,0);
+        glut::vertex(0,1,0);
     glut::end();
-    //Display::modus++; TEST
-    glutSwapBuffers();
+
+    glut::color(1,1,1,1);
+    glut::text(0.5,0.5,"Test");
+    glut::text(0,0,"Test");
+    glut::swapBuffers();
 }
 
-// TEST
+
+/* prikazuje meni->start */
 void Display::start() const
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glut::color(0,0,0,1);
-    glut::begin(GL_QUADS);
-        glVertex3f(-1,1,0);
-        glVertex3f(-1,-1,0);
-        glVertex3f(0,-1,0);
-        glVertex3f(0,1,0);
-    glut::end();
-    glutSwapBuffers();
+    glut::light(GL_ON);
+    glut::modelView3D(0,0,100);
+    glut::lightPosition(1,0,0,0);
+    glut::color(1.0,1.0,0,1.0);
+    glut::rotate(45,1,0,1);
+    glut::cube(10);
+    glut::swapBuffers();
 }
