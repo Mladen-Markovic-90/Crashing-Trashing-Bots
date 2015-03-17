@@ -21,12 +21,18 @@
 #define GLUT_H
 
 
-#include <GL/freeglut.h>
-#include <string>
-
-
 #define GL_OFF 0
 #define GL_ON 1
+
+
+#define MODUS_MENI 0
+#define MODUS_START 1
+#define MODUS_ARENA 2
+#define MODUS_3 3
+#define MODUS_4 4
+#define MODUS_5 5
+#define MODUS_6 6
+#define MODUS_7 7
 
 
 class glut
@@ -40,6 +46,9 @@ public:
     static void color(float r,float g,float b,float a);
     static void light(int arg);
 };
+
+
+int modus=MODUS_MENI;
 
 
 #endif // GLUT_H
