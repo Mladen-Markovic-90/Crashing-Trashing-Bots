@@ -17,8 +17,10 @@
 */
 
 
-#include "Display.h"
+#include "display.h"
 #include "glut.h"
+#include "tacka.h"
+#include <iostream>
 
 
 void Display::show(void)
@@ -34,6 +36,8 @@ void Display::meni()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glut::color(1,0,0,1);
+    Tacka t(1,2,3);
+    std::cout << t.get_x() << t.get_y() << t.get_z() << std::endl;
     glut::begin(GL_QUADS);
         glVertex3f(0.5,0.5,0);
         glVertex3f(-0.5,0.5,0);
