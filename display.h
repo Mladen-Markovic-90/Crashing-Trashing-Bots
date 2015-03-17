@@ -21,31 +21,13 @@
 #define DISPLAY_H
 
 
-#include "glut.h"
-
-
-#define MODUS_MENI 0
-#define MODUS_1 1
-#define MODUS_2 2
-#define MODUS_3 3
-#define MODUS_4 4
-#define MODUS_5 5
-#define MODUS_6 6
-#define MODUS_7 7
-
-
 class Display
 {
 public:
     void show();
 
     void meni();
-    void prozor2();
-
-    int get_modus();
-    void set_modus(int modus);
-private:
-    int modus=MODUS_MENI;
+    void start();
 };
 
 

@@ -21,9 +21,6 @@
 #define MOUSE_H
 
 
-#include "glut.h"
-
-
 class Mouse
 {
 public:

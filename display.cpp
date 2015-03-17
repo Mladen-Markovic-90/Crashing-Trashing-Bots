@@ -23,12 +23,15 @@
 #include <iostream>
 
 
+Display display;
+
+
 void Display::show(void)
 {
-    if(Display::modus==MODUS_MENI)
+    if(modus==MODUS_MENI)
         Display::meni();
-    else
-        Display::prozor2();
+    else if(modus==MODUS_START)
+        Display::start();
 }
 
 
@@ -49,7 +52,7 @@ void Display::meni()
 }
 
 // TEST
-void Display::prozor2()
+void Display::start()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glut::color(0,0,0,1);
@@ -60,16 +63,4 @@ void Display::prozor2()
         glVertex3f(0.5,-0.5,0);
     glut::end();
     glutSwapBuffers();
-}
-
-
-int Display::get_modus()
-{
-    return Display::modus;
-}
-
-
-void Display::set_modus(int modus)
-{
-    this->modus=modus;
 }

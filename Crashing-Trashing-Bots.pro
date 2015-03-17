@@ -17,7 +17,9 @@ HEADERS += glut.h \
     display.h \
     reshape.h \
     mouse.h \
-    tacka.h
+    tacka.h \
+    motion.h \
+    timer.h
 
 
 include(deployment.pri)

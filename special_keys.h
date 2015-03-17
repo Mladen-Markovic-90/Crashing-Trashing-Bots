@@ -21,9 +21,6 @@
 #define SPECIAL_KEYS_H
 
 
-#include "glut.h"
-
-
 class Special_keys
 {
 public:

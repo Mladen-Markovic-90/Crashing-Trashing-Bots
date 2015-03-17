@@ -21,9 +21,6 @@
 #define KEYS_H
 
 
-#include "glut.h"
-
-
 class Keys
 {
 public:
