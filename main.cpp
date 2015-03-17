@@ -17,6 +17,9 @@
 */
 
 
+#include "global.h"
+
+
 #include "glut.cpp"
 #include "display.cpp"
 #include "special_keys.cpp"
@@ -26,49 +29,6 @@
 #include "tacka.cpp"
 #include "motion.cpp"
 #include "timer.cpp"
-
-
-Keys keyboard_keys;
-Mouse mouse;
-Reshape reshape;
-Special_keys special_keys;
-Motion motion;
-
-
-static void onDisplay(void)
-{
-    display.show();
-}
-
-
-static void onKey(unsigned char key, int x, int y)
-{
-    keyboard_keys.keys(key,x,y);
-}
-
-
-static void onSpecKey(int key, int x, int y)
-{
-    special_keys.keys(key,x,y);
-}
-
-
-static void onReshape(int width,int height)
-{
-    reshape.reshape(width,height);
-}
-
-
-static void onMouse(int button,int state,int x,int y)
-{
-    mouse.mouse(button,state,x,y);
-}
-
-
-static void onMotion(int x,int y)
-{
-    motion.motion(x,y);
-}
 
 
 int main(int argc,char ** argv)

@@ -27,7 +27,7 @@
 class Timer
 {
 public:
-    void timer(int id);
+    void timer(int id) const;
 };
 
 

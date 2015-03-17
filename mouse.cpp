@@ -17,11 +17,10 @@
 */
 
 
-#include "mouse.h"
-#include "glut.h"
+#include "global.h"
 
 
-void Mouse::mouse(int button,int state,int x,int y)
+void Mouse::mouse(int button,int state,int x,int y) const
 {
 
 }

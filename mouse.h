@@ -24,7 +24,7 @@
 class Mouse
 {
 public:
-    void mouse(int button,int state,int x,int y);
+    void mouse(int button,int state,int x,int y) const;
 };
 
 

@@ -17,11 +17,10 @@
 */
 
 
-#include "keys.h"
-#include "glut.h"
+#include "global.h"
 
 
-void Keys::keys(unsigned char key, int x, int y)
+void Keys::keys(unsigned char key, int x, int y) const
 {
 
     switch(key)

@@ -24,7 +24,7 @@
 class Keys
 {
 public:
-    void keys(unsigned char key,int x,int y);
+    void keys(unsigned char key,int x,int y) const;
 };
 
 

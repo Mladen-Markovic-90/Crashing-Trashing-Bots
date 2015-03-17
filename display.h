@@ -24,10 +24,9 @@
 class Display
 {
 public:
-    void show();
-
-    void meni();
-    void start();
+    void show() const;
+    void meni() const;
+    void start() const;
 };
 
 

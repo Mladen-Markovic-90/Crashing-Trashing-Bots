@@ -17,11 +17,10 @@
 */
 
 
-#include "motion.h"
-#include "glut.h"
+#include "global.h"
 
 
-void Motion::motion(int x,int y)
+void Motion::motion(int x,int y) const
 {
 
 }

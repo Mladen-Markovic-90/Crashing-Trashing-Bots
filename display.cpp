@@ -17,16 +17,11 @@
 */
 
 
-#include "display.h"
-#include "glut.h"
-#include "tacka.h"
 #include <iostream>
+#include "global.h"
 
 
-Display display;
-
-
-void Display::show(void)
+void Display::show(void) const
 {
     if(modus==MODUS_MENI)
         Display::meni();
@@ -35,7 +30,7 @@ void Display::show(void)
 }
 
 
-void Display::meni()
+void Display::meni() const
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glut::color(1,0,0,1);
@@ -52,7 +47,7 @@ void Display::meni()
 }
 
 // TEST
-void Display::start()
+void Display::start() const
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glut::color(0,0,0,1);

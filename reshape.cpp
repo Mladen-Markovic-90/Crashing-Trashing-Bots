@@ -17,34 +17,33 @@
 */
 
 
-#include "reshape.h"
-#include "glut.h"
+#include "global.h"
 
 
-void Reshape::reshape(int width, int height)
+void Reshape::reshape(int width, int height) const
 {
 
 }
 
 
-void Reshape::set_height(int height)
+void Reshape::set_height(const int height)
 {
     this->height=height;
 }
 
-void Reshape::set_width(int width)
+void Reshape::set_width(const int width)
 {
     this->width=width;
 }
 
 
-int Reshape::get_height()
+int Reshape::get_height() const
 {
     return this->height;
 }
 
 
-int Reshape::get_width()
+int Reshape::get_width() const
 {
     return this->width;
 }

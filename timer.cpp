@@ -17,21 +17,10 @@
 */
 
 
-#include "timer.h"
-#include "display.h"
-#include "glut.h"
+#include "global.h"
 
 
-Timer timer;
-
-
-static void onTimer(int id)
-{
-    timer.timer(id);
-}
-
-
-void Timer::timer(int id)
+void Timer::timer(int id) const
 {
     if(id==MODUS_START)
     {

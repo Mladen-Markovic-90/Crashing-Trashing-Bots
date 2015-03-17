@@ -17,11 +17,10 @@
 */
 
 
-#include "special_keys.h"
-#include "glut.h"
+#include "global.h"
 
 
-void Special_keys::keys(int key, int x, int y)
+void Special_keys::keys(int key, int x, int y) const
 {
 
 }

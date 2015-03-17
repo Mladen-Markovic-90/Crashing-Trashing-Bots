@@ -24,7 +24,7 @@
 class Special_keys
 {
 public:
-    void keys(int key, int x, int y);
+    void keys(int key, int x, int y) const;
 };
 
 

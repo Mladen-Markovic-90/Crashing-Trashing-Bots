@@ -39,37 +39,37 @@ Tacka::Tacka(const Tacka & t)
 }
 
 
-float Tacka::get_x()
+float Tacka::get_x() const
 {
     return this->x;
 }
 
 
-float Tacka::get_y()
+float Tacka::get_y() const
 {
     return this->y;
 }
 
 
-float Tacka::get_z()
+float Tacka::get_z() const
 {
     return this->z;
 }
 
 
-void Tacka::set_x(float x)
+void Tacka::set_x(const float x)
 {
     this->x=x;
 }
 
 
-void Tacka::set_y(float y)
+void Tacka::set_y(const float y)
 {
     this->y=y;
 }
 
 
-void Tacka::set_z(float z)
+void Tacka::set_z(const float z)
 {
     this->z=z;
 }

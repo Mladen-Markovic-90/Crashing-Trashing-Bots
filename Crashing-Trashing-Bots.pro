@@ -19,7 +19,8 @@ HEADERS += glut.h \
     mouse.h \
     tacka.h \
     motion.h \
-    timer.h
+    timer.h \
+    global.h
 
 
 include(deployment.pri)
