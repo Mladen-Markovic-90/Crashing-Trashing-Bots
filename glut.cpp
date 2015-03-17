@@ -18,7 +18,6 @@
 
 
 #include <GL/freeglut.h>
-#include <string>
 #include "glut.h"
 
 
