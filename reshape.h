@@ -21,13 +21,18 @@
 #define RESHAPE_H
 
 
-#include "glut.h"
-
-
 class Reshape
 {
 public:
     void reshape(int width, int height);
+
+    int get_width();
+    int get_height();
+    void set_width(int width);
+    void set_height(int height);
+private:
+    int width;
+    int height;
 };
 
 

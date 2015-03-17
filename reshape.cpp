@@ -26,3 +26,25 @@ void Reshape::reshape(int width, int height)
 
 }
 
+
+void Reshape::set_height(int height)
+{
+    this->height=height;
+}
+
+void Reshape::set_width(int width)
+{
+    this->width=width;
+}
+
+
+int Reshape::get_height()
+{
+    return this->height;
+}
+
+
+int Reshape::get_width()
+{
+    return this->width;
+}
