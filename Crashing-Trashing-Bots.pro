@@ -20,7 +20,8 @@ HEADERS += glut.h \
     tacka.h \
     motion.h \
     timer.h \
-    global.h
+    global.h \
+    model_1.h
 
 
 include(deployment.pri)
