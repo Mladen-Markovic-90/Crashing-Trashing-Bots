@@ -142,6 +142,24 @@ public:
 
     /* funkcija transformacije za skaliranje pomocu tacke */
     static void scale(Tacka t);
+
+    /* lopta velicine radius */
+    static void sphere(float radius);
+
+    /* cilindar sa visinom (height) i osnovom (radius) */
+    static void cylinder(float radius,float height);
+
+    /* kupa sa visinom (height) i osnovom (radius) */
+    static void cone(float radius,float height);
+
+    /* kvadar sa visinom, sirinom i duzinom */
+    static void kvadar(float duzina,float sirina,float visina);
+
+    /* pravougaonik koji lezi u z ravni */
+    static void pravougaonik_z(float duzina, float sirina);
+
+    /* kvadar sa tackama */
+    static void kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2,Tacka d2);
 };
 
 

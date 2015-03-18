@@ -19,7 +19,7 @@
 
 /* omotac za freeglut biblioteku */
 
-
+#include <GL/freeglut.h>
 #include "glut.h"
 
 
@@ -34,9 +34,9 @@ void glut::init(int argc,char ** argv,int width,int heigth,std::string name)
     glutInitWindowPosition(100, 100);
     glutCreateWindow(name.c_str());
 
-    GLfloat lightambient[4]={0.3f,0.3f,0.3f,1.0f};
-    GLfloat lightdiffuse[4]={0.5f,0.5f,0.5f,1.0f};
-    GLfloat lightspecular[4]={0.7f,0.7f,0.7f,1.0f};
+    GLfloat lightambient[4]={0.5f,0.5f,0.5f,1.0f};
+    GLfloat lightdiffuse[4]={0.7f,0.7f,0.7f,1.0f};
+    GLfloat lightspecular[4]={0.9f,0.9f,0.9f,1.0f};
     glLightfv(GL_LIGHT0,GL_AMBIENT,lightambient);
     glLightfv(GL_LIGHT0,GL_DIFFUSE,lightdiffuse);
     glLightfv(GL_LIGHT0,GL_SPECULAR,lightspecular);
@@ -96,9 +96,14 @@ void glut::color(float r, float g, float b, float a)
 {
     if(glIsEnabled(GL_LIGHTING))
     {
+        float colorambient[4]={r*0.8f,g*0.8f,b*0.8f,a};
+        float colordiffuse[4]={r,g,b,a};
+        float colorspecular[4]={0,0,0,a};/*
         float colorambient[4]={r*0.5f,g*0.5f,b*0.5f,a};
         float colordiffuse[4]={r*0.7f,g*0.7f,b*0.7f,a};
         float colorspecular[4]={r*0.9f,g*0.9f,b*0.9f,a};
+        GLfloat shininess = 10;
+        glMaterialf(GL_FRONT, GL_SHININESS, shininess);*/
         glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,colorambient);
         glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,colordiffuse);
         glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,colorspecular);
@@ -138,6 +143,7 @@ void glut::modelView2D()
     glut::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    glShadeModel(GL_SMOOTH);
 }
 
 
@@ -148,6 +154,7 @@ void glut::modelView3D(float x,float y,float z)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(x,y,z,0, 0, 0, 0, 1, 0);
+    glShadeModel(GL_SMOOTH);
 }
 
 
@@ -336,4 +343,73 @@ void glut::scale(float x, float y, float z)
 void glut::scale(Tacka t)
 {
     glScalef(t.get_x(),t.get_y(),t.get_z());
+}
+
+
+/* lopta velicine radius */
+void glut::sphere(float radius)
+{
+    glutSolidSphere(radius,25+radius/5,25+radius/5);
+}
+
+
+/* cilindar sa duzinom (height) i sirinom (radius) */
+void glut::cylinder(float radius,float height)
+{
+    glutSolidCylinder(radius,height,25+radius/5,25+radius/5);
+}
+
+
+/* kupa sa visinom (height) i osnovom (radius) */
+void glut::cone(float radius,float height)
+{
+    glutSolidCone(radius,height,25+radius/5,25+radius/5);
+}
+
+
+/* kvadar sa visinom sirinom i duzinom */
+void glut::kvadar(float duzina, float sirina, float visina)
+{
+    float x=duzina/2;
+    float y=visina/2;
+    float z=sirina/2;
+    glut::normal(0,0,1);
+    glut::pravougaonik(Tacka(x,y,z),Tacka(-x,y,z),Tacka(-x,-y,z),Tacka(x,-y,z));
+    glut::normal(0,0,-1);
+    glut::pravougaonik(Tacka(x,y,-z),Tacka(-x,y,-z),Tacka(-x,-y,-z),Tacka(x,-y,-z));
+    glut::normal(0,1,0);
+    glut::pravougaonik(Tacka(x,y,z),Tacka(-x,y,z),Tacka(-x,y,-z),Tacka(x,y,-z));
+    glut::normal(0,-1,0);
+    glut::pravougaonik(Tacka(x,-y,z),Tacka(-x,-y,z),Tacka(-x,-y,-z),Tacka(x,-y,-z));
+    glut::normal(1,0,0);
+    glut::pravougaonik(Tacka(x,y,z),Tacka(x,-y,z),Tacka(x,-y,-z),Tacka(x,y,-z));
+    glut::normal(-1,0,0);
+    glut::pravougaonik(Tacka(-x,y,z),Tacka(-x,-y,z),Tacka(-x,-y,-z),Tacka(-x,y,-z));
+}
+
+
+/* pravougaonik koji lezi u z ravni */
+void glut::pravougaonik_z(float duzina, float sirina)
+{
+    float x=duzina/2;
+    float y=sirina/2;
+    glut::pravougaonik(Tacka(x,y,0),Tacka(x,-y,0),Tacka(-x,-y,0),Tacka(-x,y,0));
+}
+
+
+/* kvadar sa tackama */
+void glut::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2,Tacka d2)
+{
+    glut::normal(0,-1,0);
+    glut::pravougaonik(a1,b1,c1,d1);
+    glut::normal(0,0,1);
+    glut::pravougaonik(a1,b1,b2,a2);
+    glut::normal(1,0,0);
+    glut::pravougaonik(b1,c1,c2,b2);
+    glut::normal(0,0,-1);
+    glut::pravougaonik(c1,d1,d2,c2);
+    glut::normal(-1,0,0);
+    glut::pravougaonik(d1,a1,a2,d2);
+    glut::normal(0,-1,0);
+    glut::pravougaonik(a2,b2,c2,d2);
 }
