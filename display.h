@@ -28,13 +28,15 @@ class Display
 {
 public:
     /* prikazuje sadrzaj prozora */
-    void show() const;
+    void show();
 
     /* prikazuje meni */
-    void meni() const;
+    void meni();
 
     /* prikazuje meni->start */
-    void start() const;
+    void start();
+
+    int ugao=0;
 };
 
 

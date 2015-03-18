@@ -33,6 +33,7 @@
 #include "special_keys.h"
 #include "tacka.h"
 #include "timer.h"
+#include "model_1.h"
 
 
 /* definicije za trenutni prozor */
@@ -46,7 +47,7 @@
 #define MODUS_7 7
 
 
-int modus=MODUS_MENI; /* trenutni prozor */
+int modus=MODUS_START; /* trenutni prozor */
 
 /* sirina i visina */
 int window_width=500;

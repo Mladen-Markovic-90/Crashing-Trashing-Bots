@@ -25,7 +25,7 @@
 
 
 /* prikazuje sadrzaj prozora */
-void Display::show(void) const
+void Display::show(void)
 {
     if(modus==MODUS_MENI)
         Display::meni();
@@ -35,19 +35,13 @@ void Display::show(void) const
 
 
 /* prikazuje meni */
-void Display::meni() const
+void Display::meni()
 {
     glut::light(GL_OFF);
     glut::modelView2D();
 
-
     glut::color(1,0,0,1);
-    glut::begin(GL_QUADS);
-        glut::vertex(1,1,0);
-        glut::vertex(1,-1,0);
-        glut::vertex(0,-1,0);
-        glut::vertex(0,1,0);
-    glut::end();
+    glut::pravougaonik(Tacka(1,1,0),Tacka(1,-1,0),Tacka(0,-1,0),Tacka(0,1,0));
 
     glut::color(1,1,1,1);
     glut::text(0.5,0.5,"Test");
@@ -57,13 +51,23 @@ void Display::meni() const
 
 
 /* prikazuje meni->start */
-void Display::start() const
+void Display::start()
 {
+    this->ugao++;
     glut::light(GL_ON);
     glut::modelView3D(0,0,100);
-    glut::lightPosition(1,0,0,0);
+    glut::lightPosition(1,0,1,0);
     glut::color(1.0,1.0,0,1.0);
+
+    glut::rotate(30,1,0,0);
+    glut::rotate(this->ugao,0,1,0);
+    model_1();
+
+    /*
     glut::rotate(45,1,0,1);
     glut::cube(10);
+    glut::sphere(10);
+    glut::cylinder(10,10);
+    glut::cone(10,20);*/
     glut::swapBuffers();
 }
