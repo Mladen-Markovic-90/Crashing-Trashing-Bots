@@ -1,16 +1,15 @@
 P = main
 name = CrashingTrashingBots
 CC = g++
-CF = -c -Wall -ansi -lm -std=c++0x
+CF = -Wall -ansi -std=c++0x -L/usr/lib/nvidia-331/
 GF = -lglut -lGLU -lGL -lm
 
 $(name):
-	$(CC) -o $(P).o $(P).cpp $(CF)
-	$(CC) -o $(name) $(P).o $(GF)
+	$(CC) -o $(name) $(P).cpp $(GF) $(CF)
+
 
 run:
-	$(CC) -o $(P).o $(P).cpp $(CF)
-	$(CC) -o $(name) $(P).o $(GF)
+	$(CC) -o $(name) $(P).cpp $(GF) $(CF)
 	./$(name)
 
 clear:
