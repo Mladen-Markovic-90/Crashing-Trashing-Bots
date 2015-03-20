@@ -34,6 +34,8 @@
 #include "tacka.h"
 #include "timer.h"
 #include "model_1.h"
+#include "model_2.h"
+#include "model_3.h"
 
 
 /* definicije za trenutni prozor */
