@@ -17,8 +17,10 @@
 */
 
 
+// TEST 2
 #include "global.h"
 
+// TEST 2
 
 #include "glut.cpp"
 #include "display.cpp"
@@ -29,6 +31,7 @@
 #include "tacka.cpp"
 #include "motion.cpp"
 #include "timer.cpp"
+
 
 
 int main(int argc,char ** argv)
@@ -45,3 +48,5 @@ int main(int argc,char ** argv)
     glut::start();
     return 0;
 }
+
+// TEST 2
