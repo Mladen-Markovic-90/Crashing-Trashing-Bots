@@ -41,9 +41,9 @@ glut::push();
     {
         glut::push();
             glut::rotate(i*45,0,0,1);
-            glut::pravougaonik_z(5,1);
+            glut::pravougaonik_z(radius,height/2);
             glut::translate(0,0,height+0.2);
-            glut::pravougaonik_z(5,1);
+            glut::pravougaonik_z(radius,height/2);
         glut::pop();
     }
 glut::pop();
