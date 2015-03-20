@@ -56,12 +56,14 @@ void Display::start()
     this->ugao++;
     glut::light(GL_ON);
     glut::modelView3D(0,0,100);
-    glut::lightPosition(1,0,1,0);
+    glut::lightPosition(0,0,1,0);
     glut::color(1.0,1.0,0,1.0);
 
     glut::rotate(30,1,0,0);
     glut::rotate(this->ugao,0,1,0);
-    model_1();
+    //model_1();
+    model_2();
+    //model_3();
 
     /*
     glut::rotate(45,1,0,1);

@@ -21,7 +21,7 @@
 #define TIMER_H
 
 
-#define TIMER 100
+#define TIMER 50
 
 
 class Timer
