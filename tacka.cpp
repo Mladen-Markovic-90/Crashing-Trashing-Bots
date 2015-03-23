@@ -25,51 +25,67 @@ Tacka::Tacka() {}
 
 Tacka::Tacka(const float & x,const float & y,const float & z)
 {
-    this->x=x;
-    this->y=y;
-    this->z=z;
+    this->_x=x;
+    this->_y=y;
+    this->_z=z;
 }
 
 
 Tacka::Tacka(const Tacka & t)
 {
-    this->x=t.x;
-    this->y=t.y;
-    this->z=t.z;
+    this->_x=t._x;
+    this->_y=t._y;
+    this->_z=t._z;
 }
 
 
 float Tacka::get_x() const
 {
-    return this->x;
+    return this->_x;
 }
 
 
 float Tacka::get_y() const
 {
-    return this->y;
+    return this->_y;
 }
 
 
 float Tacka::get_z() const
 {
-    return this->z;
+    return this->_z;
 }
 
 
 void Tacka::set_x(const float x)
 {
-    this->x=x;
+    this->_x=x;
 }
 
 
 void Tacka::set_y(const float y)
 {
-    this->y=y;
+    this->_y=y;
 }
 
 
 void Tacka::set_z(const float z)
 {
-    this->z=z;
+    this->_z=z;
+}
+
+
+void Tacka::add(const float x,const float y,const float z)
+{
+    this->_x+=x;
+    this->_y+=y;
+    this->_z+=z;
+}
+
+
+void Tacka::add(Tacka t)
+{
+    this->_x+=t.get_x();
+    this->_y=t.get_y();
+    this->_z=t.get_z();
 }

@@ -34,10 +34,14 @@ public:
     void set_x(const float x);
     void set_y(const float y);
     void set_z(const float z);
+    void add(const float x,const float y,const float z);
+    void add(Tacka t);
+
+
 private:
-    float x;
-    float y;
-    float z;
+    float _x;
+    float _y;
+    float _z;
 };
 
 
