@@ -20,7 +20,8 @@ HEADERS += glut.h \
     global.h \
     model_1.h \
     model_2.h \
-    model_3.h
+    model_3.h \
+    robot.h
 
 include(deployment.pri)
 qtcAddDeployment()
