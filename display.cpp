@@ -22,7 +22,7 @@
 
 #include <iostream>
 #include "global.h"
-
+#include <cmath>
 
 /* prikazuje sadrzaj prozora */
 void Display::show(void)
@@ -55,16 +55,36 @@ void Display::start()
 {
     this->ugao++;
     glut::light(GL_ON);
-    glut::modelView3D(0,0,100);
+
+    glut::modelView3D(0,0,200);
+
     glut::lightPosition(0,0,1,0);
-    glut::color(1.0,1.0,0,1.0);
+    glut::color(0,1.0,0,1.0);
 
-    glut::rotate(30,1,0,0);
-    glut::rotate(this->ugao,0,1,0);
-    //model_1();
+    glut::lookAt(100*std::sin((float)ugao/5), 100, 100*std::cos((float)ugao / 5) , 0, 0, 0);
+
+    //glut::rotate(30,1,0,0);
+    //glut::rotate(this->ugao,0,1,0);
+
+    glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
+    glut::light(1);
+    model_1();
+    glut::translate(0, 0, 50);
+    glut::push();
+    glut::rotate(30, 0, 1, 0);
     model_2();
-    //model_3();
+    glut::pop();
+    glut::translate(0, 0, 50);
+    
+    model_3();
 
+    // glut::cube(10);
+    // glut::translate(20, 0, 0);
+    // glut::cube(10);
+    // glut::translate(20, 0, 0);
+
+    
+    
     /*
     glut::rotate(45,1,0,1);
     glut::cube(10);

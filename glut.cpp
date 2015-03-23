@@ -76,7 +76,7 @@ void glut::display(void (*func)(void))
 /* ukljucivanje ili iskljucivanje svetla sa normalama */
 void glut::light(int arg)
 {
-    if(arg==GL_ON)
+    if(arg==1)
         {
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
@@ -157,6 +157,11 @@ void glut::modelView3D(float x,float y,float z)
     glShadeModel(GL_SMOOTH);
 }
 
+void glut::lookAt(float eyeX, float eyeY, float eyeZ, 
+		  float centerX, float centerY, float centerZ)
+{
+    gluLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, 0, 1, 0);
+}
 
 /* pozicija svetla */
 void glut::lightPosition(float x, float y, float z,float w)
@@ -412,4 +417,23 @@ void glut::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2
     glut::pravougaonik(d1,a1,a2,d2);
     glut::normal(0,-1,0);
     glut::pravougaonik(a2,b2,c2,d2);
+}
+
+/* grid za podlogu */
+void glut::grid(int dimenzija, int korak, float r, float g, float b)
+{
+    glut::push();
+    glut::begin(GL_LINES); {
+	for (int i=-dimenzija; i<=dimenzija; i+=korak) {
+
+	    glut::color(r, g, b, 1.0f);
+	    glut::vertex(i, 0, -dimenzija, 1);
+	    glut::vertex(i, 0, dimenzija, 1);
+
+	    glut::vertex(-dimenzija, 0, i, 1);
+	    glut::vertex(dimenzija, 0, i, 1);
+	}
+    } glut::end();
+
+    glut::pop();
 }

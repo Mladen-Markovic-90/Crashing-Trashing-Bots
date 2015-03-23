@@ -160,6 +160,13 @@ public:
 
     /* kvadar sa tackama */
     static void kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2,Tacka d2);
+
+    /* grid za podlogu */
+    static void grid(int dimenzija, int korak, float r, float g, float b);
+
+    /* lookAt */
+    static void lookAt(float eyeX, float eyeY, float eyeZ, 
+			     float centerX, float centerY, float centerZ);
 };
 
 
