@@ -36,6 +36,7 @@
 #include "model_1.h"
 #include "model_2.h"
 #include "model_3.h"
+#include "robot.h"
 
 
 /* definicije za trenutni prozor */
@@ -47,6 +48,9 @@
 #define MODUS_5 5
 #define MODUS_6 6
 #define MODUS_7 7
+
+
+#define PI 3.14159265359
 
 
 int modus=MODUS_START; /* trenutni prozor */
@@ -64,6 +68,7 @@ Special_keys special_keys;
 Motion motion;
 Display display;
 Timer timer;
+Robot robot;
 
 
 /* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
@@ -81,9 +86,9 @@ static void onDisplay(void)
 }
 
 
-static void onKey(unsigned char key, int x, int y)
+static void setKey(unsigned char key, int x, int y)
 {
-    keyboard_keys.keys(key,x,y);
+    keyboard_keys.setKey(key,x,y);
 }
 
 
@@ -108,6 +113,12 @@ static void onMouse(int button,int state,int x,int y)
 static void onMotion(int x,int y)
 {
     motion.motion(x,y);
+}
+
+
+static void unsetKey(unsigned char key, int x, int y)
+{
+    keyboard_keys.unsetKey(key,x,y);
 }
 
 
