@@ -22,6 +22,12 @@
 
 void Timer::timer(int id) const
 {
+    if(modus==MODUS_START)
+    {
+        std::cout << "Happen" << std::endl;
+        robot.animation();
+
+    }
     glut::reDisplay();
     glutTimerFunc(TIMER,onTimer,id);
 }
