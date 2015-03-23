@@ -20,8 +20,10 @@
 #include "global.h"
 
 
-void Keys::keys(unsigned char key, int x, int y) const
+void Keys::setKey(unsigned char key, int x, int y) const
 {
+    if(modus==MODUS_START)
+        robot.set_key(key);
 
     switch(key)
     {
@@ -36,5 +38,13 @@ void Keys::keys(unsigned char key, int x, int y) const
             glut::reDisplay();
             break;
     }
+
+}
+
+
+void Keys::unsetKey(unsigned char key, int x, int y) const
+{
+    if(modus==MODUS_START)
+        robot.unset_key(key);
 
 }

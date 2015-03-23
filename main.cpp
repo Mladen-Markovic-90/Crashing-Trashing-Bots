@@ -17,12 +17,8 @@
 */
 
 
-// TEST 2
-
-
 #include "global.h"
 
-// TEST 2
 
 #include "glut.cpp"
 #include "display.cpp"
@@ -33,7 +29,7 @@
 #include "tacka.cpp"
 #include "motion.cpp"
 #include "timer.cpp"
-
+#include "robot.cpp"
 
 
 int main(int argc,char ** argv)
@@ -41,7 +37,8 @@ int main(int argc,char ** argv)
     glut::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
     glutDisplayFunc(onDisplay);
     /*glut::display(prozor.show);*/
-    glutKeyboardFunc(onKey);
+    glutKeyboardFunc(setKey);
+    glutKeyboardUpFunc(unsetKey);
     glutSpecialFunc(onSpecKey);
     glutReshapeFunc(onReshape);
     glutMouseFunc(onMouse);
@@ -50,5 +47,3 @@ int main(int argc,char ** argv)
     glut::start();
     return 0;
 }
-
-// TEST 2
