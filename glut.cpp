@@ -76,7 +76,7 @@ void glut::display(void (*func)(void))
 /* ukljucivanje ili iskljucivanje svetla sa normalama */
 void glut::light(int arg)
 {
-    if(arg==1)
+    if(arg==GL_ON)
         {
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);

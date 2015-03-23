@@ -58,25 +58,30 @@ void Display::start()
 
     glut::modelView3D(0,0,200);
 
-    glut::lightPosition(0,0,1,0);
     glut::color(0,1.0,0,1.0);
-
-    glut::lookAt(100*std::sin((float)ugao/5), 100, 100*std::cos((float)ugao / 5) , 0, 0, 0);
+    glut::lightPosition(0,0,0,1);
+    glut::lookAt(100*std::sin((float)ugao/50), 100, 100*std::cos((float)ugao / 50) , 0, 0, 0);
 
     //glut::rotate(30,1,0,0);
     //glut::rotate(this->ugao,0,1,0);
 
     glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
-    glut::light(1);
+    /*glut::light(GL_ON);*/
     model_1();
     glut::translate(0, 0, 50);
     glut::push();
     glut::rotate(30, 0, 1, 0);
     model_2();
     glut::pop();
+
+    glut::push();
     glut::translate(0, 0, 50);
     
     model_3();
+
+    glut::pop();
+
+    robot.draw();
 
     // glut::cube(10);
     // glut::translate(20, 0, 0);
