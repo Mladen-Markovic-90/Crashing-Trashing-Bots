@@ -17,52 +17,20 @@
 */
 
 
-#ifndef ROBOT_H
-#define ROBOT_H
+#ifndef ROBOT_1_H
+#define ROBOT_1_H
 
 
-#include "tacka.h"
+#include "robot.h"
 
 
-#define KEY_NONE 0
-#define KEY_UP 1
-#define KEY_DOWN 2
-#define KEY_LEFT 3
-#define KEY_RIGHT 4
-
-
-#define PLAYER_NONE 0
-#define PLAYER_1 1
-#define PLAYER_2 2
-#define PLAYER_TEST 3
-
-
-class Robot
+class Robot_1 : public Robot
 {
 public:
-    Robot(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
-
-    void set_key(unsigned char key);
-    void unset_key(unsigned char key);
-    void set_key(int key);
-    void unset_key(int key);
+    Robot_1(int player=PLAYER_1,Tacka t=Tacka(0,0,0));
     virtual void animation();
     virtual void draw();
-    void display3D(int ugao,int width,int height,int arg1,int arg2,int light_status);
-
-protected:
-
-    int _player;
-    unsigned char _up_down;
-    unsigned char _left_right;
-    Tacka _center;
-    float _ugao;
-    float _speed=5;
-    int _ability_1=0;
-    int _ability_2=0;
-    int _ability_3=0;
-    int _ability_4=0;
-    int _ugao_rotacije;
 };
 
-#endif // ROBOT_H
+
+#endif // ROBOT_1_H
