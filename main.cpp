@@ -30,16 +30,28 @@
 #include "motion.cpp"
 #include "timer.cpp"
 #include "robot.cpp"
+#include "robot_1.cpp"
+#include "robot_2.cpp"
+#include "robot_3.cpp"
 
 
 int main(int argc,char ** argv)
 {
+    robot.push_back(new Robot_1);
+    robot.push_back(new Robot_3(PLAYER_1));
+    robot.push_back(new Robot_2);
+    robot.push_back(new Robot_1(PLAYER_TEST));
     glut::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
+    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+    //glutIgnoreKeyRepeat(1);
+    //glutEnterGameMode();
+    glutFullScreen();
     glutDisplayFunc(onDisplay);
     /*glut::display(prozor.show);*/
     glutKeyboardFunc(setKey);
     glutKeyboardUpFunc(unsetKey);
-    glutSpecialFunc(onSpecKey);
+    glutSpecialFunc(setSpecKey);
+    glutSpecialUpFunc(unsetSpecKey);
     glutReshapeFunc(onReshape);
     glutMouseFunc(onMouse);
     glutMotionFunc(onMotion);
