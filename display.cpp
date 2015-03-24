@@ -31,6 +31,8 @@ void Display::show(void)
         Display::meni();
     else if(modus==MODUS_START)
         Display::start();
+    else if(modus==MODUS_TEST)
+        Display::test();
 }
 
 
@@ -53,20 +55,21 @@ void Display::meni()
 /* prikazuje meni->start */
 void Display::start()
 {
-    this->ugao++;
+    this->ugao+=0.1;
     glut::light(GL_ON);
+
+
 
     glut::modelView3D(0,0,200);
 
     glut::color(0,1.0,0,1.0);
     glut::lightPosition(0,0,0,1);
-    glut::lookAt(100*std::sin((float)ugao/50), 100, 100*std::cos((float)ugao / 50) , 0, 0, 0);
+    glut::lookAt(100*std::sin((float)ugao/180*PII), 100, 100*std::cos((float)ugao/180*PII) , 0, 0, 0);
 
-    //glut::rotate(30,1,0,0);
-    //glut::rotate(this->ugao,0,1,0);
 
     glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
-    /*glut::light(GL_ON);*/
+
+    /*
     model_1();
     glut::translate(0, 0, 50);
     glut::push();
@@ -79,22 +82,31 @@ void Display::start()
     
     model_3();
 
-    glut::pop();
+    glut::pop();*/
 
-    robot.draw();
+    robot[PLAYER_1]->draw();
+    robot[PLAYER_2]->draw();
+    robot[PLAYER_TEST]->draw();
 
-    // glut::cube(10);
-    // glut::translate(20, 0, 0);
-    // glut::cube(10);
-    // glut::translate(20, 0, 0);
+    robot[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
 
-    
-    
-    /*
-    glut::rotate(45,1,0,1);
-    glut::cube(10);
-    glut::sphere(10);
-    glut::cylinder(10,10);
-    glut::cone(10,20);*/
+
+    glut::swapBuffers();
+}
+
+
+void Display::test()
+{
+
+    this->ugao++;
+    glut::light(GL_ON);
+
+    glut::modelView3D(0,0,100);
+    glut::lightPosition(0,0,0,1);
+    glut::rotate(30,1,0,0);
+    glut::rotate(this->ugao,0,1,0);
+    model_3();
+
+
     glut::swapBuffers();
 }
