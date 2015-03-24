@@ -26,19 +26,19 @@ Robot_1::Robot_1(int player,Tacka t)
     {}
 
 
-void Robot_1::animation()
-{
-    if(this->_left_right==KEY_LEFT)
-        this->_ugao-=5;
-    else if(this->_left_right==KEY_RIGHT)
-        this->_ugao+=5;
+// void Robot_1::animation()
+// {
+//     if(this->_left_right==KEY_LEFT)
+//         this->_ugao-=5;
+//     else if(this->_left_right==KEY_RIGHT)
+//         this->_ugao+=5;
 
-    if(this->_up_down==KEY_UP)
-        this->_center.add(this->_speed*std::sin(this->_ugao/180*PII),0,-this->_speed*std::cos(this->_ugao/180*PII));
-    else if(this->_up_down==KEY_DOWN)
-        this->_center.add(-this->_speed*std::sin(this->_ugao/180*PII),0,this->_speed*std::cos(this->_ugao/180*PII));
+//     if(this->_up_down==KEY_UP)
+//         this->_center.add(this->_speed*std::sin(this->_ugao/180*PII),0,-this->_speed*std::cos(this->_ugao/180*PII));
+//     else if(this->_up_down==KEY_DOWN)
+//         this->_center.add(-this->_speed*std::sin(this->_ugao/180*PII),0,this->_speed*std::cos(this->_ugao/180*PII));
 
-}
+//}
 
 
 void Robot_1::draw()

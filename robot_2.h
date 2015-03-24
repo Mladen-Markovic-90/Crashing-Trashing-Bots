@@ -28,7 +28,7 @@ class Robot_2 : public Robot
 {
 public:
     Robot_2(int player=PLAYER_2,Tacka t=Tacka(0,0,0));
-    virtual void animation();
+    /* virtual void animation(); */
     virtual void draw();
 };
 

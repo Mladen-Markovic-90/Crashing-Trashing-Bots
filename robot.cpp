@@ -183,9 +183,11 @@ void Robot::animation()
 {
     if(this->_ability_1>0)
         this->_ability_1--;
-    if(this->_left_right==KEY_LEFT)
+    if( (this->_left_right==KEY_LEFT && this->_up_down==KEY_UP)
+	|| (this->_left_right==KEY_RIGHT && this->_up_down==KEY_DOWN) )
         this->_ugao-=5;
-    else if(this->_left_right==KEY_RIGHT)
+    else if( (this->_left_right==KEY_RIGHT && this->_up_down==KEY_UP) 
+	|| (this->_left_right==KEY_LEFT && this->_up_down==KEY_DOWN) )
         this->_ugao+=5;
 
     if(this->_up_down==KEY_UP)
