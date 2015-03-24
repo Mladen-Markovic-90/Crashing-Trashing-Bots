@@ -437,3 +437,33 @@ void glut::grid(int dimenzija, int korak, float r, float g, float b)
 
     glut::pop();
 }
+
+
+void glut::fullScreen()
+{
+    glutFullScreen();
+}
+
+
+void glut::fullScreenToggle()
+{
+    glutFullScreenToggle();
+}
+
+
+
+void glut::screenDisplayBegin3D()
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}
+
+
+void glut::screenDisplayEnd3D(int ugao,int width,int height,int arg1,int arg2)
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(ugao,(float)width/height,arg1,arg2);
+}

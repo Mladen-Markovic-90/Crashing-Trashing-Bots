@@ -167,6 +167,11 @@ public:
     /* lookAt */
     static void lookAt(float eyeX, float eyeY, float eyeZ, 
 			     float centerX, float centerY, float centerZ);
+
+    static void screenDisplayBegin3D();
+    static void screenDisplayEnd3D(int ugao, int width, int height, int arg1, int arg2);
+    static void fullScreen();
+    static void fullScreenToggle();
 };
 
 
