@@ -37,6 +37,7 @@
 #include "model_2.h"
 #include "model_3.h"
 #include "robot.h"
+#include <vector>
 
 
 /* definicije za trenutni prozor */
@@ -47,10 +48,10 @@
 #define MODUS_4 4
 #define MODUS_5 5
 #define MODUS_6 6
-#define MODUS_7 7
+#define MODUS_TEST 7
 
 
-#define PI 3.14159265359
+#define PII 3.14159265359
 
 
 int modus=MODUS_START; /* trenutni prozor */
@@ -68,7 +69,7 @@ Special_keys special_keys;
 Motion motion;
 Display display;
 Timer timer;
-Robot robot;
+std::vector<Robot *> robot;
 
 
 /* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
@@ -92,9 +93,11 @@ static void setKey(unsigned char key, int x, int y)
 }
 
 
-static void onSpecKey(int key, int x, int y)
+static void setSpecKey(int key, int x, int y)
 {
-    special_keys.keys(key,x,y);
+    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+    //glutIgnoreKeyRepeat(1);
+    special_keys.setKey(key,x,y);
 }
 
 
@@ -118,7 +121,17 @@ static void onMotion(int x,int y)
 
 static void unsetKey(unsigned char key, int x, int y)
 {
+    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+    //glutIgnoreKeyRepeat(1);
     keyboard_keys.unsetKey(key,x,y);
+}
+
+
+static void unsetSpecKey(int key, int x, int y)
+{
+    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+    //glutIgnoreKeyRepeat(1);
+    special_keys.unsetKey(key,x,y);
 }
 
 
