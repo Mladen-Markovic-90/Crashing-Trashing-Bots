@@ -36,7 +36,10 @@ public:
     /* prikazuje meni->start */
     void start();
 
-    int ugao=0;
+
+    void test();
+
+    float ugao=0;
 };
 
 
