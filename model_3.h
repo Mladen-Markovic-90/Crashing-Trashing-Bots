@@ -37,6 +37,22 @@ static void model_3()
     glut::pop();
 
 
+    glut::push();
+        glut::translate(0,11,0);
+        glut::color(0.5,0.5,0.5,1);
+        for(int i=0;i<8;i++)
+        {
+            glut::push();
+            glut::rotate(i*45,0,1,0);
+            glut::translate(0,0,15);
+            glut::kvadar(Tacka(0,1,0),Tacka(0,1,0),Tacka(0,0,10),Tacka(5,1,0),
+                         Tacka(0,-1,0),Tacka(0,-1,0),Tacka(0,0,10),Tacka(5,-1,0));
+            glut::pop();
+        }
+
+    glut::pop();
+
+
 }
 
 
