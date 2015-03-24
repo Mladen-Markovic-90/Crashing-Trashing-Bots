@@ -10,9 +10,9 @@ int ugao_tocakk=0;
 static void tocakk(float radius,float height)
 {
 glut::push();
-    int ugao=-ugao_tocak/4;
+    int ugao=-ugao_tocakk/4;
     glut::rotate(ugao*5,0,0,1);
-    ugao_tocak++;
+    ugao_tocakk++;
     glut::color(0.8,0.8,0.8,1);
     glut::cylinder(radius,height);
     glut::translate(0,0,-0.1);
