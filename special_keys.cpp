@@ -17,10 +17,21 @@
 */
 
 
+#include "special_keys.h"
 #include "global.h"
 
 
-void Special_keys::keys(int key, int x, int y) const
+void Special_keys::setKey(int key, int x, int y) const
 {
+    if(modus==MODUS_START)
+        robot[PLAYER_TEST]->set_key(key);
+
+}
+
+
+void Special_keys::unsetKey(int key, int x, int y) const
+{
+    if(modus==MODUS_START)
+        robot[PLAYER_TEST]->unset_key(key);
 
 }

@@ -17,16 +17,20 @@
 */
 
 
+#include "keys.h"
 #include "global.h"
 
 
 void Keys::setKey(unsigned char key, int x, int y) const
 {
     if(modus==MODUS_START)
-        robot.set_key(key);
+    {
+        robot[PLAYER_1]->set_key(key);
+        robot[PLAYER_2]->set_key(key);
+    }
 
     switch(key)
-    {
+    {/*
         case '1':
             modus=MODUS_MENI;
             glut::reshapeWindow(window_width,window_height);
@@ -36,6 +40,9 @@ void Keys::setKey(unsigned char key, int x, int y) const
             modus=MODUS_START;
             glut::reshapeWindow(window_width,window_height);
             glut::reDisplay();
+            break;*/
+        case '0':
+            glut::fullScreenToggle();
             break;
     }
 
@@ -45,6 +52,9 @@ void Keys::setKey(unsigned char key, int x, int y) const
 void Keys::unsetKey(unsigned char key, int x, int y) const
 {
     if(modus==MODUS_START)
-        robot.unset_key(key);
+    {
+        robot[PLAYER_1]->unset_key(key);
+        robot[PLAYER_2]->unset_key(key);
+    }
 
 }

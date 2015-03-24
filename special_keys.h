@@ -24,7 +24,8 @@
 class Special_keys
 {
 public:
-    void keys(int key, int x, int y) const;
+    void setKey(int key,int x,int y) const;
+    void unsetKey(int key,int x,int y) const;
 };
 
 
