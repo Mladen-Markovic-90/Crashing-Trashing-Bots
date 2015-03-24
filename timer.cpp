@@ -24,8 +24,10 @@ void Timer::timer(int id) const
 {
     if(modus==MODUS_START)
     {
-        std::cout << "Happen" << std::endl;
-        robot.animation();
+        //std::cout << "Happen" << std::endl;
+        robot[PLAYER_1]->animation();
+        robot[PLAYER_2]->animation();
+        robot[PLAYER_TEST]->animation();
 
     }
     glut::reDisplay();
