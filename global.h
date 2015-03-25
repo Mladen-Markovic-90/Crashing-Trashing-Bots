@@ -60,7 +60,10 @@
 #define MODUS_6 6
 #define MODUS_TEST_MLADEN 7
 
-int modus=MODUS_START; /* trenutni prozor */
+
+/* trenutni prozor */
+int modus=MODUS_ARENA;
+
 
 /* sirina i visina */
 int window_width=500;

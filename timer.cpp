@@ -27,14 +27,16 @@
 /* Funkcija za timer i izracunavanje */
 void Timer::timer(int id) const
 {
-    if(modus==MODUS_START)
+    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
-        //std::cout << "Happen" << std::endl;
         // roboti[PLAYER_1]->animation();
         // roboti[PLAYER_2]->animation();
         // roboti[PLAYER_TEST]->animation();
+        for(Robot * item : roboti)
+            item->animation();
+        /*
 	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
-	    (*it)->animation();
+            (*it)->animation();*/
 
     }
     glut::reDisplay();

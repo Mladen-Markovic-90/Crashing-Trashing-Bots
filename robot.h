@@ -26,6 +26,7 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "tacka.h"
+#include "timer.h"
 
 
 /* Razne definicije za lakse razumevanje koda */
@@ -50,7 +51,8 @@ class Robot
 public:
 
     /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
-    Robot(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
+    Robot(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0),
+          int cooldown1=5*SECOND,int cooldown2=5*SECOND,int cooldown3=5*SECOND,int cooldown4=5*SECOND);
 
     /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
     void set_key(unsigned char key);
@@ -64,20 +66,23 @@ public:
     /* Funkcija za skidanje flags za specijalne karaktere, izvrsava se u klasi special_keys */
     void unset_key(int key);
 
-    /* Animacija i izracunavanje za robot, izvrsava se u klasi timer */
+    /* Animacija i izracunavanje za robotic, izvrsava se u klasi timer */
     virtual void animation();
 
-    /* Iscrtavanje robotera, izvrsava se u klasi display */
+    /* Iscrtavanje robotica, izvrsava se u klasi display */
     virtual void draw();
 
     /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
     void display3D(int ugao,int width,int height,int arg1,int arg2,int light_status);
 
-    /* Getter za centar robota */
+    /* Getter za centar robotica */
     Tacka getPos() const { return _center; }
 
     /* Getter za ugao koji sluzi za rotaciju robotica */
     float getUgao() const { return _ugao; }
+
+    /* Getter za player vezan za robotica */
+    int getPlayer() const { return _player; }
     
 protected:
 
@@ -102,6 +107,12 @@ protected:
     int _ability_2=0;
     int _ability_3=0;
     int _ability_4=0;
+
+    /* Promenljive koje oznacavaju cooldown od abilitys */
+    int _ability_1_cooldown=5*SECOND;
+    int _ability_2_cooldown=5*SECOND;
+    int _ability_3_cooldown=5*SECOND;
+    int _ability_4_cooldown=5*SECOND;
 };
 
 #endif // ROBOT_H

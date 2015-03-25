@@ -28,8 +28,10 @@
 
 
 /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
-Robot::Robot(int player,Tacka t)
-    : _player(player) , _center(t)
+Robot::Robot(int player, Tacka t, int cooldown1, int cooldown2, int cooldown3, int cooldown4)
+    : _player(player) , _center(t) ,
+      _ability_1_cooldown(cooldown1) , _ability_2_cooldown(cooldown2) ,
+      _ability_3_cooldown(cooldown3) , _ability_4_cooldown(cooldown4)
 {}
 
 
@@ -57,7 +59,7 @@ void Robot::set_key(unsigned char key)
             break;
         case '1':
             if(this->_ability_1==0)
-                this->_ability_1=100;
+                this->_ability_1=this->_ability_1_cooldown;
             break;
         }
     else if(this->_player==PLAYER_2)

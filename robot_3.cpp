@@ -17,17 +17,23 @@
 */
 
 
+/* Klasa za robotic 3 i rad sa njim */
+
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot_3.h"
 #include "model_3.h"
 #include "glut.h"
 #include <cmath>
 
 
+/* Konstruktor za robotica 3 */
 Robot_3::Robot_3(int player,Tacka t)
-    : Robot(player,t)
+    : Robot(player,t,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
     {}
 
 
+/* Animacija i izracunavanje za robotic 3, izvrsava se u klasi timer */
 void Robot_3::animation()
 {
     if(this->_ability_1>0)
@@ -46,6 +52,7 @@ void Robot_3::animation()
 }
 
 
+/* Iscrtavanje robotica 3 */
 void Robot_3::draw()
 {
     glut::push();
@@ -56,6 +63,7 @@ void Robot_3::draw()
 }
 
 
+/* Model robotica 3 */
 void Robot_3::model()
 {
     this->_ugao_rotacije++;
@@ -87,6 +95,8 @@ void Robot_3::model()
 }
 
 
+/* Ability 1 robotica 3 */
+/* Ability 1 je izbacivanje nozica */
 void Robot_3::ability_1()
 {
     float number=0;

@@ -17,18 +17,27 @@
 */
 
 
+/* Klasa za robotic 2 i rad sa njim */
+
+
 #ifndef ROBOT_2_H
 #define ROBOT_2_H
 
 
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot.h"
 
 
 class Robot_2 : public Robot
 {
 public:
+
+    /* Konstruktor za robotica 2 */
     Robot_2(int player=PLAYER_2,Tacka t=Tacka(0,0,0));
+
     /* virtual void animation(); */
+
+    /* Iscrtavanje robotica 2 */
     virtual void draw();
 };
 

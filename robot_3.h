@@ -17,24 +17,41 @@
 */
 
 
+/* Klasa za robotic 3 i rad sa njim */
+
+
 #ifndef ROBOT_3_H
 #define ROBOT_3_H
 
 
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot.h"
 
 
 class Robot_3 : public Robot
 {
 public:
+
+    /* Konstruktor za robotica 3 */
     Robot_3(int player=PLAYER_TEST,Tacka t=Tacka(0,0,0));
+
+    /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi timer */
     virtual void animation();
+
+    /* Iscrtavanje robotica 3 */
     virtual void draw();
+
+    /* Model robotica 3 */
     void model();
+
+    /* Ability 1 robotica 3 */
+    /* Ability 1 je izbacivanje nozica */
     void ability_1();
 
 private:
-    int _ugao_rotacije; // sta je bre ovo? - Banjac
+
+    /* Rotacija robotica 3 oko svoje ose, za animaciju */
+    int _ugao_rotacije;
 };
 
 

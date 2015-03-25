@@ -17,12 +17,18 @@
 */
 
 
+/* Klasa za robotic 1 i rad sa njim */
+
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot_1.h"
 #include "model_1.h"
 #include <cmath>
 
+
+/* Konstruktor za robotica 1 */
 Robot_1::Robot_1(int player,Tacka t)
-    : Robot(player,t)
+    : Robot(player,t,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
     {}
 
 
@@ -41,6 +47,7 @@ Robot_1::Robot_1(int player,Tacka t)
 //}
 
 
+/* Iscrtavanje robotica 1 */
 void Robot_1::draw()
 {
     glut::push();
@@ -50,5 +57,3 @@ void Robot_1::draw()
         model_1();
     glut::pop();
 }
-
-

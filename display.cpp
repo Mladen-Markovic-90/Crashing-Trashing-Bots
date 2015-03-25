@@ -37,6 +37,8 @@ void Display::show(void)
         Display::meni();
     else if(modus==MODUS_START)
         Display::start();
+    else if(modus==MODUS_ARENA)
+        Display::arena();
     else if(modus==MODUS_TEST_MLADEN)
         Display::test_mladen();
 }
@@ -60,6 +62,13 @@ void Display::meni()
 
 /* prikazuje meni->start */
 void Display::start()
+{
+
+}
+
+
+/* prikazuje arena */
+void Display::arena()
 {
     cout << "ulzim u start \n";
     //this->ugao+=0.1;
@@ -94,10 +103,14 @@ void Display::start()
     // roboti[PLAYER_1]->draw();
     // roboti[PLAYER_2]->draw();
     // roboti[PLAYER_TEST]->draw();
+    for(Robot * item : roboti)
+        item->draw();
+    /*
     for (vector<Robot*>::iterator it = roboti.begin(); it != roboti.end(); ++it) {
 	cout <<"kao crtam" << endl;
-	(*it)->draw();
-    }
+        (*it)->draw();
+    }*/
+
     cout << "izasao iz petlje" << endl;
     
     //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
@@ -112,14 +125,24 @@ void Display::start()
 void Display::test_mladen()
 {
 
-    this->ugao++;
+    this->ugao+=0.1;
     glut::light(GL_ON);
 
-    glut::modelView3D(0,0,100);
+    glut::modelView3D(0,200,400);
     glut::lightPosition(0,0,0,1);
+
     glut::rotate(30,1,0,0);
     glut::rotate(this->ugao,0,1,0);
-    model_3();
+
+    glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
+
+
+    for(Robot * item : roboti)
+        item->draw();
+
+    //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
+
+    //model_3();
 
 
     glut::swapBuffers();

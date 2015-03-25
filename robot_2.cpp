@@ -17,12 +17,18 @@
 */
 
 
+/* Klasa za robotic 2 i rad sa njim */
+
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot_2.h"
 #include "model_2.h"
 #include <cmath>
 
+
+/* Konstruktor za robotica 2 */
 Robot_2::Robot_2(int player,Tacka t)
-    : Robot(player,t)
+    : Robot(player,t,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
     {}
 
 
@@ -41,6 +47,7 @@ Robot_2::Robot_2(int player,Tacka t)
 // }
 
 
+/* Iscrtavanje robotica 2 */
 void Robot_2::draw()
 {
     glut::push();

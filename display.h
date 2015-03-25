@@ -36,6 +36,9 @@ public:
     /* prikazuje meni->start */
     void start();
 
+    /* prikazuje arena */
+    void arena();
+
     /* prikazuje sadrzaj testiranja mladen */
     void test_mladen();
 

@@ -28,26 +28,18 @@
 /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
 void Keys::setKey(unsigned char key, int x, int y) const
 {
-    if(modus==MODUS_START)
+    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
-        // roboti[PLAYER_1]->set_key(key);
-        // roboti[PLAYER_2]->set_key(key);
+        for(Robot * item : roboti)
+            if(item->getPlayer()!=PLAYER_TEST)
+                item->set_key(key);
+        /*
 	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
-	    (*it)->set_key(key);
+            (*it)->set_key(key);*/
     }
 
     switch(key)
-    {/*
-        case '1':
-            modus=MODUS_MENI;
-            glut::reshapeWindow(window_width,window_height);
-            glut::reDisplay();
-            break;
-        case '2':
-            modus=MODUS_START;
-            glut::reshapeWindow(window_width,window_height);
-            glut::reDisplay();
-            break;*/
+    {
         case '0':
             glut::fullScreenToggle();
             break;
@@ -59,12 +51,14 @@ void Keys::setKey(unsigned char key, int x, int y) const
 /* skidanje flagova za karaktere koja su stisnuta na tastaturi */
 void Keys::unsetKey(unsigned char key, int x, int y) const
 {
-    if(modus==MODUS_START)
+    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
-        // roboti[PLAYER_1]->unset_key(key);
-        // roboti[PLAYER_2]->unset_key(key);
+        for(Robot * item : roboti)
+            if(item->getPlayer()!=PLAYER_TEST)
+                item->unset_key(key);
+        /*
 	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
-	    (*it)->unset_key(key);
+            (*it)->unset_key(key);*/
     }
 
 }
