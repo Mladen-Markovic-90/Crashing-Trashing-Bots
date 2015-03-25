@@ -50,10 +50,6 @@
 #define MODUS_6 6
 #define MODUS_TEST 7
 
-
-#define PII 3.14159265359
-
-
 int modus=MODUS_START; /* trenutni prozor */
 
 /* sirina i visina */
@@ -69,7 +65,7 @@ Special_keys special_keys;
 Motion motion;
 Display display;
 Timer timer;
-std::vector<Robot *> robot;
+std::vector<Robot *> roboti;
 
 
 /* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
