@@ -191,9 +191,9 @@ void Robot::animation()
         this->_ugao+=5;
 
     if(this->_up_down==KEY_UP)
-        this->_center.add(this->_speed*std::sin(this->_ugao/180*PII),0,-this->_speed*std::cos(this->_ugao/180*PII));
+        this->_center.add(this->_speed*std::sin(this->_ugao/180*M_PI),0,-this->_speed*std::cos(this->_ugao/180*M_PI));
     else if(this->_up_down==KEY_DOWN)
-        this->_center.add(-this->_speed*std::sin(this->_ugao/180*PII),0,this->_speed*std::cos(this->_ugao/180*PII));
+        this->_center.add(-this->_speed*std::sin(this->_ugao/180*M_PI),0,this->_speed*std::cos(this->_ugao/180*M_PI));
 
 }
 

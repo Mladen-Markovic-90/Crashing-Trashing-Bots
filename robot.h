@@ -49,7 +49,9 @@ public:
     virtual void animation();
     virtual void draw();
     void display3D(int ugao,int width,int height,int arg1,int arg2,int light_status);
-
+    Tacka getPos() const { return _center; }
+    float getUgao() const { return _ugao; }
+    
 protected:
 
     int _player;
@@ -62,7 +64,7 @@ protected:
     int _ability_2=0;
     int _ability_3=0;
     int _ability_4=0;
-    int _ugao_rotacije;
+    int _ugao_rotacije; // sta je bre ovo? - Banjac
 };
 
 #endif // ROBOT_H
