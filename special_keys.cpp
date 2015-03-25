@@ -35,6 +35,13 @@ void Special_keys::setKey(int key, int x, int y) const
             if(item->getPlayer()==PLAYER_TEST)
                 item->set_key(key);
 
+    switch(key)
+    {
+    case GLUT_KEY_F11:
+        glut::fullScreenToggle();
+        break;
+    }
+
 }
 
 

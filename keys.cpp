@@ -38,12 +38,13 @@ void Keys::setKey(unsigned char key, int x, int y) const
             (*it)->set_key(key);*/
     }
 
+    /*
     switch(key)
     {
         case '0':
             glut::fullScreenToggle();
             break;
-    }
+    }*/
 
 }
 
