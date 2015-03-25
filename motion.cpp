@@ -17,9 +17,13 @@
 */
 
 
+/* Rad pozicijom misa */
+
+
 #include "global.h"
 
 
+/* Rad na osnovu pozicije misa */
 void Motion::motion(int x,int y) const
 {
 

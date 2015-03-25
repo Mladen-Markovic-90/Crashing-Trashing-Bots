@@ -17,13 +17,20 @@
 */
 
 
+/* Nadklasa za robotice i rad sa njim */
+
+
 #ifndef ROBOT_H
 #define ROBOT_H
 
 
+/* Ukljucivanje potrebnih zaglavlja */
 #include "tacka.h"
 
 
+/* Razne definicije za lakse razumevanje koda */
+
+/* Definicije konstanti za dugmad */
 #define KEY_NONE 0
 #define KEY_UP 1
 #define KEY_DOWN 2
@@ -31,6 +38,7 @@
 #define KEY_RIGHT 4
 
 
+/* Definicije konstanti za player */
 #define PLAYER_NONE 0
 #define PLAYER_1 1
 #define PLAYER_2 2
@@ -40,31 +48,60 @@
 class Robot
 {
 public:
+
+    /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
     Robot(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
 
+    /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
     void set_key(unsigned char key);
+
+    /* Funkcija za skidanje flags za obicne karaktere, izvrsava se u klasi keys */
     void unset_key(unsigned char key);
+
+    /* Funkcija za postavljanje flags za specijalne karaktere, izvrsava se u klasi special_keys */
     void set_key(int key);
+
+    /* Funkcija za skidanje flags za specijalne karaktere, izvrsava se u klasi special_keys */
     void unset_key(int key);
+
+    /* Animacija i izracunavanje za robot, izvrsava se u klasi timer */
     virtual void animation();
+
+    /* Iscrtavanje robotera, izvrsava se u klasi display */
     virtual void draw();
+
+    /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
     void display3D(int ugao,int width,int height,int arg1,int arg2,int light_status);
+
+    /* Getter za centar robota */
     Tacka getPos() const { return _center; }
+
+    /* Getter za ugao koji sluzi za rotaciju robotica */
     float getUgao() const { return _ugao; }
     
 protected:
 
+    /* Flag koji oznacava igraca */
     int _player;
+
+    /* Flagovi za pravce koji su stisnuti */
     unsigned char _up_down;
     unsigned char _left_right;
+
+    /* Centar robota */
     Tacka _center;
+
+    /* Ugao koji sluzi za rotaciju roboticas */
     float _ugao;
+
+    /* Privremena promenljiva za brzinu */
     float _speed=5;
+
+    /* Promenljive/Flag za stanje abilitys */
     int _ability_1=0;
     int _ability_2=0;
     int _ability_3=0;
     int _ability_4=0;
-    int _ugao_rotacije; // sta je bre ovo? - Banjac
 };
 
 #endif // ROBOT_H

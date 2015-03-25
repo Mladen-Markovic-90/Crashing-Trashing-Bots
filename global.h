@@ -17,13 +17,14 @@
 */
 
 
-/* klasa koja je globalna i ukljucuje sve includes */
+/* klasa koja je globalna i ukljucuje sva zaglavlja i globalne promenljive i globalne konstante */
 
 
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
 
+/* Ukljucujemo sve potrebna zaglavlja */
 #include "glut.h"
 #include "display.h"
 #include "keys.h"
@@ -57,7 +58,7 @@
 #define MODUS_4 4
 #define MODUS_5 5
 #define MODUS_6 6
-#define MODUS_TEST 7
+#define MODUS_TEST_MLADEN 7
 
 int modus=MODUS_START; /* trenutni prozor */
 
@@ -80,24 +81,28 @@ std::vector<Robot *> roboti;
 /* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
 
 
+/* glut input funkcija za rad sa vremenom koja prima milisekunde */
 static void onTimer(int id)
 {
     timer.timer(id);
 }
 
 
+/* glut input funkcija za crtanje */
 static void onDisplay(void)
 {
     display.show();
 }
 
 
+/* glut input funkcija za citanje stisnutih karaktera sa tastature */
 static void setKey(unsigned char key, int x, int y)
 {
     keyboard_keys.setKey(key,x,y);
 }
 
 
+/* glut input funkcija za citanje specijalnih stisnutih karaktera sa tastature */
 static void setSpecKey(int key, int x, int y)
 {
     //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
@@ -106,24 +111,28 @@ static void setSpecKey(int key, int x, int y)
 }
 
 
+/* glut input funkcija za podesavanje prozora */
 static void onReshape(int width,int height)
 {
     reshape.reshape(width,height);
 }
 
 
+/* glut input funkcija za citanje stanje dugmad misa */
 static void onMouse(int button,int state,int x,int y)
 {
     mouse.mouse(button,state,x,y);
 }
 
 
+/* glut input funkcija za citanje pozicije misa */
 static void onMotion(int x,int y)
 {
     motion.motion(x,y);
 }
 
 
+/* glut input funkcija za citanje otpustenih karaktera sa tastature */
 static void unsetKey(unsigned char key, int x, int y)
 {
     //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
@@ -132,6 +141,7 @@ static void unsetKey(unsigned char key, int x, int y)
 }
 
 
+/* glut input funkcija za citanje specijalnih otpustenih karaktera sa tastature */
 static void unsetSpecKey(int key, int x, int y)
 {
     //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);

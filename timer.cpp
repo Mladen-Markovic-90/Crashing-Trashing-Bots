@@ -17,9 +17,14 @@
 */
 
 
+/* Klasa koja sluzi za rad sa timerom/animacijom i izracunavanja */
+
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 
 
+/* Funkcija za timer i izracunavanje */
 void Timer::timer(int id) const
 {
     if(modus==MODUS_START)

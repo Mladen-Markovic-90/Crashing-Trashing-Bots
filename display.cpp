@@ -20,21 +20,25 @@
 /* klasa koja sluzi za prikaz sadrzaja prozora */
 
 
+/* ukljucivanje potrebnih zaglavlja */
 #include <iostream>
 #include "global.h"
 #include <cmath>
 #include <cassert> // za debagovanje
-/* prikazuje sadrzaj prozora */
+
+
 using namespace std;
 
+
+/* prikazuje sadrzaj prozora */
 void Display::show(void)
 {
     if(modus==MODUS_MENI)
         Display::meni();
     else if(modus==MODUS_START)
         Display::start();
-    else if(modus==MODUS_TEST)
-        Display::test();
+    else if(modus==MODUS_TEST_MLADEN)
+        Display::test_mladen();
 }
 
 
@@ -104,7 +108,8 @@ void Display::start()
 }
 
 
-void Display::test()
+/* prikazuje sadrzaj testiranja mladen */
+void Display::test_mladen()
 {
 
     this->ugao++;
@@ -120,6 +125,8 @@ void Display::test()
     glut::swapBuffers();
 }
 
+
+/* namestanje kamere za prikaz */
 void Display::adjust_camera()
 {
     cout << "ulazim u kamera metodu" << endl;
@@ -142,8 +149,3 @@ void Display::adjust_camera()
     glut::lookAt(oko, fokus);
     cout <<"mkanp" << endl;
 }
-
-
-
-
-

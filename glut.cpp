@@ -19,6 +19,8 @@
 
 /* omotac za freeglut biblioteku */
 
+
+/* ukljucujemo potrebna zaglavlja */
 #include <GL/freeglut.h>
 #include "glut.h"
 
@@ -157,11 +159,14 @@ void glut::modelView3D(float x,float y,float z)
     glShadeModel(GL_SMOOTH);
 }
 
+
+/* funkcija za namestanje kamere */
 void glut::lookAt(Tacka oko, Tacka fokus)
 {
     gluLookAt(oko.get_x(), oko.get_y(), oko.get_z(),
 	      fokus.get_x(), fokus.get_y(), fokus.get_z(), 0, 1, 0);
 }
+
 
 /* pozicija svetla */
 void glut::lightPosition(float x, float y, float z,float w)
@@ -288,14 +293,14 @@ void glut::translate(Tacka t)
 }
 
 
-/* stavljanje matrice za transformaciju na steck */
+/* stavljanje matrice za transformaciju na stek */
 void glut::push()
 {
     glPushMatrix();
 }
 
 
-/* skidanje matrice za transformaciju sa stecka */
+/* skidanje matrice za transformaciju sa steka */
 void glut::pop()
 {
     glPopMatrix();
@@ -419,32 +424,38 @@ void glut::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2
     glut::pravougaonik(a2,b2,c2,d2);
 }
 
+
 /* grid za podlogu */
 void glut::grid(int dimenzija, int korak, float r, float g, float b)
 {
     glut::push();
-    glut::begin(GL_LINES); {
-	for (int i=-dimenzija; i<=dimenzija; i+=korak) {
+        glut::begin(GL_LINES);
+            {
+                for (int i=-dimenzija; i<=dimenzija; i+=korak)
+                {
 
-	    glut::color(r, g, b, 1.0f);
-	    glut::vertex(i, 0, -dimenzija, 1);
-	    glut::vertex(i, 0, dimenzija, 1);
+                    glut::color(r, g, b, 1.0f);
+                    glut::vertex(i, 0, -dimenzija, 1);
+                    glut::vertex(i, 0, dimenzija, 1);
 
-	    glut::vertex(-dimenzija, 0, i, 1);
-	    glut::vertex(dimenzija, 0, i, 1);
-	}
-    } glut::end();
+                    glut::vertex(-dimenzija, 0, i, 1);
+                    glut::vertex(dimenzija, 0, i, 1);
+                }
+            }
+        glut::end();
 
     glut::pop();
 }
 
 
+/* funkcija za ulazak u FullScreen */
 void glut::fullScreen()
 {
     glutFullScreen();
 }
 
 
+/* funkcija za ulazak/izlazak u FullScreen */
 void glut::fullScreenToggle()
 {
     glutFullScreenToggle();
@@ -452,6 +463,7 @@ void glut::fullScreenToggle()
 
 
 
+/* Funkcija koja menja iz 3D modusa u 2D modus za crtanje na display */
 void glut::screenDisplayBegin3D()
 {
     glMatrixMode(GL_PROJECTION);
@@ -461,6 +473,7 @@ void glut::screenDisplayBegin3D()
 }
 
 
+/* Funkcija koja vraca iz 2D u 3D modus radi nastavka rada u 3D posle crtanja na display */
 void glut::screenDisplayEnd3D(int ugao,int width,int height,int arg1,int arg2)
 {
     glMatrixMode(GL_PROJECTION);

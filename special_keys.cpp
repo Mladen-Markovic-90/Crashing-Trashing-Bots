@@ -17,10 +17,15 @@
 */
 
 
+/* Rad sa specijalnim karakterima sa tastature */
+
+
+/* ukljucivanje potrebnih zaglavlja */
 #include "special_keys.h"
 #include "global.h"
 
 
+/* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
 void Special_keys::setKey(int key, int x, int y) const
 {
     // if(modus==MODUS_START)
@@ -29,6 +34,7 @@ void Special_keys::setKey(int key, int x, int y) const
 }
 
 
+/* skidanje flagova za specijalne karaktere koja su stisnuta na tastaturi */
 void Special_keys::unsetKey(int key, int x, int y) const
 {
     // if(modus==MODUS_START)

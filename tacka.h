@@ -17,6 +17,9 @@
 */
 
 
+/* Klasa koja pamti tacke i sluzi za rad sa tackama */
+
+
 #ifndef TACKA
 #define TACKA
 
@@ -24,21 +27,34 @@
 class Tacka
 {
 public:
+
+    /* Konstruktori */
     Tacka();
     Tacka(const float & x,const float & y,const float & z);
     Tacka(const Tacka & t);
 
+    /* Getteri */
     float get_x() const;
     float get_y() const;
     float get_z() const;
+
+    /* Setteri */
     void set_x(const float x);
     void set_y(const float y);
     void set_z(const float z);
+
+    /* Sabiranje Tacke sa koordinatama */
     void add(const float x,const float y,const float z);
+
+    /* Sabiranje Tacke sa Tackom */
     void add(Tacka t);
+
+    //TODO: Definisanje operatora za Tacku
 
 
 private:
+
+    /* Promenljive za koordinatu tacke */
     float _x;
     float _y;
     float _z;

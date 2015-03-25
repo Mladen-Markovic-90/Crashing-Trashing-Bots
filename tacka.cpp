@@ -17,12 +17,18 @@
 */
 
 
+/* Klasa koja pamti tacke i sluzi za rad sa tackama */
+
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "tacka.h"
 
 
+/* Konstruktor bez argumenata */
 Tacka::Tacka() {}
 
 
+/* Konstruktor koji prima koordinate */
 Tacka::Tacka(const float & x,const float & y,const float & z)
 {
     this->_x=x;
@@ -31,6 +37,7 @@ Tacka::Tacka(const float & x,const float & y,const float & z)
 }
 
 
+/* Kopi konstruktor */
 Tacka::Tacka(const Tacka & t)
 {
     this->_x=t._x;
@@ -39,42 +46,49 @@ Tacka::Tacka(const Tacka & t)
 }
 
 
+/* Getter za koordinatu x */
 float Tacka::get_x() const
 {
     return this->_x;
 }
 
 
+/* Getter za koordinatu y */
 float Tacka::get_y() const
 {
     return this->_y;
 }
 
 
+/* Getter za koordinatu z */
 float Tacka::get_z() const
 {
     return this->_z;
 }
 
 
+/* Setter za koordinatu x */
 void Tacka::set_x(const float x)
 {
     this->_x=x;
 }
 
 
+/* Setter za koordinatu y */
 void Tacka::set_y(const float y)
 {
     this->_y=y;
 }
 
 
+/* Setter za koordinatu z */
 void Tacka::set_z(const float z)
 {
     this->_z=z;
 }
 
 
+/* Sabiranje Tacke sa koordinatama */
 void Tacka::add(const float x,const float y,const float z)
 {
     this->_x+=x;
@@ -83,6 +97,7 @@ void Tacka::add(const float x,const float y,const float z)
 }
 
 
+/* Sabiranje Tacke sa Tackom */
 void Tacka::add(Tacka t)
 {
     this->_x+=t.get_x();

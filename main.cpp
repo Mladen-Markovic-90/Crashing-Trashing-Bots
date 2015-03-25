@@ -17,9 +17,11 @@
 */
 
 
+/* Ukljucujemo sve headere i globalne promenljive */
 #include "global.h"
 
 
+/* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
 #include "glut.cpp"
 #include "display.cpp"
 #include "special_keys.cpp"
@@ -35,19 +37,26 @@
 #include "robot_3.cpp"
 
 
+
 int main(int argc,char ** argv)
 {
     roboti.push_back(new Robot_1);
     // roboti.push_back(new Robot_3(PLAYER_1));
     // roboti.push_back(new Robot_2(PLAYER_2));
     roboti.push_back(new Robot_1(PLAYER_1));
+
+    /* Inicalizujemo glut */
     glut::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
+
+
     //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
     //glutIgnoreKeyRepeat(1);
     //glutEnterGameMode();
-    glutFullScreen();
-    glutDisplayFunc(onDisplay);
+    //glutFullScreen();
     /*glut::display(prozor.show);*/
+
+    /* Ukljucujemo glut funkcije */
+    glutDisplayFunc(onDisplay);
     glutKeyboardFunc(setKey);
     glutKeyboardUpFunc(unsetKey);
     glutSpecialFunc(setSpecKey);
@@ -56,6 +65,9 @@ int main(int argc,char ** argv)
     glutMouseFunc(onMouse);
     glutMotionFunc(onMotion);
     glutTimerFunc(TIMER,onTimer,0);
+
+    /* Pokrecemo glut petlju */
     glut::start();
+
     return 0;
 }

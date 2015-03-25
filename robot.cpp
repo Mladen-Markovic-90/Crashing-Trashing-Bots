@@ -17,17 +17,23 @@
 */
 
 
+/* Nadklasa za robotice i rad sa njim */
+
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 #include "robot.h"
 #include "glut.h"
 #include <cmath>
 
 
+/* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
 Robot::Robot(int player,Tacka t)
     : _player(player) , _center(t)
 {}
 
 
+/* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
 void Robot::set_key(unsigned char key)
 {
     if(this->_player==PLAYER_1)
@@ -77,7 +83,7 @@ void Robot::set_key(unsigned char key)
 }
 
 
-
+/* Funkcija za postavljanje flags za specijalne karaktere, izvrsava se u klasi special_keys */
 void Robot::set_key(int key)
 {
     if(this->_player==PLAYER_TEST)
@@ -99,6 +105,7 @@ void Robot::set_key(int key)
 }
 
 
+/* Funkcija za skidanje flags za obicne karaktere, izvrsava se u klasi keys */
 void Robot::unset_key(unsigned char key)
 {
     if(this->_player==PLAYER_1)
@@ -152,7 +159,7 @@ void Robot::unset_key(unsigned char key)
 }
 
 
-
+/* Funkcija za skidanje flags za specijalne karaktere, izvrsava se u klasi special_keys */
 void Robot::unset_key(int key)
 {
     if(this->_player==PLAYER_TEST)
@@ -179,6 +186,7 @@ void Robot::unset_key(int key)
 }
 
 
+/* Animacija i izracunavanje za robot, izvrsava se u klasi timer */
 void Robot::animation()
 {
     if(this->_ability_1>0)
@@ -198,6 +206,7 @@ void Robot::animation()
 }
 
 
+/* Iscrtavanje robotera, izvrsava se u klasi display */
 void Robot::draw()
 {
     glut::color(1,1,1,1);
@@ -210,6 +219,7 @@ void Robot::draw()
 }
 
 
+/* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
 void Robot::display3D(int ugao,int width,int height,int arg1,int arg2,int light_status)
 {
 

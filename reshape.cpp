@@ -17,9 +17,13 @@
 */
 
 
+/* Rad sa prozorom */
+
+
 #include "global.h"
 
 
+/* Obrada prikaza za prozor u zavisnosti od modusa */
 void Reshape::reshape(int width, int height) const
 {
     window_width=width;
@@ -28,6 +32,6 @@ void Reshape::reshape(int width, int height) const
         glut::projection2D(width,height);
     else if(modus==MODUS_START)
         glut::projection3D(width,height,45,1,1000);
-    else if(modus==MODUS_TEST)
+    else if(modus==MODUS_TEST_MLADEN)
         glut::projection3D(width,height,45,1,1000);
 }

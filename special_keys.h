@@ -17,6 +17,9 @@
 */
 
 
+/* Rad sa specijalnim karakterima sa tastature */
+
+
 #ifndef SPECIAL_KEYS_H
 #define SPECIAL_KEYS_H
 
@@ -24,7 +27,11 @@
 class Special_keys
 {
 public:
+
+    /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
     void setKey(int key,int x,int y) const;
+
+    /* skidanje flagova za specijalne karaktere koja su stisnuta na tastaturi */
     void unsetKey(int key,int x,int y) const;
 };
 

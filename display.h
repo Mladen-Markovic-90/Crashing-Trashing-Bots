@@ -36,12 +36,16 @@ public:
     /* prikazuje meni->start */
     void start();
 
+    /* prikazuje sadrzaj testiranja mladen */
+    void test_mladen();
 
-    void test();
-
-    float ugao=0;
 
 private:
+
+    /* sluzi za rotaciju kamere */
+    float ugao=0;
+
+    /* namestanje kamere za prikaz */
     void adjust_camera();
 };
 

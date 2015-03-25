@@ -17,16 +17,25 @@
 */
 
 
+/* Klasa koja sluzi za rad sa timerom/animacijom i izracunavanja */
+
+
 #ifndef TIMER_H
 #define TIMER_H
 
 
+/* Broj milisekundi pauze izmedju 2 racunanja animacije */
 #define TIMER 50
+
+/* Broj izvrsavanja animacije za 1 sekund */
+#define SECOND 1000.0/TIMER
 
 
 class Timer
 {
 public:
+
+    /* Funkcija za timer i izracunavanje */
     void timer(int id) const;
 };
 

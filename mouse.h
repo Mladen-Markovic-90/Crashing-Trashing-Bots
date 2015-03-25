@@ -17,6 +17,9 @@
 */
 
 
+/* Rad sa klikom misa */
+
+
 #ifndef MOUSE_H
 #define MOUSE_H
 
@@ -24,6 +27,8 @@
 class Mouse
 {
 public:
+
+    /* Desavanje na osnovu klika misa */
     void mouse(int button,int state,int x,int y) const;
 };
 

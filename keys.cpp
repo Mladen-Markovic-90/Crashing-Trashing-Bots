@@ -17,10 +17,15 @@
 */
 
 
+/* Rad sa obicnim karakterima sa tastature */
+
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "keys.h"
 #include "global.h"
 
 
+/* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
 void Keys::setKey(unsigned char key, int x, int y) const
 {
     if(modus==MODUS_START)
@@ -51,6 +56,7 @@ void Keys::setKey(unsigned char key, int x, int y) const
 }
 
 
+/* skidanje flagova za karaktere koja su stisnuta na tastaturi */
 void Keys::unsetKey(unsigned char key, int x, int y) const
 {
     if(modus==MODUS_START)

@@ -17,6 +17,9 @@
 */
 
 
+/* Rad pozicijom misa */
+
+
 #ifndef MOTION_H
 #define MOTION_H
 
@@ -24,6 +27,8 @@
 class Motion
 {
 public:
+
+    /* Rad na osnovu pozicije misa */
     void motion(int x, int y) const;
 };
 

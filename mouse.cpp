@@ -17,9 +17,13 @@
 */
 
 
+/* Rad sa klikom misa */
+
+
 #include "global.h"
 
 
+/* Desavanje na osnovu klika misa */
 void Mouse::mouse(int button,int state,int x,int y) const
 {
 

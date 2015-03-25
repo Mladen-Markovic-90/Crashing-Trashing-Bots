@@ -24,6 +24,7 @@
 #define GLUT_H
 
 
+/* ukljucujemo potrebna zaglavlja */
 #include <GL/freeglut.h>
 #include <iostream>
 #include "tacka.h"
@@ -164,12 +165,19 @@ public:
     /* grid za podlogu */
     static void grid(int dimenzija, int korak, float r, float g, float b);
 
-    /* lookAt */
+    /* funkcija za namestanje kamere */
     static void lookAt(Tacka oko, Tacka fokus);
 
+    /* Funkcija koja menja iz 3D modusa u 2D modus za crtanje na display */
     static void screenDisplayBegin3D();
+
+    /* Funkcija koja vraca iz 2D u 3D modus radi nastavka rada u 3D posle crtanja na display */
     static void screenDisplayEnd3D(int ugao, int width, int height, int arg1, int arg2);
+
+    /* funkcija za ulazak u FullScreen */
     static void fullScreen();
+
+    /* funkcija za ulazak/izlazak u FullScreen */
     static void fullScreenToggle();
 };
 

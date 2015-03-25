@@ -17,6 +17,9 @@
 */
 
 
+/* Rad sa obicnim karakterima sa tastature */
+
+
 #ifndef KEYS_H
 #define KEYS_H
 
@@ -24,7 +27,11 @@
 class Keys
 {
 public:
+
+    /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
     void setKey(unsigned char key,int x,int y) const;
+
+    /* skidanje flagova za karaktere koja su stisnuta na tastaturi */
     void unsetKey(unsigned char key,int x,int y) const;
 };
 

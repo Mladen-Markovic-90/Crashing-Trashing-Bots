@@ -17,6 +17,9 @@
 */
 
 
+/* Rad sa prozorom */
+
+
 #ifndef RESHAPE_H
 #define RESHAPE_H
 
@@ -24,6 +27,8 @@
 class Reshape
 {
 public:
+
+    /* Obrada prikaza za prozor u zavisnosti od modusa */
     void reshape(int width,int height) const;
 };
 
