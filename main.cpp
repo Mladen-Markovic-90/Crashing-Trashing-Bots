@@ -37,10 +37,10 @@
 
 int main(int argc,char ** argv)
 {
-    robot.push_back(new Robot_1);
-    robot.push_back(new Robot_3(PLAYER_1));
-    robot.push_back(new Robot_2);
-    robot.push_back(new Robot_1(PLAYER_TEST));
+    roboti.push_back(new Robot_1);
+    // roboti.push_back(new Robot_3(PLAYER_1));
+    // roboti.push_back(new Robot_2(PLAYER_2));
+    roboti.push_back(new Robot_1(PLAYER_1));
     glut::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
     //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
     //glutIgnoreKeyRepeat(1);
