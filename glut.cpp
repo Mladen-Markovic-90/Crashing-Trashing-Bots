@@ -157,10 +157,10 @@ void glut::modelView3D(float x,float y,float z)
     glShadeModel(GL_SMOOTH);
 }
 
-void glut::lookAt(float eyeX, float eyeY, float eyeZ, 
-		  float centerX, float centerY, float centerZ)
+void glut::lookAt(Tacka oko, Tacka fokus)
 {
-    gluLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, 0, 1, 0);
+    gluLookAt(oko.get_x(), oko.get_y(), oko.get_z(),
+	      fokus.get_x(), fokus.get_y(), fokus.get_z(), 0, 1, 0);
 }
 
 /* pozicija svetla */

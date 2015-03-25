@@ -165,8 +165,7 @@ public:
     static void grid(int dimenzija, int korak, float r, float g, float b);
 
     /* lookAt */
-    static void lookAt(float eyeX, float eyeY, float eyeZ, 
-			     float centerX, float centerY, float centerZ);
+    static void lookAt(Tacka oko, Tacka fokus);
 
     static void screenDisplayBegin3D();
     static void screenDisplayEnd3D(int ugao, int width, int height, int arg1, int arg2);
