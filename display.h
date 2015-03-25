@@ -40,6 +40,9 @@ public:
     void test();
 
     float ugao=0;
+
+private:
+    void adjust_camera();
 };
 
 

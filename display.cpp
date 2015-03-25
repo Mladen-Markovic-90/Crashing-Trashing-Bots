@@ -23,8 +23,10 @@
 #include <iostream>
 #include "global.h"
 #include <cmath>
-
+#include <cassert> // za debagovanje
 /* prikazuje sadrzaj prozora */
+using namespace std;
+
 void Display::show(void)
 {
     if(modus==MODUS_MENI)
@@ -55,17 +57,17 @@ void Display::meni()
 /* prikazuje meni->start */
 void Display::start()
 {
-    this->ugao+=0.1;
+    cout << "ulzim u start \n";
+    //this->ugao+=0.1;
     glut::light(GL_ON);
-
-
 
     glut::modelView3D(0,0,200);
 
     glut::color(0,1.0,0,1.0);
     glut::lightPosition(0,0,0,1);
-    glut::lookAt(100*std::sin((float)ugao/180*PII), 100, 100*std::cos((float)ugao/180*PII) , 0, 0, 0);
+    //    glut::lookAt(100*std::sin((float)ugao/180*PII), 100, 100*std::cos((float)ugao/180*PII) , 0, 0, 0);
 
+    adjust_camera();
 
     glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
 
@@ -84,14 +86,21 @@ void Display::start()
 
     glut::pop();*/
 
-    robot[PLAYER_1]->draw();
-    robot[PLAYER_2]->draw();
-    robot[PLAYER_TEST]->draw();
-
-    robot[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
+    // 20 minuta trazih segfault zbog ovoga
+    // roboti[PLAYER_1]->draw();
+    // roboti[PLAYER_2]->draw();
+    // roboti[PLAYER_TEST]->draw();
+    for (vector<Robot*>::iterator it = roboti.begin(); it != roboti.end(); ++it) {
+	cout <<"kao crtam" << endl;
+	(*it)->draw();
+    }
+    cout << "izasao iz petlje" << endl;
+    
+    //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
 
 
     glut::swapBuffers();
+    cout << "swapovao" << endl;
 }
 
 
@@ -110,3 +119,31 @@ void Display::test()
 
     glut::swapBuffers();
 }
+
+void Display::adjust_camera()
+{
+    cout << "ulazim u kamera metodu" << endl;
+    Tacka oko(0,0,0);
+    Tacka fokus(0,0,0);
+    
+    //da prikazuje iza ledja    
+    if (roboti.size() == 2) {
+	Robot *robot = roboti.back();
+	assert(robot);
+	fokus = robot->getPos();
+
+
+	//nemam pojma zasto moram da dodam PI/2, nastelao sam ga
+	oko.set_x(20 * std::cos((float)robot->getUgao()/180*M_PI + M_PI_2) + fokus.get_x());
+	oko.set_y(20);
+	oko.set_z(20 * std::sin((float)robot->getUgao()/180*M_PI + M_PI_2)  + fokus.get_z());
+    }
+    cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
+    glut::lookAt(oko, fokus);
+    cout <<"mkanp" << endl;
+}
+
+
+
+
+
