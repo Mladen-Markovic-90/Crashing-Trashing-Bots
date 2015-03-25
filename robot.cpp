@@ -58,8 +58,20 @@ void Robot::set_key(unsigned char key)
             this->_left_right=KEY_RIGHT;
             break;
         case '1':
-            if(this->_ability_1==0)
+            if(this->_ability_1<=0)
                 this->_ability_1=this->_ability_1_cooldown;
+            break;
+        case '2':
+            if(this->_ability_2<=0)
+                this->_ability_2=this->_ability_2_cooldown;
+            break;
+        case '3':
+            if(this->_ability_3<=0)
+                this->_ability_3=this->_ability_3_cooldown;
+            break;
+        case '4':
+            if(this->_ability_4<=0)
+                this->_ability_4=this->_ability_4_cooldown;
             break;
         }
     else if(this->_player==PLAYER_2)
@@ -80,6 +92,22 @@ void Robot::set_key(unsigned char key)
         case 'k':
         case 'K':
             this->_left_right=KEY_RIGHT;
+            break;
+        case '7':
+            if(this->_ability_1<=0)
+                this->_ability_1=this->_ability_1_cooldown;
+            break;
+        case '8':
+            if(this->_ability_2<=0)
+                this->_ability_2=this->_ability_2_cooldown;
+            break;
+        case '9':
+            if(this->_ability_3<=0)
+                this->_ability_3=this->_ability_3_cooldown;
+            break;
+        case '0':
+            if(this->_ability_4<=0)
+                this->_ability_4=this->_ability_4_cooldown;
             break;
         }
 }
@@ -191,8 +219,15 @@ void Robot::unset_key(int key)
 /* Animacija i izracunavanje za robot, izvrsava se u klasi timer */
 void Robot::animation()
 {
+    std::cout << _ability_1 << " " << _ability_2 << " "<< _ability_3 << " " << _ability_4 << std::endl;
     if(this->_ability_1>0)
         this->_ability_1--;
+    if(this->_ability_2>0)
+        this->_ability_2--;
+    if(this->_ability_3>0)
+        this->_ability_3--;
+    if(this->_ability_4>0)
+        this->_ability_4--;
     if( (this->_left_right==KEY_LEFT && this->_up_down==KEY_UP)
 	|| (this->_left_right==KEY_RIGHT && this->_up_down==KEY_DOWN) )
         this->_ugao-=5;
@@ -222,18 +257,55 @@ void Robot::draw()
 
 
 /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
-void Robot::display3D(int ugao,int width,int height,int arg1,int arg2,int light_status)
+void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
 {
 
-    glut::light(GL_OFF);
-    glut::screenDisplayBegin3D();
+    if(this->_player==PLAYER_1)
+    {
+        glut::light(GL_OFF);
+        glut::screenDisplayBegin3D();
 
-    float number1=1.0-this->_ability_1/100.0;
+        float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(-0.9,-0.95,"1");
 
-    glut::color(1,number1,number1,0);
+        number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(-0.8,-0.95,"2");
 
-    glut::text(-0.9,-0.9,"1");
+        number=1.0-this->_ability_3/(float)this->_ability_3_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(-0.7,-0.95,"3");
 
-    glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
-    glut::light(light_status);
+        number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(-0.6,-0.95,"4");
+
+        glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
+        glut::light(GL_ON);
+    }
+    else if(this->_player==PLAYER_2)
+    {
+        glut::light(GL_OFF);
+        glut::screenDisplayBegin3D();
+
+        float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(0.6,-0.95,"7");
+
+        number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(0.7,-0.95,"8");
+
+        number=1.0-this->_ability_3/(float)this->_ability_3_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(0.8,-0.95,"9");
+
+        number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
+        glut::color(1,number,number,0);
+        glut::text(0.9,-0.95,"0");
+
+        glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
+        glut::light(GL_ON);
+    }
 }

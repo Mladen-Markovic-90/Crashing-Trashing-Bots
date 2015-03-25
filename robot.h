@@ -73,7 +73,7 @@ public:
     virtual void draw();
 
     /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
-    void display3D(int ugao,int width,int height,int arg1,int arg2,int light_status);
+    void display3D(int ugao,int width,int height,int arg1,int arg2);
 
     /* Getter za centar robotica */
     Tacka getPos() const { return _center; }

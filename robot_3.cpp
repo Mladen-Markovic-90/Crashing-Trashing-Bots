@@ -38,6 +38,12 @@ void Robot_3::animation()
 {
     if(this->_ability_1>0)
         this->_ability_1--;
+    if(this->_ability_2>0)
+        this->_ability_2--;
+    if(this->_ability_3>0)
+        this->_ability_3--;
+    if(this->_ability_4>0)
+        this->_ability_4--;
     if(this->_left_right==KEY_LEFT)
         this->_center.add(-this->_speed,0,0);
     else if(this->_left_right==KEY_RIGHT)

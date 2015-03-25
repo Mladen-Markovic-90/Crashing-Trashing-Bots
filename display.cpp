@@ -125,6 +125,7 @@ void Display::arena()
 void Display::test_mladen()
 {
 
+    std::cout << SECOND << std::endl;
     this->ugao+=0.1;
     glut::light(GL_ON);
 
@@ -139,6 +140,8 @@ void Display::test_mladen()
 
     for(Robot * item : roboti)
         item->draw();
+    for(Robot * item : roboti)
+        item->display3D(45,window_width,window_height,1,1000);
 
     //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
 
