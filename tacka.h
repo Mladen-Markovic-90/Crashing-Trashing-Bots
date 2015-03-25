@@ -26,7 +26,7 @@ class Tacka
 public:
     Tacka();
     Tacka(const float & x,const float & y,const float & z);
-    Tacka(const Tacka & t);
+    Tacka(const Tacka & t); // sta ce ti kopi konstruktor?
 
     float get_x() const;
     float get_y() const;
