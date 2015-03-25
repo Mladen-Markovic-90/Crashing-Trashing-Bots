@@ -40,6 +40,15 @@
 #include <vector>
 
 
+/* PI define za Windows */
+#ifndef M_PI
+#define M_PI 3.14159265359
+#endif
+#ifndef M_PI_2
+#define M_PI_2 M_PI/2.0
+#endif
+
+
 /* definicije za trenutni prozor */
 #define MODUS_MENI 0
 #define MODUS_START 1
