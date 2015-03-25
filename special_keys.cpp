@@ -23,15 +23,15 @@
 
 void Special_keys::setKey(int key, int x, int y) const
 {
-    if(modus==MODUS_START)
-        robot[PLAYER_TEST]->set_key(key);
+    // if(modus==MODUS_START)
+    //     roboti[PLAYER_TEST]->set_key(key);
 
 }
 
 
 void Special_keys::unsetKey(int key, int x, int y) const
 {
-    if(modus==MODUS_START)
-        robot[PLAYER_TEST]->unset_key(key);
+    // if(modus==MODUS_START)
+    //     roboti[PLAYER_TEST]->unset_key(key);
 
 }

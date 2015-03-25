@@ -25,8 +25,10 @@ void Keys::setKey(unsigned char key, int x, int y) const
 {
     if(modus==MODUS_START)
     {
-        robot[PLAYER_1]->set_key(key);
-        robot[PLAYER_2]->set_key(key);
+        // roboti[PLAYER_1]->set_key(key);
+        // roboti[PLAYER_2]->set_key(key);
+	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
+	    (*it)->set_key(key);
     }
 
     switch(key)
@@ -53,8 +55,10 @@ void Keys::unsetKey(unsigned char key, int x, int y) const
 {
     if(modus==MODUS_START)
     {
-        robot[PLAYER_1]->unset_key(key);
-        robot[PLAYER_2]->unset_key(key);
+        // roboti[PLAYER_1]->unset_key(key);
+        // roboti[PLAYER_2]->unset_key(key);
+	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
+	    (*it)->unset_key(key);
     }
 
 }

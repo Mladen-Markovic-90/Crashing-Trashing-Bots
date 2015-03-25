@@ -25,9 +25,11 @@ void Timer::timer(int id) const
     if(modus==MODUS_START)
     {
         //std::cout << "Happen" << std::endl;
-        robot[PLAYER_1]->animation();
-        robot[PLAYER_2]->animation();
-        robot[PLAYER_TEST]->animation();
+        // roboti[PLAYER_1]->animation();
+        // roboti[PLAYER_2]->animation();
+        // roboti[PLAYER_TEST]->animation();
+	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
+	    (*it)->animation();
 
     }
     glut::reDisplay();
