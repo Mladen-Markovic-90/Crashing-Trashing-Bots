@@ -32,6 +32,9 @@ public:
     virtual void draw();
     void model();
     void ability_1();
+
+private:
+    int _ugao_rotacije; // sta je bre ovo? - Banjac
 };
 
 
