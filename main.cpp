@@ -20,8 +20,6 @@
 /* Ukljucujemo sve headere i globalne promenljive */
 #include "global.h"
 
-// TEST
-
 
 /* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
 #include "glut.cpp"
@@ -43,10 +41,7 @@ int main(int argc,char ** argv)
 {
     if(modus==MODUS_TEST_MLADEN)
     {
-        roboti.push_back(new Robot_1);
-        roboti.push_back(new Robot_3(PLAYER_TEST));
-        roboti.push_back(new Robot_2(PLAYER_2));
-        roboti.push_back(new Robot_1(PLAYER_1));
+        roboti.push_back(new Robot_3(PLAYER_1));
     }
     else
     {

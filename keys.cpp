@@ -31,20 +31,9 @@ void Keys::setKey(unsigned char key, int x, int y) const
     if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
-            if(item->getPlayer()!=PLAYER_TEST)
+            if(item->getPlayer()!=PLAYER_NONE)
                 item->set_key(key);
-        /*
-	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
-            (*it)->set_key(key);*/
     }
-
-    /*
-    switch(key)
-    {
-        case '0':
-            glut::fullScreenToggle();
-            break;
-    }*/
 
 }
 
@@ -55,11 +44,8 @@ void Keys::unsetKey(unsigned char key, int x, int y) const
     if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
-            if(item->getPlayer()!=PLAYER_TEST)
+            if(item->getPlayer()!=PLAYER_NONE)
                 item->unset_key(key);
-        /*
-	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
-            (*it)->unset_key(key);*/
     }
 
 }

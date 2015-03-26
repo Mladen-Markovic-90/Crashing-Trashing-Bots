@@ -83,25 +83,11 @@ void Display::arena()
 
     glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
 
-    /*
-    model_1();
-    glut::translate(0, 0, 50);
-    glut::push();
-    glut::rotate(30, 0, 1, 0);
-    model_2();
-    glut::pop();
-
-    glut::push();
-    glut::translate(0, 0, 50);
-
-    model_3();
-
-    glut::pop();*/
-
     for(Robot * item : roboti)
 	item->draw();
-    
-    //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
+
+    for(Robot * item : roboti)
+        item->display3D(45,window_width,window_height,1,1000);
 
 
     glut::swapBuffers();
@@ -113,29 +99,36 @@ void Display::arena()
 void Display::test_mladen()
 {
 
-    std::cout << SECOND << std::endl;
-    this->ugao+=0.1;
+    //this->ugao+=0.1;
     glut::light(GL_ON);
 
-    glut::modelView3D(0,200,400);
     glut::lightPosition(0,0,0,1);
+    //glut::modelView3D(0,200,400);
+    //glut::modelView3D(0,100,200);
+    glut::modelView3D(0,0,200);
 
-    glut::rotate(30,1,0,0);
-    glut::rotate(this->ugao,0,1,0);
+    glut::rotate(90,1,0,0);
+    glut::rotate(90,0,1,0);
+    //glut::rotate(this->ugao,0,1,0);
 
-    glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
+    //glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
 
 
     for(Robot * item : roboti)
-	item->draw();
+        item->draw();
+
     for(Robot * item : roboti)
-	item->display3D(45,window_width,window_height,1,1000);
+    {
+        glut::translate(item->getFront());
+        glut::translate(0,20,0);
+        glut::color(1,0,0,1);
+        glut::cube(10);
+    }
+   // model_1();
 
-    //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
 
-    //model_3();
-
-
+    for(Robot * item : roboti)
+        item->display3D(45,window_width,window_height,1,1000);
     glut::swapBuffers();
 }
 

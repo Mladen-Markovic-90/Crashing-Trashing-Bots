@@ -29,15 +29,8 @@ void Timer::timer(int id) const
 {
     if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
-        // roboti[PLAYER_1]->animation();
-        // roboti[PLAYER_2]->animation();
-        // roboti[PLAYER_TEST]->animation();
         for(Robot * item : roboti)
             item->animation();
-        /*
-	for (vector<Robot*>::iterator it=roboti.begin(); it != roboti.end(); ++it)
-            (*it)->animation();*/
-
     }
     glut::reDisplay();
     glutTimerFunc(TIMER,onTimer,id);

@@ -29,10 +29,10 @@
 void Special_keys::setKey(int key, int x, int y) const
 {
     // if(modus==MODUS_ARENA)
-    //     roboti[PLAYER_TEST]->set_key(key);
+    //     roboti[PLAYER_2]->set_key(key);
     if(modus==MODUS_TEST_MLADEN)
         for(Robot * item : roboti)
-            if(item->getPlayer()==PLAYER_TEST)
+            if(item->getPlayer()==PLAYER_2)
                 item->set_key(key);
 
     switch(key)
@@ -49,10 +49,10 @@ void Special_keys::setKey(int key, int x, int y) const
 void Special_keys::unsetKey(int key, int x, int y) const
 {
     // if(modus==MODUS_ARENA)
-    //     roboti[PLAYER_TEST]->unset_key(key);
+    //     roboti[PLAYER_2]->unset_key(key);
     if(modus==MODUS_TEST_MLADEN)
         for(Robot * item : roboti)
-            if(item->getPlayer()==PLAYER_TEST)
+            if(item->getPlayer()==PLAYER_2)
                 item->unset_key(key);
 
 }
