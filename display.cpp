@@ -177,8 +177,8 @@ void Display::adjust_camera()
 	float dz = prvi.get_z() - sredina.get_z();
 
 	//imamo dve pozicije kandidate
-	Tacka podnozje1 = sredina - Tacka(dz, 0, dx);
-	Tacka podnozje2 = sredina + Tacka(dz, 0, dx);
+	Tacka podnozje1 = sredina - Tacka(dz, 0, -dx);
+	Tacka podnozje2 = sredina + Tacka(dz, 0, -dx);
 
 	//biramo onu koja je dalja od sredine, kako bi gledala ka sredini (norma vektora)
 	Tacka podnozje = podnozje1.norm() > podnozje2.norm() ? podnozje1 : podnozje2;
