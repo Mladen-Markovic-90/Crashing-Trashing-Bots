@@ -20,6 +20,8 @@
 /* Ukljucujemo sve headere i globalne promenljive */
 #include "global.h"
 
+// TEST
+
 
 /* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
 #include "glut.cpp"
