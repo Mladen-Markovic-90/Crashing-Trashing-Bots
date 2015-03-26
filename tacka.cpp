@@ -22,7 +22,7 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "tacka.h"
-
+#include <cmath>
 
 /* Konstruktor bez argumenata */
 Tacka::Tacka() {}
@@ -36,14 +36,14 @@ Tacka::Tacka(const float & x,const float & y,const float & z)
     this->_z=z;
 }
 
-
-/* Kopi konstruktor */
-Tacka::Tacka(const Tacka & t)
-{
-    this->_x=t._x;
-    this->_y=t._y;
-    this->_z=t._z;
-}
+// nije potreban
+// /* Kopi konstruktor */
+// Tacka::Tacka(const Tacka & t)
+// {
+//     this->_x=t._x;
+//     this->_y=t._y;
+//     this->_z=t._z;
+// }
 
 
 /* Getter za koordinatu x */
@@ -105,6 +105,23 @@ void Tacka::add(Tacka t)
     this->_z=t.get_z();
 }
 
+/* norma vektora */
+float Tacka::norm()
+{
+    return sqrt(get_x() * get_x() + get_y() * get_y() + get_z() * get_z());
+}
+
+/* rastojanje dve tacke */
+
+float Tacka::distance(Tacka &t2)
+{
+    float dx = this->get_x() - t2.get_x();
+    float dy = this->get_y() - t2.get_y();
+    float dz = this->get_z() - t2.get_z();
+
+    return sqrt(dx * dx + dy * dy + dz * dz);
+}
+
 /* operacije "u mestu" */
 Tacka& Tacka::operator+= (const Tacka& t2)
 {
@@ -143,4 +160,46 @@ Tacka& Tacka::operator/= (float k)
     return *this;
 }
 
+/* operacije s tackama */
+// tehnicki nisu deo klase
 
+Tacka operator+ (Tacka t1, Tacka t2)
+{
+    Tacka rez;
+    rez.set_x(t1.get_x() + t2.get_x());
+    rez.set_y(t1.get_y() + t2.get_y());
+    rez.set_z(t1.get_z() + t2.get_z());
+
+    return rez;
+}
+
+Tacka operator- (Tacka t1, Tacka t2)
+{
+    Tacka rez;
+    rez.set_x(t1.get_x() - t2.get_x());
+    rez.set_y(t1.get_y() - t2.get_y());
+    rez.set_z(t1.get_z() - t2.get_z());
+
+    return rez;
+}
+
+Tacka operator* (Tacka t1, float k)
+{
+    Tacka rez;
+    rez.set_x(t1.get_x() * k);
+    rez.set_y(t1.get_y() * k);
+    rez.set_z(t1.get_z() * k);
+
+    return rez;
+}
+
+
+Tacka operator/ (Tacka t1, float k)
+{
+    Tacka rez;
+    rez.set_x(t1.get_x() / k);
+    rez.set_y(t1.get_y() / k);
+    rez.set_z(t1.get_z() / k);
+
+    return rez;
+}

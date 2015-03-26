@@ -31,7 +31,7 @@ public:
     /* Konstruktori */
     Tacka();
     Tacka(const float & x,const float & y,const float & z);
-    Tacka(const Tacka & t);
+    //Tacka(const Tacka & t);
 
     /* Getteri */
     float get_x() const;
@@ -49,13 +49,16 @@ public:
     /* Sabiranje Tacke sa Tackom */
     void add(Tacka t);
 
+    /* norma vektora polozaja, odnosno rastojanje tacke  od koord. pocetka */
+    float norm();
+    float distance(Tacka &t2);
+    
     /* operatori u mestu */
     Tacka& operator+= (const Tacka& t2);
     Tacka& operator-= (const Tacka& t2);
     Tacka& operator*= (float k);
     Tacka& operator/= (float k);
 
-    // TODO: napraviti operatore koji kreiraju novi objekat
 
 private:
 
@@ -64,6 +67,13 @@ private:
     float _y;
     float _z;
 };
+
+//ostali operatori ne moraju biti friendovi jer imamo sve getere
+
+Tacka operator+ (Tacka t1, Tacka t2);
+Tacka operator- (Tacka t1, Tacka t2);
+Tacka operator* (Tacka t1, float k);
+Tacka operator/ (Tacka t1, float k);
 
 
 #endif // TACKA
