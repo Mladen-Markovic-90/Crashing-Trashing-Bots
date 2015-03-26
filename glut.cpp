@@ -420,7 +420,7 @@ void glut::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2
     glut::pravougaonik(c1,d1,d2,c2);
     glut::normal(-1,0,0);
     glut::pravougaonik(d1,a1,a2,d2);
-    glut::normal(0,-1,0);
+    glut::normal(0,1,0);
     glut::pravougaonik(a2,b2,c2,d2);
 }
 
