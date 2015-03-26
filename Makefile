@@ -1,16 +1,20 @@
 P = main
-name = CrashingTrashingBots
+PROGRAM = CrashingTrashingBots
 CC = g++
-CF = -Wall -ansi -std=c++0x -L/usr/lib/nvidia-331/
-GF = -lglut -lGLU -lGL -lm
-
-$(name):
-	$(CC) -o $(name) $(P).cpp $(GF) $(CF)
+CXXFLAGS = -Wall -ansi -std=c++0x
+LDFLAGS = -L/usr/lib/nvidia-331/
+LDLIBS = -lglut -lGLU -lGL -lm
 
 
-run:
-	$(CC) -o $(name) $(P).cpp $(GF) $(CF)
-	./$(name)
+$(PROGRAM): $(P).o
+	$(CC) -o $(PROGRAM) $(LDFLAGS) $(LDLIBS) $(P).o 
 
-clear:
-	rm -f $(P).o $(name)
+
+.PHONY: clean
+
+#run:
+#	$(CC) -o $(PROGRAM) $(P).cpp $(GF) $(CF)
+#	./$(PROGRAM)
+
+clean:
+	-rm *.o $(PROGRAM)
