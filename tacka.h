@@ -49,8 +49,13 @@ public:
     /* Sabiranje Tacke sa Tackom */
     void add(Tacka t);
 
-    //TODO: Definisanje operatora za Tacku
+    /* operatori u mestu */
+    Tacka& operator+= (const Tacka& t2);
+    Tacka& operator-= (const Tacka& t2);
+    Tacka& operator*= (float k);
+    Tacka& operator/= (float k);
 
+    // TODO: napraviti operatore koji kreiraju novi objekat
 
 private:
 

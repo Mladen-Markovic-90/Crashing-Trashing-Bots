@@ -104,3 +104,43 @@ void Tacka::add(Tacka t)
     this->_y=t.get_y();
     this->_z=t.get_z();
 }
+
+/* operacije "u mestu" */
+Tacka& Tacka::operator+= (const Tacka& t2)
+{
+    this->set_x(this->get_x() + t2.get_x());
+    this->set_y(this->get_y() + t2.get_y());
+    this->set_z(this->get_z() + t2.get_z());    
+
+    return *this;
+}
+
+Tacka& Tacka::operator-= (const Tacka& t2)
+{
+    this->set_x(this->get_x() - t2.get_x());
+    this->set_y(this->get_y() - t2.get_y());
+    this->set_z(this->get_z() - t2.get_z());    
+
+    return *this;
+}
+
+
+Tacka& Tacka::operator*= (float k)
+{
+    this->set_x(this->get_x() * k);
+    this->set_y(this->get_y() * k);
+    this->set_z(this->get_z() * k);    
+
+    return *this;
+}
+
+Tacka& Tacka::operator/= (float k)
+{
+    this->set_x(this->get_x() / k);
+    this->set_y(this->get_y() / k);
+    this->set_z(this->get_z() / k);    
+
+    return *this;
+}
+
+
