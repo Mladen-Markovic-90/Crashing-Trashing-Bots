@@ -34,13 +34,13 @@ using namespace std;
 void Display::show(void)
 {
     if(modus==MODUS_MENI)
-        Display::meni();
+	Display::meni();
     else if(modus==MODUS_START)
-        Display::start();
+	Display::start();
     else if(modus==MODUS_ARENA)
-        Display::arena();
+	Display::arena();
     else if(modus==MODUS_TEST_MLADEN)
-        Display::test_mladen();
+	Display::test_mladen();
 }
 
 
@@ -94,7 +94,7 @@ void Display::arena()
 
     glut::push();
     glut::translate(0, 0, 50);
-    
+
     model_3();
 
     glut::pop();*/
@@ -104,15 +104,15 @@ void Display::arena()
     // roboti[PLAYER_2]->draw();
     // roboti[PLAYER_TEST]->draw();
     for(Robot * item : roboti)
-        item->draw();
+	item->draw();
     /*
     for (vector<Robot*>::iterator it = roboti.begin(); it != roboti.end(); ++it) {
 	cout <<"kao crtam" << endl;
-        (*it)->draw();
+	(*it)->draw();
     }*/
 
     cout << "izasao iz petlje" << endl;
-    
+
     //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
 
 
@@ -139,9 +139,9 @@ void Display::test_mladen()
 
 
     for(Robot * item : roboti)
-        item->draw();
+	item->draw();
     for(Robot * item : roboti)
-        item->display3D(45,window_width,window_height,1,1000);
+	item->display3D(45,window_width,window_height,1,1000);
 
     //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
 
@@ -152,26 +152,34 @@ void Display::test_mladen()
 }
 
 
+
+
 /* namestanje kamere za prikaz */
 void Display::adjust_camera()
 {
     cout << "ulazim u kamera metodu" << endl;
     Tacka oko(0,0,0);
     Tacka fokus(0,0,0);
-    
+
     //da prikazuje iza ledja    
-    if (roboti.size() == 2) {
+    if (roboti.size() == 1) {
 	Robot *robot = roboti.back();
 	assert(robot);
 	fokus = robot->getPos();
 
 
 	//nemam pojma zasto moram da dodam PI/2, nastelao sam ga
-	oko.set_x(20 * std::cos((float)robot->getUgao()/180*M_PI + M_PI_2) + fokus.get_x());
-	oko.set_y(20);
-	oko.set_z(20 * std::sin((float)robot->getUgao()/180*M_PI + M_PI_2)  + fokus.get_z());
+	oko.set_x(cam_dist * std::cos((float)robot->getUgao()/180*M_PI + M_PI_2) + fokus.get_x());
+	oko.set_y(cam_dist);
+	oko.set_z(cam_dist * std::sin((float)robot->getUgao()/180*M_PI + M_PI_2)  + fokus.get_z());
     }
-    cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
+    
+    // if (roboti.size() == 2) {
+    // 	Tacka sredina = (roboti[0].getPos() + roboti[1].getPos()) / 2;
+    // }
+    
+    //    cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
     glut::lookAt(oko, fokus);
-    cout <<"mkanp" << endl;
+    //    cout <<"mkanp" << endl;
+    
 }

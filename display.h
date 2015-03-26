@@ -47,7 +47,8 @@ private:
 
     /* sluzi za rotaciju kamere */
     float ugao=0;
-
+    /* razdaljina kamere */
+    int cam_dist = 20;
     /* namestanje kamere za prikaz */
     void adjust_camera();
 };
