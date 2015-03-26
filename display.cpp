@@ -70,7 +70,6 @@ void Display::start()
 /* prikazuje arena */
 void Display::arena()
 {
-    cout << "ulzim u start \n";
     //this->ugao+=0.1;
     glut::light(GL_ON);
 
@@ -99,20 +98,9 @@ void Display::arena()
 
     glut::pop();*/
 
-    // 20 minuta trazih segfault zbog ovoga
-    // roboti[PLAYER_1]->draw();
-    // roboti[PLAYER_2]->draw();
-    // roboti[PLAYER_TEST]->draw();
     for(Robot * item : roboti)
 	item->draw();
-    /*
-    for (vector<Robot*>::iterator it = roboti.begin(); it != roboti.end(); ++it) {
-	cout <<"kao crtam" << endl;
-	(*it)->draw();
-    }*/
-
-    cout << "izasao iz petlje" << endl;
-
+    
     //    roboti[PLAYER_1]->display3D(45,window_width,window_height,1,1000,GL_ON);
 
 
@@ -155,6 +143,9 @@ void Display::test_mladen()
 
 
 /* namestanje kamere za prikaz */
+////////////////////////////////////
+/// TODO: NAPRAVITI SPORU KAMERU ///
+////////////////////////////////////
 void Display::adjust_camera()
 {
     cout << "ulazim u kamera metodu" << endl;
@@ -173,12 +164,31 @@ void Display::adjust_camera()
 	oko.set_y(cam_dist);
 	oko.set_z(cam_dist * std::sin((float)robot->getUgao()/180*M_PI + M_PI_2)  + fokus.get_z());
     }
+
+    //TODO: specijalno za dva, mozda dodati posebno za vise ako bude potrebno
+    if (roboti.size() >= 2) {
+	Tacka prvi = roboti[0]->getPos();
+	Tacka drugi = roboti[1]->getPos();
+    	Tacka sredina = (prvi + drugi) / 2.0f;
+	fokus = sredina;
+
+	// projekcija kamere na xz ravan
+	float dx = prvi.get_x() - sredina.get_x();
+	float dz = prvi.get_z() - sredina.get_z();
+
+	//imamo dve pozicije kandidate
+	Tacka podnozje1 = sredina - Tacka(dz, 0, dx);
+	Tacka podnozje2 = sredina + Tacka(dz, 0, dx);
+
+	//biramo onu koja je dalja od sredine, kako bi gledala ka sredini (norma vektora)
+	Tacka podnozje = podnozje1.norm() > podnozje2.norm() ? podnozje1 : podnozje2;
+
+	oko.set_x(podnozje.get_x());
+	oko.set_y(0.7 * prvi.distance(drugi)); //konstanta je nasumicna, kako mi se svidi
+	oko.set_z(podnozje.get_z());
+    }
     
-    // if (roboti.size() == 2) {
-    // 	Tacka sredina = (roboti[0].getPos() + roboti[1].getPos()) / 2;
-    // }
-    
-    //    cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
+    cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
     glut::lookAt(oko, fokus);
     //    cout <<"mkanp" << endl;
     
