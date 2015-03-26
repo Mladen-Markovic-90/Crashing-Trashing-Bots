@@ -20,6 +20,15 @@
 /* klasa koja je globalna i ukljucuje sva zaglavlja i globalne promenljive i globalne konstante */
 
 
+/* PI define za Windows */
+#ifndef M_PI
+#define M_PI 3.14159265359
+#endif
+#ifndef M_PI_2
+#define M_PI_2 M_PI/2.0
+#endif
+
+
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
@@ -39,15 +48,6 @@
 #include "model_3.h"
 #include "robot.h"
 #include <vector>
-
-
-/* PI define za Windows */
-#ifndef M_PI
-#define M_PI 3.14159265359
-#endif
-#ifndef M_PI_2
-#define M_PI_2 M_PI/2.0
-#endif
 
 
 /* definicije za trenutni prozor */

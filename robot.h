@@ -25,19 +25,8 @@
 
 
 /* Ukljucivanje potrebnih zaglavlja */
-#include "tacka.h"
-#include "timer.h"
+#include "global.h"
 #include <cmath>
-
-
-/* Mora ponovo define, jer je u global posle includes zaglavlja */
-/* PI define za Windows */
-#ifndef M_PI
-#define M_PI 3.14159265359
-#endif
-#ifndef M_PI_2
-#define M_PI_2 M_PI/2.0
-#endif
 
 
 /* Razne definicije za lakse razumevanje koda */
