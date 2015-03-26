@@ -52,7 +52,7 @@ int main(int argc,char ** argv)
         // roboti.push_back(new Robot_3(PLAYER_1));
         // roboti.push_back(new Robot_2(PLAYER_2));
         roboti.push_back(new Robot_1(PLAYER_1));
-	//	roboti.push_back(new Robot_2(PLAYER_2));
+	roboti.push_back(new Robot_2(PLAYER_2));
     }
 
     /* Inicalizujemo glut */
