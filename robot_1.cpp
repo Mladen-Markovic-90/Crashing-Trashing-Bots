@@ -28,7 +28,7 @@
 
 /* Konstruktor za robotica 1 */
 Robot_1::Robot_1(int player,Tacka t)
-    : Robot(player,t,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
+    : Robot(player,t,Tacka(0,0,-20),0,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
     {}
 
 

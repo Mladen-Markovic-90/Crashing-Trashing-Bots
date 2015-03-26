@@ -27,6 +27,17 @@
 /* Ukljucivanje potrebnih zaglavlja */
 #include "tacka.h"
 #include "timer.h"
+#include <cmath>
+
+
+/* Mora ponovo define, jer je u global posle includes zaglavlja */
+/* PI define za Windows */
+#ifndef M_PI
+#define M_PI 3.14159265359
+#endif
+#ifndef M_PI_2
+#define M_PI_2 M_PI/2.0
+#endif
 
 
 /* Razne definicije za lakse razumevanje koda */
@@ -43,7 +54,6 @@
 #define PLAYER_NONE 0
 #define PLAYER_1 1
 #define PLAYER_2 2
-#define PLAYER_TEST 3
 
 
 class Robot
@@ -51,7 +61,7 @@ class Robot
 public:
 
     /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
-    Robot(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0),
+    Robot(int player=PLAYER_NONE,Tacka centar=Tacka(0,0,0),Tacka front=Tacka(0,0,0),float ugao=0,
           int cooldown1=5*SECOND,int cooldown2=5*SECOND,int cooldown3=5*SECOND,int cooldown4=5*SECOND);
 
     /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
@@ -75,6 +85,13 @@ public:
     /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
     void display3D(int ugao,int width,int height,int arg1,int arg2);
 
+
+    //TODO: PODESITI OSTALE PARAMETRE KASNIJE KADA BUDU NAPRAVLJENI
+    void setUgao(float ugao) {_ugao=ugao;}
+    void setPos(Tacka t) {_center=t;}
+    //END TODO
+
+
     /* Getter za centar robotica */
     Tacka getPos() const { return _center; }
 
@@ -83,6 +100,15 @@ public:
 
     /* Getter za player vezan za robotica */
     int getPlayer() const { return _player; }
+
+    /* Getter za front tacku */
+    Tacka getFront() const {
+        Tacka tmp=Tacka(0,0,0);
+        tmp.set_x(_front.get_x()*std::cos(-_ugao/180.0*M_PI)+_front.get_z()*std::sin(-_ugao/180.0*M_PI));
+        tmp.set_z(_front.get_x()*std::sin(-_ugao/180.0*M_PI)+_front.get_z()*std::cos(-_ugao/180.0*M_PI));
+        tmp.add(_center);
+        return tmp;
+    }
     
 protected:
 
@@ -96,7 +122,10 @@ protected:
     /* Centar robota */
     Tacka _center;
 
-    /* Ugao koji sluzi za rotaciju roboticas */
+    /* Front (prednji deo) robota */
+    Tacka _front;
+
+    /* Ugao koji sluzi za rotaciju robotica */
     float _ugao;
 
     /* Privremena promenljiva za brzinu */

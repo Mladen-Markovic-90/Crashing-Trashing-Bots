@@ -33,7 +33,7 @@ class Robot_2 : public Robot
 public:
 
     /* Konstruktor za robotica 2 */
-    Robot_2(int player=PLAYER_2,Tacka t=Tacka(0,0,0));
+    Robot_2(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
 
     /* virtual void animation(); */
 

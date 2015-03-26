@@ -29,7 +29,7 @@
 
 /* Konstruktor za robotica 3 */
 Robot_3::Robot_3(int player,Tacka t)
-    : Robot(player,t,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
+    : Robot(player,t,t+Tacka(0,0,0),0,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
     {}
 
 
