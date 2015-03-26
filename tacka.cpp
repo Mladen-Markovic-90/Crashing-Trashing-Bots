@@ -36,15 +36,6 @@ Tacka::Tacka(const float & x,const float & y,const float & z)
     this->_z=z;
 }
 
-// nije potreban
-// /* Kopi konstruktor */
-// Tacka::Tacka(const Tacka & t)
-// {
-//     this->_x=t._x;
-//     this->_y=t._y;
-//     this->_z=t._z;
-// }
-
 
 /* Getter za koordinatu x */
 float Tacka::get_x() const
@@ -101,9 +92,10 @@ void Tacka::add(const float x,const float y,const float z)
 void Tacka::add(Tacka t)
 {
     this->_x+=t.get_x();
-    this->_y=t.get_y();
-    this->_z=t.get_z();
+    this->_y+=t.get_y();
+    this->_z+=t.get_z();
 }
+
 
 /* norma vektora */
 float Tacka::norm()
@@ -111,8 +103,8 @@ float Tacka::norm()
     return sqrt(get_x() * get_x() + get_y() * get_y() + get_z() * get_z());
 }
 
-/* rastojanje dve tacke */
 
+/* rastojanje dve tacke */
 float Tacka::distance(Tacka &t2)
 {
     float dx = this->get_x() - t2.get_x();
@@ -122,7 +114,8 @@ float Tacka::distance(Tacka &t2)
     return sqrt(dx * dx + dy * dy + dz * dz);
 }
 
-/* operacije "u mestu" */
+
+/* dodela sabiranje za tacku sa tackom */
 Tacka& Tacka::operator+= (const Tacka& t2)
 {
     this->set_x(this->get_x() + t2.get_x());
@@ -132,6 +125,8 @@ Tacka& Tacka::operator+= (const Tacka& t2)
     return *this;
 }
 
+
+/* dodela oduzimanje za tacku sa tackom */
 Tacka& Tacka::operator-= (const Tacka& t2)
 {
     this->set_x(this->get_x() - t2.get_x());
@@ -142,6 +137,7 @@ Tacka& Tacka::operator-= (const Tacka& t2)
 }
 
 
+/* dodela mnozenje za tacku sa konstantom */
 Tacka& Tacka::operator*= (float k)
 {
     this->set_x(this->get_x() * k);
@@ -151,6 +147,8 @@ Tacka& Tacka::operator*= (float k)
     return *this;
 }
 
+
+/* dodela delenje za tacku sa konstantom */
 Tacka& Tacka::operator/= (float k)
 {
     this->set_x(this->get_x() / k);
@@ -163,6 +161,7 @@ Tacka& Tacka::operator/= (float k)
 /* operacije s tackama */
 // tehnicki nisu deo klase
 
+/* Sabiranje  tacaka */
 Tacka operator+ (Tacka t1, Tacka t2)
 {
     Tacka rez;
@@ -173,6 +172,8 @@ Tacka operator+ (Tacka t1, Tacka t2)
     return rez;
 }
 
+
+/* oduzimanje tacaka */
 Tacka operator- (Tacka t1, Tacka t2)
 {
     Tacka rez;
@@ -183,6 +184,8 @@ Tacka operator- (Tacka t1, Tacka t2)
     return rez;
 }
 
+
+/* mnozenje tacke konstantom */
 Tacka operator* (Tacka t1, float k)
 {
     Tacka rez;
@@ -194,6 +197,7 @@ Tacka operator* (Tacka t1, float k)
 }
 
 
+/* deljenje tacke konstantom */
 Tacka operator/ (Tacka t1, float k)
 {
     Tacka rez;
