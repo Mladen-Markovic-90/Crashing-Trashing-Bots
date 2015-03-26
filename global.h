@@ -63,6 +63,7 @@
 
 /* trenutni prozor */
 int modus=MODUS_ARENA;
+//int modus=MODUS_TEST_MLADEN;
 
 
 /* sirina i visina */
