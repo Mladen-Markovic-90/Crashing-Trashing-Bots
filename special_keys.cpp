@@ -28,9 +28,7 @@
 /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
 void Special_keys::setKey(int key, int x, int y) const
 {
-    // if(modus==MODUS_ARENA)
-    //     roboti[PLAYER_2]->set_key(key);
-    if(modus==MODUS_TEST_MLADEN)
+    if(modus==MODUS_TEST_MLADEN | modus==MODUS_ARENA)
         for(Robot * item : roboti)
             if(item->getPlayer()==PLAYER_2)
                 item->set_key(key);
@@ -48,9 +46,7 @@ void Special_keys::setKey(int key, int x, int y) const
 /* skidanje flagova za specijalne karaktere koja su stisnuta na tastaturi */
 void Special_keys::unsetKey(int key, int x, int y) const
 {
-    // if(modus==MODUS_ARENA)
-    //     roboti[PLAYER_2]->unset_key(key);
-    if(modus==MODUS_TEST_MLADEN)
+    if(modus==MODUS_TEST_MLADEN | modus==MODUS_ARENA)
         for(Robot * item : roboti)
             if(item->getPlayer()==PLAYER_2)
                 item->unset_key(key);
