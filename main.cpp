@@ -42,14 +42,15 @@ int main(int argc,char ** argv)
     if(modus==MODUS_TEST_MLADEN)
     {
         roboti.push_back(new Robot_3(PLAYER_1));
+         roboti.push_back(new Robot_2(PLAYER_2));
     }
     else
     {
         //roboti.push_back(new Robot_1);
         // roboti.push_back(new Robot_3(PLAYER_1));
         // roboti.push_back(new Robot_2(PLAYER_2));
-        roboti.push_back(new Robot_1(PLAYER_1));
-	roboti.push_back(new Robot_2(PLAYER_2));
+        roboti.push_back(new Robot_1(PLAYER_1,Tacka(0,0,0)));
+        roboti.push_back(new Robot_2(PLAYER_2,Tacka(50,0,0)));
     }
 
     /* Inicalizujemo glut */

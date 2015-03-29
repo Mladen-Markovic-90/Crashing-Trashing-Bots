@@ -70,14 +70,14 @@ void Display::start()
 /* prikazuje arena */
 void Display::arena()
 {
-    //this->ugao+=0.1;
+    //this->camera_ugao+=0.1;
     glut::light(GL_ON);
 
     glut::modelView3D(0,0,200);
 
     glut::color(0,1.0,0,1.0);
     glut::lightPosition(0,0,0,1);
-    //    glut::lookAt(100*std::sin((float)ugao/180*PII), 100, 100*std::cos((float)ugao/180*PII) , 0, 0, 0);
+    //    glut::lookAt(100*std::sin((float)camera_ugao/180*PII), 100, 100*std::cos((float)camera_ugao/180*PII) , 0, 0, 0);
 
     adjust_camera();
 
@@ -99,18 +99,20 @@ void Display::arena()
 void Display::test_mladen()
 {
 
-    //this->ugao+=0.1;
+    //this->ugao+=5;
     glut::light(GL_ON);
 
     glut::lightPosition(0,0,0,1);
-    //glut::modelView3D(0,200,400);
+    glut::modelView3D(0,200,400);
     //glut::modelView3D(0,100,200);
-    glut::modelView3D(0,0,200);
+    //glut::modelView3D(0,0,200);
 
-    glut::rotate(90,1,0,0);
+
+    glut::rotate(30,1,0,0);
     glut::rotate(90,0,1,0);
-    //glut::rotate(this->ugao,0,1,0);
+    glut::rotate(this->camera_ugao,0,1,0);
 
+    glut::color(0,1,0,1);
     //glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
 
 
@@ -119,12 +121,16 @@ void Display::test_mladen()
 
     for(Robot * item : roboti)
     {
-        glut::translate(item->getFront());
-        glut::translate(0,20,0);
-        glut::color(1,0,0,1);
-        glut::cube(10);
+        glut::push();
+            glut::translate(item->getFront());
+            glut::translate(0,20,0);
+            glut::color(1,0,0,1);
+            glut::cube(10);
+        glut::pop();
     }
    // model_1();
+    glut::color(0.5,0.5,1,0.3);
+    glut::cube(50);
 
 
     for(Robot * item : roboti)
@@ -152,10 +158,13 @@ void Display::adjust_camera()
 	fokus = robot->getPos();
 
 
+        this->camera_ugao=(float)robot->getUgao();
+
+
 	//nemam pojma zasto moram da dodam PI/2, nastelao sam ga
-	oko.set_x(cam_dist * std::cos((float)robot->getUgao()/180*M_PI + M_PI_2) + fokus.get_x());
+        oko.set_x(cam_dist * std::cos(this->camera_ugao/180*M_PI + M_PI_2) + fokus.get_x());
 	oko.set_y(cam_dist);
-	oko.set_z(cam_dist * std::sin((float)robot->getUgao()/180*M_PI + M_PI_2)  + fokus.get_z());
+        oko.set_z(cam_dist * std::sin(this->camera_ugao/180*M_PI + M_PI_2)  + fokus.get_z());
     }
 
     //TODO: specijalno za dva, mozda dodati posebno za vise ako bude potrebno
@@ -176,13 +185,29 @@ void Display::adjust_camera()
 	//biramo onu koja je dalja od sredine, kako bi gledala ka sredini (norma vektora)
 	Tacka podnozje = podnozje1.norm() > podnozje2.norm() ? podnozje1 : podnozje2;
 
-	oko.set_x(podnozje.get_x());
+
+        if(podnozje==podnozje1 && this->camera_indikator==NO_SWAP && this->camera_ugao>0)
+            this->camera_ugao--;
+        else if(podnozje==podnozje1 && this->camera_indikator==SWAP)
+        {
+            this->camera_ugao=180-this->camera_ugao;
+            this->camera_indikator=NO_SWAP;
+        }
+        else if(podnozje==podnozje2 && this->camera_indikator==SWAP && this->camera_ugao<180)
+            this->camera_ugao++;
+        else if(podnozje==podnozje2 && this->camera_indikator==NO_SWAP)
+        {
+            this->camera_ugao=180-this->camera_ugao;
+            this->camera_indikator=SWAP;
+        }
+
+
+        oko.set_x(podnozje.get_x()*std::sin(this->camera_ugao/180.0*M_PI));
 	oko.set_y(0.7 * prvi.distance(drugi)); //konstanta je nasumicna, kako mi se svidi
-	oko.set_z(podnozje.get_z());
+        oko.set_z(podnozje.get_z()*std::cos(this->camera_ugao/180.0*M_PI));
     }
     
     cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
     glut::lookAt(oko, fokus);
-    //    cout <<"mkanp" << endl;
     
 }

@@ -24,6 +24,10 @@
 #define DISPLAY_H
 
 
+#define NO_SWAP 0
+#define SWAP 1
+
+
 class Display
 {
 public:
@@ -46,7 +50,8 @@ public:
 private:
 
     /* sluzi za rotaciju kamere */
-    float ugao=0;
+    float camera_ugao=0;
+    float camera_indikator=NO_SWAP;
     /* razdaljina kamere */
     int cam_dist = 20;
     /* namestanje kamere za prikaz */
