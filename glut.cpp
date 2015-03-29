@@ -43,6 +43,9 @@ void glut::init(int argc,char ** argv,int width,int heigth,std::string name)
     glLightfv(GL_LIGHT0,GL_DIFFUSE,lightdiffuse);
     glLightfv(GL_LIGHT0,GL_SPECULAR,lightspecular);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glClearColor(0,0,0,1);
 }
 
