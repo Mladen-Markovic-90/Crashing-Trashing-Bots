@@ -57,6 +57,7 @@ public:
     Tacka& operator-= (const Tacka& t2);
     Tacka& operator*= (float k);
     Tacka& operator/= (float k);
+    bool operator== (const Tacka& t2);
 
 
 private:

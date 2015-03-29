@@ -158,6 +158,18 @@ Tacka& Tacka::operator/= (float k)
     return *this;
 }
 
+
+bool Tacka::operator== (const Tacka& t2)
+{
+    if(this->_x!=t2.get_x())
+        return false;
+    if(this->_y!=t2.get_y())
+        return false;
+    if(this->_z!=t2.get_z())
+        return false;
+    return true;
+}
+
 /* operacije s tackama */
 // tehnicki nisu deo klase
 
