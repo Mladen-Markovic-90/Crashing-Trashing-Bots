@@ -51,6 +51,8 @@ public:
     /* norma vektora polozaja, odnosno rastojanje tacke  od koord. pocetka */
     float norm();
     float distance(Tacka &t2);
+
+    Tacka vek(Tacka t);
     
     /* operatori dodela operacija za Tacku */
     Tacka& operator+= (const Tacka& t2);

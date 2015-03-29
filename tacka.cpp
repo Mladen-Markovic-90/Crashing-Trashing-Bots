@@ -115,6 +115,16 @@ float Tacka::distance(Tacka &t2)
 }
 
 
+Tacka Tacka::vek(Tacka t)
+{
+    Tacka tmp=Tacka(0,0,0);
+    tmp.set_x(t.get_x()-this->_x);
+    tmp.set_y(t.get_y()-this->_y);
+    tmp.set_z(t.get_z()-this->_z);
+    return tmp;
+}
+
+
 /* dodela sabiranje za tacku sa tackom */
 Tacka& Tacka::operator+= (const Tacka& t2)
 {
