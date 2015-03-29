@@ -91,7 +91,7 @@ void Display::arena()
 
 
     glut::swapBuffers();
-    cout << "swapovao" << endl;
+    //cout << "swapovao" << endl;
 }
 
 
@@ -147,7 +147,7 @@ void Display::test_mladen()
 ////////////////////////////////////
 void Display::adjust_camera()
 {
-    cout << "ulazim u kamera metodu" << endl;
+    //cout << "ulazim u kamera metodu" << endl;
     Tacka oko(0,0,0);
     Tacka fokus(0,0,0);
 
@@ -187,28 +187,30 @@ void Display::adjust_camera()
 
 
         if(podnozje==podnozje1 && this->camera_indikator==NO_SWAP && this->camera_ugao>0)
-            this->camera_ugao--;
+            this->camera_ugao-=0.1;
         else if(podnozje==podnozje1 && this->camera_indikator==SWAP)
         {
-            this->camera_ugao=this->camera_ugao-180;
+            //this->camera_ugao=this->camera_ugao-180;
             this->camera_indikator=NO_SWAP;
         }
         else if(podnozje==podnozje2 && this->camera_indikator==SWAP && this->camera_ugao<360)
-            this->camera_ugao++;
+            this->camera_ugao+=0.1;
         else if(podnozje==podnozje2 && this->camera_indikator==NO_SWAP)
         {
-            this->camera_ugao=180-this->camera_ugao;
+            //this->camera_ugao=180-this->camera_ugao;
             this->camera_indikator=SWAP;
         }
 
+        this->cam_position=this->cam_position+(this->cam_position.vek(podnozje1)/100);
 
-        oko.set_x(podnozje.get_x()*std::sin(this->camera_ugao/180.0*M_PI));
-	oko.set_y(0.7 * prvi.distance(drugi)); //konstanta je nasumicna, kako mi se svidi
-        oko.set_z(podnozje.get_z()*std::cos(-this->camera_ugao/180.0*M_PI));
+
+        oko.set_x(this->cam_position.get_x()*std::sin(this->camera_ugao/180.0*M_PI));
+        oko.set_y(0.7*prvi.distance(drugi)+10); //konstanta je nasumicna, kako mi se svidi
+        oko.set_z(this->cam_position.get_z()*std::cos(-this->camera_ugao/180.0*M_PI));
     }
     
-    cout << "camera :" << this->camera_ugao << endl;
-    cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
+    //cout << "camera :" << this->camera_ugao << endl;
+    //cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
     glut::lookAt(oko, fokus);
     
 }

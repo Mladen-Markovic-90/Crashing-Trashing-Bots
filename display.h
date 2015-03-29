@@ -52,6 +52,7 @@ private:
     /* sluzi za rotaciju kamere */
     float camera_ugao=0;
     float camera_indikator=NO_SWAP;
+    Tacka cam_position=Tacka(0,0,0);
     /* razdaljina kamere */
     int cam_dist = 20;
     /* namestanje kamere za prikaz */
