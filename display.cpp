@@ -190,10 +190,10 @@ void Display::adjust_camera()
             this->camera_ugao--;
         else if(podnozje==podnozje1 && this->camera_indikator==SWAP)
         {
-            this->camera_ugao=180-this->camera_ugao;
+            this->camera_ugao=this->camera_ugao-180;
             this->camera_indikator=NO_SWAP;
         }
-        else if(podnozje==podnozje2 && this->camera_indikator==SWAP && this->camera_ugao<180)
+        else if(podnozje==podnozje2 && this->camera_indikator==SWAP && this->camera_ugao<360)
             this->camera_ugao++;
         else if(podnozje==podnozje2 && this->camera_indikator==NO_SWAP)
         {
@@ -204,9 +204,10 @@ void Display::adjust_camera()
 
         oko.set_x(podnozje.get_x()*std::sin(this->camera_ugao/180.0*M_PI));
 	oko.set_y(0.7 * prvi.distance(drugi)); //konstanta je nasumicna, kako mi se svidi
-        oko.set_z(podnozje.get_z()*std::cos(this->camera_ugao/180.0*M_PI));
+        oko.set_z(podnozje.get_z()*std::cos(-this->camera_ugao/180.0*M_PI));
     }
     
+    cout << "camera :" << this->camera_ugao << endl;
     cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
     glut::lookAt(oko, fokus);
     
