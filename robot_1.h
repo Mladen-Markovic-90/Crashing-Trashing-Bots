@@ -40,6 +40,32 @@ public:
 
     /* Iscrtavanje robotica 1 */
     virtual void draw();
+
+private:
+
+    /* Model robotica 1 */
+    void model();
+
+
+    /* Ability 1 robotica 1 */
+    /* Ability 1 je udaranje cekicem */
+    /* MELEE ABILITY */
+    void ability_1();
+
+    /* RANGE ABILITY */
+    void ability_2();
+
+    /* DEFENSIVE ABILITY */
+    void ability_3();
+
+    /* SPECIAL ABILITY */
+    void ability_4();
+
+
+    int ugao_tocak=0;
+
+    Tacka tacka_raketa=Tacka(0,0,0);
+    int ugao_raketa=0;
 };
 
 
