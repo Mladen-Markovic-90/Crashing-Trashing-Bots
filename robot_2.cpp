@@ -22,7 +22,6 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "robot_2.h"
-#include "model_2.h"
 #include <cmath>
 
 
@@ -54,8 +53,50 @@ void Robot_2::draw()
         glut::translate(this->_center);
         glut::rotate(-this->_ugao,0,1,0);
         glut::rotate(-90,0,1,0);
-        model_2();
+        this->model();
     glut::pop();
 }
 
 
+void Robot_2::model()
+{
+
+    /* Tockovi */
+    glut::push();
+        this->ugao_tocak++;
+        glut::rotate(180,0,1,0);
+        glut::translate(10,5,-10);
+        Delovi::tocak(5,2,this->ugao_tocak);
+        glut::translate(-20,0,0);
+        Delovi::tocak(5,2,this->ugao_tocak);
+        glut::translate(0,0,18);
+        Delovi::tocak(5,2,this->ugao_tocak);
+        glut::translate(20,0,0);
+        Delovi::tocak(5,2,this->ugao_tocak);
+    glut::pop();
+
+    glut::push();
+        glut::color(0.5,0.5,0.5,1);
+        glut::translate(0,6,0);
+        glut::kvadar(10,20,8);
+    glut::pop();
+
+    glut::push();
+        glut::color(0.5,0.5,1,1);
+        glut::translate(0,10,0);
+        glut::kvadar(Tacka(-15,0,10),Tacka(15,0,10),Tacka(15,0,-10),Tacka(-15,0,-10),
+                     Tacka(0,5,5),Tacka(20,5,5),Tacka(20,5,-5),Tacka(0,5,-5));
+
+    glut::pop();
+
+    glut::push();
+        glut::color(0.2,0.2,0.2,1);
+        glut::translate(17,13,3);
+        glut::rotate(90,0,1,0);
+        glut::cylinder(1,5);
+        glut::rotate(-90,0,1,0);
+        glut::translate(0,0,-6);
+        glut::rotate(90,0,1,0);
+        glut::cylinder(1,5);
+    glut::pop();
+}

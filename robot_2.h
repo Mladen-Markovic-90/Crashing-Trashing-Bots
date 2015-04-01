@@ -39,6 +39,15 @@ public:
 
     /* Iscrtavanje robotica 2 */
     virtual void draw();
+
+private:
+
+    /* Model robotica 2 */
+    void model();
+
+
+    int ugao_tocak=0;
+
 };
 
 
