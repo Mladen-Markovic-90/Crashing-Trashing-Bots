@@ -22,9 +22,9 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "robot_3.h"
-#include "model_3.h"
 #include "glut.h"
 #include <cmath>
+#include <iostream>
 
 
 /* Konstruktor za robotica 3 */
@@ -106,29 +106,36 @@ void Robot_3::model()
 void Robot_3::ability_1()
 {
     float number=0;
-    if(this->_ability_1>80)
-        number=5.0-this->_ability_1/20.0;
-    else if(this->_ability_1>70)
-        number=1.0;
-    else if(this->_ability_1>50)
-        number=this->_ability_1/20.0 - 2.5;
+    if(this->_ability_1>4*SECOND)
+        number=5*SECOND-this->_ability_1;
+    else if(this->_ability_1>3.5*SECOND)
+        number=SECOND;
+    else if(this->_ability_1>2.5*SECOND)
+        number=this->_ability_1 - 2.5*SECOND;
     else
-        number=0.0;
+        number=0;
 
-    glut::push();
-        glut::translate(0,11,0);
-        glut::color(0.5,0.5,0.5,1);
-        for(int i=0;i<8;i++)
-        {
-            glut::push();
-            glut::rotate(i*45,0,1,0);
-            glut::translate(0,0,15*number);
-            glut::kvadar(Tacka(0,0.5,0),Tacka(0,0.5,0),Tacka(0,0,10),Tacka(5,0.5,0),
-                         Tacka(0,-0.5,0),Tacka(0,-0.5,0),Tacka(0,0,10),Tacka(5,-0.5,0));
-            glut::pop();
-        }
+    number=number/(SECOND*1.0);
 
-    glut::pop();
+    std::cout << number << std::endl;
+
+    if(number > 0)
+    {
+        glut::push();
+            glut::translate(0,11,0);
+            glut::color(0.5,0.5,0.5,1);
+            for(int i=0;i<8;i++)
+            {
+                glut::push();
+                    glut::rotate(i*45,0,1,0);
+                    glut::translate(0,0,15.0*number);
+                    glut::kvadar(Tacka(0,0.5,0),Tacka(0,0.5,0),Tacka(0,0,10),Tacka(5,0.5,0),
+                                 Tacka(0,-0.5,0),Tacka(0,-0.5,0),Tacka(0,0,10),Tacka(5,-0.5,0));
+                glut::pop();
+            }
+
+        glut::pop();
+    }
 
 
 }

@@ -41,14 +41,15 @@ public:
     /* Iscrtavanje robotica 3 */
     virtual void draw();
 
+
+private:
+
     /* Model robotica 3 */
     void model();
 
     /* Ability 1 robotica 3 */
     /* Ability 1 je izbacivanje nozica */
     void ability_1();
-
-private:
 
     /* Rotacija robotica 3 oko svoje ose, za animaciju */
     int _ugao_rotacije;
