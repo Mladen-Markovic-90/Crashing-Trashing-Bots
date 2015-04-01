@@ -113,12 +113,13 @@ void Display::test_mladen()
     glut::rotate(this->camera_ugao,0,1,0);
 
     glut::color(0,1,0,1);
-    //glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
+    glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
 
 
     for(Robot * item : roboti)
         item->draw();
 
+    /*
     for(Robot * item : roboti)
     {
         glut::push();
@@ -127,10 +128,11 @@ void Display::test_mladen()
             glut::color(1,0,0,1);
             glut::cube(10);
         glut::pop();
-    }
+    }*/
    // model_1();
+    /*
     glut::color(0.5,0.5,1,0.3);
-    glut::cube(50);
+    glut::cube(50);*/
 
 
     for(Robot * item : roboti)

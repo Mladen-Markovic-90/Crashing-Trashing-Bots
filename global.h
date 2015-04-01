@@ -43,9 +43,6 @@
 #include "special_keys.h"
 #include "tacka.h"
 #include "timer.h"
-#include "model_1.h"
-#include "model_2.h"
-#include "model_3.h"
 #include "robot.h"
 #include <vector>
 
