@@ -18,10 +18,11 @@ HEADERS += glut.h \
     motion.h \
     timer.h \
     global.h \
-    model_1.h \
-    model_2.h \
-    model_3.h \
-    robot.h
+    robot.h \
+    robot_1.h \
+    robot_2.h \
+    robot_3.h \
+    delovi.h
 
 include(deployment.pri)
 qtcAddDeployment()

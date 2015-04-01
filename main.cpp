@@ -19,6 +19,7 @@
 
 /* Ukljucujemo sve headere i globalne promenljive */
 #include "global.h"
+#include <ctime>
 
 
 /* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
@@ -39,10 +40,12 @@
 
 int main(int argc,char ** argv)
 {
+    std::srand(time(NULL));
+
     if(modus==MODUS_TEST_MLADEN)
     {
-        roboti.push_back(new Robot_3(PLAYER_1));
-         roboti.push_back(new Robot_2(PLAYER_2));
+        roboti.push_back(new Robot_1(PLAYER_1));
+        //roboti.push_back(new Robot_2(PLAYER_2));
     }
     else
     {
@@ -72,6 +75,13 @@ int main(int argc,char ** argv)
     glutMouseFunc(onMouse);
     glutMotionFunc(onMotion);
     glutTimerFunc(TIMER,onTimer,0);
+
+    Tacka t=Tacka(10,0,0);
+    Tacka t2=Tacka(11,0,0);
+
+    t2=t.vek(t2);
+
+    std::cout << t2.get_x() << std::endl;
 
     /* Pokrecemo glut petlju */
     glut::start();
