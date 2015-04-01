@@ -483,3 +483,20 @@ void glut::screenDisplayEnd3D(int ugao,int width,int height,int arg1,int arg2)
     glLoadIdentity();
     gluPerspective(ugao,(float)width/height,arg1,arg2);
 }
+
+
+/* linija sa 2 tacke */
+void glut::linija(Tacka a,Tacka b)
+{
+    glut::begin(GL_LINES);
+        glut::vertex(a);
+        glut::vertex(b);
+    glut::end();
+}
+
+
+/* linija sa koordinatama */
+void glut::linija(float x1,float y1,float z1,float x2,float y2,float z2)
+{
+    glut::linija(Tacka(x1,y1,z1),Tacka(x2,y2,z2));
+}

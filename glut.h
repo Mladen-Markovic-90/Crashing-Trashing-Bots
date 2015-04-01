@@ -179,6 +179,12 @@ public:
 
     /* funkcija za ulazak/izlazak u FullScreen */
     static void fullScreenToggle();
+
+    /* linija sa 2 tacke */
+    static void linija(Tacka a,Tacka b);
+
+    /* linija sa koordinatama */
+    static void linija(float x1,float y1,float z1,float x2,float y2,float z2);
 };
 
 
