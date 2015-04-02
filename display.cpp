@@ -91,7 +91,6 @@ void Display::arena()
 
 
     glut::swapBuffers();
-    //cout << "swapovao" << endl;
 }
 
 
@@ -103,9 +102,9 @@ void Display::test_mladen()
     glut::light(GL_ON);
 
     glut::lightPosition(0,0,0,1);
-    glut::modelView3D(0,200,400);
+    //glut::modelView3D(0,200,400);
     //glut::modelView3D(0,100,200);
-    //glut::modelView3D(0,0,200);
+    glut::modelView3D(0,0,200);
 
 
     glut::rotate(30,1,0,0);
@@ -143,7 +142,7 @@ void Display::test_mladen()
 
 
 
-/* namestanje kamere za prikaz */
+/* funkcija za namestanje kamere */
 ////////////////////////////////////
 /// TODO: NAPRAVITI SPORU KAMERU ///
 ////////////////////////////////////

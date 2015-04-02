@@ -47,8 +47,8 @@ private:
     /* Model robotica 3 */
     void model();
 
-    /* Ability 1 robotica 3 */
-    /* Ability 1 je izbacivanje nozica */
+    /* MELEE ABILITY */
+    /* Nozici */
     void ability_1();
 
     /* Rotacija robotica 3 oko svoje ose, za animaciju */

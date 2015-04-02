@@ -59,8 +59,8 @@
 
 
 /* trenutni prozor */
-int modus=MODUS_ARENA;
-//int modus=MODUS_TEST_MLADEN;
+//int modus=MODUS_ARENA;
+int modus=MODUS_TEST_MLADEN;
 
 
 /* sirina i visina */
@@ -106,8 +106,6 @@ static void setKey(unsigned char key, int x, int y)
 /* glut input funkcija za citanje specijalnih stisnutih karaktera sa tastature */
 static void setSpecKey(int key, int x, int y)
 {
-    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
-    //glutIgnoreKeyRepeat(1);
     special_keys.setKey(key,x,y);
 }
 
@@ -136,8 +134,6 @@ static void onMotion(int x,int y)
 /* glut input funkcija za citanje otpustenih karaktera sa tastature */
 static void unsetKey(unsigned char key, int x, int y)
 {
-    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
-    //glutIgnoreKeyRepeat(1);
     keyboard_keys.unsetKey(key,x,y);
 }
 
@@ -145,8 +141,6 @@ static void unsetKey(unsigned char key, int x, int y)
 /* glut input funkcija za citanje specijalnih otpustenih karaktera sa tastature */
 static void unsetSpecKey(int key, int x, int y)
 {
-    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
-    //glutIgnoreKeyRepeat(1);
     special_keys.unsetKey(key,x,y);
 }
 

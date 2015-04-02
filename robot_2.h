@@ -35,8 +35,6 @@ public:
     /* Konstruktor za robotica 2 */
     Robot_2(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
 
-    /* virtual void animation(); */
-
     /* Iscrtavanje robotica 2 */
     virtual void draw();
 
@@ -44,7 +42,6 @@ private:
 
     /* Model robotica 2 */
     void model();
-
 
     int ugao_tocak=0;
 

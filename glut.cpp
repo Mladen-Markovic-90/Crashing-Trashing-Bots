@@ -469,6 +469,7 @@ void glut::fullScreenToggle()
 /* Funkcija koja menja iz 3D modusa u 2D modus za crtanje na display */
 void glut::screenDisplayBegin3D()
 {
+    glDisable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glMatrixMode(GL_MODELVIEW);
@@ -479,6 +480,7 @@ void glut::screenDisplayBegin3D()
 /* Funkcija koja vraca iz 2D u 3D modus radi nastavka rada u 3D posle crtanja na display */
 void glut::screenDisplayEnd3D(int ugao,int width,int height,int arg1,int arg2)
 {
+    glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(ugao,(float)width/height,arg1,arg2);

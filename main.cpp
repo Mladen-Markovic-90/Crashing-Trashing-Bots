@@ -44,8 +44,8 @@ int main(int argc,char ** argv)
 
     if(modus==MODUS_TEST_MLADEN)
     {
-        roboti.push_back(new Robot_1(PLAYER_1));
-        //roboti.push_back(new Robot_2(PLAYER_2));
+        roboti.push_back(new Robot_3(PLAYER_1));
+        //roboti.push_back(new Robot_1(PLAYER_2));
     }
     else
     {
@@ -59,10 +59,6 @@ int main(int argc,char ** argv)
     /* Inicalizujemo glut */
     glut::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
 
-    //glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
-    //glutIgnoreKeyRepeat(1);
-    //glutEnterGameMode();
-    //glutFullScreen();
     /*glut::display(prozor.show);*/
 
     /* Ukljucujemo glut funkcije */
@@ -75,13 +71,6 @@ int main(int argc,char ** argv)
     glutMouseFunc(onMouse);
     glutMotionFunc(onMotion);
     glutTimerFunc(TIMER,onTimer,0);
-
-    Tacka t=Tacka(10,0,0);
-    Tacka t2=Tacka(11,0,0);
-
-    t2=t.vek(t2);
-
-    std::cout << t2.get_x() << std::endl;
 
     /* Pokrecemo glut petlju */
     glut::start();
