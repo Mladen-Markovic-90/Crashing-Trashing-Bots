@@ -31,6 +31,7 @@
 
 /* Razne definicije za lakse razumevanje koda */
 
+
 /* Definicije konstanti za dugmad */
 #define KEY_NONE 0
 #define KEY_UP 1
@@ -131,6 +132,9 @@ protected:
     int _ability_2_cooldown=5*SECOND;
     int _ability_3_cooldown=5*SECOND;
     int _ability_4_cooldown=5*SECOND;
+
+    float _energy=100;
+    float _health=100;
 };
 
 #endif // ROBOT_H

@@ -31,10 +31,8 @@
 Robot::Robot(int player, Tacka center, Tacka front, float ugao, int cooldown1, int cooldown2, int cooldown3, int cooldown4)
     : _player(player) , _center(center) , _ugao(ugao),
       _ability_1_cooldown(cooldown1) , _ability_2_cooldown(cooldown2) ,
-      _ability_3_cooldown(cooldown3) , _ability_4_cooldown(cooldown4)
-{
-    this->_front=front;
-}
+      _ability_3_cooldown(cooldown3) , _ability_4_cooldown(cooldown4) , _front(front)
+{}
 
 
 /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
@@ -64,52 +62,54 @@ void Robot::set_key(unsigned char key)
                 this->_ability_1=this->_ability_1_cooldown;
             break;
         case '2':
-            if(this->_ability_2<=0)
+            if(this->_ability_2<=0 && this->_energy >= 20)
+            {
                 this->_ability_2=this->_ability_2_cooldown;
+                this->_energy-=20;
+            }
             break;
         case '3':
-            if(this->_ability_3<=0)
+            if(this->_ability_3<=0 && this->_energy >= 50)
+            {
                 this->_ability_3=this->_ability_3_cooldown;
+                this->_energy-=50;
+            }
             break;
         case '4':
-            if(this->_ability_4<=0)
+            if(this->_ability_4<=0 && this->_energy == 100)
+            {
                 this->_ability_4=this->_ability_4_cooldown;
+                this->_energy=0;
+            }
             break;
         }
     else if(this->_player==PLAYER_2)
         switch(key)
-        {/*
-        case 'h':
-        case 'H':
-            this->_left_right=KEY_LEFT;
-            break;
-        case 'u':
-        case 'U':
-            this->_up_down=KEY_UP;
-            break;
-        case 'j':
-        case 'J':
-            this->_up_down=KEY_DOWN;
-            break;
-        case 'k':
-        case 'K':
-            this->_left_right=KEY_RIGHT;
-            break;*/
+        {
         case '7':
             if(this->_ability_1<=0)
                 this->_ability_1=this->_ability_1_cooldown;
             break;
         case '8':
-            if(this->_ability_2<=0)
+            if(this->_ability_2<=0 && this->_energy >= 20)
+            {
                 this->_ability_2=this->_ability_2_cooldown;
+                this->_energy-=20;
+            }
             break;
         case '9':
-            if(this->_ability_3<=0)
+            if(this->_ability_3<=0 && this->_energy >= 50)
+            {
                 this->_ability_3=this->_ability_3_cooldown;
+                this->_energy-=50;
+            }
             break;
         case '0':
-            if(this->_ability_4<=0)
+            if(this->_ability_4<=0 && this->_energy == 100)
+            {
                 this->_ability_4=this->_ability_4_cooldown;
+                this->_energy=0;
+            }
             break;
         }
 }
@@ -163,31 +163,7 @@ void Robot::unset_key(unsigned char key)
             if(this->_left_right==KEY_RIGHT)
                 this->_left_right=KEY_NONE;
             break;
-        }/*
-    else if(this->_player==PLAYER_2)
-        switch(key)
-        {
-        case 'h':
-        case 'H':
-            if(this->_left_right==KEY_LEFT)
-                this->_left_right=KEY_NONE;
-            break;
-        case 'u':
-        case 'U':
-            if(this->_up_down==KEY_UP)
-                this->_up_down=KEY_NONE;
-            break;
-        case 'j':
-        case 'J':
-            if(this->_up_down==KEY_DOWN)
-                this->_up_down=KEY_NONE;
-            break;
-        case 'k':
-        case 'K':
-            if(this->_left_right==KEY_RIGHT)
-                this->_left_right=KEY_NONE;
-            break;
-        }*/
+        }
 }
 
 
@@ -221,7 +197,11 @@ void Robot::unset_key(int key)
 /* Animacija i izracunavanje za robot, izvrsava se u klasi timer */
 void Robot::animation()
 {
-    //std::cout << _ability_1 << " " << _ability_2 << " "<< _ability_3 << " " << _ability_4 << std::endl;
+    this->_energy+=(5.0/(1.0*SECOND));
+    if(this->_energy > 100)
+        this->_energy=100;
+
+    std::cout << this->_energy << std::endl;
     if(this->_ability_1>0)
         this->_ability_1--;
     if(this->_ability_2>0)
@@ -238,15 +218,10 @@ void Robot::animation()
         this->_ugao+=5;
 
     if(this->_up_down==KEY_UP)
-    {
         this->_center.add(this->_speed*std::sin(this->_ugao/180*M_PI),0,-this->_speed*std::cos(this->_ugao/180*M_PI));
-        //this->_front.add(this->_speed*std::sin(this->_ugao/180*M_PI),0,-this->_speed*std::cos(this->_ugao/180*M_PI));
-    }
     else if(this->_up_down==KEY_DOWN)
-    {
         this->_center.add(-this->_speed*std::sin(this->_ugao/180*M_PI),0,this->_speed*std::cos(this->_ugao/180*M_PI));
-        //this->_front.add(-this->_speed*std::sin(this->_ugao/180*M_PI),0,this->_speed*std::cos(this->_ugao/180*M_PI));
-    }
+
 
 }
 
@@ -274,20 +249,46 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glut::screenDisplayBegin3D();
 
         float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(-0.9,-0.95,"1");
 
         number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(-0.8,-0.95,"2");
 
         number=1.0-this->_ability_3/(float)this->_ability_3_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(-0.7,-0.95,"3");
 
         number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(-0.6,-0.95,"4");
+
+        number=this->_health/100.0;
+
+        glut::color(1,0,0,0.7);
+        glut::pravougaonik(Tacka(-0.9,0.9,0),Tacka(-0.9,0.95,0),Tacka(-0.9+0.5*number,0.95,0),Tacka(-0.9+0.5*number,0.9,0));
+
+        if(this->_health < 100)
+        {
+            glut::color(0,0,0,0.7);
+            for(int i=0;i<=10;i++)
+                glut::linija(Tacka(-0.9+0.05*i,0.9,0),Tacka(-0.9+0.05*i,0.92,0));
+        }
+
+        number=this->_energy/100.0;
+
+        glut::color(0.5,0.5,1,0.7);
+        glut::pravougaonik(Tacka(-0.9,0.8,0),Tacka(-0.9,0.85,0),Tacka(-0.9+0.5*number,0.85,0),Tacka(-0.9+0.5*number,0.8,0));
+
+
+        if(this->_energy < 100)
+        {
+            glut::color(0,0,0,0.7);
+            for(int i=0;i<=10;i++)
+                glut::linija(Tacka(-0.9+0.05*i,0.8,0),Tacka(-0.9+0.05*i,0.82,0));
+        }
+
 
         glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
         glut::light(GL_ON);
@@ -298,20 +299,47 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glut::screenDisplayBegin3D();
 
         float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(0.6,-0.95,"7");
 
         number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(0.7,-0.95,"8");
 
         number=1.0-this->_ability_3/(float)this->_ability_3_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(0.8,-0.95,"9");
 
         number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
-        glut::color(1,number,number,0);
+        glut::color(1,number,number,1);
         glut::text(0.9,-0.95,"0");
+
+
+        number=this->_health/100.0;
+
+        glut::color(1,0,0,0.7);
+        glut::pravougaonik(Tacka(0.9,0.9,0),Tacka(0.9,0.95,0),Tacka(0.9-0.5*number,0.95,0),Tacka(0.9-0.5*number,0.9,0));
+
+        if(this->_health < 100)
+        {
+            glut::color(0,0,0,0.7);
+            for(int i=0;i<=10;i++)
+                glut::linija(Tacka(0.9-0.05*i,0.9,0),Tacka(0.9-0.05*i,0.92,0));
+        }
+
+        number=this->_energy/100.0;
+
+        glut::color(0.5,0.5,1,0.7);
+        glut::pravougaonik(Tacka(0.9,0.8,0),Tacka(0.9,0.85,0),Tacka(0.9-0.5*number,0.85,0),Tacka(0.9-0.5*number,0.8,0));
+
+
+        if(this->_energy < 100)
+        {
+            glut::color(0,0,0,0.7);
+            for(int i=0;i<=10;i++)
+                glut::linija(Tacka(0.9-0.05*i,0.8,0),Tacka(0.9-0.05*i,0.82,0));
+        }
+
 
         glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
         glut::light(GL_ON);
