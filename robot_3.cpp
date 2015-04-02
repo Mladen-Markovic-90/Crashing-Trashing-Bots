@@ -40,7 +40,7 @@ void Robot_3::animation()
     if(this->_energy > 100)
         this->_energy=100;
 
-    std::cout << this->_energy << std::endl;
+    //std::cout << this->_energy << std::endl;
     if(this->_ability_1>0)
         this->_ability_1--;
     if(this->_ability_2>0)
@@ -91,6 +91,9 @@ void Robot_3::draw()
 
         this->model();
         this->ability_1();
+        this->ability_2();
+        this->ability_3();
+        this->ability_4();
     glut::pop();
 }
 
@@ -103,7 +106,7 @@ void Robot_3::model()
 
     glut::rotate(21*this->_ugao_rotacije,0,-1,0);
     glut::push();
-        glut::color(0.5,0.5,0.5,1);
+        glut::color(0.5,0.5,0.5,this->_fade);
         glut::translate(0,10,0);
         glut::rotate(90,1,0,0);
         glut::cone(15,15);
@@ -119,7 +122,7 @@ void Robot_3::model()
 
 
     glut::push();
-        glut::color(0.1,0.1,0.1,1);
+        glut::color(0.1,0.1,0.1,this->_fade);
         glut::translate(0,12,0);
         glut::rotate(90,1,0,0);
         glut::cylinder(15,2);
@@ -132,6 +135,8 @@ void Robot_3::model()
 /* Nozici */
 void Robot_3::ability_1()
 {
+
+    this->_radius_nozevi=0;
     float number=0;
     if(this->_ability_1>4*SECOND)
         number=5*SECOND-this->_ability_1;
@@ -144,11 +149,16 @@ void Robot_3::ability_1()
 
     number=number/(SECOND*1.0);
 
+    this->_radius_nozevi=15.0*number+10;
+
     if(number > 0)
     {
         glut::push();
             glut::translate(0,11,0);
-            glut::color(0.5,0.5,0.5,1);
+            if(this->_lava==true)
+                glut::color(2,0,0,1);
+            else
+                glut::color(0.5,0.5,0.5,this->_fade);
             for(int i=0;i<8;i++)
             {
                 glut::push();
@@ -163,4 +173,62 @@ void Robot_3::ability_1()
     }
 
 
+}
+
+
+
+//NOTE:
+/* RANGE ABILITY */
+/* Kruzni Laser */
+void Robot_3::ability_2()
+{
+    this->_radius_laser=0;
+    if(this->_ability_2 > 4.5*SECOND)
+    {
+        glut::push();
+            float number=(float)this->_ability_2/this->_ability_2_cooldown;
+
+            glut::color(0,1,0,number-0.2);
+
+            glut::translate(0,10,0);
+            glut::rotate(90,1,0,0);
+            glut::cylinder((1.0-number)*1000,1);
+            this->_radius_laser=(1.0-number)*1000;
+        glut::pop();
+    }
+
+
+}
+
+
+/* DEFENSIVE ABILITY */
+/* Fade Shield */
+void Robot_3::ability_3()
+{
+    this->_fade=1.0;
+    if(this->_ability_3 > 0)
+    {
+        float number=(float)this->_ability_3/this->_ability_3_cooldown;
+        number=number/2.0;
+        //std::cout << number << std::endl;
+        this->_fade=1.0-number;
+    }
+
+}
+
+
+
+/* SPECIAL ABILITY */
+/* Speed + Lava nozevi */
+void Robot_3::ability_4()
+{
+
+    this->_speed=5;
+    this->_lava=false;
+    if(this->_ability_4 > 0)
+    {
+        this->_speed=10;
+        this->_lava=true;
+        this->_ability_1=4*SECOND;
+    }
 }

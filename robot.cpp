@@ -201,7 +201,7 @@ void Robot::animation()
     if(this->_energy > 100)
         this->_energy=100;
 
-    std::cout << this->_energy << std::endl;
+    //std::cout << this->_energy << std::endl;
     if(this->_ability_1>0)
         this->_ability_1--;
     if(this->_ability_2>0)
