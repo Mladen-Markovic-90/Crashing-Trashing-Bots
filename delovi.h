@@ -28,10 +28,11 @@ class Delovi
 {
 public:
 
-    static void tocak(float radius,float height,int ugao)
+    static void tocak(float radius,float height,int rotacija,int ugao_tocak)
     {
     glut::push();
-        glut::rotate(-ugao*5,0,0,1);
+        glut::rotate(ugao_tocak,0,1,0);
+        glut::rotate(-rotacija*5,0,0,1);
         glut::color(0.8,0.8,0.8,1);
         glut::cylinder(radius,height);
         glut::translate(0,0,-0.1);

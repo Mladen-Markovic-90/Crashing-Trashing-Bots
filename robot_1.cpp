@@ -50,20 +50,28 @@ void Robot_1::draw()
 }
 
 
+/* Model robotica 1 */
 void Robot_1::model()
 {
 
+    int ugao_tocak=0;
+
+    if(this->_left_right==KEY_LEFT)
+        ugao_tocak=30;
+    else if(this->_left_right==KEY_RIGHT)
+        ugao_tocak=-30;
+
     /* tockovi */
-    this->ugao_tocak++;
+    this->ugao_rotacije_tocak++;
     glut::push();
         glut::translate(15,5,-15);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
         glut::translate(-30,0,0);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
         glut::translate(0,0,28);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
         glut::translate(30,0,0);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
     glut::pop();
 
     glut::push();
@@ -78,29 +86,12 @@ void Robot_1::model()
         glut::kvadar(Tacka(-25,0,15),Tacka(15,0,15),Tacka(15,0,-15),Tacka(-25,0,-15),
                      Tacka(-30,5,10),Tacka(10,5,10),Tacka(10,5,-10),Tacka(-30,5,-10));
     glut::pop();
-
-    /*
-    glut::push();
-        glut::color(0.2,0.2,0.2,1);
-        glut::translate(20,0,0);
-        glut::kvadar(Tacka(0,0,10),Tacka(10,0,10),Tacka(10,0,-10),Tacka(0,0,-10),
-                     Tacka(0,15,10),Tacka(0,15,10),Tacka(0,15,-10),Tacka(0,15,-10));
-    glut::pop();*/
-
-
-    /*
-    glut::push();
-        glut::color(0.2,0.2,0.2,1);
-        glut::translate(10,17,0);
-        glut::cube(4);
-        glut::translate(2,0,0);
-        glut::rotate(90,0,1,0);
-        glut::cylinder(1,10);
-    glut::pop();*/
 }
 
 
 //NOTE: tacka udarca -> centar + Tacka(30,0,0);
+/* MELEE ABILITY */
+/* Cekic */
 void Robot_1::ability_1()
 {
 
@@ -160,6 +151,8 @@ void Robot_1::ability_1()
 
 
 //NOTE: tacka udarca -> this->tacka_raketa + Tacka(20,0,0);
+/* RANGE ABILITY */
+/* Raketa */
 void Robot_1::ability_2()
 {
 
@@ -200,11 +193,12 @@ void Robot_1::ability_2()
 
 }
 
+
+/* DEFENSIVE ABILITY */
+/* Energetski Shield */
 void Robot_1::ability_3()
 {
     float number=this->_ability_3/(float)this->_ability_3_cooldown;
-
-    std::cout << number << std::endl;
 
     if(this->_ability_3)
     {

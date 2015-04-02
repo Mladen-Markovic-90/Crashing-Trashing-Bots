@@ -36,6 +36,11 @@ Robot_3::Robot_3(int player,Tacka t)
 /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi timer */
 void Robot_3::animation()
 {
+    this->_energy+=(5.0/(1.0*SECOND));
+    if(this->_energy > 100)
+        this->_energy=100;
+
+    std::cout << this->_energy << std::endl;
     if(this->_ability_1>0)
         this->_ability_1--;
     if(this->_ability_2>0)
@@ -63,6 +68,27 @@ void Robot_3::draw()
 {
     glut::push();
         glut::translate(this->_center);
+
+
+        int ugao_naginjanja_napred_nazad=0;
+
+        if(this->_up_down==KEY_DOWN)
+            ugao_naginjanja_napred_nazad=5;
+        else if(this->_up_down==KEY_UP)
+            ugao_naginjanja_napred_nazad=-5;
+
+        glut::rotate(ugao_naginjanja_napred_nazad,1,0,0);
+
+
+        int ugao_naginjanja_levo_desno=0;
+
+        if(this->_left_right==KEY_LEFT)
+            ugao_naginjanja_levo_desno=5;
+        else if(this->_left_right==KEY_LEFT)
+            ugao_naginjanja_levo_desno=-5;
+
+        glut::rotate(ugao_naginjanja_levo_desno,0,0,1);
+
         this->model();
         this->ability_1();
     glut::pop();
@@ -73,6 +99,7 @@ void Robot_3::draw()
 void Robot_3::model()
 {
     this->_ugao_rotacije++;
+
 
     glut::rotate(21*this->_ugao_rotacije,0,-1,0);
     glut::push();
@@ -101,8 +128,8 @@ void Robot_3::model()
 }
 
 
-/* Ability 1 robotica 3 */
-/* Ability 1 je izbacivanje nozica */
+/* MELEE ABILITY */
+/* Nozici */
 void Robot_3::ability_1()
 {
     float number=0;
@@ -116,8 +143,6 @@ void Robot_3::ability_1()
         number=0;
 
     number=number/(SECOND*1.0);
-
-    std::cout << number << std::endl;
 
     if(number > 0)
     {

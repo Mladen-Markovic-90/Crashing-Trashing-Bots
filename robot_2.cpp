@@ -31,21 +31,6 @@ Robot_2::Robot_2(int player,Tacka t)
     {}
 
 
-// void Robot_2::animation()
-// {
-//     if(this->_left_right==KEY_LEFT)
-//         this->_ugao-=5;
-//     else if(this->_left_right==KEY_RIGHT)
-//         this->_ugao+=5;
-
-//     if(this->_up_down==KEY_UP)
-//         this->_center.add(this->_speed*std::sin(this->_ugao/180*PII),0,-this->_speed*std::cos(this->_ugao/180*PII));
-//     else if(this->_up_down==KEY_DOWN)
-//         this->_center.add(-this->_speed*std::sin(this->_ugao/180*PII),0,this->_speed*std::cos(this->_ugao/180*PII));
-
-// }
-
-
 /* Iscrtavanje robotica 2 */
 void Robot_2::draw()
 {
@@ -61,18 +46,25 @@ void Robot_2::draw()
 void Robot_2::model()
 {
 
+    int ugao_tocak=0;
+
+    if(this->_left_right==KEY_LEFT)
+        ugao_tocak=30;
+    else if(this->_left_right==KEY_RIGHT)
+        ugao_tocak=-30;
+
     /* Tockovi */
     glut::push();
         this->ugao_tocak++;
         glut::rotate(180,0,1,0);
         glut::translate(10,5,-10);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_tocak,ugao_tocak);
         glut::translate(-20,0,0);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_tocak,0);
         glut::translate(0,0,18);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_tocak,0);
         glut::translate(20,0,0);
-        Delovi::tocak(5,2,this->ugao_tocak);
+        Delovi::tocak(5,2,this->ugao_tocak,ugao_tocak);
     glut::pop();
 
     glut::push();
