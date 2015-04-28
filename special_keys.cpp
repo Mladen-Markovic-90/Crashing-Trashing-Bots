@@ -28,6 +28,7 @@
 /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
 void Special_keys::setKey(int key, int x, int y) const
 {
+    x=x;y=y;
     if(modus==MODUS_TEST_MLADEN || modus==MODUS_ARENA)
         for(Robot * item : roboti)
             if(item->getPlayer()==PLAYER_2)
@@ -46,6 +47,7 @@ void Special_keys::setKey(int key, int x, int y) const
 /* skidanje flagova za specijalne karaktere koja su stisnuta na tastaturi */
 void Special_keys::unsetKey(int key, int x, int y) const
 {
+    x=x;y=y;
     if(modus==MODUS_TEST_MLADEN || modus==MODUS_ARENA)
         for(Robot * item : roboti)
             if(item->getPlayer()==PLAYER_2)

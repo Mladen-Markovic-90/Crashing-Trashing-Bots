@@ -27,6 +27,8 @@
 class Special_keys
 {
 public:
+    Special_keys(){}
+    ~Special_keys(){}
 
     /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
     void setKey(int key,int x,int y) const;
@@ -34,6 +36,38 @@ public:
     /* skidanje flagova za specijalne karaktere koja su stisnuta na tastaturi */
     void unsetKey(int key,int x,int y) const;
 };
+
+
+
+class Special_keys_init
+{
+public:
+
+
+    static void run()
+    {
+        glutSpecialFunc(setSpecKey);
+        glutSpecialUpFunc(unsetSpecKey);
+    }
+
+private:
+    Special_keys_init(){}
+    ~Special_keys_init(){}
+    /* glut input funkcija za citanje specijalnih stisnutih karaktera sa tastature */
+    static void setSpecKey(int key, int x, int y)
+    {
+        special_keys->setKey(key,x,y);
+    }
+
+    /* glut input funkcija za citanje specijalnih otpustenih karaktera sa tastature */
+    static void unsetSpecKey(int key, int x, int y)
+    {
+        special_keys->unsetKey(key,x,y);
+    }
+
+    static Special_keys * special_keys;
+};
+Special_keys * Special_keys_init::special_keys=new Special_keys();
 
 
 #endif // SPECIAL_KEYS_H

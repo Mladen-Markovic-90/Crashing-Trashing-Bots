@@ -26,6 +26,6 @@
 /* Desavanje na osnovu klika misa */
 void Mouse::mouse(int button,int state,int x,int y) const
 {
-
+    x=x;y=y;button=button;state=state;
 }
 

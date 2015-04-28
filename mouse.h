@@ -27,10 +27,37 @@
 class Mouse
 {
 public:
+    Mouse(){}
+    ~Mouse(){}
 
     /* Desavanje na osnovu klika misa */
     void mouse(int button,int state,int x,int y) const;
 };
 
+
+class Mouse_init
+{
+public:
+
+
+    static void run()
+    {
+        glutMouseFunc(onMouse);
+    }
+
+private:
+    Mouse_init(){}
+    ~Mouse_init(){}
+
+
+    /* glut input funkcija za citanje stanje dugmad misa */
+    static void onMouse(int button,int state,int x,int y)
+    {
+        mouse->mouse(button,state,x,y);
+    }
+
+    static Mouse * mouse;
+};
+Mouse * Mouse_init::mouse=new Mouse();
 
 #endif // MOUSE_H

@@ -38,13 +38,16 @@
 #include "robot_3.cpp"
 
 
+#define MS 50
+
+
 int main(int argc,char ** argv)
 {
     std::srand(time(NULL));
 
     if(modus==MODUS_TEST_MLADEN)
     {
-        roboti.push_back(new Robot_3(PLAYER_1));
+        roboti.push_back(new Robot_1(PLAYER_1));
         //roboti.push_back(new Robot_1(PLAYER_2));
     }
     else
@@ -59,18 +62,14 @@ int main(int argc,char ** argv)
     /* Inicalizujemo glut */
     glut::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
 
-    /*glut::display(prozor.show);*/
-
-    /* Ukljucujemo glut funkcije */
-    glutDisplayFunc(onDisplay);
-    glutKeyboardFunc(setKey);
-    glutKeyboardUpFunc(unsetKey);
-    glutSpecialFunc(setSpecKey);
-    glutSpecialUpFunc(unsetSpecKey);
-    glutReshapeFunc(onReshape);
-    glutMouseFunc(onMouse);
-    glutMotionFunc(onMotion);
-    glutTimerFunc(TIMER,onTimer,0);
+    /* Inicijalizujemo glut niti */
+    Display_init::run();
+    Timer_init::run(MS);
+    Keys_init::run();
+    Special_keys_init::run();
+    Reshape_init::run();
+    //Motion_init::run();
+    //Mouse_init::run();
 
     /* Pokrecemo glut petlju */
     glut::start();

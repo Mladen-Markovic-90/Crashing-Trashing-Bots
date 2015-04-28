@@ -266,28 +266,30 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
 
         number=this->_health/100.0;
 
-        glut::color(1,0,0,0.7);
+        if(this->_health < 100)
+            glut::color(1,0,0,1);
+        else
+            glut::color(1,0,0,0.7);
         glut::pravougaonik(Tacka(-0.9,0.9,0),Tacka(-0.9,0.95,0),Tacka(-0.9+0.5*number,0.95,0),Tacka(-0.9+0.5*number,0.9,0));
 
-        if(this->_health < 100)
-        {
-            glut::color(0,0,0,0.7);
-            for(int i=0;i<=10;i++)
-                glut::linija(Tacka(-0.9+0.05*i,0.9,0),Tacka(-0.9+0.05*i,0.92,0));
-        }
+        glut::color(0,0,0,0.7);
+        for(int i=0;i<=9;i++)
+            glut::linija(Tacka(-0.9+0.05*i,0.9,0),Tacka(-0.9+0.05*i,0.92,0));
+
 
         number=this->_energy/100.0;
 
-        glut::color(0.5,0.5,1,0.7);
+        if(this->_energy < 100)
+            glut::color(0.5,0.5,1,1);
+        else
+            glut::color(0.5,0.5,1,0.7);
         glut::pravougaonik(Tacka(-0.9,0.8,0),Tacka(-0.9,0.85,0),Tacka(-0.9+0.5*number,0.85,0),Tacka(-0.9+0.5*number,0.8,0));
 
 
-        if(this->_energy < 100)
-        {
-            glut::color(0,0,0,0.7);
-            for(int i=0;i<=10;i++)
-                glut::linija(Tacka(-0.9+0.05*i,0.8,0),Tacka(-0.9+0.05*i,0.82,0));
-        }
+        glut::color(0,0,0,0.7);
+        for(int i=0;i<=9;i++)
+            glut::linija(Tacka(-0.9+0.05*i,0.8,0),Tacka(-0.9+0.05*i,0.82,0));
+
 
 
         glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
@@ -317,28 +319,31 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
 
         number=this->_health/100.0;
 
-        glut::color(1,0,0,0.7);
-        glut::pravougaonik(Tacka(0.9,0.9,0),Tacka(0.9,0.95,0),Tacka(0.9-0.5*number,0.95,0),Tacka(0.9-0.5*number,0.9,0));
 
         if(this->_health < 100)
-        {
-            glut::color(0,0,0,0.7);
-            for(int i=0;i<=10;i++)
-                glut::linija(Tacka(0.9-0.05*i,0.9,0),Tacka(0.9-0.05*i,0.92,0));
-        }
+            glut::color(1,0,0,1);
+        else
+            glut::color(1,0,0,0.7);
+        glut::pravougaonik(Tacka(0.9,0.9,0),Tacka(0.9,0.95,0),Tacka(0.9-0.5*number,0.95,0),Tacka(0.9-0.5*number,0.9,0));
+
+        glut::color(0,0,0,0.7);
+        for(int i=0;i<=9;i++)
+            glut::linija(Tacka(0.9-0.05*i,0.9,0),Tacka(0.9-0.05*i,0.92,0));
+
 
         number=this->_energy/100.0;
 
-        glut::color(0.5,0.5,1,0.7);
+        if(this->_energy < 100)
+            glut::color(0.5,0.5,1,1);
+        else
+            glut::color(0.5,0.5,1,0.7);
         glut::pravougaonik(Tacka(0.9,0.8,0),Tacka(0.9,0.85,0),Tacka(0.9-0.5*number,0.85,0),Tacka(0.9-0.5*number,0.8,0));
 
 
-        if(this->_energy < 100)
-        {
-            glut::color(0,0,0,0.7);
-            for(int i=0;i<=10;i++)
-                glut::linija(Tacka(0.9-0.05*i,0.8,0),Tacka(0.9-0.05*i,0.82,0));
-        }
+        glut::color(0,0,0,0.7);
+        for(int i=0;i<=9;i++)
+            glut::linija(Tacka(0.9-0.05*i,0.8,0),Tacka(0.9-0.05*i,0.82,0));
+
 
 
         glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);

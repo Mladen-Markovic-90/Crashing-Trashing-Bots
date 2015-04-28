@@ -26,7 +26,7 @@
 /* Rad na osnovu pozicije misa */
 void Motion::motion(int x,int y) const
 {
-
+    x=x;y=y;
 }
 
 

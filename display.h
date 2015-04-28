@@ -31,6 +31,9 @@
 class Display
 {
 public:
+
+    Display(){}
+    ~Display(){}
     /* prikazuje sadrzaj prozora */
     void show();
 
@@ -58,6 +61,57 @@ private:
     /* funkcija za namestanje kamere */
     void adjust_camera();
 };
+
+
+class Display_init
+{
+public:
+
+    /* inicijalizacija za display */
+    static void run()
+    {
+        glutDisplayFunc(onDisplay);
+    }
+
+private:
+
+    Display_init(){}
+    ~Display_init(){}
+
+    /* glut input funkcija za crtanje */
+    static void onDisplay(void)
+    {
+        display->show();
+    }
+
+    static Display * display;
+};
+Display * Display_init::display=new Display();
+
+/*
+class Display_init
+{
+public:
+    static void init(std::vector<Robot *> & r)
+    {
+        d->setRobote(r);
+        glutDisplayFunc(onDisplay);
+    }
+
+    static Display * get()
+    {
+        return Display_init::d;
+    }
+
+private:
+    static void onDisplay(void)
+    {
+        d->show();
+    }
+
+    static Display * d;
+};
+Display * Display_init::d=new Display();*/
 
 
 #endif // DISPLAY_H

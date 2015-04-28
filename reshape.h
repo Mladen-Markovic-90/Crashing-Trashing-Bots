@@ -27,10 +27,37 @@
 class Reshape
 {
 public:
+    Reshape(){}
+    ~Reshape(){}
 
     /* Obrada prikaza za prozor u zavisnosti od modusa */
     void reshape(int width,int height) const;
 };
+
+
+class Reshape_init
+{
+public:
+
+
+    static void run()
+    {
+        glutReshapeFunc(onReshape);
+    }
+
+private:
+    Reshape_init(){}
+    ~Reshape_init(){}
+
+    /* glut input funkcija za podesavanje prozora */
+    static void onReshape(int width,int height)
+    {
+        reshape->reshape(width,height);
+    }
+
+    static Reshape * reshape;
+};
+Reshape * Reshape_init::reshape=new Reshape();
 
 
 #endif // RESHAPE_H

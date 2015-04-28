@@ -27,10 +27,39 @@
 class Motion
 {
 public:
+    Motion(){}
+    ~Motion(){}
 
     /* Rad na osnovu pozicije misa */
     void motion(int x, int y) const;
 };
+
+
+
+class Motion_init
+{
+public:
+
+
+    static void run()
+    {
+        glutMotionFunc(onMotion);
+    }
+
+private:
+    Motion_init(){}
+    ~Motion_init(){}
+
+
+    /* glut input funkcija za citanje pozicije misa */
+    static void onMotion(int x,int y)
+    {
+        motion->motion(x,y);
+    }
+
+    static Motion * motion;
+};
+Motion * Motion_init::motion=new Motion();
 
 
 #endif // MOTION_H

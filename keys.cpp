@@ -28,6 +28,7 @@
 /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
 void Keys::setKey(unsigned char key, int x, int y) const
 {
+    x=x;y=y;
     if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
@@ -41,6 +42,7 @@ void Keys::setKey(unsigned char key, int x, int y) const
 /* skidanje flagova za karaktere koja su stisnuta na tastaturi */
 void Keys::unsetKey(unsigned char key, int x, int y) const
 {
+    x=x;y=y;
     if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)

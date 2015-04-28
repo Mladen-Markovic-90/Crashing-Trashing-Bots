@@ -28,6 +28,8 @@ class Keys
 {
 public:
 
+    Keys(){}
+    ~Keys(){}
     /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
     void setKey(unsigned char key,int x,int y) const;
 
@@ -35,5 +37,39 @@ public:
     void unsetKey(unsigned char key,int x,int y) const;
 };
 
+
+
+
+class Keys_init
+{
+public:
+
+
+    static void run()
+    {
+        glutKeyboardFunc(setKey);
+        glutKeyboardUpFunc(unsetKey);
+    }
+
+private:
+    Keys_init(){}
+    ~Keys_init(){}
+
+    /* glut input funkcija za citanje stisnutih karaktera sa tastature */
+    static void setKey(unsigned char key, int x, int y)
+    {
+        keys->setKey(key,x,y);
+    }
+
+
+    /* glut input funkcija za citanje otpustenih karaktera sa tastature */
+    static void unsetKey(unsigned char key, int x, int y)
+    {
+        keys->unsetKey(key,x,y);
+    }
+
+    static Keys * keys;
+};
+Keys * Keys_init::keys=new Keys();
 
 #endif // KEYS_H

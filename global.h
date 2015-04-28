@@ -69,80 +69,23 @@ int window_height=500;
 
 
 /* specijalne globalne promenljive */
-Keys keyboard_keys;
-Mouse mouse;
-Reshape reshape;
-Special_keys special_keys;
-Motion motion;
-Display display;
-Timer timer;
 std::vector<Robot *> roboti;
 
 
 /* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
 
 
-/* glut input funkcija za rad sa vremenom koja prima milisekunde */
-static void onTimer(int id)
-{
-    timer.timer(id);
-}
 
 
-/* glut input funkcija za crtanje */
-static void onDisplay(void)
-{
-    display.show();
-}
 
 
-/* glut input funkcija za citanje stisnutih karaktera sa tastature */
-static void setKey(unsigned char key, int x, int y)
-{
-    keyboard_keys.setKey(key,x,y);
-}
 
 
-/* glut input funkcija za citanje specijalnih stisnutih karaktera sa tastature */
-static void setSpecKey(int key, int x, int y)
-{
-    special_keys.setKey(key,x,y);
-}
 
 
-/* glut input funkcija za podesavanje prozora */
-static void onReshape(int width,int height)
-{
-    reshape.reshape(width,height);
-}
 
 
-/* glut input funkcija za citanje stanje dugmad misa */
-static void onMouse(int button,int state,int x,int y)
-{
-    mouse.mouse(button,state,x,y);
-}
 
-
-/* glut input funkcija za citanje pozicije misa */
-static void onMotion(int x,int y)
-{
-    motion.motion(x,y);
-}
-
-
-/* glut input funkcija za citanje otpustenih karaktera sa tastature */
-static void unsetKey(unsigned char key, int x, int y)
-{
-    keyboard_keys.unsetKey(key,x,y);
-}
-
-
-/* glut input funkcija za citanje specijalnih otpustenih karaktera sa tastature */
-static void unsetSpecKey(int key, int x, int y)
-{
-    special_keys.unsetKey(key,x,y);
-}
 
 
 #endif // GLOBAL_H

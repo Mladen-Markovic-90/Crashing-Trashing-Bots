@@ -27,11 +27,12 @@
 /* Funkcija za timer i izracunavanje */
 void Timer::timer(int id) const
 {
+    id=id;
     if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
             item->animation();
     }
     glut::reDisplay();
-    glutTimerFunc(TIMER,onTimer,id);
+    Timer_init::run(_ms);
 }
