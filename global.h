@@ -17,7 +17,11 @@
 */
 
 
-/* klasa koja je globalna i ukljucuje sva zaglavlja i globalne promenljive i globalne konstante */
+/* biblioteka koja je globalna i ukljucuje sva zaglavlja i globalne promenljive i globalne konstante */
+
+
+#ifndef GLOBAL_H
+#define GLOBAL_H
 
 
 /* PI define za Windows */
@@ -27,24 +31,6 @@
 #ifndef M_PI_2
 #define M_PI_2 M_PI/2.0
 #endif
-
-
-#ifndef GLOBAL_H
-#define GLOBAL_H
-
-
-/* Ukljucujemo sve potrebna zaglavlja */
-#include "glut.h"
-#include "display.h"
-#include "keys.h"
-#include "motion.h"
-#include "mouse.h"
-#include "reshape.h"
-#include "special_keys.h"
-#include "tacka.h"
-#include "timer.h"
-#include "robot.h"
-#include <vector>
 
 
 /* definicije za trenutni prozor */
@@ -68,24 +54,25 @@ int window_width=500;
 int window_height=500;
 
 
-/* specijalne globalne promenljive */
+/* Ukljucujemo sve potrebna zaglavlja */
+#include "glutcpp/glutcpp.h"
+#include "motion.h"
+#include "mouse.h"
+#include "reshape.h"
+#include "special_keys.h"
+#include "glutcpp/tacka.h"
+#include "timer.h"
+#include "robot.h"
+#include <vector>
 std::vector<Robot *> roboti;
+#include "normalKeyListener.h"
+#include "display.h"
+
+
+/* specijalne globalne promenljive */
 
 
 /* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif // GLOBAL_H

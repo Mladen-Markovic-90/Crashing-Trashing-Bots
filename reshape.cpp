@@ -29,7 +29,7 @@ void Reshape::reshape(int width, int height) const
     window_width=width;
     window_height=height;
     if(modus==MODUS_MENI)
-        glut::projection2D(width,height);
+        glutcpp::projection2D(width,height);
     else if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
-        glut::projection3D(width,height,45,1,1000);
+        glutcpp::projection3D(width,height,45,1,1000);
 }

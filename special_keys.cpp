@@ -37,7 +37,7 @@ void Special_keys::setKey(int key, int x, int y) const
     switch(key)
     {
     case GLUT_KEY_F11:
-        glut::fullScreenToggle();
+        glutcpp::fullScreenToggle();
         break;
     }
 

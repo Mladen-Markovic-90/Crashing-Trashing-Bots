@@ -17,39 +17,36 @@
 */
 
 
-#ifndef DELOVI_H
-#define DELOVI_H
+#ifndef NORMAL_KEY_LISTENER_H
+#define NORMAL_KEY_LISTENER_H
 
 
-#include "global.h"
+#include "glutcpp/glutNormalKeyListener.h"
+#include "robot.h"
+#include <vector>
 
 
-class Delovi
+/* Klasa za rad sa obicnim karakterima */
+class normalKeyListener : public glutNormalKeyListener
 {
 public:
+    /* konstruktor i destruktor */
+    normalKeyListener(std::vector<Robot *> & r):roboti(r) {}
+    ~normalKeyListener(){}
 
-    static void tocak(float radius,float height,int rotacija,int ugao_tocak)
-    {
-    glutcpp::push();
-        glutcpp::rotate(ugao_tocak,0,1,0);
-        glutcpp::rotate(-rotacija*5,0,0,1);
-        glutcpp::color(0.8,0.8,0.8,1);
-        glutcpp::cylinder(radius,height);
-        glutcpp::translate(0,0,-0.1);
-        glutcpp::color(0,0,0,1);
-        for(int i=0;i<4;i++)
-        {
-            glutcpp::push();
-                glutcpp::rotate(i*45,0,0,1);
-                glutcpp::pravougaonik_z(radius,height/2);
-                glutcpp::translate(0,0,height+0.2);
-                glutcpp::pravougaonik_z(radius,height/2);
-            glutcpp::pop();
-        }
-    glutcpp::pop();
-    }
+    /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
+    void keyDown(unsigned char normalKey,int x,int y) const;
 
+    /* skidanje flagova za karaktere koja su stisnuta na tastaturi */
+    void keyUp(unsigned char normalKey,int x,int y) const;
+
+private:
+
+    std::vector<Robot *> roboti;
 };
 
 
-#endif // DELOVI_H
+#include "normalKeyListener.cpp"
+
+
+#endif // NORMAL_KEY_LISTENER_H

@@ -33,6 +33,6 @@ void Timer::timer(int id) const
         for(Robot * item : roboti)
             item->animation();
     }
-    glut::reDisplay();
+    glutcpp::reDisplay();
     Timer_init::run(_ms);
 }

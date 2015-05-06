@@ -17,23 +17,25 @@
 */
 
 
-/* klasa koja sluzi za prikaz sadrzaja prozora */
-
-
 #ifndef DISPLAY_H
 #define DISPLAY_H
+
+
+#include "glutcpp/glutDisplay.h"
 
 
 #define NO_SWAP 0
 #define SWAP 1
 
 
-class Display
+/* klasa koja ima sadrzaj prozora */
+class Display : public glutDisplay
 {
 public:
-
-    Display(){}
+    /* konstruktor i destruktor */
+    Display(std::vector<Robot *> & r) : roboti(r) {}
     ~Display(){}
+
     /* prikazuje sadrzaj prozora */
     void show();
 
@@ -49,9 +51,7 @@ public:
     /* prikazuje sadrzaj testiranja mladen */
     void test_mladen();
 
-
 private:
-
     /* parametri kamere */
     float camera_ugao=0;
     float camera_indikator=NO_SWAP;
@@ -60,58 +60,12 @@ private:
 
     /* funkcija za namestanje kamere */
     void adjust_camera();
+
+    std::vector<Robot *> roboti;
 };
 
 
-class Display_init
-{
-public:
-
-    /* inicijalizacija za display */
-    static void run()
-    {
-        glutDisplayFunc(onDisplay);
-    }
-
-private:
-
-    Display_init(){}
-    ~Display_init(){}
-
-    /* glut input funkcija za crtanje */
-    static void onDisplay(void)
-    {
-        display->show();
-    }
-
-    static Display * display;
-};
-Display * Display_init::display=new Display();
-
-/*
-class Display_init
-{
-public:
-    static void init(std::vector<Robot *> & r)
-    {
-        d->setRobote(r);
-        glutDisplayFunc(onDisplay);
-    }
-
-    static Display * get()
-    {
-        return Display_init::d;
-    }
-
-private:
-    static void onDisplay(void)
-    {
-        d->show();
-    }
-
-    static Display * d;
-};
-Display * Display_init::d=new Display();*/
+#include "display.cpp"
 
 
 #endif // DISPLAY_H

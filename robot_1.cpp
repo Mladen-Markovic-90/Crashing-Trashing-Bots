@@ -37,14 +37,14 @@ Robot_1::Robot_1(int player,Tacka t)
 /* Iscrtavanje robotica 1 */
 void Robot_1::draw()
 {
-    glut::push();
-        glut::translate(this->_center);
-        glut::rotate(-this->_ugao,0,1,0);
-        glut::rotate(90,0,1,0);
+    glutcpp::push();
+        glutcpp::translate(this->_center);
+        glutcpp::rotate(-this->_ugao,0,1,0);
+        glutcpp::rotate(90,0,1,0);
         this->model();
         this->ability_1();
         this->ability_3();
-    glut::pop();
+    glutcpp::pop();
 
     this->ability_2();
 }
@@ -63,29 +63,29 @@ void Robot_1::model()
 
     /* tockovi */
     this->ugao_rotacije_tocak++;
-    glut::push();
-        glut::translate(15,5,-15);
+    glutcpp::push();
+        glutcpp::translate(15,5,-15);
         Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
-        glut::translate(-30,0,0);
+        glutcpp::translate(-30,0,0);
         Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
-        glut::translate(0,0,28);
+        glutcpp::translate(0,0,28);
         Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
-        glut::translate(30,0,0);
+        glutcpp::translate(30,0,0);
         Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
-    glut::pop();
+    glutcpp::pop();
 
-    glut::push();
-        glut::color(0.5,0.5,0.5,1);
-        glut::translate(0,6,0);
-        glut::kvadar(20,30,8);
-    glut::pop();
+    glutcpp::push();
+        glutcpp::color(0.5,0.5,0.5,1);
+        glutcpp::translate(0,6,0);
+        glutcpp::kvadar(20,30,8);
+    glutcpp::pop();
 
-    glut::push();
-        glut::color(0.5,0.5,0,1);
-        glut::translate(5,10,0);
-        glut::kvadar(Tacka(-25,0,15),Tacka(15,0,15),Tacka(15,0,-15),Tacka(-25,0,-15),
+    glutcpp::push();
+        glutcpp::color(0.5,0.5,0,1);
+        glutcpp::translate(5,10,0);
+        glutcpp::kvadar(Tacka(-25,0,15),Tacka(15,0,15),Tacka(15,0,-15),Tacka(-25,0,-15),
                      Tacka(-30,5,10),Tacka(10,5,10),Tacka(10,5,-10),Tacka(-30,5,-10));
-    glut::pop();
+    glutcpp::pop();
 }
 
 
@@ -106,46 +106,46 @@ void Robot_1::ability_1()
 
     ugao_cekic=ugao_cekic/(1.0*SECOND);
 
-    glut::push();
-        glut::translate(10,13,0);
-        glut::rotate(90*ugao_cekic,0,0,1);
+    glutcpp::push();
+        glutcpp::translate(10,13,0);
+        glutcpp::rotate(90*ugao_cekic,0,0,1);
 
-        glut::color(0.2,0.2,0.2,1);
+        glutcpp::color(0.2,0.2,0.2,1);
 
-        glut::push();
-            glut::translate(0,0,-15);
-            glut::kvadar(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),
+        glutcpp::push();
+            glutcpp::translate(0,0,-15);
+            glutcpp::kvadar(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),
                          Tacka(-1,-1,5),Tacka(1,-1,5),Tacka(1,1,5),Tacka(-1,1,5));
-            glut::kvadar(Tacka(-1,-1,-1),Tacka(-1,1,-1),Tacka(-1,1,1),Tacka(-1,-1,1),
+            glutcpp::kvadar(Tacka(-1,-1,-1),Tacka(-1,1,-1),Tacka(-1,1,1),Tacka(-1,-1,1),
                          Tacka(20,-1,-1),Tacka(20,1,-1),Tacka(20,1,1),Tacka(20,-1,1));
-        glut::pop();
+        glutcpp::pop();
 
-        glut::push();
-            glut::translate(0,0,15);
-            glut::kvadar(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),
+        glutcpp::push();
+            glutcpp::translate(0,0,15);
+            glutcpp::kvadar(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),
                          Tacka(-1,-1,-5),Tacka(1,-1,-5),Tacka(1,1,-5),Tacka(-1,1,-5));
-            glut::kvadar(Tacka(-1,-1,-1),Tacka(-1,1,-1),Tacka(-1,1,1),Tacka(-1,-1,1),
+            glutcpp::kvadar(Tacka(-1,-1,-1),Tacka(-1,1,-1),Tacka(-1,1,1),Tacka(-1,-1,1),
                          Tacka(20,-1,-1),Tacka(20,1,-1),Tacka(20,1,1),Tacka(20,-1,1));
-        glut::pop();
+        glutcpp::pop();
 
-        glut::push();
-            glut::translate(20,-8,0);
-            glut::rotate(90,-1,0,0);
-            glut::cone(10,15);
-        glut::pop();
+        glutcpp::push();
+            glutcpp::translate(20,-8,0);
+            glutcpp::rotate(90,-1,0,0);
+            glutcpp::cone(10,15);
+        glutcpp::pop();
 
-        glut::push();
-            glut::translate(20,8,0);
-            glut::rotate(90,1,0,0);
-            glut::cone(10,15);
-        glut::pop();
+        glutcpp::push();
+            glutcpp::translate(20,8,0);
+            glutcpp::rotate(90,1,0,0);
+            glutcpp::cone(10,15);
+        glutcpp::pop();
 
-        glut::push();
-            glut::translate(19,0,0);
-            glut::kvadar(2,30,2);
+        glutcpp::push();
+            glutcpp::translate(19,0,0);
+            glutcpp::kvadar(2,30,2);
 
-        glut::pop();
-    glut::pop();
+        glutcpp::pop();
+    glutcpp::pop();
 
 }
 
@@ -165,30 +165,30 @@ void Robot_1::ability_2()
         this->ugao_raketa=this->_ugao-90;
     }
 
-    glut::push();
-        glut::translate(this->tacka_raketa);
-        glut::rotate(-this->ugao_raketa,0,1,0);
-        glut::translate(10*number-5,5,0);
+    glutcpp::push();
+        glutcpp::translate(this->tacka_raketa);
+        glutcpp::rotate(-this->ugao_raketa,0,1,0);
+        glutcpp::translate(10*number-5,5,0);
         if(number>0)
         {
-            glut::color(1,0.5,0,0.5);
+            glutcpp::color(1,0.5,0,0.5);
             for(int i=0;i<25;i++)
             {
                 float x=((float)std::rand()/RAND_MAX)*5.0;
                 float y=-3+((float)std::rand()/RAND_MAX)*6.0;
                 float c=-1+((float)std::rand()/RAND_MAX)*2.0;
-                glut::linija(Tacka(-x,-y,0),Tacka(-(3+x),-(y+c),0));
+                glutcpp::linija(Tacka(-x,-y,0),Tacka(-(3+x),-(y+c),0));
             }
         }
-        glut::rotate(90,0,1,0);
-        glut::color(0.5,0.5,0.5,1);
-        glut::cylinder(3,15);
-        glut::rotate(-90,0,1,0);
-        glut::translate(15,0,0);
-        glut::rotate(90,0,1,0);
-        glut::color(1,0,0,0.8);
-        glut::cone(5,6);
-    glut::pop();
+        glutcpp::rotate(90,0,1,0);
+        glutcpp::color(0.5,0.5,0.5,1);
+        glutcpp::cylinder(3,15);
+        glutcpp::rotate(-90,0,1,0);
+        glutcpp::translate(15,0,0);
+        glutcpp::rotate(90,0,1,0);
+        glutcpp::color(1,0,0,0.8);
+        glutcpp::cone(5,6);
+    glutcpp::pop();
 
 
 }
@@ -202,11 +202,11 @@ void Robot_1::ability_3()
 
     if(this->_ability_3)
     {
-        glut::push();
-            glut::color(1,1,1,0.8*number);
-            glut::translate(-2.5,10,0);
-            glut::kvadar(50,30,20);
-        glut::pop();
+        glutcpp::push();
+            glutcpp::color(1,1,1,0.8*number);
+            glutcpp::translate(-2.5,10,0);
+            glutcpp::kvadar(50,30,20);
+        glutcpp::pop();
     }
 
 }

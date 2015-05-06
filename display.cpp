@@ -1,5 +1,5 @@
 /*
-    Crashing Trashing Bots is a 3D game in freeglut
+    Crashing Trashing Bots is a 3D game in freeglutcpp
     Copyright (C) 2015 Mladen Markovic,Tamara Plazinic,Nikola Banjac
 
     This program is free software: you can redistribute it and/or modify
@@ -47,16 +47,16 @@ void Display::show(void)
 /* prikazuje meni */
 void Display::meni()
 {
-    glut::light(GL_OFF);
-    glut::modelView2D();
+    glutcpp::light(GL_OFF);
+    glutcpp::modelView2D();
 
-    glut::color(1,0,0,1);
-    glut::pravougaonik(Tacka(1,1,0),Tacka(1,-1,0),Tacka(0,-1,0),Tacka(0,1,0));
+    glutcpp::color(1,0,0,1);
+    glutcpp::pravougaonik(Tacka(1,1,0),Tacka(1,-1,0),Tacka(0,-1,0),Tacka(0,1,0));
 
-    glut::color(1,1,1,1);
-    glut::text(0.5,0.5,"Test");
-    glut::text(0,0,"Test");
-    glut::swapBuffers();
+    glutcpp::color(1,1,1,1);
+    glutcpp::text(0.5,0.5,"Test");
+    glutcpp::text(0,0,"Test");
+    glutcpp::swapBuffers();
 }
 
 
@@ -71,17 +71,17 @@ void Display::start()
 void Display::arena()
 {
     //this->camera_ugao+=0.1;
-    glut::light(GL_ON);
+    glutcpp::light(GL_ON);
 
-    glut::modelView3D(0,0,200);
+    glutcpp::modelView3D(0,0,200);
 
-    glut::color(0,1.0,0,1.0);
-    glut::lightPosition(0,0,0,1);
-    //    glut::lookAt(100*std::sin((float)camera_ugao/180*PII), 100, 100*std::cos((float)camera_ugao/180*PII) , 0, 0, 0);
+    glutcpp::color(0,1.0,0,1.0);
+    glutcpp::lightPosition(0,0,0,1);
+    //    glutcpp::lookAt(100*std::sin((float)camera_ugao/180*PII), 100, 100*std::cos((float)camera_ugao/180*PII) , 0, 0, 0);
 
     adjust_camera();
 
-    glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
+    glutcpp::grid(200, 5, 1.0f, 0.0f, 0.0f);
 
     for(Robot * item : roboti)
 	item->draw();
@@ -90,7 +90,7 @@ void Display::arena()
         item->display3D(45,window_width,window_height,1,1000);
 
 
-    glut::swapBuffers();
+    glutcpp::swapBuffers();
 }
 
 
@@ -99,20 +99,20 @@ void Display::test_mladen()
 {
 
     //this->ugao+=5;
-    glut::light(GL_ON);
+    glutcpp::light(GL_ON);
 
-    glut::lightPosition(0,0,0,1);
-    //glut::modelView3D(0,200,400);
-    //glut::modelView3D(0,100,200);
-    glut::modelView3D(0,0,200);
+    glutcpp::lightPosition(0,0,0,1);
+    //glutcpp::modelView3D(0,200,400);
+    //glutcpp::modelView3D(0,100,200);
+    glutcpp::modelView3D(0,0,200);
 
 
-    glut::rotate(30,1,0,0);
-    glut::rotate(90,0,1,0);
-    glut::rotate(this->camera_ugao,0,1,0);
+    glutcpp::rotate(30,1,0,0);
+    glutcpp::rotate(90,0,1,0);
+    glutcpp::rotate(this->camera_ugao,0,1,0);
 
-    glut::color(0,1,0,1);
-    glut::grid(200, 5, 1.0f, 0.0f, 0.0f);
+    glutcpp::color(0,1,0,1);
+    glutcpp::grid(200, 5, 1.0f, 0.0f, 0.0f);
 
 
     for(Robot * item : roboti)
@@ -121,22 +121,22 @@ void Display::test_mladen()
     /*
     for(Robot * item : roboti)
     {
-        glut::push();
-            glut::translate(item->getFront());
-            glut::translate(0,20,0);
-            glut::color(1,0,0,1);
-            glut::cube(10);
-        glut::pop();
+        glutcpp::push();
+            glutcpp::translate(item->getFront());
+            glutcpp::translate(0,20,0);
+            glutcpp::color(1,0,0,1);
+            glutcpp::cube(10);
+        glutcpp::pop();
     }*/
    // model_1();
     /*
-    glut::color(0.5,0.5,1,0.3);
-    glut::cube(50);*/
+    glutcpp::color(0.5,0.5,1,0.3);
+    glutcpp::cube(50);*/
 
 
     for(Robot * item : roboti)
         item->display3D(45,window_width,window_height,1,1000);
-    glut::swapBuffers();
+    glutcpp::swapBuffers();
 }
 
 
@@ -212,6 +212,6 @@ void Display::adjust_camera()
     
     //cout << "camera :" << this->camera_ugao << endl;
     //cout << oko.get_x() << " " << oko.get_y() << "" << oko.get_z() << endl;
-    glut::lookAt(oko, fokus);
+    glutcpp::lookAt(oko, fokus);
     
 }

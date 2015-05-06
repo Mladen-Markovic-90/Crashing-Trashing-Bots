@@ -17,39 +17,34 @@
 */
 
 
-#ifndef DELOVI_H
-#define DELOVI_H
-
-
+/* Ukljucivanje potrebnih zaglavlja */
+#include "normalKeyListener.h"
 #include "global.h"
 
 
-class Delovi
+/* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
+void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
 {
-public:
-
-    static void tocak(float radius,float height,int rotacija,int ugao_tocak)
+    x=x;y=y;
+    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
-    glutcpp::push();
-        glutcpp::rotate(ugao_tocak,0,1,0);
-        glutcpp::rotate(-rotacija*5,0,0,1);
-        glutcpp::color(0.8,0.8,0.8,1);
-        glutcpp::cylinder(radius,height);
-        glutcpp::translate(0,0,-0.1);
-        glutcpp::color(0,0,0,1);
-        for(int i=0;i<4;i++)
-        {
-            glutcpp::push();
-                glutcpp::rotate(i*45,0,0,1);
-                glutcpp::pravougaonik_z(radius,height/2);
-                glutcpp::translate(0,0,height+0.2);
-                glutcpp::pravougaonik_z(radius,height/2);
-            glutcpp::pop();
-        }
-    glutcpp::pop();
+        for(Robot * item : roboti)
+            if(item->getPlayer()!=PLAYER_NONE)
+                item->set_key(normalKey);
     }
 
-};
+}
 
 
-#endif // DELOVI_H
+/* skidanje flagova za karaktere koja su stisnuta na tastaturi */
+void normalKeyListener::keyUp(unsigned char normalKey, int x, int y) const
+{
+    x=x;y=y;
+    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
+    {
+        for(Robot * item : roboti)
+            if(item->getPlayer()!=PLAYER_NONE)
+                item->unset_key(normalKey);
+    }
+
+}

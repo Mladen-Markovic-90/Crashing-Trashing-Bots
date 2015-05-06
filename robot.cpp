@@ -23,7 +23,7 @@
 /* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 #include "robot.h"
-#include "glut.h"
+#include "glutcpp/glutcpp.h"
 #include <cmath>
 
 
@@ -229,13 +229,13 @@ void Robot::animation()
 /* Iscrtavanje robotera, izvrsava se u klasi display */
 void Robot::draw()
 {
-    glut::color(1,1,1,1);
-    glut::push();
-        glut::translate(this->_center);
-        glut::translate(0,10,0);
-        glut::rotate(-this->_ugao,0,1,0);
-        glut::cube(20);
-    glut::pop();
+    glutcpp::color(1,1,1,1);
+    glutcpp::push();
+        glutcpp::translate(this->_center);
+        glutcpp::translate(0,10,0);
+        glutcpp::rotate(-this->_ugao,0,1,0);
+        glutcpp::cube(20);
+    glutcpp::pop();
 }
 
 
@@ -245,108 +245,108 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
 
     if(this->_player==PLAYER_1)
     {
-        glut::light(GL_OFF);
-        glut::screenDisplayBegin3D();
+        glutcpp::light(GL_OFF);
+        glutcpp::screenDisplayBegin3D();
 
         float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(-0.9,-0.95,"1");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(-0.9,-0.95,"1");
 
         number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(-0.8,-0.95,"2");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(-0.8,-0.95,"2");
 
         number=1.0-this->_ability_3/(float)this->_ability_3_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(-0.7,-0.95,"3");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(-0.7,-0.95,"3");
 
         number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(-0.6,-0.95,"4");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(-0.6,-0.95,"4");
 
         number=this->_health/100.0;
 
         if(this->_health < 100)
-            glut::color(1,0,0,1);
+            glutcpp::color(1,0,0,1);
         else
-            glut::color(1,0,0,0.7);
-        glut::pravougaonik(Tacka(-0.9,0.9,0),Tacka(-0.9,0.95,0),Tacka(-0.9+0.5*number,0.95,0),Tacka(-0.9+0.5*number,0.9,0));
+            glutcpp::color(1,0,0,0.7);
+        glutcpp::pravougaonik(Tacka(-0.9,0.9,0),Tacka(-0.9,0.95,0),Tacka(-0.9+0.5*number,0.95,0),Tacka(-0.9+0.5*number,0.9,0));
 
-        glut::color(0,0,0,0.7);
+        glutcpp::color(0,0,0,0.7);
         for(int i=0;i<=9;i++)
-            glut::linija(Tacka(-0.9+0.05*i,0.9,0),Tacka(-0.9+0.05*i,0.92,0));
+            glutcpp::linija(Tacka(-0.9+0.05*i,0.9,0),Tacka(-0.9+0.05*i,0.92,0));
 
 
         number=this->_energy/100.0;
 
         if(this->_energy < 100)
-            glut::color(0.5,0.5,1,1);
+            glutcpp::color(0.5,0.5,1,1);
         else
-            glut::color(0.5,0.5,1,0.7);
-        glut::pravougaonik(Tacka(-0.9,0.8,0),Tacka(-0.9,0.85,0),Tacka(-0.9+0.5*number,0.85,0),Tacka(-0.9+0.5*number,0.8,0));
+            glutcpp::color(0.5,0.5,1,0.7);
+        glutcpp::pravougaonik(Tacka(-0.9,0.8,0),Tacka(-0.9,0.85,0),Tacka(-0.9+0.5*number,0.85,0),Tacka(-0.9+0.5*number,0.8,0));
 
 
-        glut::color(0,0,0,0.7);
+        glutcpp::color(0,0,0,0.7);
         for(int i=0;i<=9;i++)
-            glut::linija(Tacka(-0.9+0.05*i,0.8,0),Tacka(-0.9+0.05*i,0.82,0));
+            glutcpp::linija(Tacka(-0.9+0.05*i,0.8,0),Tacka(-0.9+0.05*i,0.82,0));
 
 
 
-        glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
-        glut::light(GL_ON);
+        glutcpp::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
+        glutcpp::light(GL_ON);
     }
     else if(this->_player==PLAYER_2)
     {
-        glut::light(GL_OFF);
-        glut::screenDisplayBegin3D();
+        glutcpp::light(GL_OFF);
+        glutcpp::screenDisplayBegin3D();
 
         float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(0.6,-0.95,"7");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(0.6,-0.95,"7");
 
         number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(0.7,-0.95,"8");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(0.7,-0.95,"8");
 
         number=1.0-this->_ability_3/(float)this->_ability_3_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(0.8,-0.95,"9");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(0.8,-0.95,"9");
 
         number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
-        glut::color(1,number,number,1);
-        glut::text(0.9,-0.95,"0");
+        glutcpp::color(1,number,number,1);
+        glutcpp::text(0.9,-0.95,"0");
 
 
         number=this->_health/100.0;
 
 
         if(this->_health < 100)
-            glut::color(1,0,0,1);
+            glutcpp::color(1,0,0,1);
         else
-            glut::color(1,0,0,0.7);
-        glut::pravougaonik(Tacka(0.9,0.9,0),Tacka(0.9,0.95,0),Tacka(0.9-0.5*number,0.95,0),Tacka(0.9-0.5*number,0.9,0));
+            glutcpp::color(1,0,0,0.7);
+        glutcpp::pravougaonik(Tacka(0.9,0.9,0),Tacka(0.9,0.95,0),Tacka(0.9-0.5*number,0.95,0),Tacka(0.9-0.5*number,0.9,0));
 
-        glut::color(0,0,0,0.7);
+        glutcpp::color(0,0,0,0.7);
         for(int i=0;i<=9;i++)
-            glut::linija(Tacka(0.9-0.05*i,0.9,0),Tacka(0.9-0.05*i,0.92,0));
+            glutcpp::linija(Tacka(0.9-0.05*i,0.9,0),Tacka(0.9-0.05*i,0.92,0));
 
 
         number=this->_energy/100.0;
 
         if(this->_energy < 100)
-            glut::color(0.5,0.5,1,1);
+            glutcpp::color(0.5,0.5,1,1);
         else
-            glut::color(0.5,0.5,1,0.7);
-        glut::pravougaonik(Tacka(0.9,0.8,0),Tacka(0.9,0.85,0),Tacka(0.9-0.5*number,0.85,0),Tacka(0.9-0.5*number,0.8,0));
+            glutcpp::color(0.5,0.5,1,0.7);
+        glutcpp::pravougaonik(Tacka(0.9,0.8,0),Tacka(0.9,0.85,0),Tacka(0.9-0.5*number,0.85,0),Tacka(0.9-0.5*number,0.8,0));
 
 
-        glut::color(0,0,0,0.7);
+        glutcpp::color(0,0,0,0.7);
         for(int i=0;i<=9;i++)
-            glut::linija(Tacka(0.9-0.05*i,0.8,0),Tacka(0.9-0.05*i,0.82,0));
+            glutcpp::linija(Tacka(0.9-0.05*i,0.8,0),Tacka(0.9-0.05*i,0.82,0));
 
 
 
-        glut::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
-        glut::light(GL_ON);
+        glutcpp::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
+        glutcpp::light(GL_ON);
     }
 }
