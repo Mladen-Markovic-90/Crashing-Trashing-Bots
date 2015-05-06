@@ -27,7 +27,6 @@
 #include "mouse.cpp"
 #include "reshape.cpp"
 #include "glutcpp/tacka.cpp"
-#include "motion.cpp"
 #include "timer.cpp"
 #include "robot.cpp"
 #include "robot_1.cpp"

@@ -56,7 +56,7 @@ int window_height=500;
 
 /* Ukljucujemo sve potrebna zaglavlja */
 #include "glutcpp/glutcpp.h"
-#include "motion.h"
+#include "motionListener.h"
 #include "mouse.h"
 #include "reshape.h"
 #include "special_keys.h"

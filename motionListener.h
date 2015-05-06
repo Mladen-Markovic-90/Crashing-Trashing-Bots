@@ -20,13 +20,22 @@
 /* Rad pozicijom misa */
 
 
-#include "global.h"
+#ifndef MOTION_LISTENER_H
+#define MOTION_LISTENER_H
 
 
-/* Rad na osnovu pozicije misa */
-void Motion::motion(int x,int y) const
+#include "glutcpp/glutMotionListener.h"
+
+
+class motionListener : public glutMotionListener
 {
-    x=x;y=y;
-}
+public:
+    motionListener(){}
+    ~motionListener(){}
+
+    /* Rad na osnovu pozicije misa */
+    void motion(int x, int y) const;
+};
 
 
+#endif // MOTION_LISTENER_H
