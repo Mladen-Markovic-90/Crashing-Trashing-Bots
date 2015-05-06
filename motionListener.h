@@ -30,6 +30,7 @@
 class motionListener : public glutMotionListener
 {
 public:
+    /* konstruktor i destruktor */
     motionListener(){}
     ~motionListener(){}
 

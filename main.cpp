@@ -24,7 +24,6 @@
 
 /* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
 #include "special_keys.cpp"
-#include "mouse.cpp"
 #include "reshape.cpp"
 #include "glutcpp/tacka.cpp"
 #include "timer.cpp"

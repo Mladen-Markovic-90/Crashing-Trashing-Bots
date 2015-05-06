@@ -38,7 +38,7 @@ public:
     }
 
 private:
-    /* promenljiva koja cuva desvanja za obicnih karakter */
+    /* promenljiva koja cuva osluskivac za obicnih karakter */
     static glutNormalKeyListener * normalKeyListener;
 
     /* konstruktor i destruktor */

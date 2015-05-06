@@ -34,7 +34,7 @@ public:
     }
 
 private:
-    /* promenljiva koja cuva desvanja za poziciju misa */
+    /* promenljiva koja cuva osluskivac za poziciju misa */
     static glutMotionListener * motionListener;
 
     /* konstruktor i destruktor */

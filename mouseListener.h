@@ -17,47 +17,24 @@
 */
 
 
-/* Rad sa klikom misa */
+#ifndef MOUSE_LISTENER_H
+#define MOUSE_LISTENER_H
 
 
-#ifndef MOUSE_H
-#define MOUSE_H
+#include "glutcpp/glutMouseListener.h"
 
 
-class Mouse
+/* klasa za rad sa klikom misa */
+class mouseListener : public glutMouseListener
 {
 public:
-    Mouse(){}
-    ~Mouse(){}
+    /* konstruktor i destruktor */
+    mouseListener(){}
+    ~mouseListener(){}
 
     /* Desavanje na osnovu klika misa */
     void mouse(int button,int state,int x,int y) const;
 };
 
 
-class Mouse_init
-{
-public:
-
-
-    static void run()
-    {
-        glutMouseFunc(onMouse);
-    }
-
-private:
-    Mouse_init(){}
-    ~Mouse_init(){}
-
-
-    /* glut input funkcija za citanje stanje dugmad misa */
-    static void onMouse(int button,int state,int x,int y)
-    {
-        mouse->mouse(button,state,x,y);
-    }
-
-    static Mouse * mouse;
-};
-Mouse * Mouse_init::mouse=new Mouse();
-
-#endif // MOUSE_H
+#endif // MOUSE_LISTENER_H
