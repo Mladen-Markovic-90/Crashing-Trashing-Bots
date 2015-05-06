@@ -11,10 +11,10 @@ public:
     virtual ~glutNormalKeyListener(){}
 
     /* radnja za stisnute obicne karatere */
-    virtual void keyDown(unsigned char normalKey,int x,int y) const;
+    virtual void keyDown(unsigned char normalKey,int x,int y) const {}
 
     /* radnja za otpustene obicne karaktere */
-    virtual void keyUp(unsigned char normalKey,int x,int y) const;
+    virtual void keyUp(unsigned char normalKey,int x,int y) const {}
 };
 
 
