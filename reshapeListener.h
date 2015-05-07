@@ -17,47 +17,39 @@
 */
 
 
-/* Rad sa prozorom */
+#ifndef RESHAPE_LISTENER_H
+#define RESHAPE_LISTENER_H
 
 
-#ifndef RESHAPE_H
-#define RESHAPE_H
+#include "glutcpp/glutReshapeListener.h"
 
 
-class Reshape
+/* klasa za rad sa prozorom */
+class reshapeListener : public glutReshapeListener
 {
 public:
-    Reshape(){}
-    ~Reshape(){}
+    /* konstruktor i destruktor */
+    reshapeListener(int width,int height)
+        : windowWidth(width) , windowHeight(height)
+    {}
+    ~reshapeListener(){}
 
     /* Obrada prikaza za prozor u zavisnosti od modusa */
-    void reshape(int width,int height) const;
-};
+    virtual void reshape(int width,int height);
 
 
-class Reshape_init
-{
-public:
+    virtual int getWindowWidth() const {return windowWidth;}
 
-
-    static void run()
-    {
-        glutReshapeFunc(onReshape);
-    }
+    virtual int getWindowHeight() const {return windowHeight;}
 
 private:
-    Reshape_init(){}
-    ~Reshape_init(){}
-
-    /* glut input funkcija za podesavanje prozora */
-    static void onReshape(int width,int height)
-    {
-        reshape->reshape(width,height);
-    }
-
-    static Reshape * reshape;
+    /* sirina i visina */
+    int windowWidth;
+    int windowHeight;
 };
-Reshape * Reshape_init::reshape=new Reshape();
 
 
-#endif // RESHAPE_H
+#include "reshapeListener.cpp"
+
+
+#endif // RESHAPE_LISTENER_H

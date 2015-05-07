@@ -49,16 +49,13 @@
 int modus=MODUS_TEST_MLADEN;
 
 
-/* sirina i visina */
-int window_width=500;
-int window_height=500;
 
 
 /* Ukljucujemo sve potrebna zaglavlja */
 #include "glutcpp/glutcpp.h"
 #include "motionListener.h"
 #include "mouseListener.h"
-#include "reshape.h"
+#include "reshapeListener.h"
 #include "special_keys.h"
 #include "glutcpp/tacka.h"
 #include "timer.h"

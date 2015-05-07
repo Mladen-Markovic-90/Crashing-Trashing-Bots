@@ -2,6 +2,9 @@
 #define GLUT_NORMAL_KEY_LISTENER_H
 
 
+#include <GL/freeglut.h>
+
+
 /* klasa koja sluzi kao Interface za osluskivac obicnih karaktera */
 class glutNormalKeyListener
 {
@@ -11,10 +14,12 @@ public:
     virtual ~glutNormalKeyListener(){}
 
     /* radnja za stisnute obicne karatere */
-    virtual void keyDown(unsigned char normalKey,int x,int y) const {}
+    virtual void keyDown(unsigned char normalKey,int x,int y) const
+    {normalKey=normalKey;x=x;y=y;}
 
     /* radnja za otpustene obicne karaktere */
-    virtual void keyUp(unsigned char normalKey,int x,int y) const {}
+    virtual void keyUp(unsigned char normalKey,int x,int y) const
+    {normalKey=normalKey;x=x;y=y;}
 };
 
 

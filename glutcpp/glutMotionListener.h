@@ -2,6 +2,9 @@
 #define GLUT_MOTION_LISTENER_H
 
 
+#include <GL/freeglut.h>
+
+
 /* klasa koja sluzi kao Interface za osluskivac pozicije misa */
 class glutMotionListener
 {
@@ -11,7 +14,7 @@ public:
     virtual ~glutMotionListener(){}
 
     /* Rad na osnovu pozicije misa */
-    virtual void motion(int x, int y) const;
+    virtual void motion(int x, int y) const {x=x;y=y;}
 };
 
 

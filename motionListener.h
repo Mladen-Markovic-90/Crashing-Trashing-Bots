@@ -17,9 +17,6 @@
 */
 
 
-/* Rad pozicijom misa */
-
-
 #ifndef MOTION_LISTENER_H
 #define MOTION_LISTENER_H
 
@@ -27,6 +24,7 @@
 #include "glutcpp/glutMotionListener.h"
 
 
+/* klasa za rad sa pozicijom misa */
 class motionListener : public glutMotionListener
 {
 public:

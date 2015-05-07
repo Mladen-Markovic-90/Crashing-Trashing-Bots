@@ -16,7 +16,6 @@ SOURCES += main.cpp
 HEADERS += glutcpp\glutcpp.h \
     special_keys.h \
     display.h \
-    reshape.h \
     glutcpp\tacka.h \
     timer.h \
     global.h \
@@ -26,7 +25,6 @@ HEADERS += glutcpp\glutcpp.h \
     robot_3.h \
     delovi.h \
     vektor3d.h \
-    glutcpp/reshape.h \
     glutcpp/special_keys.h \
     glutcpp/timer.h \
     glutcpp/glutDisplay.h \
@@ -35,7 +33,9 @@ HEADERS += glutcpp\glutcpp.h \
     glutcpp/glutMotionListener.h \
     motionListener.h \
     mouseListener.h \
-    glutcpp/glutMouseListener.h
+    glutcpp/glutMouseListener.h \
+    glutcpp/glutReshapeListener.h \
+    reshapeListener.h
 
 
 include(deployment.pri)

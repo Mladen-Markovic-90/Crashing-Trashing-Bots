@@ -24,10 +24,10 @@
 
 
 /* Obrada prikaza za prozor u zavisnosti od modusa */
-void Reshape::reshape(int width, int height) const
+void reshapeListener::reshape(int width, int height)
 {
-    window_width=width;
-    window_height=height;
+    windowWidth=width;
+    windowHeight=height;
     if(modus==MODUS_MENI)
         glutcpp::projection2D(width,height);
     else if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)

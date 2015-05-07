@@ -24,8 +24,6 @@
 
 /* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
 #include "special_keys.cpp"
-#include "reshape.cpp"
-#include "glutcpp/tacka.cpp"
 #include "timer.cpp"
 #include "robot.cpp"
 #include "robot_1.cpp"
@@ -57,14 +55,14 @@ int main(int argc,char ** argv)
     }
 
     /* Inicalizujemo glut */
-    glutcpp::init(argc,argv,window_width,window_height,"Crashing Trashing Bots");
+    glutcpp::init(argc,argv,600,600,"Crashing Trashing Bots");
 
     /* Inicijalizujemo glut niti */
     glutDisplayInit::run(new Display(roboti));
     Timer_init::run(MS);
     glutNormalKeyListenerInit::run(new normalKeyListener(roboti));
     Special_keys_init::run();
-    Reshape_init::run();
+    glutReshapeListenerInit::run(new reshapeListener(600,600));
 
     /* Pokrecemo glut petlju */
     glutcpp::start();

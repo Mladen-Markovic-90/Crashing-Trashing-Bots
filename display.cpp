@@ -86,8 +86,12 @@ void Display::arena()
     for(Robot * item : roboti)
 	item->draw();
 
+
+    int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
+    int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
+
     for(Robot * item : roboti)
-        item->display3D(45,window_width,window_height,1,1000);
+        item->display3D(45,width,height,1,1000);
 
 
     glutcpp::swapBuffers();
@@ -133,9 +137,13 @@ void Display::test_mladen()
     glutcpp::color(0.5,0.5,1,0.3);
     glutcpp::cube(50);*/
 
+    int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
+    int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
+
+    //std::cout << width << " " << height << std::endl;
 
     for(Robot * item : roboti)
-        item->display3D(45,window_width,window_height,1,1000);
+        item->display3D(45,width,height,1,1000);
     glutcpp::swapBuffers();
 }
 

@@ -80,4 +80,7 @@ Tacka operator* (Tacka t1, float k);
 Tacka operator/ (Tacka t1, float k);
 
 
+#include "tacka.cpp"
+
+
 #endif // TACKA

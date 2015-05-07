@@ -2,6 +2,9 @@
 #define GLUT_MOUSE_LISTENER_H
 
 
+#include <GL/freeglut.h>
+
+
 /* klasa koja sluzi kao Interface osluskivac za dugmad misa */
 class glutMouseListener
 {
@@ -11,7 +14,8 @@ public:
     virtual ~glutMouseListener(){}
 
     /* Desavanje na osnovu klika misa */
-    void mouse(int button,int state,int x,int y) const;
+    void mouse(int button,int state,int x,int y) const
+    {button=button;state=state;x=x;y=y;}
 };
 
 

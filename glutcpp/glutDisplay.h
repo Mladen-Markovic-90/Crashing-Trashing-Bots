@@ -2,6 +2,9 @@
 #define GLUT_DISPLAY_H
 
 
+#include <GL/freeglut.h>
+
+
 /* klasa koja sluzi kao Interface za display */
 class glutDisplay
 {
