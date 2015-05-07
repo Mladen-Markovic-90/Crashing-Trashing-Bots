@@ -63,7 +63,7 @@ private:
 };
 
 
-#include "timerListener.cpp"
+#include "animationTimer.cpp"
 
 
 #endif // TIMER_LISTENER_H
