@@ -137,4 +137,8 @@ protected:
     float _health=100;
 };
 
+
+#include "robot.cpp"
+
+
 #endif // ROBOT_H

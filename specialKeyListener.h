@@ -20,54 +20,32 @@
 /* Rad sa specijalnim karakterima sa tastature */
 
 
-#ifndef SPECIAL_KEYS_H
-#define SPECIAL_KEYS_H
+#ifndef SPECIAL_KEY_LISTENER_H
+#define SPECIAL_KEY_LISTENER_H
+
+#include "robot.h"
+#include "glutcpp/glutSpecialKeyListener.h"
 
 
-class Special_keys
+class SpecialKeyListener : public glutSpecialKeyListener
 {
 public:
-    Special_keys(){}
-    ~Special_keys(){}
+    SpecialKeyListener(std::vector<Robot *> & r):roboti(r){}
+    ~SpecialKeyListener(){}
 
     /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
-    void setKey(int key,int x,int y) const;
+    void keyDown(int key,int x,int y) const;
 
     /* skidanje flagova za specijalne karaktere koja su stisnuta na tastaturi */
-    void unsetKey(int key,int x,int y) const;
-};
-
-
-
-class Special_keys_init
-{
-public:
-
-
-    static void run()
-    {
-        glutSpecialFunc(setSpecKey);
-        glutSpecialUpFunc(unsetSpecKey);
-    }
+    void keyUp(int key,int x,int y) const;
 
 private:
-    Special_keys_init(){}
-    ~Special_keys_init(){}
-    /* glut input funkcija za citanje specijalnih stisnutih karaktera sa tastature */
-    static void setSpecKey(int key, int x, int y)
-    {
-        special_keys->setKey(key,x,y);
-    }
+    std::vector<Robot *> roboti;
 
-    /* glut input funkcija za citanje specijalnih otpustenih karaktera sa tastature */
-    static void unsetSpecKey(int key, int x, int y)
-    {
-        special_keys->unsetKey(key,x,y);
-    }
-
-    static Special_keys * special_keys;
 };
-Special_keys * Special_keys_init::special_keys=new Special_keys();
 
 
-#endif // SPECIAL_KEYS_H
+#include "specialKeyListener.cpp"
+
+
+#endif // SPECIAL_KEY_LISTENER_H

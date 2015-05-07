@@ -20,8 +20,8 @@
 /* Klasa koja sluzi za rad sa timerom/animacijom i izracunavanja */
 
 
-#ifndef TIMER_LISTENER_H
-#define TIMER_LISTENER_H
+#ifndef ANIMATION_TIMER_H
+#define ANIMATION_TIMER_H
 
 
 /* Broj izvrsavanja animacije za 1 sekund */
@@ -66,4 +66,4 @@ private:
 #include "animationTimer.cpp"
 
 
-#endif // TIMER_LISTENER_H
+#endif // ANIMATION_TIMER_H

@@ -49,27 +49,22 @@
 int modus=MODUS_TEST_MLADEN;
 
 
-
-
 /* Ukljucujemo sve potrebna zaglavlja */
 #include "glutcpp/glutcpp.h"
 #include "motionListener.h"
 #include "mouseListener.h"
 #include "reshapeListener.h"
-#include "special_keys.h"
 #include "glutcpp/tacka.h"
 #include "animationTimer.h"
 #include "robot.h"
 #include <vector>
-std::vector<Robot *> roboti;
+#include "specialKeyListener.h"
 #include "normalKeyListener.h"
 #include "display.h"
 
-
-/* specijalne globalne promenljive */
-
-
-/* sledi nekoliko funkcija za ulaz u glutXXXXfunc() */
+#include "robot_1.h"
+#include "robot_2.h"
+#include "robot_3.h"
 
 
 #endif // GLOBAL_H

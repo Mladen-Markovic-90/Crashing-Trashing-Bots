@@ -22,16 +22,10 @@
 #include <ctime>
 
 
-/* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
-#include "special_keys.cpp"
-#include "robot.cpp"
-#include "robot_1.cpp"
-#include "robot_2.cpp"
-#include "robot_3.cpp"
-
-
 int main(int argc,char ** argv)
 {
+    std::vector<Robot *> roboti;
+
     /* inicijalizujemo random sa semenom */
     /* potrebno za animacije */
     std::srand(time(NULL));
@@ -57,7 +51,7 @@ int main(int argc,char ** argv)
     glutDisplayInit::run(new Display(roboti));
     glutAnimationTimerInit::run(new animationTimer(50,roboti));
     glutNormalKeyListenerInit::run(new normalKeyListener(roboti));
-    Special_keys_init::run();
+    glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti));
     glutReshapeListenerInit::run(new reshapeListener(600,600));
 
     /* Pokrecemo glut petlju */

@@ -48,4 +48,7 @@ private:
 };
 
 
+#include "robot_2.cpp"
+
+
 #endif // ROBOT_2_H

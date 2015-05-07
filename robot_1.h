@@ -67,4 +67,7 @@ private:
 };
 
 
+#include "robot_1.cpp"
+
+
 #endif // ROBOT_1_H

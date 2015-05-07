@@ -1,5 +1,5 @@
-#ifndef GLUT_TIMER_LISTENER_H
-#define GLUT_TIMER_LISTENER_H
+#ifndef GLUT_ANIMATION_TIMER_H
+#define GLUT_ANIMATION_TIMER_H
 
 
 /* klasa koja sluzi kao Interface za animacije */
@@ -55,4 +55,4 @@ private:
 glutAnimationTimer * glutAnimationTimerInit::animationTimer=nullptr;
 
 
-#endif // GLUT_TIMER_LISTENER_H
+#endif // GLUT_ANIMATION_TIMER_H

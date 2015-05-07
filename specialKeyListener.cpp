@@ -21,12 +21,11 @@
 
 
 /* ukljucivanje potrebnih zaglavlja */
-#include "special_keys.h"
 #include "global.h"
 
 
 /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
-void Special_keys::setKey(int key, int x, int y) const
+void SpecialKeyListener::keyDown(int key, int x, int y) const
 {
     x=x;y=y;
     if(modus==MODUS_TEST_MLADEN || modus==MODUS_ARENA)
@@ -45,7 +44,7 @@ void Special_keys::setKey(int key, int x, int y) const
 
 
 /* skidanje flagova za specijalne karaktere koja su stisnuta na tastaturi */
-void Special_keys::unsetKey(int key, int x, int y) const
+void SpecialKeyListener::keyUp(int key, int x, int y) const
 {
     x=x;y=y;
     if(modus==MODUS_TEST_MLADEN || modus==MODUS_ARENA)
