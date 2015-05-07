@@ -58,7 +58,7 @@ int modus=MODUS_TEST_MLADEN;
 #include "reshapeListener.h"
 #include "special_keys.h"
 #include "glutcpp/tacka.h"
-#include "timer.h"
+#include "animationTimer.h"
 #include "robot.h"
 #include <vector>
 std::vector<Robot *> roboti;

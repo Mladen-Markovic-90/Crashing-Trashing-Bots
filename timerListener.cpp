@@ -20,63 +20,18 @@
 /* Klasa koja sluzi za rad sa timerom/animacijom i izracunavanja */
 
 
-#ifndef TIMER_H
-#define TIMER_H
+/* Ukljucivanje potrebnih zaglavlja */
+#include "global.h"
 
 
-/* Broj milisekundi pauze izmedju 2 racunanja animacije */
-//#define TIMER 50
-
-/* Broj izvrsavanja animacije za 1 sekund */
-#define SECOND 1000.0/50
-
-
-class Timer
+/* Funkcija za timer i izracunavanje */
+void animationTimer::timer(int id) const
 {
-public:
-
-    Timer(){}
-    ~Timer(){}
-
-    void setMs(int ms)
+    id=id;
+    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
-        _ms=ms;
-        _second=1000.0/_ms;
+        for(Robot * item : roboti)
+            item->animation();
     }
-
-    /* Funkcija za timer i izracunavanje */
-    void timer(int id) const;
-
-private:
-    int _ms;
-    float _second;
-};
-
-
-class Timer_init
-{
-public:
-
-    static void run(int ms)
-    {
-        timer->setMs(ms);
-        glutTimerFunc(ms,onTimer,0);
-    }
-
-private:
-
-    Timer_init(){}
-    ~Timer_init(){}
-
-    /* glut input funkcija za rad sa vremenom koja prima milisekunde */
-    static void onTimer(int id)
-    {
-        timer->timer(id);
-    }
-
-    static Timer * timer;
-};
-Timer * Timer_init::timer=new Timer();
-
-
-#endif // TIMER_H
+    glutcpp::reDisplay();
+}

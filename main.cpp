@@ -24,14 +24,10 @@
 
 /* Ukljucujemo sve .cpp fajlove za olaksavanje pravljenje makefile */
 #include "special_keys.cpp"
-#include "timer.cpp"
 #include "robot.cpp"
 #include "robot_1.cpp"
 #include "robot_2.cpp"
 #include "robot_3.cpp"
-
-
-#define MS 50
 
 
 int main(int argc,char ** argv)
@@ -59,7 +55,7 @@ int main(int argc,char ** argv)
 
     /* Inicijalizujemo glut niti */
     glutDisplayInit::run(new Display(roboti));
-    Timer_init::run(MS);
+    glutAnimationTimerInit::run(new animationTimer(50,roboti));
     glutNormalKeyListenerInit::run(new normalKeyListener(roboti));
     Special_keys_init::run();
     glutReshapeListenerInit::run(new reshapeListener(600,600));

@@ -17,7 +17,6 @@ HEADERS += glutcpp\glutcpp.h \
     special_keys.h \
     display.h \
     glutcpp\tacka.h \
-    timer.h \
     global.h \
     robot.h \
     robot_1.h \
@@ -26,7 +25,6 @@ HEADERS += glutcpp\glutcpp.h \
     delovi.h \
     vektor3d.h \
     glutcpp/special_keys.h \
-    glutcpp/timer.h \
     glutcpp/glutDisplay.h \
     glutcpp/glutNormalKeyListener.h \
     normalKeyListener.h \
@@ -35,7 +33,9 @@ HEADERS += glutcpp\glutcpp.h \
     mouseListener.h \
     glutcpp/glutMouseListener.h \
     glutcpp/glutReshapeListener.h \
-    reshapeListener.h
+    reshapeListener.h \
+    glutcpp/glutAnimationTimer.h \
+    animationTimer.h
 
 
 include(deployment.pri)

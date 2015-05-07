@@ -20,19 +20,50 @@
 /* Klasa koja sluzi za rad sa timerom/animacijom i izracunavanja */
 
 
-/* Ukljucivanje potrebnih zaglavlja */
-#include "global.h"
+#ifndef TIMER_LISTENER_H
+#define TIMER_LISTENER_H
 
 
-/* Funkcija za timer i izracunavanje */
-void Timer::timer(int id) const
+/* Broj izvrsavanja animacije za 1 sekund */
+#define SECOND 1000.0/50
+
+
+#include <vector>
+#include "glutcpp/glutAnimationTimer.h"
+#include "robot.h"
+
+
+/* klasa za rad sa timerom i operacije animacije */
+class animationTimer : public glutAnimationTimer
 {
-    id=id;
-    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
+public:
+    /* konstruktor i destruktor */
+    animationTimer(int ms,std::vector<Robot *> & r)
+        : _ms(ms) , roboti(r)
+    {}
+    ~animationTimer(){}
+
+    virtual int getMs() const
     {
-        for(Robot * item : roboti)
-            item->animation();
+        return _ms;
     }
-    glutcpp::reDisplay();
-    Timer_init::run(_ms);
-}
+
+    virtual float getTicksPerSecond() const
+    {
+        return 1000.0/_ms;
+    }
+
+    /* Funkcija za timer i izracunavanje */
+    virtual void timer(int id) const;
+
+private:
+    int _ms;
+    std::vector<Robot *> roboti;
+
+};
+
+
+#include "timerListener.cpp"
+
+
+#endif // TIMER_LISTENER_H
