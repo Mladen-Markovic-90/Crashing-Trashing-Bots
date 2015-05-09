@@ -35,7 +35,8 @@ HEADERS += glutcpp\glutcpp.h \
     glutcpp/glutAnimationTimer.h \
     animationTimer.h \
     specialKeyListener.h \
-    glutcpp/glutSpecialKeyListener.h
+    glutcpp/glutSpecialKeyListener.h \
+    provera.h
 
 
 include(deployment.pri)

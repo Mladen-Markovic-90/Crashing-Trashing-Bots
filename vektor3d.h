@@ -3,6 +3,8 @@
 
 /*Klasa koja sadrzi funkcije za rad s vektorima*/
 
+#include "glutcpp/tacka.h"
+
 class Vektor3D
 {
 public:
@@ -40,5 +42,8 @@ public:
 
     static Tacka normala(Tacka A, Tacka B, Tacka C, Tacka D);
 };
+
+
+#include "vektor3d.cpp"
 
 #endif // VEKTOR3D_H

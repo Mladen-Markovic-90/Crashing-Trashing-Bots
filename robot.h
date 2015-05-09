@@ -46,7 +46,8 @@ class Robot
 public:
     /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
     Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao,
-          int cooldown1,int cooldown2,int cooldown3,int cooldown4);
+          int cooldown1,int cooldown2,int cooldown3,int cooldown4,
+          Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius);
 
     /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
     void set_key(unsigned char key);
@@ -84,6 +85,8 @@ public:
 
     /* Getter za player vezan za robotica */
     int getPlayer() const { return _player; }
+
+    double getPovrsina() const { return _povrsina; }
 
     /* Getter za front tacku */
     Tacka getFront() const {
@@ -130,6 +133,14 @@ protected:
 
     float _energy=100;
     float _health=100;
+
+    Tacka _northWest;
+    Tacka _northEast;
+    Tacka _southEast;
+    Tacka _southWest;
+    float _radius;
+
+    double _povrsina=0;
 };
 
 

@@ -24,16 +24,26 @@
 #include "global.h"
 #include "robot.h"
 #include "glutcpp/glutcpp.h"
+#include "provera.h"
 #include <cmath>
 
 
 /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
-Robot::Robot(float ticksPerSecond,int player, Tacka center, Tacka front, float ugao,
-             int cooldown1, int cooldown2, int cooldown3, int cooldown4)
+Robot::Robot(float ticksPerSecond, int player, Tacka center, Tacka front, float ugao,
+             int cooldown1, int cooldown2, int cooldown3, int cooldown4,
+             Tacka northWest, Tacka northEast, Tacka southEast, Tacka southWest, float radius)
     : _ticksPerSecond(ticksPerSecond),_player(player) , _center(center) , _ugao(ugao),
       _ability_1_cooldown(cooldown1) , _ability_2_cooldown(cooldown2) ,
-      _ability_3_cooldown(cooldown3) , _ability_4_cooldown(cooldown4) , _front(front)
-{_speed=100/_ticksPerSecond;}
+      _ability_3_cooldown(cooldown3) , _ability_4_cooldown(cooldown4) , _front(front),
+      _northWest(northWest), _northEast(northEast) , _southEast(southEast), _southWest(southWest), _radius(radius)
+    {
+    _speed=100/_ticksPerSecond;
+    _povrsina+=provera::povrsina(northWest,northEast,Tacka(0,0,0));
+    _povrsina+=provera::povrsina(northEast,southEast,Tacka(0,0,0));
+    _povrsina+=provera::povrsina(southEast,southWest,Tacka(0,0,0));
+    _povrsina+=provera::povrsina(southWest,northWest,Tacka(0,0,0));
+    std::cout << "Povrsina je: " << _povrsina << std::endl;
+    }
 
 
 /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */

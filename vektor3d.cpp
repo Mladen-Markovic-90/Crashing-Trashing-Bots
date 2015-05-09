@@ -1,5 +1,4 @@
-#include "tacka.h"
-#include "vektor3d.h"
+#include "glutcpp/tacka.h"
 #include <cmath>
 
 /*Klasa koja sadrzi funkcije za rad s vektorima*/

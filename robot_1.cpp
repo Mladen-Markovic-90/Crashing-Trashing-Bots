@@ -22,17 +22,20 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include "provera.h"
 
 
 /* Konstruktor za robotica 1 */
 Robot_1::Robot_1(float ticksPerSecond,int player,Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,-20),0,
-            5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond)
+            5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
+            Tacka(-15,0,-20),Tacka(15,0,-20),Tacka(15,0,20),Tacka(-15,0,20),20)
     {}
 
 /* Iscrtavanje robotica 1 */
 void Robot_1::draw()
 {
+
     glutcpp::push();
         glutcpp::translate(this->_center);
         glutcpp::rotate(-this->_ugao,0,1,0);
@@ -43,6 +46,52 @@ void Robot_1::draw()
     glutcpp::pop();
 
     this->ability_2();
+
+    /* Test */
+    glutcpp::translate(0,20,0);
+    glutcpp::push();
+        glutcpp::color(1,0,0,1);
+        glutcpp::translate(provera::position(_northWest,_center,_ugao));
+        glutcpp::cube(5);
+    glutcpp::pop();
+
+    glutcpp::push();
+        glutcpp::color(0,1,0,1);
+        glutcpp::translate(provera::position(_northEast,_center,_ugao));
+        glutcpp::cube(5);
+    glutcpp::pop();
+
+    glutcpp::push();
+        glutcpp::color(0,0,1,1);
+        glutcpp::translate(provera::position(_southEast,_center,_ugao));
+        glutcpp::cube(5);
+    glutcpp::pop();
+
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(provera::position(_southWest,_center,_ugao));
+        glutcpp::cube(5);
+    glutcpp::pop();
+/*
+    std::cout << _ugao << " "
+              << _center.get_x() << " "
+              << _center.get_y() << " "
+              << _center.get_z()
+              << std::endl;*/
+
+
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(_center);
+        glutcpp::cube(10);
+    glutcpp::pop();
+
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(getFront());
+        glutcpp::cube(5);
+    glutcpp::pop();
+
 }
 
 
@@ -70,12 +119,14 @@ void Robot_1::model()
         Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
     glutcpp::pop();
 
+    /* popunjavanje kod tockova */
     glutcpp::push();
         glutcpp::color(0.5,0.5,0.5,1);
         glutcpp::translate(0,6,0);
         glutcpp::kvadar(20,30,8);
     glutcpp::pop();
 
+    /* glavni deo robotica */
     glutcpp::push();
         glutcpp::color(0.5,0.5,0,1);
         glutcpp::translate(5,10,0);
