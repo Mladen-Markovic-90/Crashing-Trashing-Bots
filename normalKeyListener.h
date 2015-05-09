@@ -32,7 +32,7 @@ class normalKeyListener : public glutNormalKeyListener
 {
 public:
     /* konstruktor i destruktor */
-    normalKeyListener(std::vector<Robot *> & r,int & m):roboti(r),modus(m) {}
+    normalKeyListener(std::vector<Robot *> & r,int & m):modus(m),roboti(r){}
     ~normalKeyListener(){}
 
     /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
@@ -43,6 +43,7 @@ public:
 
 private:
 
+    /* promenljiva koja cuva modus prikaza */
     int & modus;
 
     /* vektor koji cuva robotere */

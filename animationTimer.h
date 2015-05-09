@@ -32,9 +32,7 @@ class animationTimer : public glutAnimationTimer
 {
 public:
     /* konstruktor i destruktor */
-    animationTimer(int ms,std::vector<Robot *> & r,int & m)
-        : _ms(ms) , roboti(r) , modus(m)
-    {}
+    animationTimer(int ms,std::vector<Robot *> & r,int & m):_ms(ms),modus(m),roboti(r){}
     ~animationTimer(){}
 
     /* getter za milisekunde */
@@ -56,6 +54,7 @@ private:
     /* promenljiva koja cuva milisekunde za timer */
     int _ms;
 
+    /* promenljiva koja cuva modus prikaza */
     int & modus;
 
     /* vektor koji cuva robotere */

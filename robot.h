@@ -87,25 +87,17 @@ public:
     int getPlayer() const { return _player; }
 
     double getPovrsina() const { return _povrsina; }
-
-    /* Getter za front tacku */
-    Tacka getFront() const {
-        Tacka tmp=Tacka(0,0,0);
-        tmp.set_x(_front.get_x()*std::cos(-_ugao/180.0*M_PI)+_front.get_z()*std::sin(-_ugao/180.0*M_PI));
-        tmp.set_z(_front.get_x()*std::sin(-_ugao/180.0*M_PI)+_front.get_z()*std::cos(-_ugao/180.0*M_PI));
-        tmp.add(_center);
-        return tmp;
-    }
     
 protected:
+    /* Flagovi za pravce koji su stisnuti */
+    unsigned char _up_down;
+    unsigned char _left_right;
+
+    /* broj prikaza po sekundi */
     float _ticksPerSecond;
 
     /* Flag koji oznacava igraca */
     int _player;
-
-    /* Flagovi za pravce koji su stisnuti */
-    unsigned char _up_down;
-    unsigned char _left_right;
 
     /* Centar robota */
     Tacka _center;
@@ -131,15 +123,18 @@ protected:
     int _ability_3_cooldown;
     int _ability_4_cooldown;
 
+    /* promenljive za energy/health */
     float _energy=100;
     float _health=100;
 
+    /* krajnje tacke robotica i radius */
     Tacka _northWest;
     Tacka _northEast;
     Tacka _southEast;
     Tacka _southWest;
     float _radius;
 
+    /* povrsina robotica za koliziju */
     double _povrsina=0;
 };
 

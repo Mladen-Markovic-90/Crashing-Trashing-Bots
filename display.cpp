@@ -111,7 +111,7 @@ void Display::test_mladen()
     glutcpp::modelView3D(0,0,300);
 
 
-    glutcpp::rotate(90,1,0,0);
+    glutcpp::rotate(30,1,0,0);
     glutcpp::rotate(90,0,1,0);
     glutcpp::rotate(this->camera_ugao,0,1,0);
 

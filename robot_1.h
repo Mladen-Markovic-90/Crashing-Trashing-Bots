@@ -17,9 +17,6 @@
 */
 
 
-/* Klasa za robotic 1 i rad sa njim */
-
-
 #ifndef ROBOT_1_H
 #define ROBOT_1_H
 
@@ -28,6 +25,7 @@
 #include "robot.h"
 
 
+/* klasa za robotic 1 */
 class Robot_1 : public Robot
 {
 public:
@@ -42,7 +40,6 @@ private:
 
     /* Model robotica 1 */
     void model();
-
 
     /* MELEE ABILITY */
     /* Cekic */
@@ -59,9 +56,10 @@ private:
     /* SPECIAL ABILITY */
     void ability_4();
 
-
+    /* sluzi za rotaciju tockova */
     int ugao_rotacije_tocak=0;
 
+    /* sluzi za poziciju i rotaciju rakete */
     Tacka tacka_raketa=Tacka(0,0,0);
     int ugao_raketa=0;
 };

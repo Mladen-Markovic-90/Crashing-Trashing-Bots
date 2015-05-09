@@ -32,7 +32,7 @@ class SpecialKeyListener : public glutSpecialKeyListener
 {
 public:
     /* konstruktor i destruktor */
-    SpecialKeyListener(std::vector<Robot *> & r,int & m):roboti(r),modus(m){}
+    SpecialKeyListener(std::vector<Robot *> & r,int & m):modus(m),roboti(r){}
     ~SpecialKeyListener(){}
 
     /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
@@ -42,9 +42,12 @@ public:
     void keyUp(int key,int x,int y) const;
 
 private:
+    /* promenljiva koja cuva modus prikaza */
     int & modus;
+
     /* vektor koji cuva robotere */
     std::vector<Robot *> & roboti;
+
 };
 
 

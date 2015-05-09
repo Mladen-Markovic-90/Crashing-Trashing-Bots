@@ -67,7 +67,7 @@ int main(int argc,char ** argv)
 
     if(modus==MODUS_TEST_MLADEN)
     {
-        roboti.push_back(new Robot_2(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
+        roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
         //roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_2,Tacka(0,0,0)));
     }
     else

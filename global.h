@@ -17,7 +17,7 @@
 */
 
 
-/* biblioteka koja je globalna i ukljucuje sva zaglavlja i globalne promenljive i globalne konstante */
+/* globalne konstante */
 
 
 #ifndef GLOBAL_H
@@ -33,7 +33,7 @@
 #endif
 
 
-/* definicije za trenutni prozor */
+/* definicije za modus prikaza */
 #define MODUS_MENI 0
 #define MODUS_START 1
 #define MODUS_ARENA 2

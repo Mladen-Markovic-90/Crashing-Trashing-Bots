@@ -17,9 +17,6 @@
 */
 
 
-/* Klasa za robotic 2 i rad sa njim */
-
-
 #ifndef ROBOT_2_H
 #define ROBOT_2_H
 
@@ -28,10 +25,10 @@
 #include "robot.h"
 
 
+/* Klasa za robotic 2 */
 class Robot_2 : public Robot
 {
 public:
-
     /* Konstruktor za robotica 2 */
     Robot_2(float ticksPerSecond,int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
 
@@ -43,8 +40,8 @@ private:
     /* Model robotica 2 */
     void model();
 
+    /* sluzi za rotaciju tockova */
     int ugao_tocak=0;
-
 };
 
 

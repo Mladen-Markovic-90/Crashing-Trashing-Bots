@@ -30,9 +30,7 @@ class reshapeListener : public glutReshapeListener
 {
 public:
     /* konstruktor i destruktor */
-    reshapeListener(int width,int height,int & m)
-        : windowWidth(width) , windowHeight(height) , modus(m)
-    {}
+    reshapeListener(int width,int height,int & m):windowWidth(width),windowHeight(height),modus(m){}
     ~reshapeListener(){}
 
     /* Obrada prikaza za prozor u zavisnosti od modusa */
@@ -43,11 +41,12 @@ public:
     virtual int getWindowHeight() const {return windowHeight;}
 
 private:
-    int & modus;
-
     /* promenljive za sirinu i visinu prozora */
     int windowWidth;
     int windowHeight;
+
+    /* promenljiva koja cuva modus prikaza */
+    int & modus;
 };
 
 

@@ -17,9 +17,6 @@
 */
 
 
-/* Klasa za robotic 3 i rad sa njim */
-
-
 #ifndef ROBOT_3_H
 #define ROBOT_3_H
 
@@ -28,10 +25,10 @@
 #include "robot.h"
 
 
+/* Klasa za robotic 3 */
 class Robot_3 : public Robot
 {
 public:
-
     /* Konstruktor za robotica 3 */
     Robot_3(float ticksPerSecond,int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
 
@@ -41,9 +38,7 @@ public:
     /* Iscrtavanje robotica 3 */
     virtual void draw();
 
-
 private:
-
     /* Model robotica 3 */
     void model();
 
@@ -66,6 +61,7 @@ private:
     /* Rotacija robotica 3 oko svoje ose, za animaciju */
     int _ugao_rotacije;
 
+    /* promenljive za abilitys */
     float _radius_nozevi=0;
     float _radius_laser=0;
     float _fade=1.0;

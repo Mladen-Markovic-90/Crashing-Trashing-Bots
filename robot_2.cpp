@@ -81,7 +81,7 @@ void Robot_2::draw()
 
     glutcpp::push();
         glutcpp::color(1,1,1,1);
-        glutcpp::translate(getFront());
+        glutcpp::translate(provera::position(_front,_center,_ugao));
         glutcpp::cube(5);
     glutcpp::pop();
 }
@@ -89,9 +89,8 @@ void Robot_2::draw()
 
 void Robot_2::model()
 {
-
+    /* kako ce biti okrenuti tockovi u zavisnosti od pravca kretanja */
     int ugao_tocak=0;
-
     if(this->_left_right==KEY_LEFT)
         ugao_tocak=30;
     else if(this->_left_right==KEY_RIGHT)
@@ -111,12 +110,14 @@ void Robot_2::model()
         Delovi::tocak(5,2,this->ugao_tocak,ugao_tocak);
     glutcpp::pop();
 
+    /* popunjavanje kod tockova */
     glutcpp::push();
         glutcpp::color(0.5,0.5,0.5,1);
         glutcpp::translate(0,6,0);
         glutcpp::kvadar(10,20,8);
     glutcpp::pop();
 
+    /* glavni deo robotica */
     glutcpp::push();
         glutcpp::color(0.5,0.5,1,1);
         glutcpp::translate(0,10,0);
@@ -125,6 +126,7 @@ void Robot_2::model()
 
     glutcpp::pop();
 
+    /* auspuh nazad */
     glutcpp::push();
         glutcpp::color(0.2,0.2,0.2,1);
         glutcpp::translate(17,13,3);

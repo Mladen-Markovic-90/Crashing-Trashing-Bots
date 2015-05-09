@@ -35,7 +35,6 @@ Robot_1::Robot_1(float ticksPerSecond,int player,Tacka t)
 /* Iscrtavanje robotica 1 */
 void Robot_1::draw()
 {
-
     glutcpp::push();
         glutcpp::translate(this->_center);
         glutcpp::rotate(-this->_ugao,0,1,0);
@@ -88,7 +87,7 @@ void Robot_1::draw()
 
     glutcpp::push();
         glutcpp::color(1,1,1,1);
-        glutcpp::translate(getFront());
+        glutcpp::translate(provera::position(_front,_center,_ugao));
         glutcpp::cube(5);
     glutcpp::pop();
 
@@ -98,9 +97,8 @@ void Robot_1::draw()
 /* Model robotica 1 */
 void Robot_1::model()
 {
-
+    /* kako ce biti okrenuti tockovi u zavisnosti od pravca kretanja */
     int ugao_tocak=0;
-
     if(this->_left_right==KEY_LEFT)
         ugao_tocak=30;
     else if(this->_left_right==KEY_RIGHT)
@@ -141,16 +139,14 @@ void Robot_1::model()
 /* Cekic */
 void Robot_1::ability_1()
 {
-
+    /* odredjivanje ugla cekica */
     float ugao_cekic;
-
     if(this->_ability_1>4.5*_ticksPerSecond)
         ugao_cekic=(this->_ability_1 - 4.5*_ticksPerSecond)*2;
     else if(this->_ability_1>2.5*_ticksPerSecond)
         ugao_cekic=(4.5*_ticksPerSecond - this->_ability_1)/2;
     else
         ugao_cekic=_ticksPerSecond;
-
     ugao_cekic=ugao_cekic/_ticksPerSecond;
 
     glutcpp::push();
@@ -159,6 +155,7 @@ void Robot_1::ability_1()
 
         glutcpp::color(0.2,0.2,0.2,1);
 
+        /* levi drzac cekica */
         glutcpp::push();
             glutcpp::translate(0,0,-15);
             glutcpp::kvadar(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),
@@ -167,6 +164,7 @@ void Robot_1::ability_1()
                          Tacka(20,-1,-1),Tacka(20,1,-1),Tacka(20,1,1),Tacka(20,-1,1));
         glutcpp::pop();
 
+        /* desni drzac cekica */
         glutcpp::push();
             glutcpp::translate(0,0,15);
             glutcpp::kvadar(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),
@@ -175,23 +173,26 @@ void Robot_1::ability_1()
                          Tacka(20,-1,-1),Tacka(20,1,-1),Tacka(20,1,1),Tacka(20,-1,1));
         glutcpp::pop();
 
+        /* donja kupa cekica */
         glutcpp::push();
             glutcpp::translate(20,-8,0);
             glutcpp::rotate(90,-1,0,0);
             glutcpp::cone(10,15);
         glutcpp::pop();
 
+        /* gornja kupa cekica */
         glutcpp::push();
             glutcpp::translate(20,8,0);
             glutcpp::rotate(90,1,0,0);
             glutcpp::cone(10,15);
         glutcpp::pop();
 
+        /* sipka koja prolazi kroz cekic */
         glutcpp::push();
             glutcpp::translate(19,0,0);
             glutcpp::kvadar(2,30,2);
-
         glutcpp::pop();
+
     glutcpp::pop();
 
 }
@@ -202,7 +203,7 @@ void Robot_1::ability_1()
 /* Raketa */
 void Robot_1::ability_2()
 {
-
+    /* pozicija i ugao rakete */
     float number=0;
     if(this->_ability_2>0)
         number=5*_ticksPerSecond-this->_ability_2;
@@ -213,9 +214,12 @@ void Robot_1::ability_2()
     }
 
     glutcpp::push();
+        /* postavljamo raketu na odredjeno mesto */
         glutcpp::translate(this->tacka_raketa);
         glutcpp::rotate(-this->ugao_raketa,0,1,0);
         glutcpp::translate(10*number-5,5,0);
+
+        /* ako je number vece od 0, onda se raketa krece i izbacuje vatru */
         if(number>0)
         {
             glutcpp::color(1,0.5,0,0.5);
@@ -227,6 +231,8 @@ void Robot_1::ability_2()
                 glutcpp::linija(Tacka(-x,-y,0),Tacka(-(3+x),-(y+c),0));
             }
         }
+
+        /* Raketa */
         glutcpp::rotate(90,0,1,0);
         glutcpp::color(0.5,0.5,0.5,1);
         glutcpp::cylinder(3,15);
@@ -235,9 +241,8 @@ void Robot_1::ability_2()
         glutcpp::rotate(90,0,1,0);
         glutcpp::color(1,0,0,0.8);
         glutcpp::cone(5,6);
+
     glutcpp::pop();
-
-
 }
 
 
@@ -246,7 +251,6 @@ void Robot_1::ability_2()
 void Robot_1::ability_3()
 {
     float number=this->_ability_3/(float)this->_ability_3_cooldown;
-
     if(this->_ability_3)
     {
         glutcpp::push();
@@ -255,5 +259,4 @@ void Robot_1::ability_3()
             glutcpp::kvadar(50,30,20);
         glutcpp::pop();
     }
-
 }
