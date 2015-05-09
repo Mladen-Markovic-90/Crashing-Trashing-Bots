@@ -37,28 +37,15 @@
 #include "robot_3.h"
 
 
-
 int main(int argc,char ** argv)
 {
+
     std::vector<Robot *> roboti;
+
 
     /* inicijalizujemo random sa semenom */
     /* potrebno za animacije */
     std::srand(time(NULL));
-
-    if(modus==MODUS_TEST_MLADEN)
-    {
-        roboti.push_back(new Robot_3(PLAYER_1));
-        //roboti.push_back(new Robot_1(PLAYER_2));
-    }
-    else
-    {
-        //roboti.push_back(new Robot_1);
-        // roboti.push_back(new Robot_3(PLAYER_1));
-        // roboti.push_back(new Robot_2(PLAYER_2));
-        roboti.push_back(new Robot_1(PLAYER_1,Tacka(0,0,0)));
-        roboti.push_back(new Robot_2(PLAYER_2,Tacka(50,0,0)));
-    }
 
     /* Inicalizujemo glut */
     glutcpp::init(argc,argv,600,600,"Crashing Trashing Bots");
@@ -69,6 +56,23 @@ int main(int argc,char ** argv)
     glutNormalKeyListenerInit::run(new normalKeyListener(roboti));
     glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti));
     glutReshapeListenerInit::run(new reshapeListener(600,600));
+
+    float ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
+
+
+    if(modus==MODUS_TEST_MLADEN)
+    {
+        roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
+        //roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_2,Tacka(0,0,0)));
+    }
+    else
+    {
+        //roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
+        // roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
+        // roboti.push_back(new Robot_2(ticksPerSecond,PLAYER_2,Tacka(0,0,0)));
+        roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
+        roboti.push_back(new Robot_2(ticksPerSecond,PLAYER_2,Tacka(50,0,0)));
+    }
 
     /* Pokrecemo glut petlju */
     glutcpp::start();

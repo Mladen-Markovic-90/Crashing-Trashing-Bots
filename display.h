@@ -61,7 +61,7 @@ private:
     /* funkcija za namestanje kamere */
     void adjust_camera();
 
-    std::vector<Robot *> roboti;
+    std::vector<Robot *> & roboti;
 };
 
 

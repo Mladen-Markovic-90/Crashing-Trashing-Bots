@@ -33,7 +33,7 @@ class Robot_3 : public Robot
 public:
 
     /* Konstruktor za robotica 3 */
-    Robot_3(int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
+    Robot_3(float ticksPerSecond,int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
 
     /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi timer */
     virtual void animation();

@@ -17,17 +17,15 @@
 */
 
 
-/* Klasa za robotic 2 i rad sa njim */
-
-
 /* Ukljucivanje potrebnih zaglavlja */
-#include "robot_2.h"
+#include "delovi.h"
 #include <cmath>
 
 
 /* Konstruktor za robotica 2 */
-Robot_2::Robot_2(int player,Tacka t)
-    : Robot(player,t,Tacka(0,0,-15),0,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
+Robot_2::Robot_2(float ticksPerSecond,int player, Tacka t)
+    : Robot(ticksPerSecond,player,t,Tacka(0,0,-15),0,
+            5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond)
     {}
 
 

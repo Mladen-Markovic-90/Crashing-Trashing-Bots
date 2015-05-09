@@ -28,11 +28,12 @@
 
 
 /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
-Robot::Robot(int player, Tacka center, Tacka front, float ugao, int cooldown1, int cooldown2, int cooldown3, int cooldown4)
-    : _player(player) , _center(center) , _ugao(ugao),
+Robot::Robot(float ticksPerSecond,int player, Tacka center, Tacka front, float ugao,
+             int cooldown1, int cooldown2, int cooldown3, int cooldown4)
+    : _ticksPerSecond(ticksPerSecond),_player(player) , _center(center) , _ugao(ugao),
       _ability_1_cooldown(cooldown1) , _ability_2_cooldown(cooldown2) ,
       _ability_3_cooldown(cooldown3) , _ability_4_cooldown(cooldown4) , _front(front)
-{}
+{_speed=100/_ticksPerSecond;}
 
 
 /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
@@ -197,7 +198,7 @@ void Robot::unset_key(int key)
 /* Animacija i izracunavanje za robot, izvrsava se u klasi timer */
 void Robot::animation()
 {
-    this->_energy+=(5.0/(1.0*SECOND));
+    this->_energy+=5.0/_ticksPerSecond;
     if(this->_energy > 100)
         this->_energy=100;
 
@@ -242,7 +243,6 @@ void Robot::draw()
 /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
 void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
 {
-
     if(this->_player==PLAYER_1)
     {
         glutcpp::light(GL_OFF);

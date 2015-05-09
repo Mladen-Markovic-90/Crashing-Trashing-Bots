@@ -21,10 +21,6 @@
 #define ANIMATION_TIMER_H
 
 
-/* Broj izvrsavanja animacije za 1 sekund */
-#define SECOND 1000.0/50
-
-
 /* ukljucujemo potrebna zaglavlja */
 #include <vector>
 #include "glutcpp/glutAnimationTimer.h"
@@ -61,7 +57,7 @@ private:
     int _ms;
 
     /* vektor koji cuva robotere */
-    std::vector<Robot *> roboti;
+    std::vector<Robot *> & roboti;
 };
 
 

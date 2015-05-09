@@ -21,22 +21,22 @@
 
 
 /* Ukljucivanje potrebnih zaglavlja */
-#include "robot_3.h"
 #include "glutcpp/glutcpp.h"
 #include <cmath>
 #include <iostream>
 
 
 /* Konstruktor za robotica 3 */
-Robot_3::Robot_3(int player,Tacka t)
-    : Robot(player,t,t+Tacka(0,0,0),0,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
+Robot_3::Robot_3(float ticksPerSecond, int player, Tacka t)
+    : Robot(ticksPerSecond,player,t,t+Tacka(0,0,0),0,
+            5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond)
     {}
 
 
 /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi timer */
 void Robot_3::animation()
 {
-    this->_energy+=(5.0/(1.0*SECOND));
+    this->_energy+=5.0/_ticksPerSecond;
     if(this->_energy > 100)
         this->_energy=100;
 
@@ -138,16 +138,16 @@ void Robot_3::ability_1()
 
     this->_radius_nozevi=0;
     float number=0;
-    if(this->_ability_1>4*SECOND)
-        number=5*SECOND-this->_ability_1;
-    else if(this->_ability_1>3.5*SECOND)
-        number=SECOND;
-    else if(this->_ability_1>2.5*SECOND)
-        number=this->_ability_1 - 2.5*SECOND;
+    if(this->_ability_1>4*_ticksPerSecond)
+        number=5*_ticksPerSecond-this->_ability_1;
+    else if(this->_ability_1>3.5*_ticksPerSecond)
+        number=_ticksPerSecond;
+    else if(this->_ability_1>2.5*_ticksPerSecond)
+        number=this->_ability_1 - 2.5*_ticksPerSecond;
     else
         number=0;
 
-    number=number/(SECOND*1.0);
+    number=number/_ticksPerSecond;
 
     this->_radius_nozevi=15.0*number+10;
 
@@ -183,7 +183,7 @@ void Robot_3::ability_1()
 void Robot_3::ability_2()
 {
     this->_radius_laser=0;
-    if(this->_ability_2 > 4.5*SECOND)
+    if(this->_ability_2 > 4.5*_ticksPerSecond)
     {
         glutcpp::push();
             float number=(float)this->_ability_2/this->_ability_2_cooldown;
@@ -229,6 +229,6 @@ void Robot_3::ability_4()
     {
         this->_speed=10;
         this->_lava=true;
-        this->_ability_1=4*SECOND;
+        this->_ability_1=4*_ticksPerSecond;
     }
 }

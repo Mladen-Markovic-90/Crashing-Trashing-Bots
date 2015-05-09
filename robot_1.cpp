@@ -17,11 +17,7 @@
 */
 
 
-/* Klasa za robotic 1 i rad sa njim */
-
-
 /* Ukljucivanje potrebnih zaglavlja */
-#include "robot_1.h"
 #include "delovi.h"
 #include <iostream>
 #include <cmath>
@@ -29,10 +25,10 @@
 
 
 /* Konstruktor za robotica 1 */
-Robot_1::Robot_1(int player,Tacka t)
-    : Robot(player,t,Tacka(0,0,-20),0,5*SECOND,5*SECOND,5*SECOND,5*SECOND)
+Robot_1::Robot_1(float ticksPerSecond,int player,Tacka t)
+    : Robot(ticksPerSecond,player,t,Tacka(0,0,-20),0,
+            5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond)
     {}
-
 
 /* Iscrtavanje robotica 1 */
 void Robot_1::draw()
@@ -97,14 +93,14 @@ void Robot_1::ability_1()
 
     float ugao_cekic;
 
-    if(this->_ability_1>4.5*SECOND)
-        ugao_cekic=(this->_ability_1 - 4.5*SECOND)*2;
-    else if(this->_ability_1>2.5*SECOND)
-        ugao_cekic=(4.5*SECOND - this->_ability_1)/2;
+    if(this->_ability_1>4.5*_ticksPerSecond)
+        ugao_cekic=(this->_ability_1 - 4.5*_ticksPerSecond)*2;
+    else if(this->_ability_1>2.5*_ticksPerSecond)
+        ugao_cekic=(4.5*_ticksPerSecond - this->_ability_1)/2;
     else
-        ugao_cekic=SECOND;
+        ugao_cekic=_ticksPerSecond;
 
-    ugao_cekic=ugao_cekic/(1.0*SECOND);
+    ugao_cekic=ugao_cekic/_ticksPerSecond;
 
     glutcpp::push();
         glutcpp::translate(10,13,0);
@@ -158,7 +154,7 @@ void Robot_1::ability_2()
 
     float number=0;
     if(this->_ability_2>0)
-        number=5*SECOND-this->_ability_2;
+        number=5*_ticksPerSecond-this->_ability_2;
     else
     {
         this->tacka_raketa=this->_center;

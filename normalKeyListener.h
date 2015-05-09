@@ -44,7 +44,7 @@ public:
 private:
 
     /* vektor koji cuva robotere */
-    std::vector<Robot *> roboti;
+    std::vector<Robot *> & roboti;
 };
 
 

@@ -17,9 +17,6 @@
 */
 
 
-/* Nadklasa za robotice i rad sa njim */
-
-
 #ifndef ROBOT_H
 #define ROBOT_H
 
@@ -27,9 +24,6 @@
 /* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 #include <cmath>
-
-
-/* Razne definicije za lakse razumevanje koda */
 
 
 /* Definicije konstanti za dugmad */
@@ -46,13 +40,13 @@
 #define PLAYER_2 2
 
 
+/* nadklasa za robotice i rad sa njim */
 class Robot
 {
 public:
-
     /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
-    Robot(int player=PLAYER_NONE,Tacka centar=Tacka(0,0,0),Tacka front=Tacka(0,0,0),float ugao=0,
-          int cooldown1=5*SECOND,int cooldown2=5*SECOND,int cooldown3=5*SECOND,int cooldown4=5*SECOND);
+    Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao,
+          int cooldown1,int cooldown2,int cooldown3,int cooldown4);
 
     /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
     void set_key(unsigned char key);
@@ -101,6 +95,7 @@ public:
     }
     
 protected:
+    float _ticksPerSecond;
 
     /* Flag koji oznacava igraca */
     int _player;
@@ -119,7 +114,7 @@ protected:
     float _ugao;
 
     /* Privremena promenljiva za brzinu */
-    float _speed=5;
+    float _speed;
 
     /* Promenljive/Flag za stanje abilitys */
     int _ability_1=0;
@@ -128,10 +123,10 @@ protected:
     int _ability_4=0;
 
     /* Promenljive koje oznacavaju cooldown od abilitys */
-    int _ability_1_cooldown=5*SECOND;
-    int _ability_2_cooldown=5*SECOND;
-    int _ability_3_cooldown=5*SECOND;
-    int _ability_4_cooldown=5*SECOND;
+    int _ability_1_cooldown;
+    int _ability_2_cooldown;
+    int _ability_3_cooldown;
+    int _ability_4_cooldown;
 
     float _energy=100;
     float _health=100;
