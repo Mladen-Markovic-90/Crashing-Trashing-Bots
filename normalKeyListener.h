@@ -21,6 +21,7 @@
 #define NORMAL_KEY_LISTENER_H
 
 
+/* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutNormalKeyListener.h"
 #include "robot.h"
 #include <vector>
@@ -42,6 +43,7 @@ public:
 
 private:
 
+    /* vektor koji cuva robotere */
     std::vector<Robot *> roboti;
 };
 

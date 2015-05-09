@@ -17,9 +17,7 @@
 */
 
 
-/* Rad sa prozorom */
-
-
+/* ukljucujemo potrebna zaglavlja */
 #include "global.h"
 
 

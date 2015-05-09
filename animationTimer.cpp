@@ -17,9 +17,6 @@
 */
 
 
-/* Klasa koja sluzi za rad sa timerom/animacijom i izracunavanja */
-
-
 /* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 
@@ -28,10 +25,13 @@
 void animationTimer::timer(int id) const
 {
     id=id;
+
+    /* pokrecemo animaciju za svakog robota */
     if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
             item->animation();
     }
+
     glutcpp::reDisplay();
 }

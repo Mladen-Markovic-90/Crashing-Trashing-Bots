@@ -17,9 +17,7 @@
 */
 
 
-/* Rad sa klikom misa */
-
-
+/* ukljucujemo potrebna zaglavlja */
 #include "global.h"
 
 

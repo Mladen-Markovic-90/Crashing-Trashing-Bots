@@ -17,9 +17,6 @@
 */
 
 
-/* Rad sa specijalnim karakterima sa tastature */
-
-
 /* ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 

@@ -21,6 +21,7 @@
 #define MOUSE_LISTENER_H
 
 
+/* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutMouseListener.h"
 
 

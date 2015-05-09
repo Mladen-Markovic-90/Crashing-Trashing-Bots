@@ -21,6 +21,7 @@
 #define RESHAPE_LISTENER_H
 
 
+/* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutReshapeListener.h"
 
 
@@ -37,13 +38,12 @@ public:
     /* Obrada prikaza za prozor u zavisnosti od modusa */
     virtual void reshape(int width,int height);
 
-
+    /* getter za sirinu i visinu prozora */
     virtual int getWindowWidth() const {return windowWidth;}
-
     virtual int getWindowHeight() const {return windowHeight;}
 
 private:
-    /* sirina i visina */
+    /* promenljive za sirinu i visinu prozora */
     int windowWidth;
     int windowHeight;
 };

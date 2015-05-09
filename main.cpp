@@ -17,9 +17,25 @@
 */
 
 
-/* Ukljucujemo sve headere i globalne promenljive */
-#include "global.h"
+/* Ukljucujemo sve potrebna zaglavlja */
+#include <vector>
 #include <ctime>
+#include "glutcpp/tacka.h"
+
+#include "glutcpp/glutcpp.h"
+#include "motionListener.h"
+#include "mouseListener.h"
+#include "reshapeListener.h"
+#include "animationTimer.h"
+#include "specialKeyListener.h"
+#include "normalKeyListener.h"
+#include "display.h"
+
+#include "robot.h"
+#include "robot_1.h"
+#include "robot_2.h"
+#include "robot_3.h"
+
 
 
 int main(int argc,char ** argv)

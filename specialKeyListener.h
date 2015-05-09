@@ -17,19 +17,21 @@
 */
 
 
-/* Rad sa specijalnim karakterima sa tastature */
-
-
 #ifndef SPECIAL_KEY_LISTENER_H
 #define SPECIAL_KEY_LISTENER_H
 
-#include "robot.h"
+
+/* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutSpecialKeyListener.h"
+#include "robot.h"
+#include <vector>
 
 
+/* klasa za rad sa specijalnim karakterima sa tastature */
 class SpecialKeyListener : public glutSpecialKeyListener
 {
 public:
+    /* konstruktor i destruktor */
     SpecialKeyListener(std::vector<Robot *> & r):roboti(r){}
     ~SpecialKeyListener(){}
 
@@ -40,8 +42,8 @@ public:
     void keyUp(int key,int x,int y) const;
 
 private:
+    /* vektor koji cuva robotere */
     std::vector<Robot *> roboti;
-
 };
 
 

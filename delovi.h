@@ -21,22 +21,27 @@
 #define DELOVI_H
 
 
-#include "global.h"
+/* ukljucujemo potrebna zaglavlja */
+#include "glutcpp/glutcpp.h"
 
 
 class Delovi
 {
 public:
 
+    /* tocak za robotice i njegova rotacija */
     static void tocak(float radius,float height,int rotacija,int ugao_tocak)
     {
     glutcpp::push();
+        /* tocak bez dekoracije */
         glutcpp::rotate(ugao_tocak,0,1,0);
         glutcpp::rotate(-rotacija*5,0,0,1);
         glutcpp::color(0.8,0.8,0.8,1);
         glutcpp::cylinder(radius,height);
         glutcpp::translate(0,0,-0.1);
         glutcpp::color(0,0,0,1);
+
+        /* dekoracija tocka */
         for(int i=0;i<4;i++)
         {
             glutcpp::push();
@@ -48,7 +53,6 @@ public:
         }
     glutcpp::pop();
     }
-
 };
 
 

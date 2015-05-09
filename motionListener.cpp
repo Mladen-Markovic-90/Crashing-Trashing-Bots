@@ -17,9 +17,7 @@
 */
 
 
-/* Rad pozicijom misa */
-
-
+/* ukljucujemo potrebna zaglavlja */
 #include "global.h"
 
 

@@ -17,9 +17,6 @@
 */
 
 
-/* Klasa koja sluzi za rad sa timerom/animacijom i izracunavanja */
-
-
 #ifndef ANIMATION_TIMER_H
 #define ANIMATION_TIMER_H
 
@@ -28,6 +25,7 @@
 #define SECOND 1000.0/50
 
 
+/* ukljucujemo potrebna zaglavlja */
 #include <vector>
 #include "glutcpp/glutAnimationTimer.h"
 #include "robot.h"
@@ -43,11 +41,13 @@ public:
     {}
     ~animationTimer(){}
 
+    /* getter za milisekunde */
     virtual int getMs() const
     {
         return _ms;
     }
 
+    /* getter za tikove po sekundi */
     virtual float getTicksPerSecond() const
     {
         return 1000.0/_ms;
@@ -57,9 +57,11 @@ public:
     virtual void timer(int id) const;
 
 private:
+    /* promenljiva koja cuva milisekunde za timer */
     int _ms;
-    std::vector<Robot *> roboti;
 
+    /* vektor koji cuva robotere */
+    std::vector<Robot *> roboti;
 };
 
 

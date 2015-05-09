@@ -21,6 +21,7 @@
 #define MOTION_LISTENER_H
 
 
+/* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutMotionListener.h"
 
 
