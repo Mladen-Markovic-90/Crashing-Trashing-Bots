@@ -33,7 +33,7 @@ class Display : public glutDisplay
 {
 public:
     /* konstruktor i destruktor */
-    Display(std::vector<Robot *> & r) : roboti(r) {}
+    Display(std::vector<Robot *> & r,int & m) : roboti(r) , modus(m) {}
     ~Display(){}
 
     /* prikazuje sadrzaj prozora */
@@ -60,6 +60,8 @@ private:
 
     /* funkcija za namestanje kamere */
     void adjust_camera();
+
+    int & modus;
 
     std::vector<Robot *> & roboti;
 };

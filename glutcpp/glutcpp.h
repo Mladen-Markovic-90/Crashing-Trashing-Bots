@@ -27,6 +27,7 @@
 #include "tacka.h"
 
 
+/* konstante za ukljuceno/iskljuceno */
 #define GL_OFF 0
 #define GL_ON 1
 
@@ -46,8 +47,6 @@ public:
 
     /* glEnd() -> zavrsavamo crtanje */
     static void end();
-
-    /*static void display(void (*func)(void));*/
 
     /* boja nezavisno od svetla */
     static void color(float r,float g,float b,float a);

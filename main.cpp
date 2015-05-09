@@ -42,8 +42,11 @@
 int main(int argc,char ** argv)
 {
 
-    std::vector<Robot *> roboti;
+    /* trenutni prozor */
+    //int modus=MODUS_ARENA;
+    int modus=MODUS_TEST_MLADEN;
 
+    std::vector<Robot *> roboti;
 
     /* inicijalizujemo random sa semenom */
     /* potrebno za animacije */
@@ -53,11 +56,11 @@ int main(int argc,char ** argv)
     glutcpp::init(argc,argv,600,600,"Crashing Trashing Bots");
 
     /* Inicijalizujemo glut niti */
-    glutDisplayInit::run(new Display(roboti));
-    glutAnimationTimerInit::run(new animationTimer(50,roboti));
-    glutNormalKeyListenerInit::run(new normalKeyListener(roboti));
-    glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti));
-    glutReshapeListenerInit::run(new reshapeListener(600,600));
+    glutDisplayInit::run(new Display(roboti,modus));
+    glutAnimationTimerInit::run(new animationTimer(50,roboti,modus));
+    glutNormalKeyListenerInit::run(new normalKeyListener(roboti,modus));
+    glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti,modus));
+    glutReshapeListenerInit::run(new reshapeListener(600,600,modus));
 
     float ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
 

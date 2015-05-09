@@ -17,12 +17,9 @@
 */
 
 
-/* Klasa koja pamti tacke i sluzi za rad sa tackama */
-
-
 /* Ukljucivanje potrebnih zaglavlja */
-#include "tacka.h"
 #include <cmath>
+
 
 /* Konstruktor bez argumenata */
 Tacka::Tacka() {}
@@ -115,6 +112,7 @@ float Tacka::distance(Tacka &t2)
 }
 
 
+/* ??? */
 Tacka Tacka::vek(Tacka t)
 {
     Tacka tmp=Tacka(0,0,0);
@@ -169,6 +167,7 @@ Tacka& Tacka::operator/= (float k)
 }
 
 
+/* provera ekvivalentnosti tacaka */
 bool Tacka::operator== (const Tacka& t2)
 {
     if(this->_x!=t2.get_x())
@@ -207,7 +206,7 @@ Tacka operator- (Tacka t1, Tacka t2)
 }
 
 
-/* mnozenje tacke konstantom */
+/* mnozenje tacke sa konstantom */
 Tacka operator* (Tacka t1, float k)
 {
     Tacka rez;
@@ -219,7 +218,7 @@ Tacka operator* (Tacka t1, float k)
 }
 
 
-/* deljenje tacke konstantom */
+/* deljenje tacke sa konstantom */
 Tacka operator/ (Tacka t1, float k)
 {
     Tacka rez;

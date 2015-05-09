@@ -17,13 +17,11 @@
 */
 
 
-/* Klasa koja pamti tacke i sluzi za rad sa tackama */
-
-
 #ifndef TACKA
 #define TACKA
 
 
+/* Klasa koja pamti tacke i sluzi za rad sa tackama */
 class Tacka
 {
 public:
@@ -61,9 +59,7 @@ public:
     Tacka& operator/= (float k);
     bool operator== (const Tacka& t2);
 
-
 private:
-
     /* Promenljive za koordinatu tacke */
     float _x;
     float _y;

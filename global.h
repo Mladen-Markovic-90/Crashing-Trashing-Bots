@@ -44,9 +44,4 @@
 #define MODUS_TEST_MLADEN 7
 
 
-/* trenutni prozor */
-//int modus=MODUS_ARENA;
-int modus=MODUS_TEST_MLADEN;
-
-
 #endif // GLOBAL_H

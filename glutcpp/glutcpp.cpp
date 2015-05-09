@@ -17,9 +17,6 @@
 */
 
 
-/* omotac za freeglut biblioteku */
-
-
 /* ukljucujemo potrebna zaglavlja */
 #include <GL/freeglut.h>
 #include "glutcpp.h"
@@ -28,14 +25,14 @@
 /* inicijalizacija freeglut */
 void glutcpp::init(int argc,char ** argv,int width,int heigth,std::string name)
 {
+    /* inicijalizacija prozora */
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB |  GLUT_DEPTH |  GLUT_DOUBLE);
-
-    /*glutInitWindowSize(2*(X_2D+margineX),2*(Y_2D+margineY));*/
     glutInitWindowSize(width,heigth);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(name.c_str());
 
+    /* podesavanje svetla */
     GLfloat lightambient[4]={0.5f,0.5f,0.5f,1.0f};
     GLfloat lightdiffuse[4]={0.7f,0.7f,0.7f,1.0f};
     GLfloat lightspecular[4]={0.9f,0.9f,0.9f,1.0f};
@@ -43,14 +40,16 @@ void glutcpp::init(int argc,char ** argv,int width,int heigth,std::string name)
     glLightfv(GL_LIGHT0,GL_DIFFUSE,lightdiffuse);
     glLightfv(GL_LIGHT0,GL_SPECULAR,lightspecular);
 
+    /* podesavanje providnosti */
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    /* postavljanje background boje */
     glClearColor(0,0,0,1);
 }
 
 
-/* glMainLoop() -> glut petlja */
+/* glMainLoop() -> pokretanje glut petlje */
 void glutcpp::start()
 {
     glutMainLoop();
@@ -69,13 +68,6 @@ void glutcpp::end()
 {
     glEnd();
 }
-
-
-/*
-void glutcpp::display(void (*func)(void))
-{
-    glutDisplayFunc(*func);
-}*/
 
 
 /* ukljucivanje ili iskljucivanje svetla sa normalama */
@@ -118,7 +110,7 @@ void glutcpp::color(float r, float g, float b, float a)
 }
 
 
-/* sluzi za rad u 3D */
+/* podesavanje za rad u 3D */
 void glutcpp::projection3D(int width, int height, int ugao, int arg1,int arg2)
 {
     glEnable(GL_DEPTH_TEST);
@@ -130,7 +122,7 @@ void glutcpp::projection3D(int width, int height, int ugao, int arg1,int arg2)
 }
 
 
-/* sluzi za rad u 2D */
+/* podesavanje za rad u 2D */
 void glutcpp::projection2D(int width,int height)
 {
     glDisable(GL_DEPTH_TEST);
@@ -142,7 +134,7 @@ void glutcpp::projection2D(int width,int height)
 }
 
 
-/* sluzi za prikazivanje u 2D */
+/* podesavanje za prikazivanje u 2D */
 void glutcpp::modelView2D()
 {
     glutcpp::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -152,7 +144,7 @@ void glutcpp::modelView2D()
 }
 
 
-/* sluzi za prikazivanje u 3D */
+/* podesavanje za prikazivanje u 3D */
 void glutcpp::modelView3D(float x,float y,float z)
 {
     glutcpp::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -220,7 +212,7 @@ void glutcpp::normal(float x, float y, float z, float w)
     if(w>0.001 && w<-0.001)
         glNormal3f(x/w,y/w,z/w);
     else
-        glNormal3f(x/w,y/w,z/w);
+        glNormal3f(x,y,z);
 }
 
 
@@ -261,10 +253,8 @@ void glutcpp::text(float x, float y, std::string s)
 void glutcpp::text(float x, float y, std::string s, void * font)
 {
     glRasterPos2f(x,y);
-    for(char c : s) {
+    for(char c : s)
         glutBitmapCharacter(font,c);
-
-    }
 }
 
 
