@@ -17,38 +17,23 @@
 */
 
 
-#ifndef ROBOT_2_H
-#define ROBOT_2_H
+#ifndef STATUS_H
+#define STATUS_H
 
 
-/* Ukljucivanje potrebnih zaglavlja */
-#include "robot.h"
-
-
-/* Klasa za robotic 2 */
-class Robot_2 : public Robot
+/* klasa koja sluzi da azurira status animacije */
+class animationStatus
 {
 public:
-    /* Konstruktor za robotica 2 */
-    Robot_2(float ticksPerSecond,int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
+    animationStatus(){}
+    ~animationStatus(){}
 
-    /* Dekonstruktor */
-    ~Robot_2(){}
-
-    /* Iscrtavanje robotica 2 */
-    virtual void draw();
-
-private:
-
-    /* Model robotica 2 */
-    void model();
-
-    /* sluzi za rotaciju tockova */
-    int ugao_tocak=0;
+    int position=0;
+    int ugao=0;
+    int modus=0;
+    int flag=0;
 };
 
 
-#include "robot_2.cpp"
+#endif // STATUS_H
 
-
-#endif // ROBOT_2_H

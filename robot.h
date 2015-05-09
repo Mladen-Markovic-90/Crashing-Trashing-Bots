@@ -49,6 +49,9 @@ public:
           int cooldown1,int cooldown2,int cooldown3,int cooldown4,
           Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius);
 
+    /* Dekonstruktor */
+    virtual ~Robot(){}
+
     /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
     void set_key(unsigned char key);
 

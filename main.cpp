@@ -42,10 +42,11 @@
 int main(int argc,char ** argv)
 {
 
-    /* trenutni prozor */
-    //int modus=MODUS_ARENA;
-    int modus=MODUS_TEST_MLADEN;
+    /* status za moduse */
+    animationStatus status;
+    status.modus=MODUS_MENI;
 
+    /* vektor za sve robotice */
     std::vector<Robot *> roboti;
 
     /* inicijalizujemo random sa semenom */
@@ -56,32 +57,27 @@ int main(int argc,char ** argv)
     glutcpp::init(argc,argv,600,600,"Crashing Trashing Bots");
 
     /* Inicijalizujemo glut niti */
-    glutDisplayInit::run(new Display(roboti,modus));
-    glutAnimationTimerInit::run(new animationTimer(50,roboti,modus));
-    glutNormalKeyListenerInit::run(new normalKeyListener(roboti,modus));
-    glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti,modus));
-    glutReshapeListenerInit::run(new reshapeListener(600,600,modus));
+    glutDisplayInit::run(new Display(roboti,status));
+    glutAnimationTimerInit::run(new animationTimer(50,roboti,status));
+    glutNormalKeyListenerInit::run(new normalKeyListener(roboti,status));
+    glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti,status));
+    glutReshapeListenerInit::run(new reshapeListener(600,600,status));
 
     float ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
 
 
-    if(modus==MODUS_TEST_MLADEN)
+    if(status.modus==MODUS_TEST_MLADEN)
     {
         roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
-        //roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_2,Tacka(0,0,0)));
     }
-    else
+    else if(status.modus==MODUS_ARENA)
     {
-        //roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
-        // roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
-        // roboti.push_back(new Robot_2(ticksPerSecond,PLAYER_2,Tacka(0,0,0)));
         roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
         roboti.push_back(new Robot_2(ticksPerSecond,PLAYER_2,Tacka(50,0,0)));
     }
 
     /* Pokrecemo glut petlju */
     glutcpp::start();
-
 
     return 0;
 }

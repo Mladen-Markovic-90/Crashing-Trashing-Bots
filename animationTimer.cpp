@@ -27,7 +27,7 @@ void animationTimer::timer(int id) const
     id=id;
 
     /* pokrecemo animaciju za svakog robota */
-    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
+    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
             item->animation();

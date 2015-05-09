@@ -25,6 +25,7 @@
 #include "glutcpp/glutNormalKeyListener.h"
 #include "robot.h"
 #include <vector>
+#include "animationStatus.h"
 
 
 /* Klasa za rad sa obicnim karakterima */
@@ -32,7 +33,7 @@ class normalKeyListener : public glutNormalKeyListener
 {
 public:
     /* konstruktor i destruktor */
-    normalKeyListener(std::vector<Robot *> & r,int & m):modus(m),roboti(r){}
+    normalKeyListener(std::vector<Robot *> & r,animationStatus & s):roboti(r),status(s){}
     ~normalKeyListener(){}
 
     /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
@@ -42,12 +43,11 @@ public:
     void keyUp(unsigned char normalKey,int x,int y) const;
 
 private:
-
-    /* promenljiva koja cuva modus prikaza */
-    int & modus;
-
     /* vektor koji cuva robotere */
     std::vector<Robot *> & roboti;
+
+    /* promenljiva koja cuva status prikaza */
+    animationStatus & status;
 };
 
 

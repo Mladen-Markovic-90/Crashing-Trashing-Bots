@@ -25,6 +25,7 @@
 #include "glutcpp/glutSpecialKeyListener.h"
 #include "robot.h"
 #include <vector>
+#include "animationStatus.h"
 
 
 /* klasa za rad sa specijalnim karakterima sa tastature */
@@ -32,7 +33,7 @@ class SpecialKeyListener : public glutSpecialKeyListener
 {
 public:
     /* konstruktor i destruktor */
-    SpecialKeyListener(std::vector<Robot *> & r,int & m):modus(m),roboti(r){}
+    SpecialKeyListener(std::vector<Robot *> & r,animationStatus & s):roboti(r),status(s){}
     ~SpecialKeyListener(){}
 
     /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
@@ -42,12 +43,12 @@ public:
     void keyUp(int key,int x,int y) const;
 
 private:
-    /* promenljiva koja cuva modus prikaza */
-    int & modus;
 
     /* vektor koji cuva robotere */
     std::vector<Robot *> & roboti;
 
+    /* promenljiva koja cuva status prikaza */
+    animationStatus & status;
 };
 
 

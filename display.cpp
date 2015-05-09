@@ -25,6 +25,12 @@
 #include "global.h"
 #include <cmath>
 #include <cassert> // za debagovanje
+#include "glutcpp/glutReshapeListener.h"
+#include "glutcpp/glutAnimationTimer.h"
+#include "robot.h"
+#include "robot_1.h"
+#include "robot_2.h"
+#include "robot_3.h"
 
 
 using namespace std;
@@ -33,13 +39,13 @@ using namespace std;
 /* prikazuje sadrzaj prozora */
 void Display::show(void)
 {
-    if(modus==MODUS_MENI)
+    if(status.modus==MODUS_MENI)
 	Display::meni();
-    else if(modus==MODUS_START)
+    else if(status.modus==MODUS_START)
 	Display::start();
-    else if(modus==MODUS_ARENA)
+    else if(status.modus==MODUS_ARENA)
 	Display::arena();
-    else if(modus==MODUS_TEST_MLADEN)
+    else if(status.modus==MODUS_TEST_MLADEN)
 	Display::test_mladen();
 }
 
@@ -47,15 +53,25 @@ void Display::show(void)
 /* prikazuje meni */
 void Display::meni()
 {
+    float width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
+    width=width/2;
     glutcpp::light(GL_OFF);
     glutcpp::modelView2D();
-
-    glutcpp::color(1,0,0,1);
-    glutcpp::pravougaonik(Tacka(1,1,0),Tacka(1,-1,0),Tacka(0,-1,0),Tacka(0,1,0));
-
     glutcpp::color(1,1,1,1);
-    glutcpp::text(0.5,0.5,"Test");
-    glutcpp::text(0,0,"Test");
+    glutcpp::text(((width-11*12)/width)-1.0,0.9,"CRASHING TRASHING BOTS");
+    if(status.position==0)
+        glutcpp::color(1,1,0,1);
+    else
+        glutcpp::color(1,1,1,1);
+
+    glutcpp::text(((width-2*12)/width)-1.0,0.1,"PLAY");
+    if(status.position==0)
+        glutcpp::color(1,1,1,1);
+    else
+        glutcpp::color(1,1,0,1);
+    glutcpp::text(((width-2*12)/width)-1.0,-0.1,"EXIT");
+    //glutcpp::color(1,1,0,1);
+    //glutcpp::linija(0,1,0,0,-1,0);
     glutcpp::swapBuffers();
 }
 
@@ -63,7 +79,53 @@ void Display::meni()
 /* prikazuje meni->start */
 void Display::start()
 {
+    status.ugao++;
 
+    glutcpp::light(GL_ON);
+    glutcpp::lightPosition(0,0,0,1);
+    glutcpp::modelView3D(0,0,200);
+
+    Robot * r;
+    int ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
+
+    if(status.position%3==0)
+    {
+        r=new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0));
+    }
+    else if(status.position%3==1)
+    {
+        r=new Robot_2(ticksPerSecond,PLAYER_1,Tacka(0,0,0));
+    }
+    else
+        r=new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0));
+
+    glutcpp::translate(0,-20,-50);
+    //glutcpp::rotate(0,1,0,0);
+    glutcpp::rotate(-90,0,1,0);
+    glutcpp::rotate(status.ugao,0,1,0);
+    r->draw();
+    delete r;
+
+    glutcpp::color(1,1,1,1);
+    glutcpp::screenDisplayBegin3D();
+    glutcpp::begin(GL_TRIANGLES);
+        glutcpp::vertex(0.9,0,0);
+        glutcpp::vertex(0.8,0.1,0);
+        glutcpp::vertex(0.8,-0.1,0);
+    glutcpp::end();
+
+    glutcpp::begin(GL_TRIANGLES);
+        glutcpp::vertex(-0.9,0,0);
+        glutcpp::vertex(-0.8,0.1,0);
+        glutcpp::vertex(-0.8,-0.1,0);
+    glutcpp::end();
+
+    int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
+    int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
+
+    glutcpp::screenDisplayEnd3D(45,width,height,1,1000);
+
+    glutcpp::swapBuffers();
 }
 
 

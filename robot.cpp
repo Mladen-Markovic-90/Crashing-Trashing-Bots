@@ -26,6 +26,7 @@
 #include "glutcpp/glutcpp.h"
 #include "provera.h"
 #include <cmath>
+#include "glutcpp/glutAnimationTimer.h"
 
 
 /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */

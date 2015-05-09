@@ -23,6 +23,7 @@
 
 /* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutReshapeListener.h"
+#include "animationStatus.h"
 
 
 /* klasa za rad sa prozorom */
@@ -30,11 +31,14 @@ class reshapeListener : public glutReshapeListener
 {
 public:
     /* konstruktor i destruktor */
-    reshapeListener(int width,int height,int & m):windowWidth(width),windowHeight(height),modus(m){}
+    reshapeListener(int width,int height,animationStatus & s):windowWidth(width),windowHeight(height),status(s){}
     ~reshapeListener(){}
 
     /* Obrada prikaza za prozor u zavisnosti od modusa */
     virtual void reshape(int width,int height);
+
+    /* pozivanje obrade ponovo */
+    virtual void reshape();
 
     /* getter za sirinu i visinu prozora */
     virtual int getWindowWidth() const {return windowWidth;}
@@ -45,8 +49,8 @@ private:
     int windowWidth;
     int windowHeight;
 
-    /* promenljiva koja cuva modus prikaza */
-    int & modus;
+    /* promenljiva koja cuva status prikaza */
+    animationStatus & status;
 };
 
 

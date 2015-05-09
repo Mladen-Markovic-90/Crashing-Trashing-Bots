@@ -19,19 +19,69 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
-
+#include "glutcpp/glutReshapeListener.h"
+#include "robot.h"
+#include "robot_1.h"
+#include "robot_2.h"
+#include "robot_3.h"
 
 /* postavljanje flagova ili radnja za karaktere koja su stisnuta na tastaturi */
 void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
 {
     x=x;y=y;
-    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
+    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
             if(item->getPlayer()!=PLAYER_NONE)
                 item->set_key(normalKey);
     }
-
+    else if(status.modus==MODUS_MENI)
+    {
+        switch(normalKey)
+        {
+            /* ENTER */
+            case '\n':
+            case '\r':
+                if(status.position==0)
+                {
+                    status.modus=MODUS_START;
+                    status.position=999;
+                    glutReshapeListenerInit::getReshapeListener()->reshape();
+                }
+                else if(status.position==1)
+                    exit(EXIT_SUCCESS);
+                break;
+        }
+    }
+    else if(status.modus==MODUS_START)
+        switch(normalKey)
+        {
+            /* ENTER */
+            case '\n':
+            case '\r':
+                int player;
+                if(status.flag==0)
+                    player=PLAYER_1;
+                else
+                    player=PLAYER_2;
+                float ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
+                if(status.position%3==0)
+                    roboti.push_back(new Robot_1(ticksPerSecond,player,Tacka(-100+200*status.flag,0,0)));
+                else if(status.position%3==1)
+                    roboti.push_back(new Robot_2(ticksPerSecond,player,Tacka(-100+200*status.flag,0,0)));
+                else if(status.position%3==2)
+                    roboti.push_back(new Robot_3(ticksPerSecond,player,Tacka(-100+200*status.flag,0,0)));
+                status.position=0;
+                status.ugao=0;
+                if(status.flag==1)
+                {
+                    status.flag=0;
+                    status.modus=MODUS_ARENA;
+                    glutReshapeListenerInit::getReshapeListener()->reshape();
+                }
+                status.flag++;
+                break;
+        }
 }
 
 
@@ -39,7 +89,7 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
 void normalKeyListener::keyUp(unsigned char normalKey, int x, int y) const
 {
     x=x;y=y;
-    if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
+    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
     {
         for(Robot * item : roboti)
             if(item->getPlayer()!=PLAYER_NONE)

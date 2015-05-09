@@ -19,6 +19,7 @@
 
 /* ukljucujemo potrebna zaglavlja */
 #include "global.h"
+#include "reshapeListener.h"
 
 
 /* Obrada prikaza za prozor u zavisnosti od modusa */
@@ -26,8 +27,13 @@ void reshapeListener::reshape(int width, int height)
 {
     windowWidth=width;
     windowHeight=height;
-    if(modus==MODUS_MENI)
+    if(status.modus==MODUS_MENI)
         glutcpp::projection2D(width,height);
-    else if(modus==MODUS_ARENA || modus==MODUS_TEST_MLADEN)
+    else if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN || status.modus==MODUS_START)
         glutcpp::projection3D(width,height,45,1,1000);
+}
+
+void reshapeListener::reshape()
+{
+    reshape(windowWidth,windowHeight);
 }

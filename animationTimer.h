@@ -25,6 +25,7 @@
 #include <vector>
 #include "glutcpp/glutAnimationTimer.h"
 #include "robot.h"
+#include "animationStatus.h"
 
 
 /* klasa za rad sa timerom i operacije animacije */
@@ -32,7 +33,7 @@ class animationTimer : public glutAnimationTimer
 {
 public:
     /* konstruktor i destruktor */
-    animationTimer(int ms,std::vector<Robot *> & r,int & m):_ms(ms),modus(m),roboti(r){}
+    animationTimer(int ms,std::vector<Robot *> & r,animationStatus & s):_ms(ms),roboti(r),status(s){}
     ~animationTimer(){}
 
     /* getter za milisekunde */
@@ -54,11 +55,11 @@ private:
     /* promenljiva koja cuva milisekunde za timer */
     int _ms;
 
-    /* promenljiva koja cuva modus prikaza */
-    int & modus;
-
     /* vektor koji cuva robotere */
     std::vector<Robot *> & roboti;
+
+    /* promenljiva koja cuva status prikaza */
+    animationStatus & status;
 };
 
 

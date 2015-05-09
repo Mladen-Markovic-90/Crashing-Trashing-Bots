@@ -25,10 +25,34 @@
 void SpecialKeyListener::keyDown(int key, int x, int y) const
 {
     x=x;y=y;
-    if(modus==MODUS_TEST_MLADEN || modus==MODUS_ARENA)
+    if(status.modus==MODUS_TEST_MLADEN || status.modus==MODUS_ARENA)
         for(Robot * item : roboti)
+        {
             if(item->getPlayer()==PLAYER_2)
                 item->set_key(key);
+        }
+    else if(status.modus==MODUS_MENI)
+        switch(key)
+        {
+        case GLUT_KEY_DOWN:
+            status.position=1;
+            break;
+        case GLUT_KEY_UP:
+            status.position=0;
+            break;
+        }
+    else if(status.modus==MODUS_START)
+        switch(key)
+        {
+        case GLUT_KEY_LEFT:
+            status.position--;
+            status.ugao=0;
+            break;
+        case GLUT_KEY_RIGHT:
+            status.position++;
+            status.ugao=0;
+            break;
+        }
 
     switch(key)
     {
@@ -44,9 +68,8 @@ void SpecialKeyListener::keyDown(int key, int x, int y) const
 void SpecialKeyListener::keyUp(int key, int x, int y) const
 {
     x=x;y=y;
-    if(modus==MODUS_TEST_MLADEN || modus==MODUS_ARENA)
+    if(status.modus==MODUS_TEST_MLADEN || status.modus==MODUS_ARENA)
         for(Robot * item : roboti)
             if(item->getPlayer()==PLAYER_2)
                 item->unset_key(key);
-
 }

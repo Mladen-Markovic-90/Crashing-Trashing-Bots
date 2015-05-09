@@ -40,7 +40,9 @@ void Robot_2::draw()
         this->model();
     glutcpp::pop();
 
+
     /* Test */
+    glutcpp::push();
     glutcpp::translate(0,20,0);
     glutcpp::push();
         glutcpp::color(1,0,0,1);
@@ -83,6 +85,8 @@ void Robot_2::draw()
         glutcpp::color(1,1,1,1);
         glutcpp::translate(provera::position(_front,_center,_ugao));
         glutcpp::cube(5);
+    glutcpp::pop();
+
     glutcpp::pop();
 }
 

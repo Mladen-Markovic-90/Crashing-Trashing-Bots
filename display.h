@@ -22,6 +22,7 @@
 
 
 #include "glutcpp/glutDisplay.h"
+#include "animationStatus.h"
 
 
 #define NO_SWAP 0
@@ -33,7 +34,7 @@ class Display : public glutDisplay
 {
 public:
     /* konstruktor i destruktor */
-    Display(std::vector<Robot *> & r,int & m):modus(m),roboti(r){}
+    Display(std::vector<Robot *> & r,animationStatus & s):roboti(r),status(s){}
     ~Display(){}
 
     /* prikazuje sadrzaj prozora */
@@ -61,11 +62,11 @@ private:
     /* funkcija za namestanje kamere */
     void adjust_camera();
 
-    /* promenljiva koja cuva modus prikaza */
-    int & modus;
-
     /* vektor koji cuva robotere */
     std::vector<Robot *> & roboti;
+
+    /* promenljiva koja cuva status prikaza */
+    animationStatus & status;
 };
 
 

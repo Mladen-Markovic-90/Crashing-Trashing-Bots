@@ -37,6 +37,9 @@ public:
     virtual void reshape(int width,int height)
     {width=width;height=height;}
 
+    /* pozivanje obrade ponovo */
+    virtual void reshape(){}
+
     /* getter za sirinu i visinu prozora */
     virtual int getWindowWidth() const {return 0;}
     virtual int getWindowHeight() const {return 0;}

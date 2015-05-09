@@ -33,6 +33,9 @@ public:
     /* Konstruktor za robotica 1 */
     Robot_1(float ticksPerSecond,int player=PLAYER_NONE,Tacka t=Tacka(0,0,0));
 
+    /* Dekonstruktor */
+    ~Robot_1(){}
+
     /* Iscrtavanje robotica 1 */
     virtual void draw();
 
