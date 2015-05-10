@@ -38,6 +38,8 @@
 
 #include "vektor3d.h"
 
+#include "glutcpp/glutLoadPicture.h"
+
 
 int main(int argc,char ** argv)
 {
@@ -75,6 +77,9 @@ int main(int argc,char ** argv)
         roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
         roboti.push_back(new Robot_2(ticksPerSecond,PLAYER_2,Tacka(50,0,0)));
     }
+
+    /* BITNO -> PUTANJA MORA BITI TACNA */
+    glutLoadPicture::load("../Crashing-Trashing-Bots/slike/meni.bmp",PICTURE_MENI);
 
     /* Pokrecemo glut petlju */
     glutcpp::start();

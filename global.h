@@ -44,4 +44,8 @@
 #define MODUS_TEST_MLADEN 7
 
 
+/* ID za slike */
+#define PICTURE_MENI 1
+
+
 #endif // GLOBAL_H

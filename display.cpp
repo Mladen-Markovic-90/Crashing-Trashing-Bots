@@ -31,6 +31,7 @@
 #include "robot_1.h"
 #include "robot_2.h"
 #include "robot_3.h"
+#include "glutcpp/glutLoadPicture.h"
 
 
 using namespace std;
@@ -57,6 +58,8 @@ void Display::meni()
     width=width/2;
     glutcpp::light(GL_OFF);
     glutcpp::modelView2D();
+
+    glutLoadPicture::texture_display(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),PICTURE_MENI);
     glutcpp::color(1,1,1,1);
     glutcpp::text(((width-11*12)/width)-1.0,0.9,"CRASHING TRASHING BOTS");
     if(status.position==0)

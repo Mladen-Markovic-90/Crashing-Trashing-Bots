@@ -37,7 +37,8 @@ HEADERS += glutcpp\glutcpp.h \
     specialKeyListener.h \
     glutcpp/glutSpecialKeyListener.h \
     provera.h \
-    animationStatus.h
+    animationStatus.h \
+    glutcpp\glutLoadPicture.h
 
 
 include(deployment.pri)
