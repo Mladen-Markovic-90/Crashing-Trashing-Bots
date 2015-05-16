@@ -43,8 +43,28 @@ private:
     /* Model robotica 2 */
     void model();
 
+    /* MELEE ABILITY */
+    /* Kolac */
+    void ability_1();
+
+    /* RANGE ABILITY */
+    /* Laser */
+    void ability_2();
+
+    /* DEFENSIVE ABILITY */
+    /* Energetski Shield */
+    void ability_3();
+
     /* sluzi za rotaciju tockova */
     int ugao_tocak=0;
+
+    /* sluzi za poziciju i rotaciju lasera */
+    Tacka tacka_laser=Tacka(0,0,0);
+    Tacka tacka_laser_help=_center;
+    int ugao_laser=0;
+
+    /* sluzi za poziciju udarca kolca */
+    Tacka tacka_kolac=Tacka(0,0,0);
 };
 
 
