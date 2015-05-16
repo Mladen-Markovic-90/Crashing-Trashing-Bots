@@ -35,60 +35,59 @@ Robot_1::Robot_1(float ticksPerSecond,int player,Tacka t)
 /* Iscrtavanje robotica 1 */
 void Robot_1::draw()
 {
-    glutcpp::push();
-        glutcpp::translate(this->_center);
-        glutcpp::rotate(-this->_ugao,0,1,0);
-        glutcpp::rotate(90,0,1,0);
-        this->model();
-        this->ability_1();
-        this->ability_3();
-    glutcpp::pop();
-
+    this->model();
+    this->ability_1();
     this->ability_2();
+    this->ability_3();
 }
 
 
 /* Model robotica 1 */
 void Robot_1::model()
 {
-    /* kako ce biti okrenuti tockovi u zavisnosti od pravca kretanja */
-    int ugao_tocak=0;
-    if(this->_left_right==KEY_LEFT)
-        ugao_tocak=30;
-    else if(this->_left_right==KEY_RIGHT)
-        ugao_tocak=-30;
-
-    /* tockovi */
-    this->ugao_rotacije_tocak++;
     glutcpp::push();
-        glutcpp::translate(15,5,-15);
-        Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
-        glutcpp::translate(-30,0,0);
-        Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
-        glutcpp::translate(0,0,28);
-        Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
-        glutcpp::translate(30,0,0);
-        Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
-    glutcpp::pop();
+        glutcpp::translate(this->_center);
+        glutcpp::rotate(-this->_ugao,0,1,0);
+        glutcpp::rotate(90,0,1,0);
+        /* kako ce biti okrenuti tockovi u zavisnosti od pravca kretanja */
+        int ugao_tocak=0;
+        if(this->_left_right==KEY_LEFT)
+            ugao_tocak=30;
+        else if(this->_left_right==KEY_RIGHT)
+            ugao_tocak=-30;
 
-    /* popunjavanje kod tockova */
-    glutcpp::push();
-        glutcpp::color(0.5,0.5,0.5,1);
-        glutcpp::translate(0,6,0);
-        glutcpp::kvadar(20,30,8);
-    glutcpp::pop();
+        /* tockovi */
+        this->ugao_rotacije_tocak++;
+        glutcpp::push();
+            glutcpp::translate(15,5,-15);
+            Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
+            glutcpp::translate(-30,0,0);
+            Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
+            glutcpp::translate(0,0,28);
+            Delovi::tocak(5,2,this->ugao_rotacije_tocak,0);
+            glutcpp::translate(30,0,0);
+            Delovi::tocak(5,2,this->ugao_rotacije_tocak,ugao_tocak);
+        glutcpp::pop();
 
-    /* glavni deo robotica */
-    glutcpp::push();
-        glutcpp::color(0.5,0.5,0,1);
-        glutcpp::translate(5,10,0);
-        glutcpp::kvadar(Tacka(-25,0,15),Tacka(15,0,15),Tacka(15,0,-15),Tacka(-25,0,-15),
-                     Tacka(-30,5,10),Tacka(10,5,10),Tacka(10,5,-10),Tacka(-30,5,-10));
+        /* popunjavanje kod tockova */
+        glutcpp::push();
+            glutcpp::color(0.5,0.5,0.5,1);
+            glutcpp::translate(0,6,0);
+            glutcpp::kvadar(20,30,8);
+        glutcpp::pop();
+
+        /* glavni deo robotica */
+        glutcpp::push();
+            glutcpp::color(0.5,0.5,0,1);
+            glutcpp::translate(5,10,0);
+            glutcpp::kvadar(Tacka(-25,0,15),Tacka(15,0,15),Tacka(15,0,-15),Tacka(-25,0,-15),
+                         Tacka(-30,5,10),Tacka(10,5,10),Tacka(10,5,-10),Tacka(-30,5,-10));
+        glutcpp::pop();
     glutcpp::pop();
 }
 
 
-//NOTE: tacka udarca -> centar + Tacka(30,0,0);
+/* NOTE: tacka udarca -> provera::position(tacka_cekic,_center,_ugao) i cekic_radius */
 /* MELEE ABILITY */
 /* Cekic */
 void Robot_1::ability_1()
@@ -104,6 +103,10 @@ void Robot_1::ability_1()
     ugao_cekic=ugao_cekic/_ticksPerSecond;
 
     glutcpp::push();
+        glutcpp::translate(this->_center);
+        glutcpp::rotate(-this->_ugao,0,1,0);
+        glutcpp::rotate(90,0,1,0);
+
         glutcpp::translate(10,13,0);
         glutcpp::rotate(90*ugao_cekic,0,0,1);
 
@@ -149,6 +152,15 @@ void Robot_1::ability_1()
 
     glutcpp::pop();
 
+
+
+    /* test *//*
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(provera::position(tacka_cekic,_center,_ugao));
+        glutcpp::rotate(90,1,0,0);
+        glutcpp::cylinder(10,1);
+    glutcpp::pop();*/
 }
 
 
@@ -163,15 +175,22 @@ void Robot_1::ability_2()
         number=5*_ticksPerSecond-this->_ability_2;
     else
     {
-        this->tacka_raketa=this->_center;
         this->ugao_raketa=this->_ugao-90;
+        this->tacka_raketa_help=this->_center;
     }
+
+    number*=10;
+    this->tacka_raketa=Tacka(20,0,0)+Tacka(1,0,0)*number;
 
     glutcpp::push();
         /* postavljamo raketu na odredjeno mesto */
-        glutcpp::translate(this->tacka_raketa);
+        glutcpp::translate(this->tacka_raketa_help);
+        glutcpp::translate(0,5,0);
+
         glutcpp::rotate(-this->ugao_raketa,0,1,0);
-        glutcpp::translate(10*number-5,5,0);
+
+        glutcpp::translate(tacka_raketa);
+        glutcpp::translate(Tacka(-20,0,0));
 
         /* ako je number vece od 0, onda se raketa krece i izbacuje vatru */
         if(number>0)
@@ -197,6 +216,19 @@ void Robot_1::ability_2()
         glutcpp::cone(5,6);
 
     glutcpp::pop();
+
+    /*test*//*
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(provera::position(tacka_raketa,tacka_raketa_help,ugao_raketa));
+        glutcpp::cube(5);
+    glutcpp::pop();
+
+    glutcpp::push();
+        glutcpp::color(1,0,0,1);
+        glutcpp::translate(_center);
+        glutcpp::cube(5);
+    glutcpp::pop();*/
 }
 
 
@@ -208,6 +240,10 @@ void Robot_1::ability_3()
     if(this->_ability_3)
     {
         glutcpp::push();
+            glutcpp::translate(this->_center);
+            glutcpp::rotate(-this->_ugao,0,1,0);
+            glutcpp::rotate(90,0,1,0);
+
             glutcpp::color(1,1,1,0.8*number);
             glutcpp::translate(-2.5,10,0);
             glutcpp::kvadar(50,30,20);

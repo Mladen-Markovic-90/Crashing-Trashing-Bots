@@ -37,6 +37,7 @@ Robot_3::Robot_3(float ticksPerSecond, int player, Tacka t)
 /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi animationTimer */
 void Robot_3::animation()
 {
+
     this->_energy+=5.0/_ticksPerSecond;
     if(this->_energy > 100)
         this->_energy=100;
@@ -94,7 +95,7 @@ void Robot_3::draw()
         this->ability_1();
         this->ability_2();
         this->ability_3();
-        this->ability_4();
+        //this->ability_4();
     glutcpp::pop();
 }
 
@@ -103,8 +104,9 @@ void Robot_3::draw()
 void Robot_3::model()
 {
     /* robotic se uvek okrece */
-    this->_ugao_rotacije++;
     glutcpp::rotate(21*this->_ugao_rotacije,0,-1,0);
+
+    this->_ugao_rotacije++;
 
     /* donji deo robotica */
     glutcpp::push();
@@ -179,6 +181,14 @@ void Robot_3::ability_1()
             }
         glutcpp::pop();
     }
+
+    /* test *//*
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(0,5,0);
+        glutcpp::translate(Tacka(-_radius_nozevi,0,0));
+        glutcpp::cube(5);
+    glutcpp::pop();*/
 }
 
 
@@ -204,6 +214,14 @@ void Robot_3::ability_2()
         /* za koliziju */
         this->_radius_laser=(1.0-number)*1000;
     }
+
+    /* test *//*
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(0,5,0);
+        glutcpp::translate(Tacka(-_radius_laser,0,0));
+        glutcpp::cube(5);
+    glutcpp::pop();*/
 }
 
 

@@ -62,8 +62,12 @@ private:
     /* sluzi za rotaciju tockova */
     int ugao_rotacije_tocak=0;
 
+    int cekic_radius=5;
+    Tacka tacka_cekic=Tacka(0,0,-30);
+
     /* sluzi za poziciju i rotaciju rakete */
     Tacka tacka_raketa=Tacka(0,0,0);
+    Tacka tacka_raketa_help=_center;
     int ugao_raketa=0;
 };
 
