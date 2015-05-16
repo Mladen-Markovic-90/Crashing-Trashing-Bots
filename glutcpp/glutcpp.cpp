@@ -421,23 +421,20 @@ void glutcpp::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka
 /* grid za podlogu */
 void glutcpp::grid(int dimenzija, int korak, float r, float g, float b)
 {
-    glutcpp::push();
+    glutcpp::light(GL_OFF);
+    glutcpp::color(r, g, b, 1);
+    for (int i=-dimenzija; i<=dimenzija; i+=korak)
+    {
         glutcpp::begin(GL_LINES);
             {
-                for (int i=-dimenzija; i<=dimenzija; i+=korak)
-                {
-
-                    glutcpp::color(r, g, b, 1.0f);
-                    glutcpp::vertex(i, 0, -dimenzija, 1);
-                    glutcpp::vertex(i, 0, dimenzija, 1);
-
-                    glutcpp::vertex(-dimenzija, 0, i, 1);
-                    glutcpp::vertex(dimenzija, 0, i, 1);
-                }
+                    glutcpp::vertex(Tacka(i,0,-dimenzija));
+                    glutcpp::vertex(Tacka(i,0,dimenzija));
+                    glutcpp::vertex(Tacka(-dimenzija,0,i));
+                    glutcpp::vertex(Tacka(dimenzija,0,i));
             }
         glutcpp::end();
-
-    glutcpp::pop();
+    }
+    glutcpp::light(GL_ON);
 }
 
 

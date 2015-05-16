@@ -82,6 +82,8 @@ int main(int argc,char ** argv)
     /* BITNO -> PUTANJA MORA BITI TACNA */
     glutLoadPicture::load("../Crashing-Trashing-Bots/slike/meni.bmp",PICTURE_MENI);
 
+    glutcpp::fullScreen();
+
     /* Pokrecemo glut petlju */
     glutcpp::start();
 

@@ -90,13 +90,14 @@ void Robot::set_key(unsigned char key)
                 this->_energy-=50;
             }
             break;
+            /*
         case '4':
             if(this->_ability_4<=0 && this->_energy == 100)
             {
                 this->_ability_4=this->_ability_4_cooldown;
                 this->_energy=0;
             }
-            break;
+            break;*/
         }
 
     else if(this->_player==PLAYER_2)
@@ -121,14 +122,14 @@ void Robot::set_key(unsigned char key)
                 this->_ability_3=this->_ability_3_cooldown;
                 this->_energy-=50;
             }
-            break;
+            break;/*
         case '0':
             if(this->_ability_4<=0 && this->_energy == 100)
             {
                 this->_ability_4=this->_ability_4_cooldown;
                 this->_energy=0;
             }
-            break;
+            break;*/
         }
 }
 
@@ -248,20 +249,6 @@ void Robot::animation()
         this->_center.add(-this->_speed*std::sin(this->_ugao/180*M_PI),0,this->_speed*std::cos(this->_ugao/180*M_PI));
 }
 
-
-/* Iscrtavanje robotera, izvrsava se u klasi display */
-void Robot::draw()
-{
-    glutcpp::color(1,1,1,1);
-    glutcpp::push();
-        glutcpp::translate(this->_center);
-        glutcpp::translate(0,10,0);
-        glutcpp::rotate(-this->_ugao,0,1,0);
-        glutcpp::cube(20);
-    glutcpp::pop();
-}
-
-
 void Robot::testDraw()
 {
     glutcpp::push();
@@ -329,9 +316,10 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glutcpp::color(1,number,number,1);
         glutcpp::text(-0.7,-0.95,"3");
 
+        /*
         number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
         glutcpp::color(1,number,number,1);
-        glutcpp::text(-0.6,-0.95,"4");
+        glutcpp::text(-0.6,-0.95,"4");*/
 
         number=this->_health/100.0;
 
@@ -379,9 +367,10 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glutcpp::color(1,number,number,1);
         glutcpp::text(0.8,-0.95,"9");
 
+        /*
         number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
         glutcpp::color(1,number,number,1);
-        glutcpp::text(0.9,-0.95,"0");
+        glutcpp::text(0.9,-0.95,"0");*/
 
         number=this->_health/100.0;
 

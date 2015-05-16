@@ -68,7 +68,9 @@ public:
     virtual void animation();
 
     /* Iscrtavanje robotica, izvrsava se u klasi display */
-    virtual void draw();
+    virtual void draw() {}
+
+    virtual void hit() {}
 
     void testDraw();
 

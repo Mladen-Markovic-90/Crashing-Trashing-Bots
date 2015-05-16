@@ -177,7 +177,7 @@ void Display::arena()
 
     adjust_camera();
 
-    glutcpp::grid(200, 5, 1.0f, 0.0f, 0.0f);
+    glutcpp::grid(200, 5, 0,0.5,0);
 
     for(Robot * item : roboti)
 	item->draw();
@@ -201,21 +201,20 @@ void Display::arena()
 void Display::test_mladen()
 {
 
-    //this->ugao+=5;
-    glutcpp::light(GL_ON);
-
     glutcpp::lightPosition(0,0,0,1);
+    //this->ugao+=5;
     //glutcpp::modelView3D(0,200,400);
     //glutcpp::modelView3D(0,100,200);
     glutcpp::modelView3D(0,0,300);
 
+    glutcpp::light(GL_ON);
 
-    glutcpp::rotate(30,1,0,0);
+
+    glutcpp::rotate(90,1,0,0);
     glutcpp::rotate(90,0,1,0);
-    glutcpp::rotate(this->camera_ugao,0,1,0);
+    glutcpp::rotate(this->camera_ugao,0,0.5,0);
 
-    glutcpp::color(0,1,0,1);
-    glutcpp::grid(200, 5, 1.0f, 0.0f, 0.0f);
+    glutcpp::grid(200, 5, 0, 1, 0);
 
 
     for(Robot * item : roboti)
