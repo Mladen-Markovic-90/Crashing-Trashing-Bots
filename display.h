@@ -52,6 +52,8 @@ public:
     /* prikazuje sadrzaj testiranja mladen */
     void test_mladen();
 
+    void paused();
+
 private:
     /* parametri kamere */
     float camera_ugao=0;

@@ -54,6 +54,17 @@ void SpecialKeyListener::keyDown(int key, int x, int y) const
             break;
         }
 
+    if(status.paused==true)
+        switch(key)
+        {
+        case GLUT_KEY_DOWN:
+            status.position=1;
+            break;
+        case GLUT_KEY_UP:
+            status.position=0;
+            break;
+        }
+
     switch(key)
     {
     case GLUT_KEY_F11:

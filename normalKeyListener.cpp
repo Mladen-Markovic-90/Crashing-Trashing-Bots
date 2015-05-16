@@ -29,11 +29,15 @@
 void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
 {
     x=x;y=y;
+    if(normalKey==27 || normalKey==' ')
+        if(status.paused==false)
+            status.paused=true;
     if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
     {
-        for(Robot * item : roboti)
-            if(item->getPlayer()!=PLAYER_NONE)
-                item->set_key(normalKey);
+        if(status.paused==false)
+            for(Robot * item : roboti)
+                if(item->getPlayer()!=PLAYER_NONE)
+                    item->set_key(normalKey);
     }
     else if(status.modus==MODUS_MENI)
     {
@@ -46,6 +50,8 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
                 {
                     status.modus=MODUS_START;
                     status.position=999;
+                    status.flag=PLAYER_1;
+                    roboti.clear();
                     glutReshapeListenerInit::getReshapeListener()->reshape();
                 }
                 else if(status.position==1)
@@ -60,28 +66,48 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
             case '\n':
             case '\r':
                 int player;
-                if(status.flag==0)
+                if(status.flag==PLAYER_1)
                     player=PLAYER_1;
                 else
                     player=PLAYER_2;
                 float ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
+                int number=status.flag-PLAYER_1;
                 if(status.position%3==0)
-                    roboti.push_back(new Robot_1(ticksPerSecond,player,Tacka(-100+200*status.flag,0,0)));
+                    roboti.push_back(new Robot_1(ticksPerSecond,player,Tacka(-100+200*number,0,0)));
                 else if(status.position%3==1)
-                    roboti.push_back(new Robot_2(ticksPerSecond,player,Tacka(-100+200*status.flag,0,0)));
+                    roboti.push_back(new Robot_2(ticksPerSecond,player,Tacka(-100+200*number,0,0)));
                 else if(status.position%3==2)
-                    roboti.push_back(new Robot_3(ticksPerSecond,player,Tacka(-100+200*status.flag,0,0)));
+                    roboti.push_back(new Robot_3(ticksPerSecond,player,Tacka(-100+200*number,0,0)));
                 status.position=0;
                 status.ugao=0;
-                if(status.flag==1)
+                if(status.flag==PLAYER_2)
                 {
                     status.flag=0;
+                    status.paused=false;
                     status.modus=MODUS_ARENA;
                     glutReshapeListenerInit::getReshapeListener()->reshape();
                 }
                 status.flag++;
                 break;
         }
+
+    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
+        if(status.paused==true)
+            switch(normalKey)
+            {
+            /* ENTER */
+            case '\n':
+            case '\r':
+                if(status.position==0)
+                    status.paused=false;
+                else if(status.position==1)
+                {
+                    status.position=0;
+                    status.modus=MODUS_MENI;
+                    glutReshapeListenerInit::getReshapeListener()->reshape();
+                }
+                break;
+            }
 }
 
 

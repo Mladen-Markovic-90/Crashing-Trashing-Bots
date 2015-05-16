@@ -48,6 +48,35 @@ void Display::show(void)
 	Display::arena();
     else if(status.modus==MODUS_TEST_MLADEN)
 	Display::test_mladen();
+     glutcpp::swapBuffers();
+
+}
+
+
+void Display::paused()
+{
+    int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
+    int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
+
+    glutcpp::screenDisplayBegin3D();
+
+    glutcpp::color(0,0,0,0.9);
+    glutcpp::pravougaonik(Tacka(1,1,0),Tacka(-1,1,0),Tacka(-1,-1,0),Tacka(1,-1,0));
+
+    if(status.position==0)
+        glutcpp::color(1,1,0,1);
+    else
+        glutcpp::color(1,1,1,1);
+    glutcpp::text(((width-4*12)/(float)width)-1.0,0.1,"CONTINUE");
+
+    if(status.position==1)
+        glutcpp::color(1,1,0,1);
+    else
+        glutcpp::color(1,1,1,1);
+    glutcpp::text(((width-2*12)/(float)width)-1.0,-0.1,"EXIT");
+
+    glutcpp::screenDisplayEnd3D(45,width,height,1,1000);
+
 }
 
 
@@ -62,20 +91,18 @@ void Display::meni()
     glutLoadPicture::texture_display(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),PICTURE_MENI);
     glutcpp::color(1,1,1,1);
     glutcpp::text(((width-11*12)/width)-1.0,0.9,"CRASHING TRASHING BOTS");
+
     if(status.position==0)
         glutcpp::color(1,1,0,1);
     else
         glutcpp::color(1,1,1,1);
-
     glutcpp::text(((width-2*12)/width)-1.0,0.1,"PLAY");
+
     if(status.position==0)
         glutcpp::color(1,1,1,1);
     else
         glutcpp::color(1,1,0,1);
     glutcpp::text(((width-2*12)/width)-1.0,-0.1,"EXIT");
-    //glutcpp::color(1,1,0,1);
-    //glutcpp::linija(0,1,0,0,-1,0);
-    glutcpp::swapBuffers();
 }
 
 
@@ -126,9 +153,13 @@ void Display::start()
     int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
     int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
 
+    if(status.flag==PLAYER_1)
+        glutcpp::text(((width-4*12)/(float)width)-1.0,0.9,"PLAYER 1");
+    else
+        glutcpp::text(((width-4*12)/(float)width)-1.0,0.9,"PLAYER 2");
+
     glutcpp::screenDisplayEnd3D(45,width,height,1,1000);
 
-    glutcpp::swapBuffers();
 }
 
 
@@ -151,6 +182,9 @@ void Display::arena()
     for(Robot * item : roboti)
 	item->draw();
 
+    for(Robot * item : roboti)
+        item->testDraw();
+
 
     int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
     int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
@@ -158,8 +192,8 @@ void Display::arena()
     for(Robot * item : roboti)
         item->display3D(45,width,height,1,1000);
 
-
-    glutcpp::swapBuffers();
+    if(status.paused==true)
+            Display::paused();
 }
 
 
@@ -209,7 +243,10 @@ void Display::test_mladen()
 
     for(Robot * item : roboti)
         item->display3D(45,width,height,1,1000);
-    glutcpp::swapBuffers();
+
+
+    if(status.paused==true)
+            Display::paused();
 }
 
 
@@ -259,6 +296,7 @@ void Display::adjust_camera()
 	//biramo onu koja je dalja od sredine, kako bi gledala ka sredini (norma vektora)
 	Tacka podnozje = podnozje1.norm() > podnozje2.norm() ? podnozje1 : podnozje2;
 
+        float ugao_paused=this->camera_ugao;
 
         if(podnozje==podnozje1 && this->camera_indikator==NO_SWAP && this->camera_ugao>0)
             this->camera_ugao-=0.1;
@@ -275,7 +313,11 @@ void Display::adjust_camera()
             this->camera_indikator=SWAP;
         }
 
-        this->cam_position=this->cam_position+(this->cam_position.vek(podnozje1)/100);
+        if(status.paused==true)
+            this->camera_ugao=ugao_paused;
+
+        if(status.paused==false)
+            this->cam_position=this->cam_position+(this->cam_position.vek(podnozje1)/100);
 
 
         oko.set_x(this->cam_position.get_x()*std::sin(this->camera_ugao/180.0*M_PI));

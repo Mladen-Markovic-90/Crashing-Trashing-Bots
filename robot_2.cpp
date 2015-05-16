@@ -39,55 +39,6 @@ void Robot_2::draw()
         glutcpp::rotate(-90,0,1,0);
         this->model();
     glutcpp::pop();
-
-
-    /* Test */
-    glutcpp::push();
-    glutcpp::translate(0,20,0);
-    glutcpp::push();
-        glutcpp::color(1,0,0,1);
-        glutcpp::translate(provera::position(_northWest,_center,_ugao));
-        glutcpp::cube(5);
-    glutcpp::pop();
-
-    glutcpp::push();
-        glutcpp::color(0,1,0,1);
-        glutcpp::translate(provera::position(_northEast,_center,_ugao));
-        glutcpp::cube(5);
-    glutcpp::pop();
-
-    glutcpp::push();
-        glutcpp::color(0,0,1,1);
-        glutcpp::translate(provera::position(_southEast,_center,_ugao));
-        glutcpp::cube(5);
-    glutcpp::pop();
-
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(provera::position(_southWest,_center,_ugao));
-        glutcpp::cube(5);
-    glutcpp::pop();
-/*
-    std::cout << _ugao << " "
-              << _center.get_x() << " "
-              << _center.get_y() << " "
-              << _center.get_z()
-              << std::endl;*/
-
-
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(_center);
-        glutcpp::cube(10);
-    glutcpp::pop();
-
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(provera::position(_front,_center,_ugao));
-        glutcpp::cube(5);
-    glutcpp::pop();
-
-    glutcpp::pop();
 }
 
 

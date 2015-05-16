@@ -28,9 +28,9 @@
 
 /* Konstruktor za robotica 3 */
 Robot_3::Robot_3(float ticksPerSecond, int player, Tacka t)
-    : Robot(ticksPerSecond,player,t,t+Tacka(0,0,0),0,
+    : Robot(ticksPerSecond,player,t,Tacka(0,0,0),0,
             5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
-            Tacka(0,0,0),Tacka(0,0,0),Tacka(0,0,0),Tacka(0,0,0),15)
+            Tacka(0,0,-15),Tacka(15,0,0),Tacka(0,0,15),Tacka(-15,0,0),15)
     {}
 
 
@@ -95,15 +95,6 @@ void Robot_3::draw()
         this->ability_2();
         this->ability_3();
         this->ability_4();
-    glutcpp::pop();
-
-
-    /* Test */
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(_center);
-        glutcpp::translate(0,10,0);
-        glutcpp::cube(10);
     glutcpp::pop();
 }
 

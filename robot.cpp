@@ -262,6 +262,52 @@ void Robot::draw()
 }
 
 
+void Robot::testDraw()
+{
+    glutcpp::push();
+
+        glutcpp::translate(0,20,0);
+        glutcpp::push();
+            glutcpp::color(1,0,0,1);
+            glutcpp::translate(provera::position(_northWest,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(0,1,0,1);
+            glutcpp::translate(provera::position(_northEast,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(0,0,1,1);
+            glutcpp::translate(provera::position(_southEast,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(1,1,1,1);
+            glutcpp::translate(provera::position(_southWest,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(1,1,1,1);
+            glutcpp::translate(provera::position(Tacka(0,0,0),_center,_ugao));
+            //glutcpp::translate(_center);
+            glutcpp::cube(10);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(1,1,1,1);
+            glutcpp::translate(provera::position(_front,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+    glutcpp::pop();
+}
+
+
 /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
 void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
 {

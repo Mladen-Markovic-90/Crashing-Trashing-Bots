@@ -27,11 +27,12 @@ void animationTimer::timer(int id) const
     id=id;
 
     /* pokrecemo animaciju za svakog robota */
-    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
-    {
-        for(Robot * item : roboti)
-            item->animation();
-    }
+    if(status.paused==false)
+        if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
+        {
+            for(Robot * item : roboti)
+                item->animation();
+        }
 
     glutcpp::reDisplay();
 }

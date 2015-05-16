@@ -70,6 +70,8 @@ public:
     /* Iscrtavanje robotica, izvrsava se u klasi display */
     virtual void draw();
 
+    void testDraw();
+
     /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
     void display3D(int ugao,int width,int height,int arg1,int arg2);
 

@@ -32,6 +32,7 @@ public:
     int ugao=0;
     int modus=0;
     int flag=0;
+    bool paused=false;
 };
 
 

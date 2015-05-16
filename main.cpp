@@ -47,6 +47,7 @@ int main(int argc,char ** argv)
     /* status za moduse */
     animationStatus status;
     status.modus=MODUS_MENI;
+    //status.modus=MODUS_ARENA;
 
     /* vektor za sve robotice */
     std::vector<Robot *> roboti;
@@ -75,7 +76,7 @@ int main(int argc,char ** argv)
     else if(status.modus==MODUS_ARENA)
     {
         roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
-        roboti.push_back(new Robot_2(ticksPerSecond,PLAYER_2,Tacka(50,0,0)));
+        roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_2,Tacka(50,0,0)));
     }
 
     /* BITNO -> PUTANJA MORA BITI TACNA */
