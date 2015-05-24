@@ -15,6 +15,7 @@ public:
         return Vektor3D::duzina(Vektor3D::vektorskiProizvod(vec1,vec2));
     }
 
+    // Racuna koordinate u svetskom koordinatnom sistemu
     static Tacka position(Tacka t,Tacka center,float ugao)
     {
         Tacka tmp=Tacka(0,0,0);

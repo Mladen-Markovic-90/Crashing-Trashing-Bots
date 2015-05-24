@@ -80,7 +80,7 @@ int main(int argc,char ** argv)
     }
 
     /* BITNO -> PUTANJA MORA BITI TACNA */
-    glutLoadPicture::load("../Crashing-Trashing-Bots/slike/meni.bmp",PICTURE_MENI);
+    glutLoadPicture::load("slike/meni.bmp",PICTURE_MENI);
 
     glutcpp::fullScreen();
 

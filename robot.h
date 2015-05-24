@@ -24,7 +24,7 @@
 /* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 #include <cmath>
-
+#include <vector>
 
 /* Definicije konstanti za dugmad */
 #define KEY_NONE 0
@@ -38,7 +38,7 @@
 #define PLAYER_NONE 0
 #define PLAYER_1 1
 #define PLAYER_2 2
-
+using namespace std;
 
 /* nadklasa za robotice i rad sa njim */
 class Robot
@@ -65,7 +65,7 @@ public:
     void unset_key(int key);
 
     /* Animacija i izracunavanje za robotic, izvrsava se u klasi timer */
-    virtual void animation();
+    virtual void animation(const vector<Robot*> &);
 
     /* Iscrtavanje robotica, izvrsava se u klasi display */
     virtual void draw() {}
@@ -94,7 +94,21 @@ public:
     int getPlayer() const { return _player; }
 
     double getPovrsina() const { return _povrsina; }
-    
+
+    Tacka getNW() const { return _northWest; }
+    Tacka getNE() const { return _northEast; }
+    Tacka getSW() const { return _southWest; }
+    Tacka getSE() const { return _southEast; }
+
+    /* pretraga za koliziju */
+    double pretraga(const Robot &drugi, const Tacka &pomeraj,
+		    double min_k, double max_k, int dubina);
+    /* racuna povrsinu za koliziju*/
+    double povrsina(const Tacka &NW, const Tacka &NE, 
+		    const Tacka &SW, const Tacka &SE, const Tacka &spoljna);
+
+    /* AGRADZAG */
+    bool kolizija(const Robot &t, const Tacka &pomeraj);
 protected:
     /* Flagovi za pravce koji su stisnuti */
     unsigned char _up_down;
