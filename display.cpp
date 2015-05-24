@@ -63,17 +63,19 @@ void Display::paused()
     glutcpp::color(0,0,0,0.9);
     glutcpp::pravougaonik(Tacka(1,1,0),Tacka(-1,1,0),Tacka(-1,-1,0),Tacka(1,-1,0));
 
-    if(status.position==0)
+    glutcpp::color(1,1,1,1);
+    if(status.position==1) {
         glutcpp::color(1,1,0,1);
-    else
-        glutcpp::color(1,1,1,1);
-    glutcpp::text(((width-4*12)/(float)width)-1.0,0.1,"CONTINUE");
+    }
 
-    if(status.position==1)
-        glutcpp::color(1,1,0,1);
-    else
-        glutcpp::color(1,1,1,1);
     glutcpp::text(((width-2*12)/(float)width)-1.0,-0.1,"EXIT");
+    
+    glutcpp::color(1.0,1.0,1.0,1.0);
+    if(status.position==0) {
+        glutcpp::color(1.0,1.0,0.0,1.0);
+    }
+
+    glutcpp::text(((width-4*12)/(float)width)-1.0,0.1,"CONTINUE");
 
     glutcpp::screenDisplayEnd3D(45,width,height,1,1000);
 
