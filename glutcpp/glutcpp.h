@@ -57,6 +57,8 @@ public:
     /* pozicija svetla */
     static void lightPosition(float x, float y, float z, float w);
 
+    static void lineWidth(double width);
+
     /* sluzi za rad u 3D */
     static void projection3D(int width, int height,int ugao,int arg1,int arg2);
 

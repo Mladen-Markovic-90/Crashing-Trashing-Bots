@@ -20,7 +20,7 @@
 /* ukljucujemo potrebna zaglavlja */
 #include <GL/freeglut.h>
 #include "glutcpp.h"
-
+#include "vektor3d.h"
 
 /* inicijalizacija freeglut */
 void glutcpp::init(int argc,char ** argv,int width,int heigth,std::string name)
@@ -109,6 +109,10 @@ void glutcpp::color(float r, float g, float b, float a)
         glColor4f(r,g,b,a);
 }
 
+void glutcpp::lineWidth(double width)
+{
+    glLineWidth(width);
+}
 
 /* podesavanje za rad u 3D */
 void glutcpp::projection3D(int width, int height, int ugao, int arg1,int arg2)
@@ -390,7 +394,6 @@ void glutcpp::kvadar(float duzina, float sirina, float visina)
     glutcpp::pravougaonik(Tacka(-x,y,z),Tacka(-x,-y,z),Tacka(-x,-y,-z),Tacka(-x,y,-z));
 }
 
-
 /* pravougaonik koji lezi u z ravni */
 void glutcpp::pravougaonik_z(float duzina, float sirina)
 {
@@ -399,30 +402,30 @@ void glutcpp::pravougaonik_z(float duzina, float sirina)
     glutcpp::pravougaonik(Tacka(x,y,0),Tacka(x,-y,0),Tacka(-x,-y,0),Tacka(-x,y,0));
 }
 
-
 /* kvadar sa tackama */
 void glutcpp::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2,Tacka d2)
 {
-    glutcpp::normal(0,-1,0);
+    glutcpp::normal(Vektor3D::normala(a1,b1,b1,d1));
     glutcpp::pravougaonik(a1,b1,c1,d1);
-    glutcpp::normal(0,0,1);
+    glutcpp::normal(Vektor3D::normala(a1,b1,b1,a2));
     glutcpp::pravougaonik(a1,b1,b2,a2);
-    glutcpp::normal(1,0,0);
+    glutcpp::normal(Vektor3D::normala(b1,c1,c1,b2));
     glutcpp::pravougaonik(b1,c1,c2,b2);
-    glutcpp::normal(0,0,-1);
+    glutcpp::normal(Vektor3D::normala(c1,d1,d1,c2));
     glutcpp::pravougaonik(c1,d1,d2,c2);
-    glutcpp::normal(-1,0,0);
+    glutcpp::normal(Vektor3D::normala(d1,a1,a1,d2));
     glutcpp::pravougaonik(d1,a1,a2,d2);
-    glutcpp::normal(0,1,0);
+    glutcpp::normal(Vektor3D::normala(a2,b2,b2,d2));
     glutcpp::pravougaonik(a2,b2,c2,d2);
 }
-
 
 /* grid za podlogu */
 void glutcpp::grid(int dimenzija, int korak, float r, float g, float b)
 {
     glutcpp::light(GL_OFF);
     glutcpp::color(r, g, b, 1);
+    glutcpp::lineWidth(1.5);
+
     for (int i=-dimenzija; i<=dimenzija; i+=korak)
     {
         glutcpp::begin(GL_LINES);
@@ -435,8 +438,9 @@ void glutcpp::grid(int dimenzija, int korak, float r, float g, float b)
         glutcpp::end();
     }
     glutcpp::light(GL_ON);
-}
 
+    glutcpp::lineWidth(1);
+}
 
 /* funkcija za ulazak u FullScreen */
 void glutcpp::fullScreen()

@@ -177,7 +177,10 @@ void Display::arena()
 
     adjust_camera();
 
-    glutcpp::grid(200, 5, 0,0.5,0);
+    Delovi::arena(400);
+
+    Delovi::kutija(50, 100, 100);
+    Delovi::kutija(50, -100, -100);
 
     for(Robot * item : roboti)
 	item->draw();
