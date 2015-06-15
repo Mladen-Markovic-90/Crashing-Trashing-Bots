@@ -25,6 +25,7 @@
 #include "global.h"
 #include <cmath>
 #include <vector>
+#include "telo.h"
 
 /* Definicije konstanti za dugmad */
 #define KEY_NONE 0
@@ -41,7 +42,7 @@
 using namespace std;
 
 /* nadklasa za robotice i rad sa njim */
-class Robot
+class Robot : public Telo
 {
 public:
     /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
@@ -77,38 +78,9 @@ public:
     /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
     void display3D(int ugao,int width,int height,int arg1,int arg2);
 
-
-    //TODO: PODESITI OSTALE PARAMETRE KASNIJE KADA BUDU NAPRAVLJENI
-    void setUgao(float ugao) {_ugao=ugao;}
-    void setPos(Tacka t) {_center=t;}
-    //END TODO
-
-
-    /* Getter za centar robotica */
-    Tacka getPos() const { return _center; }
-
-    /* Getter za ugao koji sluzi za rotaciju robotica */
-    float getUgao() const { return _ugao; }
-
     /* Getter za player vezan za robotica */
     int getPlayer() const { return _player; }
 
-    double getPovrsina() const { return _povrsina; }
-
-    Tacka getNW() const { return _northWest; }
-    Tacka getNE() const { return _northEast; }
-    Tacka getSW() const { return _southWest; }
-    Tacka getSE() const { return _southEast; }
-
-    /* pretraga za koliziju */
-    double pretraga(const Robot &drugi, const Tacka &pomeraj,
-		    double min_k, double max_k, int dubina);
-    /* racuna povrsinu za koliziju*/
-    double povrsina(const Tacka &NW, const Tacka &NE, 
-		    const Tacka &SW, const Tacka &SE, const Tacka &spoljna);
-
-    /* AGRADZAG */
-    bool kolizija(const Robot &t, const Tacka &pomeraj);
 protected:
     /* Flagovi za pravce koji su stisnuti */
     unsigned char _up_down;
@@ -120,14 +92,8 @@ protected:
     /* Flag koji oznacava igraca */
     int _player;
 
-    /* Centar robota */
-    Tacka _center;
-
     /* Front (prednji deo) robota */
     Tacka _front;
-
-    /* Ugao koji sluzi za rotaciju robotica */
-    float _ugao;
 
     /* Privremena promenljiva za brzinu */
     float _speed;
@@ -147,16 +113,6 @@ protected:
     /* promenljive za energy/health */
     float _energy=100;
     float _health=100;
-
-    /* krajnje tacke robotica i radius */
-    Tacka _northWest;
-    Tacka _northEast;
-    Tacka _southEast;
-    Tacka _southWest;
-    float _radius;
-
-    /* povrsina robotica za koliziju */
-    double _povrsina=0;
 };
 
 

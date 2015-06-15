@@ -1,9 +1,9 @@
 #ifndef PROVERA_H
 #define PROVERA_H
 
-
 #include "glutcpp/tacka.h"
 #include "vektor3d.h"
+#include <cmath>
 
 class provera
 {
