@@ -20,7 +20,7 @@
 /* ukljucujemo potrebna zaglavlja */
 #include <GL/freeglut.h>
 #include "glutcpp.h"
-#include "vektor3d.h"
+#include "../vektor3d.h"
 
 /* inicijalizacija freeglut */
 void glutcpp::init(int argc,char ** argv,int width,int heigth,std::string name)
