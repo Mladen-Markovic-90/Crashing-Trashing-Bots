@@ -37,14 +37,20 @@ Robot::Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao
              Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius)
     : Telo(northWest, northEast, southEast, southWest, radius, centar, ugao)
 {
-      _player=player;
-          _front=front;
-      _ability_1_cooldown=cooldown1;
-          _ability_2_cooldown=cooldown2;
-      _ability_3_cooldown=cooldown3;
-          _ability_4_cooldown=cooldown4;
-        _ticksPerSecond=ticksPerSecond;
-    _speed=100/_ticksPerSecond;
+    _player=player;
+    _front=front;
+    _ability_1_cooldown=cooldown1;
+    _ability_2_cooldown=cooldown2;
+    _ability_3_cooldown=cooldown3;
+    _ability_4_cooldown=cooldown4;
+    _ticksPerSecond=ticksPerSecond;
+
+    _speed = 0;
+    _acceleration = 0;
+    _mass = 50; // privremeno
+    _force = 0;
+    _friction = 0;
+
 }
 
 
@@ -234,26 +240,45 @@ void Robot::animation(const vector<Robot*> &roboti)
     if(this->_ability_4>0)
         this->_ability_4--;
 
-    /* pravilno kretanje robotica napred i nazad pod uglom */
+    // TODO: OVO MORA DA SE PREPRAVI
     if( (this->_left_right==KEY_LEFT && this->_up_down==KEY_UP)
         || (this->_left_right==KEY_RIGHT && this->_up_down==KEY_DOWN) )
         this->_ugao-=5;
     else if( (this->_left_right==KEY_RIGHT && this->_up_down==KEY_UP)
         || (this->_left_right==KEY_LEFT && this->_up_down==KEY_DOWN) )
         this->_ugao+=5;
-
+    // ENDTODO
+    
     /* azuriramo centar tako da bude tacan u svakom trenutku bez zavisnosti od gluta */
     Tacka pomeraj(0,0,0);
     double koef = 1.0;
 
-    if(this->_up_down==KEY_UP) {
-        pomeraj = Tacka(this->_speed*std::sin(this->_ugao/180*M_PI),0,-this->_speed*std::cos(this->_ugao/180*M_PI));
-
+    switch (this->_up_down) {
+    case KEY_UP:
+	_force = 15;
+	break;
+    case KEY_DOWN:
+	_force = -15;
+	break;
+    case KEY_NONE:
+	_force = 0;
+	break;
+	
     }
-    else if(this->_up_down==KEY_DOWN) {
-
-        pomeraj = Tacka(-this->_speed*std::sin(this->_ugao/180*M_PI),0,this->_speed*std::cos(this->_ugao/180*M_PI));
+    _acceleration = _force / _mass;
+    
+    if (_acceleration == 0 && (_speed > 0.5 || _speed < -0.5)) {
+	_acceleration = -(_speed / abs(_speed)) * 0.5;
     }
+
+    _speed += _acceleration;
+    cout << "aasoduduf " << _speed << endl;
+    if (_speed >= -0.5 && _speed <= 0.5 && _force == 0) {
+	_acceleration = 0;
+	_speed = 0;
+    }
+    
+    pomeraj = Tacka(this->_speed*std::sin(this->_ugao/180*M_PI),0,-this->_speed*std::cos(this->_ugao/180*M_PI));
 
     for (Robot *it : roboti) {
         if (it == this)

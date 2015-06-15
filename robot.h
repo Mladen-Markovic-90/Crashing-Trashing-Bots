@@ -97,6 +97,10 @@ protected:
 
     /* Privremena promenljiva za brzinu */
     float _speed;
+    float _acceleration;
+    float _force;
+    float _mass;
+    float _friction;
 
     /* Promenljive/Flag za stanje abilitys */
     int _ability_1=0;
