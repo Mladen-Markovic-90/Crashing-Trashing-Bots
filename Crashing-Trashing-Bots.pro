@@ -38,7 +38,8 @@ HEADERS += glutcpp\glutcpp.h \
     glutcpp/glutSpecialKeyListener.h \
     provera.h \
     animationStatus.h \
-    glutcpp\glutLoadPicture.h
+    glutcpp\glutLoadPicture.h \
+    telo.h
 
 
 include(deployment.pri)
