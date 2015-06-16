@@ -48,21 +48,21 @@ bool Telo::kolizija(const Telo &t, const Tacka& pomeraj)
     Tacka drugiSW = provera::position(t.getSW(), t.getPos(), t.getUgao());
     Tacka drugiSE = provera::position(t.getSE(), t.getPos(), t.getUgao());
 
-    if (abs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiNW) - this->getPovrsina()) < eps)
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiNW) - this->getPovrsina()) < eps)
         return true;
-    if (abs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiNE) - this->getPovrsina()) < eps)
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiNE) - this->getPovrsina()) < eps)
         return true;
-    if (abs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiSW) - this->getPovrsina()) < eps)
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiSW) - this->getPovrsina()) < eps)
         return true;
-    if (abs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiSE) - this->getPovrsina()) < eps)
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, drugiSE) - this->getPovrsina()) < eps)
         return true;
-    if (abs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviNW) - t.getPovrsina()) < eps)
+    if (fabs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviNW) - t.getPovrsina()) < eps)
         return true;
-    if (abs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviNE) - t.getPovrsina()) < eps)
+    if (fabs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviNE) - t.getPovrsina()) < eps)
         return true;
-    if (abs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviSW) - t.getPovrsina()) < eps)
+    if (fabs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviSW) - t.getPovrsina()) < eps)
         return true;
-    if (abs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviSE) - t.getPovrsina()) < eps)
+    if (fabs(povrsina(drugiNW, drugiNE, drugiSW, drugiSE, prviSE) - t.getPovrsina()) < eps)
         return true;
 
     return false;
