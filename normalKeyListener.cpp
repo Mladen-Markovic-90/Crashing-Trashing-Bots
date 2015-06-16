@@ -78,11 +78,12 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
                     roboti.push_back(new Robot_2(ticksPerSecond,player,Tacka(-100+200*number,0,0)));
                 else if(status.position%3==2)
                     roboti.push_back(new Robot_3(ticksPerSecond,player,Tacka(-100+200*number,0,0)));
-                status.position=0;
+                status.position=999;
                 status.ugao=0;
                 if(status.flag==PLAYER_2)
                 {
                     status.flag=0;
+                    status.position=0;
                     status.paused=false;
                     status.modus=MODUS_ARENA;
                     glutReshapeListenerInit::getReshapeListener()->reshape();
