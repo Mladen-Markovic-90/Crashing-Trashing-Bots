@@ -70,8 +70,8 @@ Tacka Vektor3D::vektorskiProizvod(Tacka vektor1, Tacka vektor2)
 {
     Tacka tmp = Tacka(0, 0, 0);
 
-    vektor1.set_y(0);
-    vektor2.set_y(0);
+    //vektor1.set_y(0);
+    //vektor2.set_y(0);
 
     tmp.set_x(vektor1.get_y()*vektor2.get_z() - vektor1.get_z()*vektor2.get_y());
     tmp.set_y(vektor1.get_z()*vektor2.get_x() - vektor1.get_x()*vektor2.get_z());
