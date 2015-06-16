@@ -51,7 +51,11 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
                     status.modus=MODUS_START;
                     status.position=999;
                     status.flag=PLAYER_1;
-                    roboti.clear();
+		    
+                    for (vector<Robot *>::iterator it = roboti.begin(); it != roboti.end(); ++it)
+			delete *it;
+		    roboti.clear();
+		    
                     glutReshapeListenerInit::getReshapeListener()->reshape();
                 }
                 else if(status.position==1)
