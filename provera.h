@@ -8,10 +8,13 @@
 class provera
 {
 public:
+    // povrsina za 2D
     static double povrsina(Tacka a,Tacka b,Tacka c)
     {
         Tacka vec1=Vektor3D::vektor(a,b);
         Tacka vec2=Vektor3D::vektor(b,c);
+        vec1.set_y(0);
+        vec2.set_y(0);
         return Vektor3D::duzina(Vektor3D::vektorskiProizvod(vec1,vec2));
     }
 

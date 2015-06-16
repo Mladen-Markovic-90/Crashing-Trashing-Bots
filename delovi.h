@@ -75,7 +75,6 @@ public:
         glutcpp::pop();
     }
 
-private:
 
     static void podloga(int dimenzija)
     {
@@ -88,16 +87,11 @@ private:
         glutcpp::grid(dimenzija, 20, 0,0.5,0);
     }
 
+private:
+
     static void ivica(int dimenzija, std::vector<Prepreka *> & prepreke)
     {
 
-        int visina = 100;
-        int sirina = 20;
-
-        prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(0, 0, dimenzija/2+sirina/2), 0.3, 0.3, 0.8));
-        prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(0, 0, -(dimenzija/2+sirina/2)), 0.3, 0.3, 0.8));
-        prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(dimenzija/2+sirina/2, 0, 0), 0.3, 0.3, 0.8));
-        prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(-(dimenzija/2+sirina/2),0, 0), 0.3, 0.3, 0.8));
 
         for (auto p : prepreke) {
             p->draw();

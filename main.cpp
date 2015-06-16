@@ -54,6 +54,29 @@ int main(int argc,char ** argv)
 
     std::vector<Prepreka *> prepreke;
 
+    /* Zidovi Arene */
+    int visina = 100;
+    int sirina = 20;
+    int dimenzija = 800;
+
+    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(dimenzija/2+sirina/2,0,0), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(-(dimenzija/2+sirina/2),0,0), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(0,0,dimenzija/2+sirina/2), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(0,0,-(dimenzija/2+sirina/2)), 0.3, 0.3, 0.8));
+
+    /* Kutije */
+
+    visina = 50;
+    sirina = 50;
+    dimenzija = 50;
+
+    //prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(100,0,100), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(100,0,100), 0.6, 0.5, 0.2));
+    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(-100,0,-100), 0.6, 0.5, 0.2));
+    //prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(100,25,-100), 0.6, 0.5, 0.2));
+    //prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(-100,25,100), 0.6, 0.5, 0.2));
+
+
     /* inicijalizujemo random sa semenom */
     /* potrebno za animacije */
     std::srand(time(NULL));
@@ -67,9 +90,6 @@ int main(int argc,char ** argv)
     glutNormalKeyListenerInit::run(new normalKeyListener(roboti,status));
     glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti,status));
     glutReshapeListenerInit::run(new reshapeListener(600,600,status));
-
-    float ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
-
 
     /* BITNO -> PUTANJA MORA BITI TACNA */
     glutLoadPicture::load("slike/meni.bmp",PICTURE_MENI);

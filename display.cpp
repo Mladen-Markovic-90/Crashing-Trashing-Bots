@@ -181,12 +181,11 @@ void Display::arena()
 
     adjust_camera();
 
-    Delovi::arena(400, prepreke);
+    Delovi::podloga(400);
 
+    for(Prepreka * item : prepreke)
+        item->draw();
 
-
-    Delovi::kutija(50, 100, 100);
-    Delovi::kutija(50, -100, -100);
 
     for(Robot * item : roboti)
 	item->draw();
