@@ -83,8 +83,8 @@ public:
 
 protected:
     /* Flagovi za pravce koji su stisnuti */
-    unsigned char _up_down;
-    unsigned char _left_right;
+    unsigned char _up_down=KEY_NONE;
+    unsigned char _left_right=KEY_NONE;
 
     /* broj prikaza po sekundi */
     float _ticksPerSecond;

@@ -69,16 +69,6 @@ int main(int argc,char ** argv)
     float ticksPerSecond=glutAnimationTimerInit::getAnimationTimer()->getTicksPerSecond();
 
 
-    // if(status.modus==MODUS_TEST_MLADEN)
-    // {
-    //     roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
-    // }
-    // else if(status.modus==MODUS_ARENA)
-    // {
-    //     roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
-    //     roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_2,Tacka(50,0,0)));
-    // }
-
     /* BITNO -> PUTANJA MORA BITI TACNA */
     glutLoadPicture::load("slike/meni.bmp",PICTURE_MENI);
 
