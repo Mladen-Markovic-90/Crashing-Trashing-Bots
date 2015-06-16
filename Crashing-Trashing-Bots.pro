@@ -39,7 +39,8 @@ HEADERS += glutcpp\glutcpp.h \
     provera.h \
     animationStatus.h \
     glutcpp\glutLoadPicture.h \
-    telo.h
+    telo.h \
+    prepreka.h
 
 
 include(deployment.pri)

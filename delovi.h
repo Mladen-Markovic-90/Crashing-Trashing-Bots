@@ -23,7 +23,7 @@
 
 /* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutcpp.h"
-
+#include "prepreka.h"
 
 class Delovi
 {
@@ -58,6 +58,7 @@ public:
     static void arena (int dimenzija)
     {
         podloga(dimenzija);
+
         ivica(dimenzija);
     }
 
@@ -85,7 +86,7 @@ private:
     }
 
     static void ivica(int dimenzija)
-    {
+    {        
         glutcpp::color(0.3, 0.3, 0.8, 1.0);
         //glutcpp::color(0.7, 0.4, 0.2, 1.0);
 

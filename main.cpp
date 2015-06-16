@@ -71,10 +71,12 @@ int main(int argc,char ** argv)
 
     if(status.modus==MODUS_TEST_MLADEN)
     {
+        //cout << "mtm" << endl;
         roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
     }
     else if(status.modus==MODUS_ARENA)
     {
+        //cout << "arena" << endl;
         roboti.push_back(new Robot_1(ticksPerSecond,PLAYER_1,Tacka(0,0,0)));
         roboti.push_back(new Robot_3(ticksPerSecond,PLAYER_2,Tacka(50,0,0)));
     }
