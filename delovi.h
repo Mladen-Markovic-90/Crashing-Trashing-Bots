@@ -24,6 +24,7 @@
 /* ukljucujemo potrebna zaglavlja */
 #include "glutcpp/glutcpp.h"
 #include "prepreka.h"
+#include <vector>
 
 class Delovi
 {
@@ -55,11 +56,13 @@ public:
     glutcpp::pop();
     }
 
-    static void arena (int dimenzija)
+    static void arena (int dimenzija, std::vector<Prepreka *> & prepreke)
     {
         podloga(dimenzija);
 
-        ivica(dimenzija);
+        ivica(dimenzija*2, prepreke);
+
+
     }
 
     static void kutija(int dimenzija, int x, int z)
@@ -85,33 +88,40 @@ private:
         glutcpp::grid(dimenzija, 20, 0,0.5,0);
     }
 
-    static void ivica(int dimenzija)
-    {        
-        glutcpp::color(0.3, 0.3, 0.8, 1.0);
-        //glutcpp::color(0.7, 0.4, 0.2, 1.0);
+    static void ivica(int dimenzija, std::vector<Prepreka *> & prepreke)
+    {
 
         int visina = 100;
         int sirina = 20;
 
-        glutcpp::kvadar(Tacka(-dimenzija, 0, -dimenzija-sirina), Tacka(-dimenzija, visina, -dimenzija-sirina),
-                        Tacka(-dimenzija, visina, dimenzija+sirina), Tacka(-dimenzija, 0, dimenzija+sirina),
-                        Tacka(-dimenzija-sirina, 0, -dimenzija-sirina), Tacka(-dimenzija-sirina, visina, -dimenzija-sirina),
-                        Tacka(-dimenzija-sirina, visina, dimenzija+sirina), Tacka(-dimenzija-sirina, 0, dimenzija+sirina));
+        prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(0, 0, dimenzija/2+sirina/2), 0.3, 0.3, 0.8));
+        prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(0, 0, -(dimenzija/2+sirina/2)), 0.3, 0.3, 0.8));
+        prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(dimenzija/2+sirina/2, 0, 0), 0.3, 0.3, 0.8));
+        prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(-(dimenzija/2+sirina/2),0, 0), 0.3, 0.3, 0.8));
 
-        glutcpp::kvadar(Tacka(dimenzija, 0, -dimenzija-sirina), Tacka(dimenzija, visina, -dimenzija-sirina),
-                        Tacka(dimenzija, visina, dimenzija+sirina), Tacka(dimenzija, 0, dimenzija+sirina),
-                        Tacka(dimenzija+sirina, 0, -dimenzija-sirina), Tacka(dimenzija+sirina, visina, -dimenzija-sirina),
-                        Tacka(dimenzija+sirina, visina, dimenzija+sirina), Tacka(dimenzija+sirina, 0, dimenzija+sirina));
+        for (auto p : prepreke) {
+            p->draw();
+        }
 
-        glutcpp::kvadar(Tacka(-dimenzija, 0, -dimenzija), Tacka(-dimenzija, visina, -dimenzija),
-                        Tacka(dimenzija, visina, -dimenzija), Tacka(dimenzija, 0, -dimenzija),
-                        Tacka(-dimenzija, 0, -dimenzija-sirina), Tacka(-dimenzija, visina, -dimenzija-sirina),
-                        Tacka(dimenzija, visina, -dimenzija-sirina), Tacka(dimenzija, 0, -dimenzija-sirina));
+//        glutcpp::kvadar(Tacka(-dimenzija, 0, -dimenzija-sirina), Tacka(-dimenzija, visina, -dimenzija-sirina),
+//                        Tacka(-dimenzija, visina, dimenzija+sirina), Tacka(-dimenzija, 0, dimenzija+sirina),
+//                        Tacka(-dimenzija-sirina, 0, -dimenzija-sirina), Tacka(-dimenzija-sirina, visina, -dimenzija-sirina),
+//                        Tacka(-dimenzija-sirina, visina, dimenzija+sirina), Tacka(-dimenzija-sirina, 0, dimenzija+sirina));
 
-        glutcpp::kvadar(Tacka(-dimenzija, 0, dimenzija), Tacka(-dimenzija, visina, dimenzija),
-                        Tacka(dimenzija, visina, dimenzija), Tacka(dimenzija, 0, dimenzija),
-                        Tacka(-dimenzija, 0, dimenzija+sirina), Tacka(-dimenzija, visina, dimenzija+sirina),
-                        Tacka(dimenzija, visina, dimenzija+sirina), Tacka(dimenzija, 0, dimenzija+sirina));
+//        glutcpp::kvadar(Tacka(dimenzija, 0, -dimenzija-sirina), Tacka(dimenzija, visina, -dimenzija-sirina),
+//                        Tacka(dimenzija, visina, dimenzija+sirina), Tacka(dimenzija, 0, dimenzija+sirina),
+//                        Tacka(dimenzija+sirina, 0, -dimenzija-sirina), Tacka(dimenzija+sirina, visina, -dimenzija-sirina),
+//                        Tacka(dimenzija+sirina, visina, dimenzija+sirina), Tacka(dimenzija+sirina, 0, dimenzija+sirina));
+
+//        glutcpp::kvadar(Tacka(-dimenzija, 0, -dimenzija), Tacka(-dimenzija, visina, -dimenzija),
+//                        Tacka(dimenzija, visina, -dimenzija), Tacka(dimenzija, 0, -dimenzija),
+//                        Tacka(-dimenzija, 0, -dimenzija-sirina), Tacka(-dimenzija, visina, -dimenzija-sirina),
+//                        Tacka(dimenzija, visina, -dimenzija-sirina), Tacka(dimenzija, 0, -dimenzija-sirina));
+
+//        glutcpp::kvadar(Tacka(-dimenzija, 0, dimenzija), Tacka(-dimenzija, visina, dimenzija),
+//                        Tacka(dimenzija, visina, dimenzija), Tacka(dimenzija, 0, dimenzija),
+//                        Tacka(-dimenzija, 0, dimenzija+sirina), Tacka(-dimenzija, visina, dimenzija+sirina),
+//                        Tacka(dimenzija, visina, dimenzija+sirina), Tacka(dimenzija, 0, dimenzija+sirina));
     }
 
 };

@@ -223,7 +223,7 @@ void Robot::unset_key(int key)
 }
 
 /* Animacija i izracunavanje za robot, izvrsava se u klasi animationTimer */
-void Robot::animation(const vector<Robot*> &roboti)
+void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &prepreke)
 {
     /* regeneracija energy */
     this->_energy+=5.0/_ticksPerSecond;
@@ -288,6 +288,15 @@ void Robot::animation(const vector<Robot*> &roboti)
 	    _speed = 0;
 	    _acceleration = 0;// za sad
 	}
+    }
+
+    for (Prepreka *it : prepreke) {
+        double n_koef;
+        if ((n_koef = pretraga(*it, pomeraj, 0.0, 1.0, 0)) < koef) {
+            koef = n_koef;
+            _speed = 0;
+            _acceleration = 0;// za sad
+        }
     }
 
     this->_center.add(pomeraj * koef);

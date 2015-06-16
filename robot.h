@@ -26,6 +26,7 @@
 #include <cmath>
 #include <vector>
 #include "telo.h"
+#include "prepreka.h"
 
 /* Definicije konstanti za dugmad */
 #define KEY_NONE 0
@@ -66,7 +67,7 @@ public:
     void unset_key(int key);
 
     /* Animacija i izracunavanje za robotic, izvrsava se u klasi timer */
-    virtual void animation(const vector<Robot*> &);
+    virtual void animation(const vector<Robot*> &, const vector<Prepreka *> &prepreke);
 
     /* Iscrtavanje robotica, izvrsava se u klasi display */
     virtual void draw() {}

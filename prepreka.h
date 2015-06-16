@@ -19,7 +19,7 @@ private:
     int _sirina;
     int _visina;
 
-    int _r, _g, _b;
+    float _r, _g, _b;
 };
 
 #include "prepreka.cpp"

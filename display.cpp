@@ -177,9 +177,13 @@ void Display::arena()
     glutcpp::lightPosition(0,0,0,1);
     //    glutcpp::lookAt(100*std::sin((float)camera_ugao/180*PII), 100, 100*std::cos((float)camera_ugao/180*PII) , 0, 0, 0);
 
+
+
     adjust_camera();
 
-    Delovi::arena(400);
+    Delovi::arena(400, prepreke);
+
+
 
     Delovi::kutija(50, 100, 100);
     Delovi::kutija(50, -100, -100);

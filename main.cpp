@@ -52,6 +52,8 @@ int main(int argc,char ** argv)
     /* vektor za sve robotice */
     std::vector<Robot *> roboti;
 
+    std::vector<Prepreka *> prepreke;
+
     /* inicijalizujemo random sa semenom */
     /* potrebno za animacije */
     std::srand(time(NULL));
@@ -60,8 +62,8 @@ int main(int argc,char ** argv)
     glutcpp::init(argc,argv,600,600,"Crashing Trashing Bots");
 
     /* Inicijalizujemo glut niti */
-    glutDisplayInit::run(new Display(roboti,status));
-    glutAnimationTimerInit::run(new animationTimer(50,roboti,status));
+    glutDisplayInit::run(new Display(roboti,prepreke,status));
+    glutAnimationTimerInit::run(new animationTimer(50,roboti,prepreke,status));
     glutNormalKeyListenerInit::run(new normalKeyListener(roboti,status));
     glutSpecialKeyListenerInit::run(new SpecialKeyListener(roboti,status));
     glutReshapeListenerInit::run(new reshapeListener(600,600,status));

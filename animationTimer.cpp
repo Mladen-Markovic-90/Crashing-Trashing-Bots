@@ -30,7 +30,7 @@ void animationTimer::timer(int id) const
     if(status.paused==false)
         if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN) {
 	    for(Robot * item : roboti)
-		item->animation(roboti);
+                item->animation(roboti, prepreke);
 
 	    // for(Robot *it1 : roboti) {
 	    // 	for (Robot *it2 : roboti) {
