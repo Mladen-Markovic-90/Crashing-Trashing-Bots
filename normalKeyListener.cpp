@@ -103,6 +103,10 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
                 else if(status.position==1)
                 {
                     status.position=0;
+		    for (Robot * it : roboti) {
+			
+		    }
+			
                     status.modus=MODUS_MENI;
                     glutReshapeListenerInit::getReshapeListener()->reshape();
                 }

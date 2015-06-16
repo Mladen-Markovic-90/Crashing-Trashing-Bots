@@ -198,7 +198,7 @@ void Display::arena()
         item->display3D(45,width,height,1,1000);
 
     if(status.paused==true)
-            Display::paused();
+	Display::paused();
 }
 
 
@@ -257,9 +257,6 @@ void Display::test_mladen()
 
 
 /* funkcija za namestanje kamere */
-////////////////////////////////////
-/// TODO: NAPRAVITI SPORU KAMERU ///
-////////////////////////////////////
 void Display::adjust_camera()
 {
     //cout << "ulazim u kamera metodu" << endl;

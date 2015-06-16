@@ -240,14 +240,13 @@ void Robot::animation(const vector<Robot*> &roboti)
     if(this->_ability_4>0)
         this->_ability_4--;
 
-    // TODO: OVO MORA DA SE PREPRAVI
-    if( (this->_left_right==KEY_LEFT && this->_up_down==KEY_UP)
-        || (this->_left_right==KEY_RIGHT && this->_up_down==KEY_DOWN) )
-        this->_ugao-=5;
-    else if( (this->_left_right==KEY_RIGHT && this->_up_down==KEY_UP)
-        || (this->_left_right==KEY_LEFT && this->_up_down==KEY_DOWN) )
-        this->_ugao+=5;
-    // ENDTODO
+    /* skretanja */
+    if( (this->_left_right==KEY_LEFT && this->_speed > 0)
+        || (this->_left_right==KEY_RIGHT && this->_speed < 0) )
+        this->_ugao-=abs(_speed);
+    else if( (this->_left_right==KEY_RIGHT && this->_speed > 0)
+	     || (this->_left_right==KEY_LEFT && this->_speed < 0) )
+        this->_ugao+=abs(_speed);
     
     /* azuriramo centar tako da bude tacan u svakom trenutku bez zavisnosti od gluta */
     Tacka pomeraj(0,0,0);
@@ -263,8 +262,8 @@ void Robot::animation(const vector<Robot*> &roboti)
     case KEY_NONE:
 	_force = 0;
 	break;
-	
     }
+
     _acceleration = _force / _mass;
     
     if (_acceleration == 0 && (_speed > 0.5 || _speed < -0.5)) {
@@ -284,8 +283,11 @@ void Robot::animation(const vector<Robot*> &roboti)
         if (it == this)
             continue;
         double n_koef;
-        if ((n_koef = pretraga(*it, pomeraj, 0.0, 1.0, 0)) < koef)
+        if ((n_koef = pretraga(*it, pomeraj, 0.0, 1.0, 0)) < koef) {
             koef = n_koef;
+	    _speed = 0;
+	    _acceleration = 0;// za sad
+	}
     }
 
     this->_center.add(pomeraj * koef);
