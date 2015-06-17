@@ -31,7 +31,7 @@ Robot_3::Robot_3(float ticksPerSecond, int player, Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,0),0,
             5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
             Tacka(0,0,-15),Tacka(15,0,0),Tacka(0,0,15),Tacka(-15,0,0),15)
-    {}
+{}
 
 
 /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi animationTimer */

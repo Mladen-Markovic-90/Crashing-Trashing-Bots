@@ -175,8 +175,6 @@ void Display::arena()
 
     glutcpp::color(0,1.0,0,1.0);
     glutcpp::lightPosition(0,0,0,1);
-    //    glutcpp::lookAt(100*std::sin((float)camera_ugao/180*PII), 100, 100*std::cos((float)camera_ugao/180*PII) , 0, 0, 0);
-
 
 
     adjust_camera();
@@ -185,13 +183,15 @@ void Display::arena()
 
     for(Prepreka * item : prepreke)
         item->draw();
+    for(Prepreka * item : prepreke)
+        item->testDraw(0);
 
 
     for(Robot * item : roboti)
 	item->draw();
 
     for(Robot * item : roboti)
-        item->testDraw();
+        item->testDraw(20);
 
 
     int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
@@ -228,29 +228,11 @@ void Display::test_mladen()
     for(Robot * item : roboti)
         item->draw();
 
-    /*
-    for(Robot * item : roboti)
-    {
-        glutcpp::push();
-            glutcpp::translate(item->getFront());
-            glutcpp::translate(0,20,0);
-            glutcpp::color(1,0,0,1);
-            glutcpp::cube(10);
-        glutcpp::pop();
-    }*/
-   // model_1();
-    /*
-    glutcpp::color(0.5,0.5,1,0.3);
-    glutcpp::cube(50);*/
-
     int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
     int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
 
-    //std::cout << width << " " << height << std::endl;
-
     for(Robot * item : roboti)
         item->display3D(45,width,height,1,1000);
-
 
     if(status.paused==true)
             Display::paused();

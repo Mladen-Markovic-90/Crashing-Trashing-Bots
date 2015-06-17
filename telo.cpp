@@ -87,3 +87,50 @@ double Telo::pretraga(const Telo &drugi, const Tacka &pomeraj,
         return pretraga(drugi, pomeraj, m, max_k, dubina + 1);
 
 }
+
+
+void Telo::testDraw(int y)
+{
+    glutcpp::push();
+
+        glutcpp::translate(0,y,0);
+        glutcpp::push();
+            glutcpp::color(1,0,0,1);
+            glutcpp::translate(provera::position(_northWest,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(0,1,0,1);
+            glutcpp::translate(provera::position(_northEast,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(0,0,1,1);
+            glutcpp::translate(provera::position(_southEast,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(1,1,0,1);
+            glutcpp::translate(provera::position(_southWest,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();
+
+        glutcpp::push();
+            glutcpp::color(1,1,1,1);
+            glutcpp::translate(provera::position(Tacka(0,0,0),_center,_ugao));
+            //glutcpp::translate(_center);
+            glutcpp::cube(10);
+        glutcpp::pop();
+
+        /*
+        glutcpp::push();
+            glutcpp::color(1,1,1,1);
+            glutcpp::translate(provera::position(_front,_center,_ugao));
+            glutcpp::cube(5);
+        glutcpp::pop();*/
+
+    glutcpp::pop();
+}

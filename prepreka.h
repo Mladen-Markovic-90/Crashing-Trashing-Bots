@@ -10,7 +10,7 @@ public:
 
     Prepreka(int duzina, int visina, int sirina, Tacka centar, float r, float g, float b);
 
-    ~Prepreka();
+    ~Prepreka() {}
 
     void draw();
 

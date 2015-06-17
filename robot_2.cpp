@@ -27,7 +27,7 @@ Robot_2::Robot_2(float ticksPerSecond,int player, Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,-15),0,
             5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
             Tacka(-10,0,-15),Tacka(10,0,-15),Tacka(10,0,15),Tacka(-10,0,15),15)
-    {}
+{}
 
 
 /* Iscrtavanje robotica 2 */

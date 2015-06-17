@@ -40,6 +40,9 @@ public:
     /* AGRADZAG */
     bool kolizija(const Telo &t, const Tacka &pomeraj);
 
+    /* provera crtanja tacki */
+    void testDraw(int y);
+
 protected:
     /* krajnje tacke robotica i radius */
     Tacka _northWest;

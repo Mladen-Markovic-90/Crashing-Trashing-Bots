@@ -34,7 +34,7 @@ class Display : public glutDisplay
 {
 public:
     /* konstruktor i destruktor */
-    Display(std::vector<Robot *> & r,std::vector<Prepreka *> & p,animationStatus & s):roboti(r),status(s),prepreke(p){}
+    Display(std::vector<Robot *> & r,std::vector<Prepreka *> & p,animationStatus & s):roboti(r),prepreke(p),status(s){}
     ~Display(){}
 
     /* prikazuje sadrzaj prozora */

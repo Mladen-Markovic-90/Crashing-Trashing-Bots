@@ -59,10 +59,10 @@ int main(int argc,char ** argv)
     int sirina = 20;
     int dimenzija = 800;
 
-    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(dimenzija/2+sirina/2,0,0), 0.3, 0.3, 0.8));
-    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(-(dimenzija/2+sirina/2),0,0), 0.3, 0.3, 0.8));
-    prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(0,0,dimenzija/2+sirina/2), 0.3, 0.3, 0.8));
-    prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(0,0,-(dimenzija/2+sirina/2)), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(0,0,dimenzija/2+sirina/2), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(0,0,-(dimenzija/2+sirina/2)), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(dimenzija/2+sirina/2,0,0), 0.3, 0.3, 0.8));
+    prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(-(dimenzija/2+sirina/2),0,0), 0.3, 0.3, 0.8));
 
     /* Kutije */
 
@@ -70,11 +70,8 @@ int main(int argc,char ** argv)
     sirina = 50;
     dimenzija = 50;
 
-    //prepreke.push_back(new Prepreka(sirina, visina, dimenzija, Tacka(100,0,100), 0.3, 0.3, 0.8));
     prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(100,0,100), 0.6, 0.5, 0.2));
     prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(-100,0,-100), 0.6, 0.5, 0.2));
-    //prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(100,25,-100), 0.6, 0.5, 0.2));
-    //prepreke.push_back(new Prepreka(dimenzija, visina, sirina, Tacka(-100,25,100), 0.6, 0.5, 0.2));
 
 
     /* inicijalizujemo random sa semenom */
