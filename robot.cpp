@@ -240,6 +240,7 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
     if(this->_ability_4>0)
         this->_ability_4--;
 
+    float ugao_old=this->_ugao;
     /* skretanja */
     if( (this->_left_right==KEY_LEFT && this->_speed > 0)
         || (this->_left_right==KEY_RIGHT && this->_speed < 0) )
@@ -300,6 +301,9 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
     }
 
     this->_center.add(pomeraj * koef);
+
+    if(koef < 0.01)
+        this->_ugao=ugao_old;
 }
 
 
