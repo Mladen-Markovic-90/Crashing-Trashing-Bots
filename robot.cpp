@@ -255,10 +255,10 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
 
     switch (this->_up_down) {
     case KEY_UP:
-	_force = 15;
+	_force = 30;
 	break;
     case KEY_DOWN:
-	_force = -15;
+	_force = -30;
 	break;
     case KEY_NONE:
 	_force = 0;
@@ -267,12 +267,22 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
 
     _acceleration = _force / _mass;
     
-    if (_acceleration == 0 && (_speed > 0.5 || _speed < -0.5)) {
-	_acceleration = -(_speed / abs(_speed)) * 0.5;
+    if ( (_speed > 0.5 || _speed < -0.5)) {
+	_speed += -(_speed / fabs(_speed)) * 0.3;
+	
     }
 
-    _speed += _acceleration;
-    cout << "aasoduduf " << _speed << endl;
+    //ogranicenje brzine
+    // TODO: OVO NE TREBA DA BUDU MAGICNE KONSTANTE
+    if ((_speed < 10  || (_speed >= 10 && _acceleration < 0)) &&
+	(_speed > -5 || (_speed <= 5 && _acceleration > 0))) {
+	if ( (_acceleration > 0 ? 1:0) != (_speed > 0 ? 1:0))
+	    _speed += 2 * _acceleration; //intenzitet kocenja
+	else
+	    _speed += _acceleration;
+
+    }
+    //cout << "aasoduduf " << _speed << endl;
     if (_speed >= -0.5 && _speed <= 0.5 && _force == 0) {
 	_acceleration = 0;
 	_speed = 0;
@@ -284,7 +294,10 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
         if (it == this)
             continue;
         double n_koef;
+
+	//  kolizija
         if ((n_koef = pretraga(*it, pomeraj, 0.0, 1.0, 0)) < koef) {
+	    
             koef = n_koef;
 	    _speed = 0;
 	    _acceleration = 0;// za sad
