@@ -58,13 +58,8 @@ private:
     /* sluzi za rotaciju tockova */
     int ugao_tocak=0;
 
-    /* sluzi za poziciju i rotaciju lasera */
-    Tacka tacka_laser=Tacka(0,0,0);
-    Tacka tacka_laser_help=_center;
-    int ugao_laser=0;
-
-    /* sluzi za poziciju udarca kolca */
-    Tacka tacka_kolac=Tacka(0,0,0);
+    Robot2_ability1 ability1();
+    Robot2_ability2 ability2();
 };
 
 

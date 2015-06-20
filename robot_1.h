@@ -23,7 +23,8 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "robot.h"
-
+#include "robot1_ability1.h"
+#include "robot1_ability2.h"
 
 /* klasa za robotic 1 */
 class Robot_1 : public Robot
@@ -62,13 +63,9 @@ private:
     /* sluzi za rotaciju tockova */
     int ugao_rotacije_tocak=0;
 
-    int cekic_radius=5;
-    Tacka tacka_cekic=Tacka(0,0,-30);
+    Robot1_ability1 ability1();
+    Robot1_ability2 ability2();
 
-    /* sluzi za poziciju i rotaciju rakete */
-    Tacka tacka_raketa=Tacka(0,0,0);
-    Tacka tacka_raketa_help=_center;
-    int ugao_raketa=0;
 };
 
 
