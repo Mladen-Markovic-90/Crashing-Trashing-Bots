@@ -4,7 +4,7 @@
 
 Robot1_ability2::Robot1_ability2()//int cooldown,int ticksPerSecond)
     : Ability(100,20,-1 , Tacka(20,0,0))
-{}
+{_damage=25;}
 
 
 void Robot1_ability2::draw()

@@ -85,6 +85,8 @@ double Telo::pretraga(const Telo &drugi, const Tacka &pomeraj,
 
 void Telo::testDraw(int y)
 {
+    y=y; //error remove
+#ifdef DEBUG_MODELS
     glutcpp::push();
 
         glutcpp::translate(0,y,0);
@@ -119,4 +121,5 @@ void Telo::testDraw(int y)
         glutcpp::pop();
 
     glutcpp::pop();
+#endif
 }

@@ -50,7 +50,7 @@ class Robot : public Telo
 public:
     /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
     Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao,int cooldown3,
-          Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius);
+          Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius,float health);
 
     /* Dekonstruktor */
     ~Robot();
@@ -120,6 +120,10 @@ protected:
     /* promenljive za energy/health */
     float _energy=100;
     float _health=100;
+    float _max_health=100;
+
+    /* promenljiva koja oznacava da li se smanjuje dmg */
+    float _reduction=0;
 };
 
 

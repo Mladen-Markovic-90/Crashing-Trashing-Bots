@@ -35,7 +35,7 @@
 using namespace std;
 /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
 Robot::Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao,int cooldown3,
-             Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius)
+             Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius, float health)
     : Telo(northWest, northEast, southEast, southWest, radius, centar, ugao)
 {
     _player=player;
@@ -48,6 +48,9 @@ Robot::Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao
     _mass = 50; // privremeno
     _force = 0;
     _friction = 0;
+
+    _health=health;
+    _max_health=health;
 
 }
 
@@ -97,6 +100,7 @@ void Robot::set_key(unsigned char key)
                     {
                         this->_ability_3=this->_ability_3_cooldown;
                         this->_energy-=50;
+                        _reduction=1;
                     }
                 break;
             }
@@ -119,6 +123,7 @@ void Robot::set_key(unsigned char key)
                     {
                         this->_ability_3=this->_ability_3_cooldown;
                         this->_energy-=50;
+                        _reduction=1;
                     }
                 break;
             }
@@ -223,6 +228,8 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
 
     if(this->_ability_3>0)
         this->_ability_3--;
+
+    _reduction=(float)_ability_3/_ability_3_cooldown;
 
     float ugao_old=this->_ugao;
     /* skretanja */
@@ -332,7 +339,7 @@ void Robot::kolizijaAbility(const vector<Robot*> &roboti, const vector<Prepreka*
 void Robot::hit(int damage,bool flag)
 {
     if(flag==true)
-        _health-=damage;
+        _health=_health-damage*(1.0-_reduction);
     if(_health<0)
         _health=0;
 }
@@ -361,9 +368,9 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glutcpp::color(1,number,number,1);
         glutcpp::text(-0.7,-0.95,"3");
 
-        number=this->_health/100.0;
+        number=this->_health/_max_health;
 
-        if(this->_health < 100)
+        if(this->_health < _max_health)
             glutcpp::color(1,0,0,1);
         else
             glutcpp::color(1,0,0,0.7);
@@ -407,9 +414,9 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glutcpp::color(1,number,number,1);
         glutcpp::text(0.8,-0.95,"9");
 
-        number=this->_health/100.0;
+        number=this->_health/_max_health;
 
-        if(this->_health < 100)
+        if(this->_health < _max_health)
             glutcpp::color(1,0,0,1);
         else
             glutcpp::color(1,0,0,0.7);

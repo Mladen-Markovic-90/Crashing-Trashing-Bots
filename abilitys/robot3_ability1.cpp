@@ -3,7 +3,7 @@
 
 Robot3_ability1::Robot3_ability1()
     : Ability(100,20,0 , Tacka(0,0,0) )
-{}
+{_damage=15;}
 
 
 

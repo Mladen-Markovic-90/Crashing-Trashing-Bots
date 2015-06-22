@@ -31,10 +31,10 @@ bool Ability::kolizijaRadius(Telo & t)
 
     double eps = 1;
 
-    Tacka p1=provera::position(Tacka(_radius,0,0),_center,_ugao);
-    Tacka p2=provera::position(Tacka(-_radius,0,0),_center,_ugao);
-    Tacka p3=provera::position(Tacka(0,0,_radius),_center,_ugao);
-    Tacka p4=provera::position(Tacka(0,0,-_radius),_center,_ugao);
+    Tacka p1=provera::position(Tacka(_radius,0,0),getTackaSudara(),_ugao);
+    Tacka p2=provera::position(Tacka(-_radius,0,0),getTackaSudara(),_ugao);
+    Tacka p3=provera::position(Tacka(0,0,_radius),getTackaSudara(),_ugao);
+    Tacka p4=provera::position(Tacka(0,0,-_radius),getTackaSudara(),_ugao);
 
     Tacka prviNW = provera::position(t.getNW(), t.getPos(), t.getUgao());
     Tacka prviNE = provera::position(t.getNE(), t.getPos(), t.getUgao());
@@ -163,10 +163,11 @@ Tacka Ability::getTackaSudara()
 
 void Ability::testDraw()
 {
+#ifdef DEBUG_MODELS
     if(_radius>0)
     {
         testRadius();
-        return;
+        //return;
     }
 
     glutcpp::push();
@@ -174,16 +175,16 @@ void Ability::testDraw()
         glutcpp::translate(getTackaSudara());
         glutcpp::cube(5);
     glutcpp::pop();
-
+#endif
 }
 
 
 void Ability::testRadius()
 {
-    Tacka p1=provera::position(Tacka(_radius,0,0),_center,_ugao);
-    Tacka p2=provera::position(Tacka(-_radius,0,0),_center,_ugao);
-    Tacka p3=provera::position(Tacka(0,0,_radius),_center,_ugao);
-    Tacka p4=provera::position(Tacka(0,0,-_radius),_center,_ugao);
+    Tacka p1=provera::position(Tacka(_radius,0,0),getTackaSudara(),_ugao);
+    Tacka p2=provera::position(Tacka(-_radius,0,0),getTackaSudara(),_ugao);
+    Tacka p3=provera::position(Tacka(0,0,_radius),getTackaSudara(),_ugao);
+    Tacka p4=provera::position(Tacka(0,0,-_radius),getTackaSudara(),_ugao);
 
 
 
