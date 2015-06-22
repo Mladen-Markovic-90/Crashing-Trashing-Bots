@@ -13,9 +13,9 @@ LIBS += libfreeglut -lopengl32 -lglu32 -luser32
 SOURCES += main.cpp
 
 
-HEADERS += glutcpp\glutcpp.h \
+HEADERS += glutcpp/glutcpp.h \
     display.h \
-    glutcpp\tacka.h \
+    glutcpp/tacka.h \
     global.h \
     robot.h \
     robot_1.h \
@@ -38,14 +38,16 @@ HEADERS += glutcpp\glutcpp.h \
     glutcpp/glutSpecialKeyListener.h \
     provera.h \
     animationStatus.h \
-    glutcpp\glutLoadPicture.h \
+    glutcpp/glutLoadPicture.h \
     telo.h \
     prepreka.h \
-    abilitys\robot1_ability1.h \
-    abilitys\robot1_ability2.h \
-    abilitys\robot2_ability1.h \
-    abilitys\robot2_ability2.h \
-    abilitys\ability.h
+    abilitys/robot1_ability1.h \
+    abilitys/robot1_ability2.h \
+    abilitys/robot2_ability1.h \
+    abilitys/robot2_ability2.h \
+    abilitys/ability.h \
+    abilitys/robot3_ability1.h \
+    abilitys/robot3_ability2.h
 
 include(deployment.pri)
 qtcAddDeployment()
