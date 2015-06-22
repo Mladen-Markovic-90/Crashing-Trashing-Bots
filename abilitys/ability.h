@@ -18,13 +18,15 @@ public:
     double povrsina(const Tacka &NW, const Tacka &NE,
                       const Tacka &SW, const Tacka &SE, const Tacka &spoljna);
 
-    void kolizijaPrepreka(Prepreka & prepreka);
+    bool kolizijaRadius(Telo & t);
 
     bool kolizija(Telo & t);
 
     virtual void draw() {}
 
     void testDraw();
+
+    void testRadius();
 
     Tacka getTackaSudara();
 
@@ -56,6 +58,8 @@ protected:
     bool _exist=false;
 
     int _damage=10;
+
+    float _number=0;
 
 
 };

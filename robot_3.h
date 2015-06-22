@@ -36,7 +36,7 @@ public:
     ~Robot_3(){}
 
     /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi timer */
-    virtual void animation();
+    //virtual void animation();
 
     /* Iscrtavanje robotica 3 */
     virtual void draw();

@@ -3,7 +3,7 @@
 
 
 Robot1_ability2::Robot1_ability2()//int cooldown,int ticksPerSecond)
-    : Ability(100,20,0 , Tacka(20,0,0))
+    : Ability(100,20,-1 , Tacka(20,0,0))
 {}
 
 

@@ -25,8 +25,10 @@
 #include <cmath>
 #include <iostream>
 #include "abilitys/ability.h"
-#include "abilitys/robot1_ability1.h"
-#include "abilitys/robot1_ability2.h"
+#include "abilitys/robot3_ability1.h"
+#include "abilitys/robot3_ability2.h"
+#include "robot.h"
+#include "robot_3.h"
 
 
 /* Konstruktor za robotica 3 */
@@ -35,14 +37,14 @@ Robot_3::Robot_3(float ticksPerSecond, int player, Tacka t)
             5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
             Tacka(0,0,-15),Tacka(15,0,0),Tacka(0,0,15),Tacka(-15,0,0),15)
 {
-    _ability01=new Robot1_ability1();//100,20);//5*ticksPerSecond,ticksPerSecond);
-    _ability02=new Robot1_ability2();//100,20);//5*ticksPerSecond,ticksPerSecond);
+    _ability01=new Robot3_ability1();//100,20);//5*ticksPerSecond,ticksPerSecond);
+    _ability02=new Robot3_ability2();//100,20);//5*ticksPerSecond,ticksPerSecond);
 
 }
 
 
 /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi animationTimer */
-void Robot_3::animation()
+/*void Robot_3::animation()
 {
 
     this->_energy+=5.0/_ticksPerSecond;
@@ -69,7 +71,7 @@ void Robot_3::animation()
     else if(this->_up_down==KEY_DOWN)
         this->_center.add(0,0,this->_speed);
 
-}
+}*/
 
 
 /* Iscrtavanje robotica 3 */
@@ -79,6 +81,7 @@ void Robot_3::draw()
         glutcpp::translate(this->_center);
 
 
+        /*
         int ugao_naginjanja_napred_nazad=0;
 
         if(this->_up_down==KEY_DOWN)
@@ -86,9 +89,11 @@ void Robot_3::draw()
         else if(this->_up_down==KEY_UP)
             ugao_naginjanja_napred_nazad=-5;
 
-        glutcpp::rotate(ugao_naginjanja_napred_nazad,1,0,0);
+        glutcpp::rotate(-_ugao,0,1,0);
+        glutcpp::rotate(ugao_naginjanja_napred_nazad,1,0,0);*/
 
 
+        /*
         int ugao_naginjanja_levo_desno=0;
 
         if(this->_left_right==KEY_LEFT)
@@ -96,14 +101,17 @@ void Robot_3::draw()
         else if(this->_left_right==KEY_LEFT)
             ugao_naginjanja_levo_desno=-5;
 
-        glutcpp::rotate(ugao_naginjanja_levo_desno,0,0,1);
+        glutcpp::rotate(ugao_naginjanja_levo_desno,0,0,1);*/
 
         this->model();
-        this->ability_1();
-        this->ability_2();
-        this->ability_3();
+        //this->ability_1();
+        //this->ability_2();
         //this->ability_4();
     glutcpp::pop();
+
+    _ability01->draw();
+    _ability02->draw();
+    this->ability_3();
 }
 
 

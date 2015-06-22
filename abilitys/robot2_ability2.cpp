@@ -2,7 +2,7 @@
 #include "../provera.h"
 
 Robot2_ability2::Robot2_ability2()
-    : Ability(100,20,0 , Tacka(15,0,0))
+    : Ability(100,20,-1 , Tacka(15,0,0))
 {}
 
 

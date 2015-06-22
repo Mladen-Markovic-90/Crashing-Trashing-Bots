@@ -24,30 +24,67 @@ double Ability::povrsina(const Tacka &NW, const Tacka &NE,
 }
 
 
-void Ability::kolizijaPrepreka(Prepreka & t)
+bool Ability::kolizijaRadius(Telo & t)
 {
     if(_exist==false)
-    {
-        //std::cout << "false" << std::endl;
-        return;
-    }
-    //std::cout << "true" << std::endl;
+        return false;
+
     double eps = 1;
 
-    //Tacka drugi=provera::position(_tackaSudara,_center,_ugao);
-
-    Tacka drugi=getTackaSudara();
+    Tacka p1=provera::position(Tacka(_radius,0,0),_center,_ugao);
+    Tacka p2=provera::position(Tacka(-_radius,0,0),_center,_ugao);
+    Tacka p3=provera::position(Tacka(0,0,_radius),_center,_ugao);
+    Tacka p4=provera::position(Tacka(0,0,-_radius),_center,_ugao);
 
     Tacka prviNW = provera::position(t.getNW(), t.getPos(), t.getUgao());
     Tacka prviNE = provera::position(t.getNE(), t.getPos(), t.getUgao());
     Tacka prviSW = provera::position(t.getSW(), t.getPos(), t.getUgao());
     Tacka prviSE = provera::position(t.getSE(), t.getPos(), t.getUgao());
 
-    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, drugi) - t.getPovrsina()) < eps)
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, p1) - t.getPovrsina()) < eps)
+    {
         _exist=false;
+        return true;
+    }
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, p2) - t.getPovrsina()) < eps)
+    {
+        _exist=false;
+        return true;
+    }
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, p3) - t.getPovrsina()) < eps)
+    {
+        _exist=false;
+        return true;
+    }
+    if (fabs(povrsina(prviNW, prviNE, prviSW, prviSE, p4) - t.getPovrsina()) < eps)
+    {
+        _exist=false;
+        return true;
+    }
 
-    //std::cout << povrsina(prviNW, prviNE, prviSW, prviSE, drugi) << " ILI " << t.getPovrsina() << std::endl;
-    return;
+    if(fabs(Vektor3D::duzina(prviNW,_center))<=_radius)
+    {
+        _exist=false;
+        return true;
+    }
+    if(fabs(Vektor3D::duzina(prviNE,_center))<=_radius)
+    {
+        _exist=false;
+        return true;
+    }
+    if(fabs(Vektor3D::duzina(prviSW,_center))<=_radius)
+    {
+        std::cout << "7" << std::endl;
+        _exist=false;
+        return true;
+    }
+    if(fabs(Vektor3D::duzina(prviSE,_center))<=_radius)
+    {
+        _exist=false;
+        return true;
+    }
+
+    return false;
 }
 
 
@@ -56,6 +93,12 @@ bool Ability::kolizija(Telo & t)
 {
     if(_exist==false)
         return false;
+
+
+    if(_radius > -1)
+        return kolizijaRadius(t);
+
+
     double eps = 1;
 
     Tacka drugi=getTackaSudara();
@@ -120,10 +163,57 @@ Tacka Ability::getTackaSudara()
 
 void Ability::testDraw()
 {
+    if(_radius>0)
+    {
+        testRadius();
+        return;
+    }
+
     glutcpp::push();
         glutcpp::color(1,1,1,1);
         glutcpp::translate(getTackaSudara());
         glutcpp::cube(5);
     glutcpp::pop();
 
+}
+
+
+void Ability::testRadius()
+{
+    Tacka p1=provera::position(Tacka(_radius,0,0),_center,_ugao);
+    Tacka p2=provera::position(Tacka(-_radius,0,0),_center,_ugao);
+    Tacka p3=provera::position(Tacka(0,0,_radius),_center,_ugao);
+    Tacka p4=provera::position(Tacka(0,0,-_radius),_center,_ugao);
+
+
+
+    glutcpp::push();
+        glutcpp::color(1,1,1,1);
+        glutcpp::translate(p1);
+        glutcpp::cube(5);
+    glutcpp::pop();
+
+
+
+    glutcpp::push();
+        glutcpp::color(1,0,0,1);
+        glutcpp::translate(p2);
+        glutcpp::cube(5);
+    glutcpp::pop();
+
+
+
+    glutcpp::push();
+        glutcpp::color(0,1,0,1);
+        glutcpp::translate(p3);
+        glutcpp::cube(5);
+    glutcpp::pop();
+
+
+
+    glutcpp::push();
+        glutcpp::color(0,0,1,1);
+        glutcpp::translate(p4);
+        glutcpp::cube(5);
+    glutcpp::pop();
 }
