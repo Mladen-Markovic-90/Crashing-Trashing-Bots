@@ -1,16 +1,13 @@
+
+#include "ability.h"
 #include "robot1_ability1.h"
 
-Robot1_ability1::Robot1_ability1()
-{
+Robot1_ability1::Robot1_ability1()//int cooldown,int ticksPerSecond)
+    : Ability(100,20,5 , Tacka(0,0,-30) )
+{}
 
-}
 
-Robot1_ability1::~Robot1_ability1()
-{
-
-}
-
-Robot1_ability1::Draw()
+void Robot1_ability1::draw()
 {
     /* NOTE: tacka udarca -> provera::position(tacka_cekic,_center,_ugao) i cekic_radius */
     /* MELEE ABILITY */
@@ -18,17 +15,25 @@ Robot1_ability1::Draw()
 
     /* odredjivanje ugla cekica */
     float ugao_cekic;
-    if(this->_ability_1>4.5*_ticksPerSecond)
-        ugao_cekic=(this->_ability_1 - 4.5*_ticksPerSecond)*2;
-    else if(this->_ability_1>2.5*_ticksPerSecond)
-        ugao_cekic=(4.5*_ticksPerSecond - this->_ability_1)/2;
+    //std::cout << this->_time << " " << _ticksPerSecond << std::endl;
+    if(_time>4.5*_ticksPerSecond)
+        {
+        ugao_cekic=(_time - 4.5*_ticksPerSecond)*2;
+        //std::cout << 1 <<std::endl;
+        }
+    else if(_time>2.5*_ticksPerSecond)
+        ugao_cekic=(4.5*_ticksPerSecond - _time)/2;
+        //std::cout << 2 <<std::endl;
     else
         ugao_cekic=_ticksPerSecond;
     ugao_cekic=ugao_cekic/_ticksPerSecond;
 
+
+    //std::cout << ugao_cekic << std::endl;
+
     glutcpp::push();
-        glutcpp::translate(this->_center);
-        glutcpp::rotate(-this->_ugao,0,1,0);
+        glutcpp::translate(_center);
+        glutcpp::rotate(-_ugao,0,1,0);
         glutcpp::rotate(90,0,1,0);
 
         glutcpp::translate(10,13,0);
@@ -76,6 +81,8 @@ Robot1_ability1::Draw()
 
     glutcpp::pop();
 
+    this->testDraw();
+
 
 
     /* test *//*
@@ -85,4 +92,11 @@ Robot1_ability1::Draw()
         glutcpp::rotate(90,1,0,0);
         glutcpp::cylinder(10,1);
     glutcpp::pop();*/
+}
+
+
+void Robot1_ability1::animation2(Tacka _centar_robota, float _ugao_robota)
+{
+    this->_center=_centar_robota;
+    this->_ugao=_ugao_robota;
 }

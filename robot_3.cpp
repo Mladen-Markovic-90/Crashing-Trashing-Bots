@@ -24,6 +24,9 @@
 #include "glutcpp/glutcpp.h"
 #include <cmath>
 #include <iostream>
+#include "ability.h"
+#include "robot1_ability1.h"
+#include "robot1_ability2.h"
 
 
 /* Konstruktor za robotica 3 */
@@ -31,7 +34,11 @@ Robot_3::Robot_3(float ticksPerSecond, int player, Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,0),0,
             5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
             Tacka(0,0,-15),Tacka(15,0,0),Tacka(0,0,15),Tacka(-15,0,0),15)
-{}
+{
+    _ability01=new Robot1_ability1();//100,20);//5*ticksPerSecond,ticksPerSecond);
+    _ability02=new Robot1_ability2();//100,20);//5*ticksPerSecond,ticksPerSecond);
+
+}
 
 
 /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi animationTimer */

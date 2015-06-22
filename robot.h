@@ -23,6 +23,8 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
+#include "robot.h"
+#include "ability.h"
 #include <cmath>
 #include <vector>
 #include "telo.h"
@@ -52,7 +54,7 @@ public:
           Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius);
 
     /* Dekonstruktor */
-    virtual ~Robot(){}
+    ~Robot();
 
     /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
     void set_key(unsigned char key);
@@ -72,13 +74,15 @@ public:
     /* Iscrtavanje robotica, izvrsava se u klasi display */
     virtual void draw() {}
 
-    virtual void hit() {}
+    void hit(int damage,bool flag);
 
     /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
     void display3D(int ugao,int width,int height,int arg1,int arg2);
 
     /* Getter za player vezan za robotica */
     int getPlayer() const { return _player; }
+
+    void kolizijaAbility(const vector<Robot*> &roboti, const vector<Prepreka*> &prepreke);
 
 protected:
     /* Flagovi za pravce koji su stisnuti */
@@ -100,6 +104,10 @@ protected:
     float _force;
     float _mass;
     float _friction;
+
+    Ability * _ability01;
+    Ability * _ability02;
+    //Ability test=Ability(5,100,5,Tacka(0,0,0));
 
     /* Promenljive/Flag za stanje abilitys */
     int _ability_1=0;

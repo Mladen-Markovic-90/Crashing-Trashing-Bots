@@ -25,6 +25,7 @@
 #include <vector>
 #include "glutcpp/glutAnimationTimer.h"
 #include "robot.h"
+#include "prepreka.h"
 #include "animationStatus.h"
 
 

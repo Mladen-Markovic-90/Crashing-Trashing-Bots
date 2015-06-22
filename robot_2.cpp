@@ -20,6 +20,11 @@
 /* Ukljucivanje potrebnih zaglavlja */
 #include "delovi.h"
 #include <cmath>
+#include "robot2_ability1.h"
+#include "robot2_ability2.h"
+#include "ability.h"
+#include "robot1_ability1.h"
+#include "robot1_ability2.h"
 
 
 /* Konstruktor za robotica 2 */
@@ -27,15 +32,21 @@ Robot_2::Robot_2(float ticksPerSecond,int player, Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,-15),0,
             5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
             Tacka(-10,0,-15),Tacka(10,0,-15),Tacka(10,0,15),Tacka(-10,0,15),15)
-{}
+{
+
+    _ability01=new Robot2_ability1();//100,20);//5*ticksPerSecond,ticksPerSecond);
+    _ability02=new Robot2_ability2();//100,20);//5*ticksPerSecond,ticksPerSecond);
+}
 
 
 /* Iscrtavanje robotica 2 */
 void Robot_2::draw()
 {
     this->model();
-    this->ability_1();
-    this->ability_2();
+    _ability01->draw();
+    _ability02->draw();
+    //this->ability_1();
+    //this->ability_2();
     this->ability_3();
 }
 

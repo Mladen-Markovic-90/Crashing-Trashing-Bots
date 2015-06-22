@@ -23,6 +23,8 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "robot.h"
+#include "robot2_ability1.h"
+#include "robot2_ability2.h"
 
 
 /* Klasa za robotic 2 */
@@ -45,11 +47,11 @@ private:
 
     /* MELEE ABILITY */
     /* Kolac */
-    void ability_1();
+    //void ability_1();
 
     /* RANGE ABILITY */
     /* Laser */
-    void ability_2();
+    //void ability_2();
 
     /* DEFENSIVE ABILITY */
     /* Energetski Shield */
@@ -58,8 +60,8 @@ private:
     /* sluzi za rotaciju tockova */
     int ugao_tocak=0;
 
-    Robot2_ability1 ability1();
-    Robot2_ability2 ability2();
+    Robot2_ability1 ability1;
+    Robot2_ability2 ability2;
 };
 
 

@@ -23,6 +23,9 @@
 #include <cmath>
 #include <cstdlib>
 #include "provera.h"
+#include "ability.h"
+#include "robot1_ability1.h"
+#include "robot1_ability2.h"
 
 
 /* Konstruktor za robotica 1 */
@@ -30,16 +33,20 @@ Robot_1::Robot_1(float ticksPerSecond,int player,Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,-20),0,
             5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
             Tacka(-15,0,-20),Tacka(15,0,-20),Tacka(15,0,20),Tacka(-15,0,20),20)
-{}
+{
+    _ability01=new Robot1_ability1();
+    _ability02=new Robot1_ability2();
+}
 
 /* Iscrtavanje robotica 1 */
 void Robot_1::draw()
 {
     this->model();
-    ability1.draw(_center, _ugao);
+    _ability01->draw();
+    _ability02->draw();
 
-    this->ability_1();
-    this->ability_2();
+    //this->ability_1();
+    //this->ability_2();
     this->ability_3();
 }
 

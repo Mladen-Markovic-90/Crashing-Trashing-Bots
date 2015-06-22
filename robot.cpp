@@ -29,6 +29,8 @@
 #include <cmath>
 #include <vector>
 #include "glutcpp/glutAnimationTimer.h"
+#include "ability.h"
+
 
 using namespace std;
 /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
@@ -51,6 +53,13 @@ Robot::Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao
     _force = 0;
     _friction = 0;
 
+}
+
+
+Robot::~Robot()
+{
+    delete _ability01;
+    delete _ability02;
 }
 
 
@@ -80,15 +89,14 @@ void Robot::set_key(unsigned char key)
 
                 /* ispitivanje i iskoriscavanje ability za player 1 */
             case '1':
-                if(this->_ability_1<=0)
-                    this->_ability_1=this->_ability_1_cooldown;
+                //if(this->_ability_1<=0)
+                    //this->_ability_1=this->_ability_1_cooldown;
+                _ability01->use();//_energy);
                 break;
             case '2':
-                if(this->_ability_2<=0 && this->_energy >= 20)
-                    {
-                        this->_ability_2=this->_ability_2_cooldown;
+                if(this->_energy >= 20)
+                    if(_ability02->use())
                         this->_energy-=20;
-                    }
                 break;
             case '3':
                 if(this->_ability_3<=0 && this->_energy >= 50)
@@ -97,14 +105,6 @@ void Robot::set_key(unsigned char key)
                         this->_energy-=50;
                     }
                 break;
-                /*
-                  case '4':
-                  if(this->_ability_4<=0 && this->_energy == 100)
-                  {
-                  this->_ability_4=this->_ability_4_cooldown;
-                  this->_energy=0;
-                  }
-                  break;*/
             }
 
     else if(this->_player==PLAYER_2)
@@ -113,15 +113,14 @@ void Robot::set_key(unsigned char key)
 
                 /* ispitivanje i iskoriscavanje ability za player 2 */
             case '7':
-                if(this->_ability_1<=0)
-                    this->_ability_1=this->_ability_1_cooldown;
+                //if(this->_ability_1<=0)
+                    //this->_ability_1=this->_ability_1_cooldown;
+                _ability01->use();//_energy);
                 break;
             case '8':
-                if(this->_ability_2<=0 && this->_energy >= 20)
-                    {
-                        this->_ability_2=this->_ability_2_cooldown;
+                if(this->_energy >= 20)
+                    if(_ability02->use())
                         this->_energy-=20;
-                    }
                 break;
             case '9':
                 if(this->_ability_3<=0 && this->_energy >= 50)
@@ -129,14 +128,7 @@ void Robot::set_key(unsigned char key)
                         this->_ability_3=this->_ability_3_cooldown;
                         this->_energy-=50;
                     }
-                break;/*
-                        case '0':
-                        if(this->_ability_4<=0 && this->_energy == 100)
-                        {
-                        this->_ability_4=this->_ability_4_cooldown;
-                        this->_energy=0;
-                        }
-                        break;*/
+                break;
             }
 }
 
@@ -230,11 +222,12 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
     if(this->_energy > 100)
         this->_energy=100;
 
-    /* cooldown za abilitys, ako je iskoriscen */
+    //std::cout << _ability01->getTime() << std::endl;
+    /*
     if(this->_ability_1>0)
         this->_ability_1--;
     if(this->_ability_2>0)
-        this->_ability_2--;
+        this->_ability_2--;*/
     if(this->_ability_3>0)
         this->_ability_3--;
     if(this->_ability_4>0)
@@ -317,8 +310,48 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
 
     if(koef < 0.01)
         this->_ugao=ugao_old;
+
+
+    /* cooldown za abilitys, ako je iskoriscen */
+    _ability01->animation(_center,_ugao);
+    _ability02->animation(_center,_ugao);
+
+    kolizijaAbility(roboti,prepreke);
 }
 
+
+void Robot::kolizijaAbility(const vector<Robot*> &roboti, const vector<Prepreka*> &prepreke)
+{
+    for(Prepreka * item : prepreke)
+    {
+        _ability01->kolizija(*item);
+        _ability02->kolizija(*item);
+    }
+
+
+    for(Robot * item : roboti)
+    {
+        if(item!=this)
+        {
+            item->hit(_ability01->getDamage(),_ability01->kolizija(*item));
+            item->hit(_ability02->getDamage(),_ability02->kolizija(*item));
+        }
+        /*
+        {
+            std::cout << "test" << std::endl;
+            continue;
+        }*/
+    }
+}
+
+
+void Robot::hit(int damage,bool flag)
+{
+    if(flag==true)
+        _health-=damage;
+    if(_health<0)
+        _health=0;
+}
 
 
 /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
@@ -330,22 +363,19 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glutcpp::light(GL_OFF);
         glutcpp::screenDisplayBegin3D();
 
-        float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
+        //float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
+        float number=1.0-_ability01->getTime()/(float)_ability01->getCooldown();
         glutcpp::color(1,number,number,1);
         glutcpp::text(-0.9,-0.95,"1");
 
-        number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
+        //number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
+        number=1.0-_ability02->getTime()/(float)_ability02->getCooldown();
         glutcpp::color(1,number,number,1);
         glutcpp::text(-0.8,-0.95,"2");
 
         number=1.0-this->_ability_3/(float)this->_ability_3_cooldown;
         glutcpp::color(1,number,number,1);
         glutcpp::text(-0.7,-0.95,"3");
-
-        /*
-        number=1.0-this->_ability_4/(float)this->_ability_4_cooldown;
-        glutcpp::color(1,number,number,1);
-        glutcpp::text(-0.6,-0.95,"4");*/
 
         number=this->_health/100.0;
 
@@ -381,11 +411,13 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
         glutcpp::light(GL_OFF);
         glutcpp::screenDisplayBegin3D();
 
-        float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
+        float number=1.0-_ability01->getTime()/(float)_ability01->getCooldown();
+        //float number=1.0-this->_ability_1/(float)this->_ability_1_cooldown;
         glutcpp::color(1,number,number,1);
         glutcpp::text(0.6,-0.95,"7");
 
-        number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
+        number=1.0-_ability02->getTime()/(float)_ability02->getCooldown();
+        //number=1.0-this->_ability_2/(float)this->_ability_2_cooldown;
         glutcpp::color(1,number,number,1);
         glutcpp::text(0.7,-0.95,"8");
 

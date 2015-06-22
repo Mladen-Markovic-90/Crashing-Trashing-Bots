@@ -1,46 +1,46 @@
 #include "robot1_ability2.h"
+#include "provera.h"
 
-Robot1_ability2::Robot1_ability2()
+
+Robot1_ability2::Robot1_ability2()//int cooldown,int ticksPerSecond)
+    : Ability(100,20,0 , Tacka(20,0,0))
+{}
+
+
+void Robot1_ability2::draw()
 {
-
-}
-
-Robot1_ability2::~Robot1_ability2()
-{
-
-}
-
-Robot1_ability2::Draw()
-{
+    if(_time <= 0 || _exist==false)
+        return;
     //NOTE: tacka udarca -> this->tacka_raketa + Tacka(20,0,0);
     /* RANGE ABILITY */
     /* Raketa */
 
-    /* pozicija i ugao rakete */
+    /* pozicija i ugao rakete *//*
     float number=0;
-    if(this->_ability_2>0)
-        number=5*_ticksPerSecond-this->_ability_2;
-    else
+    if(_time>0)
+        number=5*_ticksPerSecond-_time;*/
+    /*else
     {
-        this->ugao_raketa=this->_ugao-90;
-        this->tacka_raketa_help=this->_center;
-    }
+        _ugao=_ugao_robota-90;
+        this->tacka_raketa_help=_centar_robota;
+    }*/
 
-    number*=10;
-    this->tacka_raketa=Tacka(20,0,0)+Tacka(1,0,0)*number;
+    //number*=10;
+    //this->tacka_raketa=Tacka(20,0,0)+Tacka(1,0,0)*number;
 
     glutcpp::push();
         /* postavljamo raketu na odredjeno mesto */
-        glutcpp::translate(this->tacka_raketa_help);
+        //glutcpp::translate(this->tacka_raketa_help);
         glutcpp::translate(0,5,0);
 
-        glutcpp::rotate(-this->ugao_raketa,0,1,0);
 
-        glutcpp::translate(tacka_raketa);
-        glutcpp::translate(Tacka(-20,0,0));
+        glutcpp::translate(_center);
+        //glutcpp::translate(Tacka(-20,0,0));
+
+        glutcpp::rotate(-_ugao,0,1,0);
 
         /* ako je number vece od 0, onda se raketa krece i izbacuje vatru */
-        if(number>0)
+        if(_time>0)
         {
             glutcpp::color(1,0.5,0,0.5);
             for(int i=0;i<25;i++)
@@ -64,16 +64,24 @@ Robot1_ability2::Draw()
 
     glutcpp::pop();
 
-    /*test*//*
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(provera::position(tacka_raketa,tacka_raketa_help,ugao_raketa));
-        glutcpp::cube(5);
-    glutcpp::pop();
+    testDraw();
 
-    glutcpp::push();
-        glutcpp::color(1,0,0,1);
-        glutcpp::translate(_center);
-        glutcpp::cube(5);
-    glutcpp::pop();*/
+}
+
+
+void Robot1_ability2::animation2(Tacka _centar_robota, float _ugao_robota)
+{
+    float number=0;
+    if(_time>0)
+        number=5*_ticksPerSecond-_time;
+    else
+    {
+        this->_ugao=_ugao_robota-90;
+        this->_center=_centar_robota;
+    }
+
+    number*=1.5;
+    //this->tacka_raketa=Tacka(20,0,0)+Tacka(1,0,0)*number;
+
+    this->_center=this->_center+provera::position(Tacka(20,0,0)+Tacka(1,0,0)*number,Tacka(0,0,0),_ugao);
 }

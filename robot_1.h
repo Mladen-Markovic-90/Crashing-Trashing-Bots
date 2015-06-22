@@ -47,11 +47,11 @@ private:
 
     /* MELEE ABILITY */
     /* Cekic */
-    void ability_1();
+    //void ability_1();
 
     /* RANGE ABILITY */
     /* Raketa */
-    void ability_2();
+    //void ability_2();
 
     /* DEFENSIVE ABILITY */
     /* Energetski Shield */
@@ -63,8 +63,8 @@ private:
     /* sluzi za rotaciju tockova */
     int ugao_rotacije_tocak=0;
 
-    Robot1_ability1 ability1();
-    Robot1_ability2 ability2();
+    //Robot1_ability1 ability1;
+    //Robot1_ability2 ability2;
 
 };
 
