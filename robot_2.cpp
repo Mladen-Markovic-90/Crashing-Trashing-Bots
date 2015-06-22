@@ -27,8 +27,7 @@
 
 /* Konstruktor za robotica 2 */
 Robot_2::Robot_2(float ticksPerSecond,int player, Tacka t)
-    : Robot(ticksPerSecond,player,t,Tacka(0,0,-15),0,
-            5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
+    : Robot(ticksPerSecond,player,t,Tacka(0,0,-15),0,5*ticksPerSecond,
             Tacka(-10,0,-15),Tacka(10,0,-15),Tacka(10,0,15),Tacka(-10,0,15),15)
 {
 
@@ -43,8 +42,6 @@ void Robot_2::draw()
     this->model();
     _ability01->draw();
     _ability02->draw();
-    //this->ability_1();
-    //this->ability_2();
     this->ability_3();
 }
 

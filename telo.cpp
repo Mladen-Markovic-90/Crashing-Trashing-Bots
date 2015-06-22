@@ -11,13 +11,8 @@ Telo::Telo(Tacka northWest, Tacka northEast, Tacka southEast, Tacka southWest,
     _povrsina+=provera::povrsina(northEast,southEast,Tacka(0,0,0));
     _povrsina+=provera::povrsina(southEast,southWest,Tacka(0,0,0));
     _povrsina+=provera::povrsina(southWest,northWest,Tacka(0,0,0));
-    //std::cout << "Povrsina je: " << _povrsina << std::endl;
 }
 
-Telo::~Telo()
-{
-
-}
 
 double Telo::povrsina(const Tacka &NW, const Tacka &NE,
                   const Tacka &SW, const Tacka &SE, const Tacka &spoljna)
@@ -28,7 +23,6 @@ double Telo::povrsina(const Tacka &NW, const Tacka &NE,
     P += provera::povrsina(SE, NE, spoljna);
     P += provera::povrsina(NE, NW, spoljna);
 
-    //    std::cout << P << std::endl;
     return P;
 }
 
@@ -121,16 +115,8 @@ void Telo::testDraw(int y)
         glutcpp::push();
             glutcpp::color(1,1,1,1);
             glutcpp::translate(provera::position(Tacka(0,0,0),_center,_ugao));
-            //glutcpp::translate(_center);
             glutcpp::cube(10);
         glutcpp::pop();
-
-        /*
-        glutcpp::push();
-            glutcpp::color(1,1,1,1);
-            glutcpp::translate(provera::position(_front,_center,_ugao));
-            glutcpp::cube(5);
-        glutcpp::pop();*/
 
     glutcpp::pop();
 }

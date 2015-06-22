@@ -35,9 +35,6 @@ public:
     /* Dekonstruktor */
     ~Robot_3(){}
 
-    /* Animacija i izracunavanje za robotic 3, izvrsava se u klasi timer */
-    //virtual void animation();
-
     /* Iscrtavanje robotica 3 */
     virtual void draw();
 
@@ -45,30 +42,15 @@ private:
     /* Model robotica 3 */
     void model();
 
-    /* MELEE ABILITY */
-    /* Nozici */
-    void ability_1();
-
-    /* RANGE ABILITY */
-    /* Kruzni Laser */
-    void ability_2();
-
     /* DEFENSIVE ABILITY */
     /* Fade Shield */
     void ability_3();
-
-    /* SPECIAL ABILITY */
-    /* Speed + Lava nozevi */
-    void ability_4();
 
     /* Rotacija robotica 3 oko svoje ose, za animaciju */
     int _ugao_rotacije;
 
     /* promenljive za abilitys */
-    float _radius_nozevi=0;
-    float _radius_laser=0;
     float _fade=1.0;
-    int _lava=false;
 };
 
 

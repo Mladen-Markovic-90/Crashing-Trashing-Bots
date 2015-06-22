@@ -8,7 +8,7 @@ class Telo
 public:
     Telo(Tacka northWest, Tacka northEast, Tacka southEast , Tacka southWest,
          float radius, Tacka center, float _ugao);
-    virtual ~Telo();
+    virtual ~Telo() {}
 
     double getPovrsina() const { return _povrsina; }
 
