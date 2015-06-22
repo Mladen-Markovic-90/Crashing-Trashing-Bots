@@ -1,6 +1,6 @@
 
-#include "telo.h"
-#include "prepreka.h"
+#include "../telo.h"
+#include "../prepreka.h"
 #include "ability.h"
 #include <vector>
 
