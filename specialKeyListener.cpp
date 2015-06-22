@@ -25,7 +25,7 @@
 void SpecialKeyListener::keyDown(int key, int x, int y) const
 {
     x=x;y=y;
-    if(status.modus==MODUS_TEST_MLADEN || status.modus==MODUS_ARENA)
+    if(status.modus==MODUS_ARENA)
         for(Robot * item : roboti)
         {
             if(item->getPlayer()==PLAYER_2)
@@ -79,7 +79,7 @@ void SpecialKeyListener::keyDown(int key, int x, int y) const
 void SpecialKeyListener::keyUp(int key, int x, int y) const
 {
     x=x;y=y;
-    if(status.modus==MODUS_TEST_MLADEN || status.modus==MODUS_ARENA)
+    if(status.modus==MODUS_ARENA)
         for(Robot * item : roboti)
             if(item->getPlayer()==PLAYER_2)
                 item->unset_key(key);

@@ -23,8 +23,8 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include "robot.h"
-#include "robot1_ability1.h"
-#include "robot1_ability2.h"
+#include "abilitys/robot1_ability1.h"
+#include "abilitys/robot1_ability2.h"
 
 /* klasa za robotic 1 */
 class Robot_1 : public Robot

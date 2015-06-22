@@ -3,11 +3,11 @@
 
 //TODO: cemu bese sluzi ova klasa?
 
-#include "glutcpp/tacka.h"
-#include "glutcpp/glutAnimationTimer.h"
-#include "prepreka.h"
+#include "../glutcpp/tacka.h"
+#include "../glutcpp/glutAnimationTimer.h"
+#include "../prepreka.h"
 #include <vector>
-#include "telo.h"
+#include "../telo.h"
 
 class Ability
 {

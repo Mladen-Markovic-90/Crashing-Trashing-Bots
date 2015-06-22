@@ -46,7 +46,6 @@ int main(int argc,char ** argv)
     /* status za moduse */
     animationStatus status;
     status.modus=MODUS_MENI;
-    //status.modus=MODUS_ARENA;
 
     /* vektor za sve robotice */
     std::vector<Robot *> roboti;

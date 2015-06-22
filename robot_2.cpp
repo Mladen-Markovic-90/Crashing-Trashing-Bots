@@ -20,11 +20,9 @@
 /* Ukljucivanje potrebnih zaglavlja */
 #include "delovi.h"
 #include <cmath>
-#include "robot2_ability1.h"
-#include "robot2_ability2.h"
-#include "ability.h"
-#include "robot1_ability1.h"
-#include "robot1_ability2.h"
+#include "abilitys/robot2_ability1.h"
+#include "abilitys/robot2_ability2.h"
+#include "abilitys/ability.h"
 
 
 /* Konstruktor za robotica 2 */

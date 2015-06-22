@@ -45,9 +45,7 @@ void Display::show(void)
     else if(status.modus==MODUS_START)
 	Display::start();
     else if(status.modus==MODUS_ARENA)
-	Display::arena();
-    else if(status.modus==MODUS_TEST_MLADEN)
-	Display::test_mladen();
+        Display::arena();
      glutcpp::swapBuffers();
 
 }
@@ -91,17 +89,17 @@ void Display::meni()
     glutcpp::modelView2D();
 
     glutLoadPicture::texture_display(Tacka(-1,-1,0),Tacka(1,-1,0),Tacka(1,1,0),Tacka(-1,1,0),PICTURE_MENI);
-    glutcpp::color(1,1,1,1);
+    glutcpp::color(0,0,0,1);
     glutcpp::text(((width-11*12)/width)-1.0,0.9,"CRASHING TRASHING BOTS");
 
     if(status.position==0)
         glutcpp::color(1,1,0,1);
     else
-        glutcpp::color(1,1,1,1);
+        glutcpp::color(0,0,0,1);
     glutcpp::text(((width-2*12)/width)-1.0,0.1,"PLAY");
 
     if(status.position==0)
-        glutcpp::color(1,1,1,1);
+        glutcpp::color(0,0,0,1);
     else
         glutcpp::color(1,1,0,1);
     glutcpp::text(((width-2*12)/width)-1.0,-0.1,"EXIT");
@@ -203,42 +201,6 @@ void Display::arena()
     if(status.paused==true)
 	Display::paused();
 }
-
-
-/* prikazuje sadrzaj testiranja mladen */
-void Display::test_mladen()
-{
-
-    glutcpp::lightPosition(0,0,0,1);
-    //this->ugao+=5;
-    //glutcpp::modelView3D(0,200,400);
-    //glutcpp::modelView3D(0,100,200);
-    glutcpp::modelView3D(0,0,300);
-
-    glutcpp::light(GL_ON);
-
-
-    glutcpp::rotate(90,1,0,0);
-    glutcpp::rotate(90,0,1,0);
-    glutcpp::rotate(this->camera_ugao,0,0.5,0);
-
-    glutcpp::grid(200, 5, 0, 1, 0);
-
-
-    for(Robot * item : roboti)
-        item->draw();
-
-    int width=glutReshapeListenerInit::getReshapeListener()->getWindowWidth();
-    int height=glutReshapeListenerInit::getReshapeListener()->getWindowHeight();
-
-    for(Robot * item : roboti)
-        item->display3D(45,width,height,1,1000);
-
-    if(status.paused==true)
-            Display::paused();
-}
-
-
 
 
 /* funkcija za namestanje kamere */

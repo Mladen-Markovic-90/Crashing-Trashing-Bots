@@ -29,7 +29,7 @@ void reshapeListener::reshape(int width, int height)
     windowHeight=height;
     if(status.modus==MODUS_MENI)
         glutcpp::projection2D(width,height);
-    else if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN || status.modus==MODUS_START)
+    else if(status.modus==MODUS_ARENA || status.modus==MODUS_START)
         glutcpp::projection3D(width,height,45,1,1000);
 }
 

@@ -24,7 +24,7 @@
 /* Ukljucivanje potrebnih zaglavlja */
 #include "global.h"
 #include "robot.h"
-#include "ability.h"
+#include "abilitys/ability.h"
 #include <cmath>
 #include <vector>
 #include "telo.h"

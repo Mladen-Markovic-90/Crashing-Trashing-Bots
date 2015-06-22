@@ -24,9 +24,9 @@
 #include "glutcpp/glutcpp.h"
 #include <cmath>
 #include <iostream>
-#include "ability.h"
-#include "robot1_ability1.h"
-#include "robot1_ability2.h"
+#include "abilitys/ability.h"
+#include "abilitys/robot1_ability1.h"
+#include "abilitys/robot1_ability2.h"
 
 
 /* Konstruktor za robotica 3 */

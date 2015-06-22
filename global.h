@@ -37,11 +37,6 @@
 #define MODUS_MENI 0
 #define MODUS_START 1
 #define MODUS_ARENA 2
-#define MODUS_3 3
-#define MODUS_4 4
-#define MODUS_5 5
-#define MODUS_6 6
-#define MODUS_TEST_MLADEN 7
 
 
 /* ID za slike */

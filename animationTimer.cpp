@@ -28,19 +28,9 @@ void animationTimer::timer(int id) const
 
     /* pokrecemo animaciju za svakog robota */
     if(status.paused==false)
-        if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN) {
+        if(status.modus==MODUS_ARENA)
 	    for(Robot * item : roboti)
                 item->animation(roboti, prepreke);
-
-	    // for(Robot *it1 : roboti) {
-	    // 	for (Robot *it2 : roboti) {
-	    // 	    // if (it1->kolizija(*it2))
-	    // 	    // 	std::cout << "kolizija" << std::endl;
-	    // 	    // else
-	    // 	    // 	std::cout << "nije kolizija" << std::endl;
-	    // 	}
-	    // }
-	}
 
     glutcpp::reDisplay();
 }

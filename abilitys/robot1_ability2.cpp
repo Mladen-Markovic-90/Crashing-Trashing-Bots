@@ -1,5 +1,5 @@
 #include "robot1_ability2.h"
-#include "provera.h"
+#include "../provera.h"
 
 
 Robot1_ability2::Robot1_ability2()//int cooldown,int ticksPerSecond)

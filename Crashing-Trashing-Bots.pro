@@ -41,11 +41,11 @@ HEADERS += glutcpp\glutcpp.h \
     glutcpp\glutLoadPicture.h \
     telo.h \
     prepreka.h \
-    robot1_ability1.h \
-    robot1_ability2.h \
-    robot2_ability1.h \
-    robot2_ability2.h \
-    ability.h
+    abilitys\robot1_ability1.h \
+    abilitys\robot1_ability2.h \
+    abilitys\robot2_ability1.h \
+    abilitys\robot2_ability2.h \
+    abilitys\ability.h
 
 include(deployment.pri)
 qtcAddDeployment()

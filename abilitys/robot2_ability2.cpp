@@ -1,5 +1,5 @@
 #include "robot2_ability2.h"
-#include "provera.h"
+#include "../provera.h"
 
 Robot2_ability2::Robot2_ability2()
     : Ability(100,20,0 , Tacka(15,0,0))

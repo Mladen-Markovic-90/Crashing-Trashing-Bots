@@ -29,7 +29,7 @@
 #include <cmath>
 #include <vector>
 #include "glutcpp/glutAnimationTimer.h"
-#include "ability.h"
+#include "abilitys/ability.h"
 
 
 using namespace std;

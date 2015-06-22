@@ -32,7 +32,7 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
     if(normalKey==27 || normalKey==' ')
         if(status.paused==false)
             status.paused=true;
-    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
+    if(status.modus==MODUS_ARENA)
     {
         if(status.paused==false)
             for(Robot * item : roboti)
@@ -96,7 +96,7 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
                 break;
         }
 
-    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
+    if(status.modus==MODUS_ARENA)
         if(status.paused==true)
             switch(normalKey)
             {
@@ -124,7 +124,7 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
 void normalKeyListener::keyUp(unsigned char normalKey, int x, int y) const
 {
     x=x;y=y;
-    if(status.modus==MODUS_ARENA || status.modus==MODUS_TEST_MLADEN)
+    if(status.modus==MODUS_ARENA)
     {
         for(Robot * item : roboti)
             if(item->getPlayer()!=PLAYER_NONE)
