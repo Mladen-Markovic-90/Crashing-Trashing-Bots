@@ -45,16 +45,16 @@ public:
     /* pokretanje glut osluskivac za poziciju misa */
     static void run(glutMotionListener * ml)
     {
+        /* brisemo stari motion listener, da ne bi bilo curenje memorije */
         delete motionListener;
+
+        /* upisemo novi motion listener i pokrecemo ga */
         motionListener=ml;
         glutMotionFunc(onMotion);
     }
 
     /* ukoliko je potrebno, moze da se uzme pokazivac na motionListener */
-    static glutMotionListener * getMotionListener()
-    {
-        return motionListener;
-    }
+    static glutMotionListener * getMotionListener() {return motionListener;}
 
 private:
     /* promenljiva koja cuva osluskivac za poziciju misa */
@@ -65,10 +65,7 @@ private:
     ~glutMotionListenerInit(){}
 
     /* glut input funkcija za citanje pozicije misa */
-    static void onMotion(int x,int y)
-    {
-        motionListener->motion(x,y);
-    }
+    static void onMotion(int x,int y) {motionListener->motion(x,y);}
 };
 /* inicijalizacija statickog pokazivaca na null */
 glutMotionListener * glutMotionListenerInit::motionListener=nullptr;

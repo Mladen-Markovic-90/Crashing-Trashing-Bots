@@ -34,8 +34,7 @@ public:
     virtual ~glutReshapeListener(){}
 
     /* Obrada prikaza za prozor u zavisnosti od modusa */
-    virtual void reshape(int width,int height)
-    {width=width;height=height;}
+    virtual void reshape(int width,int height) {width=width;height=height;}
 
     /* pozivanje obrade ponovo */
     virtual void reshape(){}
@@ -53,16 +52,16 @@ public:
     /* pokretanje glut osluskivac za  promenu velicine prozora */
     static void run(glutReshapeListener * rl)
     {
+        /* brisemo stari reshape listener, da ne bi bilo curenje memorije */
         delete reshapeListener;
+
+        /* upisemo novi reshape listener i pokrecemo ga */
         reshapeListener=rl;
         glutReshapeFunc(onReshape);
     }
 
     /* ukoliko je potrebno, moze da se uzme pokazivac na motionListener */
-    static glutReshapeListener * getReshapeListener()
-    {
-        return reshapeListener;
-    }
+    static glutReshapeListener * getReshapeListener() {return reshapeListener;}
 
 private:
     /* konstruktor i destruktor */
@@ -70,10 +69,7 @@ private:
     ~glutReshapeListenerInit(){}
 
     /* glut input funkcija za podesavanje prozora */
-    static void onReshape(int width,int height)
-    {
-        reshapeListener->reshape(width,height);
-    }
+    static void onReshape(int width,int height) {reshapeListener->reshape(width,height);}
 
     /* promenljiva koja cuva osluskivac za promenu velicine prozora */
     static glutReshapeListener * reshapeListener;

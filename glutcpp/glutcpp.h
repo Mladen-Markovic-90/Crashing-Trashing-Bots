@@ -23,8 +23,8 @@
 
 /* ukljucujemo potrebna zaglavlja */
 #include <GL/freeglut.h>
-#include <iostream>
 #include "tacka.h"
+#include <iostream>
 
 
 /* konstante za ukljuceno/iskljuceno */
@@ -57,6 +57,7 @@ public:
     /* pozicija svetla */
     static void lightPosition(float x, float y, float z, float w);
 
+    /* sirina linije */
     static void lineWidth(double width);
 
     /* sluzi za rad u 3D */

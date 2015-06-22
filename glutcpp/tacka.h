@@ -25,7 +25,6 @@
 class Tacka
 {
 public:
-
     /* Konstruktori */
     Tacka();
     Tacka(const float & x,const float & y,const float & z);
@@ -46,10 +45,13 @@ public:
     /* Sabiranje Tacke sa Tackom */
     void add(Tacka t);
 
-    /* norma vektora polozaja, odnosno rastojanje tacke  od koord. pocetka */
+    /* norma vektora */
     float norm();
+
+    /* rastojanje dve tacke */
     float distance(Tacka &t2);
 
+    /* Vektor od 2 tacke */
     Tacka vek(Tacka t);
     
     /* operatori dodela operacija za Tacku */
@@ -68,10 +70,11 @@ private:
 
 //ostali operatori ne moraju biti friendovi jer imamo sve getere
 
-
 /* operatori za rad sa 2 tacke */
 Tacka operator+ (Tacka t1, Tacka t2);
 Tacka operator- (Tacka t1, Tacka t2);
+
+/* operatori za rad sa tackom i konstantom */
 Tacka operator* (Tacka t1, float k);
 Tacka operator/ (Tacka t1, float k);
 

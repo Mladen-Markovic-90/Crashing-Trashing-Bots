@@ -34,12 +34,10 @@ public:
     virtual ~glutSpecialKeyListener(){}
 
     /* radnja za stisnute specijalne karatere */
-    virtual void keyDown(int key,int x,int y) const
-    {key=key;x=x;y=y;}
+    virtual void keyDown(int key,int x,int y) const {key=key;x=x;y=y;}
 
     /* radnja za otpustene specijalne karaktere */
-    virtual void keyUp(int key,int x,int y) const
-    {key=key;x=x;y=y;}
+    virtual void keyUp(int key,int x,int y) const {key=key;x=x;y=y;}
 };
 
 
@@ -50,7 +48,10 @@ public:
     /* pokretanje glut osluskivac za specijalne karaktere */
     static void run(glutSpecialKeyListener * skl)
     {
+        /* brisemo stari special key listener, da ne bi bilo curenje memorije */
         delete specialKeyListener;
+
+        /* upisemo novi special key listener i pokrecemo ga */
         specialKeyListener=skl;
         glutSpecialFunc(keyDown);
         glutSpecialUpFunc(keyUp);
@@ -62,16 +63,10 @@ private:
     ~glutSpecialKeyListenerInit(){}
 
     /* glut input funkcija za citanje specijalnih stisnutih karaktera sa tastature */
-    static void keyDown(int key, int x, int y)
-    {
-        specialKeyListener->keyDown(key,x,y);
-    }
+    static void keyDown(int key, int x, int y) {specialKeyListener->keyDown(key,x,y);}
 
     /* glut input funkcija za citanje specijalnih otpustenih karaktera sa tastature */
-    static void keyUp(int key, int x, int y)
-    {
-        specialKeyListener->keyUp(key,x,y);
-    }
+    static void keyUp(int key, int x, int y) {specialKeyListener->keyUp(key,x,y);}
 
     /* promenljiva koja cuva osluskivac za specijalne karakter */
     static glutSpecialKeyListener * specialKeyListener;
