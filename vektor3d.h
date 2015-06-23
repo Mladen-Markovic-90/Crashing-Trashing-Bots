@@ -12,6 +12,8 @@ public:
     /*Konstruise vektor AB od tacaka A i B*/
     static Tacka vektor(Tacka A, Tacka B);
 
+    static Tacka rotate2D(Tacka v, float ugao);
+    
     /*Duzina vektora*/
     static double duzina(Tacka vektor);
     /*Duzina vektora AB*/
@@ -41,6 +43,8 @@ public:
     static Tacka normala(Tacka vektor1, Tacka vektor2);
 
     static Tacka normala(Tacka A, Tacka B, Tacka C, Tacka D);
+
+    static double cos_fi(Tacka vektor1, Tacka vektor2);
 };
 
 

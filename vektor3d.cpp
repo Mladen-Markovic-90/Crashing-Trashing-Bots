@@ -55,8 +55,25 @@ double Vektor3D::skalarniProizvod(Tacka A, Tacka B, Tacka C, Tacka D)
 double Vektor3D::ugao (Tacka vektor1, Tacka vektor2)
 {
     //TODO: zero vectors
+    float d1=duzina(vektor1);
+    float d2=duzina(vektor2);
+
+    if(d1==0 || d2==0)
+        return 0;
 
     return acos((skalarniProizvod(vektor1, vektor2))/(duzina(vektor1)*duzina(vektor2)));
+}
+
+double Vektor3D::cos_fi(Tacka vektor1, Tacka vektor2)
+{
+    //TODO: zero vectors
+    float d1=duzina(vektor1);
+    float d2=duzina(vektor2);
+
+    if(d1==0 || d2==0)
+        return 0;
+
+    return (skalarniProizvod(vektor1, vektor2))/(duzina(vektor1)*duzina(vektor2));
 }
 
 /*Ugao izmedju vektora AB i CD*/
@@ -91,4 +108,12 @@ Tacka Vektor3D::normala(Tacka vektor1, Tacka vektor2)
 Tacka Vektor3D::normala(Tacka A, Tacka B, Tacka C, Tacka D)
 {
     return Vektor3D::vektorskiProizvod(A, B, C, D);
+}
+
+Tacka Vektor3D::rotate2D(Tacka v, float ugao) {
+    float x = v.get_x();
+    float y = v.get_y();
+    float z = v.get_z();
+    
+    return Tacka(x * cos(ugao) - z * sin(ugao), y , x * sin(ugao) + z * cos(ugao));
 }
