@@ -29,7 +29,7 @@
 #include "abilitys/robot3_ability2.h"
 #include "robot.h"
 #include "robot_3.h"
-
+#include "vektor3d.h"
 
 /* Konstruktor za robotica 3 */
 Robot_3::Robot_3(float ticksPerSecond, int player, Tacka t)
@@ -256,23 +256,25 @@ void Robot_3::ability_3()
 }
 
 
-/* SPECIAL ABILITY */
-/* Speed + Lava nozevi */
-void Robot_3::ability_4()
-{
-    /* ako je aktiviran ability 4 */
-    if(this->_ability_4 > 0)
-    {
-        /* povecavamo brzinu i postavljamo nozeve na lava (crvenu boju) */
-        this->_speed=200/_ticksPerSecond;
-        this->_lava=true;
-
-        /* postavljamo ability 1 na odredjen broj, jer ability 4 koristi ability 1 samo pojacan */
-        this->_ability_1=4*_ticksPerSecond;
-    }
-    else
-    {
-        this->_speed=100/_ticksPerSecond;
-        this->_lava=false;
-    }
-}
+// /* SPECIAL ABILITY */
+// /* Speed + Lava nozevi */
+// void Robot_3::ability_4()
+// {
+//     /* ako je aktiviran ability 4 */
+//     if(this->_ability_4 > 0)
+//     {
+//         /* povecavamo brzinu i postavljamo nozeve na lava (crvenu boju) */
+//         _speed= 200 * Vektor3D::rotate2D(Tacka(1/_ticksPerSecond, 0, 0), _ugao);
+	
+//         this->_lava=true;
+	
+//         /* postavljamo ability 1 na odredjen broj, jer ability 4 koristi ability 1 samo pojacan */
+//         this->_ability_1=4*_ticksPerSecond;
+//     }
+//     else
+//     {
+//         _speed= 100 * Vektor3D::rotate2D(Tacka(1/_ticksPerSecond, 0, 0), _ugao);
+// 	//        this->_speed=100/_ticksPerSecond;
+//         this->_lava=false;
+//     }
+// }

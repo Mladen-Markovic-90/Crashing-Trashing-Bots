@@ -59,7 +59,7 @@ private:
 
     /* SPECIAL ABILITY */
     /* Speed + Lava nozevi */
-    void ability_4();
+    //    void ability_4();
 
     /* Rotacija robotica 3 oko svoje ose, za animaciju */
     int _ugao_rotacije;
