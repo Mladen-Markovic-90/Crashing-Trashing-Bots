@@ -30,7 +30,7 @@
 #include <vector>
 #include "glutcpp/glutAnimationTimer.h"
 #include "abilitys/ability.h"
-
+#include "glutcpp/tacka.h"
 
 using namespace std;
 /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
@@ -47,12 +47,12 @@ Robot::Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao
     _ability_4_cooldown=cooldown4;
     _ticksPerSecond=ticksPerSecond;
 
-    _speed = 0;
-    _acceleration = 0;
+    _speed = Tacka(0,0,0);
+    //_acceleration = 0;
     _mass = 50; // privremeno
-    _force = 0;
+    _force = Tacka(0,0,0);
     _friction = 0;
-
+    
 }
 
 
@@ -217,6 +217,7 @@ void Robot::unset_key(int key)
 /* Animacija i izracunavanje za robot, izvrsava se u klasi animationTimer */
 void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &prepreke)
 {
+
     /* regeneracija energy */
     this->_energy+=5.0/_ticksPerSecond;
     if(this->_energy > 100)
@@ -235,54 +236,58 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
 
     float ugao_old=this->_ugao;
     /* skretanja */
-    if( (this->_left_right==KEY_LEFT && this->_speed > 0)
-        || (this->_left_right==KEY_RIGHT && this->_speed < 0) )
-        this->_ugao-=abs(_speed);
-    else if( (this->_left_right==KEY_RIGHT && this->_speed > 0)
-	     || (this->_left_right==KEY_LEFT && this->_speed < 0) )
-        this->_ugao+=abs(_speed);
-    
+
+    Tacka unapred = provera::position(_front, _center, _ugao) - _center;
+    double cosugla = Vektor3D::cos_fi(unapred, _speed);
+
+    if((_left_right==KEY_LEFT && cosugla > 0) ||
+       (_left_right==KEY_RIGHT && cosugla <= 0)) {
+	this->_ugao-=getSpeed();
+	_speed = Vektor3D::rotate2D(_speed, -getSpeed() * M_PI / 180);
+    }
+    else if((_left_right==KEY_RIGHT && cosugla > 0) ||
+	    (_left_right==KEY_LEFT && cosugla <= 0)) {
+
+	this->_ugao+=getSpeed();
+	_speed = Vektor3D::rotate2D(_speed, getSpeed() * M_PI / 180);
+    }
+    std::cout << _center.get_x() <<" "<< _center.get_y() <<" "<< _center.get_z() << endl;
+    std::cout << _front.get_x() <<" "<< _front.get_y() <<" "<< _front.get_z() << endl;
     /* azuriramo centar tako da bude tacan u svakom trenutku bez zavisnosti od gluta */
     Tacka pomeraj(0,0,0);
     double koef = 1.0;
 
     switch (this->_up_down) {
+	//pogon
     case KEY_UP:
-	_force = 30;
+	_force = 30 * Vektor3D::rotate2D(Tacka(0,0,-1), _ugao * M_PI / 180);
 	break;
     case KEY_DOWN:
-	_force = -30;
+	_force = -30 * Vektor3D::rotate2D(Tacka(0,0,-1), _ugao * M_PI / 180);
 	break;
     case KEY_NONE:
-	_force = 0;
+	_force = Tacka(0,0,0);
 	break;
     }
 
-    _acceleration = _force / _mass;
+    //_acceleration = _force / _mass;
     
-    if ( (_speed > 0.5 || _speed < -0.5)) {
-	_speed += -(_speed / fabs(_speed)) * 0.3;
-	
+    if ( (getSpeed() > 0.5 || getSpeed() < -0.5)) {
+	_speed -= (vgetSpeed() / fabs(vgetSpeed().norm())) * 0.4;
     }
-
+    
     //ogranicenje brzine
     // TODO: OVO NE TREBA DA BUDU MAGICNE KONSTANTE
-    if ((_speed < 10  || (_speed >= 10 && _acceleration < 0)) &&
-	(_speed > -5 || (_speed <= 5 && _acceleration > 0))) {
-	if ( (_acceleration > 0 ? 1:0) != (_speed > 0 ? 1:0))
-	    _speed += 2 * _acceleration; //intenzitet kocenja
-	else
-	    _speed += _acceleration;
-
+    if (getSpeed() < 10) {
+	    _speed += (vgetForce() / _mass);
     }
     //cout << "aasoduduf " << _speed << endl;
-    if (_speed >= -0.5 && _speed <= 0.5 && _force == 0) {
-	_acceleration = 0;
-	_speed = 0;
+    if (getSpeed() >= -0.5 && getSpeed() <= 0.5 && getForce() == 0) {
+	_speed = Tacka(0,0,0);
     }
     
-    pomeraj = Tacka(this->_speed*std::sin(this->_ugao/180*M_PI),0,-this->_speed*std::cos(this->_ugao/180*M_PI));
-
+    //    pomeraj = Tacka(this->_speed*std::sin(this->_ugao/180*M_PI),0,-this->_speed*std::cos(this->_ugao/180*M_PI));
+    pomeraj = _speed;  //?
     for (Robot *it : roboti) {
         if (it == this)
             continue;
@@ -290,10 +295,14 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
 
 	//  kolizija
         if ((n_koef = pretraga(*it, pomeraj, 0.0, 1.0, 0)) < koef) {
-	    
             koef = n_koef;
-	    _speed = 0;
-	    _acceleration = 0;// za sad
+
+	    it->impulse((_speed+it->_speed) * _mass);
+
+	    this->impulse(it->_mass * ( _speed + it->_speed));
+	    
+	    _speed = Tacka(0,0,0);
+	    //_acceleration = 0;// za sad
 	}
     }
 
@@ -301,8 +310,8 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
         double n_koef;
         if ((n_koef = pretraga(*it, pomeraj, 0.0, 1.0, 0)) < koef) {
             koef = n_koef;
-            _speed = 0;
-            _acceleration = 0;// za sad
+            _speed = Tacka(0,0,0);
+	    //_acceleration = 0;// za sad
         }
     }
 
@@ -357,6 +366,7 @@ void Robot::hit(int damage,bool flag)
 /* Iscrtavanje podataka na povrsinu prozora, izvrsava se u klasi display */
 void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
 {
+
     /* crtanje display status za player 1 */
     if(this->_player==PLAYER_1)
     {
@@ -402,6 +412,7 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
             glutcpp::linija(Tacka(-0.9+0.05*i,0.8,0),Tacka(-0.9+0.05*i,0.82,0));
 
         glutcpp::screenDisplayEnd3D(ugao,width,height,arg1,arg2);
+
         glutcpp::light(GL_ON);
     }
 
@@ -459,3 +470,13 @@ void Robot::display3D(int ugao,int width,int height,int arg1,int arg2)
     }
 }
 
+void Robot::impulse (const Tacka &i)
+{
+    _speed += i / _mass;
+    _force += i / _mass;
+}
+
+// void Robot::angularImpulse()
+// {
+    
+// }

@@ -29,6 +29,7 @@
 #include <vector>
 #include "telo.h"
 #include "prepreka.h"
+#include "glutcpp/tacka.h"
 
 /* Definicije konstanti za dugmad */
 #define KEY_NONE 0
@@ -59,6 +60,7 @@ public:
     /* Funkcija za postavljanje flags za obicne karaktere, izvrsava se u klasi keys */
     void set_key(unsigned char key);
 
+    void impulse (const Tacka &i);
     /* Funkcija za skidanje flags za obicne karaktere, izvrsava se u klasi keys */
     void unset_key(unsigned char key);
 
@@ -82,6 +84,14 @@ public:
     /* Getter za player vezan za robotica */
     int getPlayer() const { return _player; }
 
+    /* geteri za brzinu i silu */
+    Tacka vgetSpeed() const { return _speed; }
+    float getSpeed() const { return _speed.norm(); }
+    Tacka vgetForce() const { return _force; }
+    float getForce() const { return _force.norm(); }
+
+    float getMass() const {return _mass; }
+    
     void kolizijaAbility(const vector<Robot*> &roboti, const vector<Prepreka*> &prepreke);
 
 protected:
@@ -99,11 +109,11 @@ protected:
     Tacka _front;
 
     /* Privremena promenljiva za brzinu */
-    float _speed;
-    float _acceleration;
-    float _force;
+    Tacka _speed;
+    //float _acceleration;
+    Tacka _force;
     float _mass;
-    float _friction;
+    float _friction; // ovo je glupost
 
     Ability * _ability01;
     Ability * _ability02;
@@ -124,6 +134,8 @@ protected:
     /* promenljive za energy/health */
     float _energy=100;
     float _health=100;
+
+    
 };
 
 
