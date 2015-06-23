@@ -45,7 +45,7 @@ Robot::Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao
 
     _speed = Tacka(0,0,0);
     //_acceleration = 0;
-    _mass = 50; // privremeno
+    //_mass = 50; // privremeno
     _force = Tacka(0,0,0);
     _friction = 0;
 

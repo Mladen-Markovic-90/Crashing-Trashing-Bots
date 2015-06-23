@@ -30,8 +30,9 @@ Robot_2::Robot_2(float ticksPerSecond,int player, Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,-15),0,5*ticksPerSecond,
             Tacka(-10,0,-15),Tacka(10,0,-15),Tacka(10,0,15),Tacka(-10,0,15),15,150)
 {
-    _ability01=new Robot2_ability1();//100,20);//5*ticksPerSecond,ticksPerSecond);
-    _ability02=new Robot2_ability2();//100,20);//5*ticksPerSecond,ticksPerSecond);
+    _ability01=new Robot2_ability1(5*ticksPerSecond,ticksPerSecond);
+    _ability02=new Robot2_ability2(5*ticksPerSecond,ticksPerSecond);
+    _mass=55;
 }
 
 

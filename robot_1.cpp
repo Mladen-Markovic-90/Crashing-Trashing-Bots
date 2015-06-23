@@ -33,8 +33,9 @@ Robot_1::Robot_1(float ticksPerSecond,int player,Tacka t)
     : Robot(ticksPerSecond,player,t,Tacka(0,0,-20),0,5*ticksPerSecond,
             Tacka(-15,0,-20),Tacka(15,0,-20),Tacka(15,0,20),Tacka(-15,0,20),20,200)
 {
-    _ability01=new Robot1_ability1();
-    _ability02=new Robot1_ability2();
+    _ability01=new Robot1_ability1(5*ticksPerSecond,ticksPerSecond);
+    _ability02=new Robot1_ability2(5*ticksPerSecond,ticksPerSecond);
+    _mass=60;
 }
 
 /* Iscrtavanje robotica 1 */
