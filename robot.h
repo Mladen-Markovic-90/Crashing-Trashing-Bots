@@ -50,9 +50,8 @@ class Robot : public Telo
 {
 public:
     /* Konstruktor za Robot koji prima argument, za koji igrac se vezuje i gde se nalazi inicijalno u prostoru */
-    Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao,
-          int cooldown1,int cooldown2,int cooldown3,int cooldown4,
-          Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius);
+    Robot(float ticksPerSecond,int player,Tacka centar,Tacka front,float ugao,int cooldown3,
+          Tacka northWest,Tacka northEast,Tacka southEast ,Tacka southWest, float radius,float health);
 
     /* Dekonstruktor */
     ~Robot();
@@ -94,6 +93,7 @@ public:
     
     void kolizijaAbility(const vector<Robot*> &roboti, const vector<Prepreka*> &prepreke);
 
+    int getHealth();
 protected:
     /* Flagovi za pravce koji su stisnuti */
     unsigned char _up_down=KEY_NONE;
@@ -117,7 +117,6 @@ protected:
 
     Ability * _ability01;
     Ability * _ability02;
-    //Ability test=Ability(5,100,5,Tacka(0,0,0));
 
     /* Promenljive/Flag za stanje abilitys */
     int _ability_1=0;
@@ -126,16 +125,16 @@ protected:
     int _ability_4=0;
 
     /* Promenljive koje oznacavaju cooldown od abilitys */
-    int _ability_1_cooldown;
-    int _ability_2_cooldown;
     int _ability_3_cooldown;
-    int _ability_4_cooldown;
 
     /* promenljive za energy/health */
     float _energy=100;
     float _health=100;
 
-    
+    float _max_health=100;
+
+    /* promenljiva koja oznacava da li se smanjuje dmg */
+    float _reduction=0;
 };
 
 

@@ -3,7 +3,7 @@
 
 Robot2_ability2::Robot2_ability2()
     : Ability(100,20,-1 , Tacka(15,0,0))
-{}
+{_damage=20;}
 
 
 void Robot2_ability2::draw()

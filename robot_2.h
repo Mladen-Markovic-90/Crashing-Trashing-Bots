@@ -45,23 +45,12 @@ private:
     /* Model robotica 2 */
     void model();
 
-    /* MELEE ABILITY */
-    /* Kolac */
-    //void ability_1();
-
-    /* RANGE ABILITY */
-    /* Laser */
-    //void ability_2();
-
     /* DEFENSIVE ABILITY */
     /* Energetski Shield */
     void ability_3();
 
     /* sluzi za rotaciju tockova */
     int ugao_tocak=0;
-
-    Robot2_ability1 ability1;
-    Robot2_ability2 ability2;
 };
 
 

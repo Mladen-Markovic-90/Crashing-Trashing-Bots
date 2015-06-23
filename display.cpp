@@ -66,14 +66,17 @@ void Display::paused()
         glutcpp::color(1,1,0,1);
     }
 
-    glutcpp::text(((width-2*12)/(float)width)-1.0,-0.1,"EXIT");
+    if(status.finished==false)
+        glutcpp::text(((width-2*12)/(float)width)-1.0,-0.1,"EXIT");
+    else
+        glutcpp::text(((width-2*12)/(float)width)-1.0,0,"EXIT");
     
     glutcpp::color(1.0,1.0,1.0,1.0);
     if(status.position==0) {
         glutcpp::color(1.0,1.0,0.0,1.0);
     }
-
-    glutcpp::text(((width-4*12)/(float)width)-1.0,0.1,"CONTINUE");
+    if(status.finished==false)
+        glutcpp::text(((width-4*12)/(float)width)-1.0,0.1,"CONTINUE");
 
     glutcpp::screenDisplayEnd3D(45,width,height,1,1000);
 
@@ -198,7 +201,7 @@ void Display::arena()
     for(Robot * item : roboti)
         item->display3D(45,width,height,1,1000);
 
-    if(status.paused==true)
+    if(status.paused==true || status.finished==true)
 	Display::paused();
 }
 

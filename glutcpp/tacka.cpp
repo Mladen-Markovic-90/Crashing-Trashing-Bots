@@ -19,6 +19,7 @@
 
 /* Ukljucivanje potrebnih zaglavlja */
 #include <cmath>
+#include "tacka.h"
 
 
 /* Konstruktor bez argumenata */
@@ -35,45 +36,27 @@ Tacka::Tacka(const float & x,const float & y,const float & z)
 
 
 /* Getter za koordinatu x */
-float Tacka::get_x() const
-{
-    return this->_x;
-}
+float Tacka::get_x() const {return this->_x;}
 
 
 /* Getter za koordinatu y */
-float Tacka::get_y() const
-{
-    return this->_y;
-}
+float Tacka::get_y() const {return this->_y;}
 
 
 /* Getter za koordinatu z */
-float Tacka::get_z() const
-{
-    return this->_z;
-}
+float Tacka::get_z() const {return this->_z;}
 
 
 /* Setter za koordinatu x */
-void Tacka::set_x(const float x)
-{
-    this->_x=x;
-}
+void Tacka::set_x(const float x) {this->_x=x;}
 
 
 /* Setter za koordinatu y */
-void Tacka::set_y(const float y)
-{
-    this->_y=y;
-}
+void Tacka::set_y(const float y) {this->_y=y;}
 
 
 /* Setter za koordinatu z */
-void Tacka::set_z(const float z)
-{
-    this->_z=z;
-}
+void Tacka::set_z(const float z) {this->_z=z;}
 
 
 /* Sabiranje Tacke sa koordinatama */
@@ -107,12 +90,11 @@ float Tacka::distance(Tacka &t2)
     float dx = this->get_x() - t2.get_x();
     float dy = this->get_y() - t2.get_y();
     float dz = this->get_z() - t2.get_z();
-
     return sqrt(dx * dx + dy * dy + dz * dz);
 }
 
 
-/* ??? */
+/* Vektor od 2 tacke */
 Tacka Tacka::vek(Tacka t)
 {
     Tacka tmp=Tacka(0,0,0);
@@ -128,8 +110,7 @@ Tacka& Tacka::operator+= (const Tacka& t2)
 {
     this->set_x(this->get_x() + t2.get_x());
     this->set_y(this->get_y() + t2.get_y());
-    this->set_z(this->get_z() + t2.get_z());    
-
+    this->set_z(this->get_z() + t2.get_z());
     return *this;
 }
 
@@ -139,8 +120,7 @@ Tacka& Tacka::operator-= (const Tacka& t2)
 {
     this->set_x(this->get_x() - t2.get_x());
     this->set_y(this->get_y() - t2.get_y());
-    this->set_z(this->get_z() - t2.get_z());    
-
+    this->set_z(this->get_z() - t2.get_z());
     return *this;
 }
 
@@ -150,8 +130,7 @@ Tacka& Tacka::operator*= (float k)
 {
     this->set_x(this->get_x() * k);
     this->set_y(this->get_y() * k);
-    this->set_z(this->get_z() * k);    
-
+    this->set_z(this->get_z() * k);
     return *this;
 }
 
@@ -161,8 +140,7 @@ Tacka& Tacka::operator/= (float k)
 {
     this->set_x(this->get_x() / k);
     this->set_y(this->get_y() / k);
-    this->set_z(this->get_z() / k);    
-
+    this->set_z(this->get_z() / k);
     return *this;
 }
 
@@ -179,8 +157,10 @@ bool Tacka::operator== (const Tacka& t2)
     return true;
 }
 
+
 /* operacije s tackama */
 // tehnicki nisu deo klase
+
 
 /* Sabiranje  tacaka */
 Tacka operator+ (Tacka t1, Tacka t2)
@@ -189,7 +169,6 @@ Tacka operator+ (Tacka t1, Tacka t2)
     rez.set_x(t1.get_x() + t2.get_x());
     rez.set_y(t1.get_y() + t2.get_y());
     rez.set_z(t1.get_z() + t2.get_z());
-
     return rez;
 }
 
@@ -201,7 +180,6 @@ Tacka operator- (Tacka t1, Tacka t2)
     rez.set_x(t1.get_x() - t2.get_x());
     rez.set_y(t1.get_y() - t2.get_y());
     rez.set_z(t1.get_z() - t2.get_z());
-
     return rez;
 }
 
@@ -213,7 +191,6 @@ Tacka operator* (Tacka t1, float k)
     rez.set_x(t1.get_x() * k);
     rez.set_y(t1.get_y() * k);
     rez.set_z(t1.get_z() * k);
-
     return rez;
 }
 /* mnozenje tacke sa konstantom */
@@ -235,6 +212,5 @@ Tacka operator/ (Tacka t1, float k)
     rez.set_x(t1.get_x() / k);
     rez.set_y(t1.get_y() / k);
     rez.set_z(t1.get_z() / k);
-
     return rez;
 }

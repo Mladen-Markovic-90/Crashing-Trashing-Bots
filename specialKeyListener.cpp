@@ -19,13 +19,14 @@
 
 /* ukljucivanje potrebnih zaglavlja */
 #include "global.h"
+#include "animationStatus.h"
 
 
 /* postavljanje flagova ili radnja za specijalne karaktere koja su stisnuta na tastaturi */
 void SpecialKeyListener::keyDown(int key, int x, int y) const
 {
     x=x;y=y;
-    if(status.modus==MODUS_ARENA)
+    if(status.modus==MODUS_ARENA && status.finished==false && status.paused==false)
         for(Robot * item : roboti)
         {
             if(item->getPlayer()==PLAYER_2)
@@ -54,14 +55,15 @@ void SpecialKeyListener::keyDown(int key, int x, int y) const
             break;
         }
 
-    if(status.paused==true)
+    if(status.paused==true || status.finished==true)
         switch(key)
         {
         case GLUT_KEY_DOWN:
             status.position=1;
             break;
         case GLUT_KEY_UP:
-            status.position=0;
+            if(status.finished==false)
+                status.position=0;
             break;
         }
 
@@ -79,7 +81,7 @@ void SpecialKeyListener::keyDown(int key, int x, int y) const
 void SpecialKeyListener::keyUp(int key, int x, int y) const
 {
     x=x;y=y;
-    if(status.modus==MODUS_ARENA)
+    if(status.modus==MODUS_ARENA && status.paused==false && status.finished==false)
         for(Robot * item : roboti)
             if(item->getPlayer()==PLAYER_2)
                 item->unset_key(key);

@@ -29,8 +29,18 @@ void animationTimer::timer(int id) const
     /* pokrecemo animaciju za svakog robota */
     if(status.paused==false)
         if(status.modus==MODUS_ARENA)
-	    for(Robot * item : roboti)
+        {
+            for(Robot * item : roboti)
                 item->animation(roboti, prepreke);
+            for(Robot * item : roboti)
+                if(item->getHealth()<=0)
+                    status.finished=true;
+            if(status.finished==true)
+            {
+                status.paused=true;
+                status.position=1;
+            }
+        }
 
     glutcpp::reDisplay();
 }

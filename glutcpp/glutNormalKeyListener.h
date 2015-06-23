@@ -34,12 +34,10 @@ public:
     virtual ~glutNormalKeyListener(){}
 
     /* radnja za stisnute obicne karatere */
-    virtual void keyDown(unsigned char normalKey,int x,int y) const
-    {normalKey=normalKey;x=x;y=y;}
+    virtual void keyDown(unsigned char normalKey,int x,int y) const {normalKey=normalKey;x=x;y=y;}
 
     /* radnja za otpustene obicne karaktere */
-    virtual void keyUp(unsigned char normalKey,int x,int y) const
-    {normalKey=normalKey;x=x;y=y;}
+    virtual void keyUp(unsigned char normalKey,int x,int y) const {normalKey=normalKey;x=x;y=y;}
 };
 
 
@@ -50,17 +48,17 @@ public:
     /* pokretanje glut osluskivac za obicne karaktere */
     static void run(glutNormalKeyListener * nkl)
     {
+        /* brisemo stari normal key listener, da ne bi bilo curenje memorije */
         delete normalKeyListener;
+
+        /* upisemo novi normal key listener i pokrecemo ga */
         normalKeyListener=nkl;
         glutKeyboardFunc(keyDown);
         glutKeyboardUpFunc(keyUp);
     }
 
     /* ukoliko je potrebno, moze da se uzme pokazivac na normalKeyListener */
-    static glutNormalKeyListener * getNormalKeyListener()
-    {
-        return normalKeyListener;
-    }
+    static glutNormalKeyListener * getNormalKeyListener() {return normalKeyListener;}
 
 private:
     /* promenljiva koja cuva osluskivac za obicnih karakter */
@@ -71,16 +69,10 @@ private:
     ~glutNormalKeyListenerInit(){}
 
     /* glut input funkcija za citanje stisnutih obicnih karaktera sa tastature */
-    static void keyDown(unsigned char normalKey, int x, int y)
-    {
-        normalKeyListener->keyDown(normalKey,x,y);
-    }
+    static void keyDown(unsigned char normalKey, int x, int y) {normalKeyListener->keyDown(normalKey,x,y);}
 
     /* glut input funkcija za citanje otpustenih karaktera sa tastature */
-    static void keyUp(unsigned char normalKey, int x, int y)
-    {
-        normalKeyListener->keyUp(normalKey,x,y);
-    }
+    static void keyUp(unsigned char normalKey, int x, int y) {normalKeyListener->keyUp(normalKey,x,y);}
 };
 /* inicijalizacija statickog pokazivaca na null */
 glutNormalKeyListener * glutNormalKeyListenerInit::normalKeyListener=nullptr;

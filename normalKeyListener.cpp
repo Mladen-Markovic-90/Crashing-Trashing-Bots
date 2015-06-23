@@ -30,11 +30,11 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
 {
     x=x;y=y;
     if(normalKey==27 || normalKey==' ')
-        if(status.paused==false)
+        if(status.paused==false && status.finished==false)
             status.paused=true;
     if(status.modus==MODUS_ARENA)
     {
-        if(status.paused==false)
+        if(status.paused==false && status.finished==false)
             for(Robot * item : roboti)
                 if(item->getPlayer()!=PLAYER_NONE)
                     item->set_key(normalKey);
@@ -97,22 +97,23 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
         }
 
     if(status.modus==MODUS_ARENA)
-        if(status.paused==true)
+        if(status.paused==true || status.finished==true)
             switch(normalKey)
             {
             /* ENTER */
             case '\n':
             case '\r':
-                if(status.position==0)
+                if(status.position==0 && status.finished==false)
                     status.paused=false;
                 else if(status.position==1)
                 {
                     status.position=0;
-                    /*for (Robot * it : roboti) {
-			
-                    }*/
-			
+                    status.ugao=0;
                     status.modus=MODUS_MENI;
+                    status.flag=0;
+                    status.finished=false;
+                    status.paused=false;
+
                     glutReshapeListenerInit::getReshapeListener()->reshape();
                 }
                 break;
@@ -124,7 +125,7 @@ void normalKeyListener::keyDown(unsigned char normalKey, int x, int y) const
 void normalKeyListener::keyUp(unsigned char normalKey, int x, int y) const
 {
     x=x;y=y;
-    if(status.modus==MODUS_ARENA)
+    if(status.modus==MODUS_ARENA && status.paused==false && status.finished==false)
     {
         for(Robot * item : roboti)
             if(item->getPlayer()!=PLAYER_NONE)

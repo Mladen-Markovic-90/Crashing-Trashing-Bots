@@ -39,6 +39,9 @@
 #define MODUS_ARENA 2
 
 
+//#define DEBUG_MODELS
+
+
 /* ID za slike */
 #define PICTURE_MENI 1
 

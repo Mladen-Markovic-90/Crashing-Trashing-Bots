@@ -19,8 +19,10 @@
 
 /* ukljucujemo potrebna zaglavlja */
 #include <GL/freeglut.h>
+#include <iostream>
 #include "glutcpp.h"
 #include "../vektor3d.h"
+
 
 /* inicijalizacija freeglut */
 void glutcpp::init(int argc,char ** argv,int width,int heigth,std::string name)
@@ -46,45 +48,45 @@ void glutcpp::init(int argc,char ** argv,int width,int heigth,std::string name)
 
     /* postavljanje background boje */
     glClearColor(0,0,0,1);
+
+    /* ukljucivanje finoce u programu, mada ne radi kako treba */
+    glutSetOption (GLUT_MULTISAMPLE,64);
+    glEnable(GL_LINE_SMOOTH);
+    glHint(GL_LINE_SMOOTH, GL_NICEST);
+    glEnable(GL_POINT_SMOOTH);
+    glHint(GL_POINT_SMOOTH, GL_NICEST);
+    glEnable( GL_POLYGON_SMOOTH );
+    glHint( GL_POLYGON_SMOOTH_HINT, GL_NICEST );
 }
 
 
 /* glMainLoop() -> pokretanje glut petlje */
-void glutcpp::start()
-{
-    glutMainLoop();
-}
+void glutcpp::start() {glutMainLoop();}
 
 
 /* glBegin() -> zapocinjemo crtanje */
-void glutcpp::begin(GLenum arg)
-{
-    glBegin(arg);
-}
+void glutcpp::begin(GLenum arg) {glBegin(arg);}
 
 
 /* glEnd() -> zavrsavamo crtanje */
-void glutcpp::end()
-{
-    glEnd();
-}
+void glutcpp::end() {glEnd();}
 
 
 /* ukljucivanje ili iskljucivanje svetla sa normalama */
 void glutcpp::light(int arg)
 {
     if(arg==GL_ON)
-        {
+    {
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
         glEnable(GL_NORMALIZE);
-        }
+    }
     else
-        {
+    {
         glDisable(GL_LIGHTING);
         glDisable(GL_LIGHT0);
         glDisable(GL_NORMALIZE);
-        }
+    }
 }
 
 
@@ -95,12 +97,7 @@ void glutcpp::color(float r, float g, float b, float a)
     {
         float colorambient[4]={r*0.8f,g*0.8f,b*0.8f,a};
         float colordiffuse[4]={r,g,b,a};
-        float colorspecular[4]={0,0,0,a};/*
-        float colorambient[4]={r*0.5f,g*0.5f,b*0.5f,a};
-        float colordiffuse[4]={r*0.7f,g*0.7f,b*0.7f,a};
-        float colorspecular[4]={r*0.9f,g*0.9f,b*0.9f,a};
-        GLfloat shininess = 10;
-        glMaterialf(GL_FRONT, GL_SHININESS, shininess);*/
+        float colorspecular[4]={0,0,0,a};
         glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,colorambient);
         glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,colordiffuse);
         glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,colorspecular);
@@ -109,17 +106,20 @@ void glutcpp::color(float r, float g, float b, float a)
         glColor4f(r,g,b,a);
 }
 
-void glutcpp::lineWidth(double width)
-{
-    glLineWidth(width);
-}
+
+/* sirina za linije */
+void glutcpp::lineWidth(double width) {glLineWidth(width);}
+
 
 /* podesavanje za rad u 3D */
 void glutcpp::projection3D(int width, int height, int ugao, int arg1,int arg2)
 {
+    /* za 3D moramo ukljuciti z-buffer */
     glEnable(GL_DEPTH_TEST);
+
     glViewport(0, 0, width, height);
 
+    /* podesavamo kako ce iscrtavati na ravan 3D scenu */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(ugao, (float) width / height, arg1, arg2);
@@ -129,7 +129,9 @@ void glutcpp::projection3D(int width, int height, int ugao, int arg1,int arg2)
 /* podesavanje za rad u 2D */
 void glutcpp::projection2D(int width,int height)
 {
+    /* za 2D nam ne treba z-buffer */
     glDisable(GL_DEPTH_TEST);
+
     glViewport(0, 0, width, height);
 
     /* Brisemo podesavanje matrice da bi bili u 2D */
@@ -141,21 +143,31 @@ void glutcpp::projection2D(int width,int height)
 /* podesavanje za prikazivanje u 2D */
 void glutcpp::modelView2D()
 {
+    /* brisemo stari sadrzaj buffera */
     glutcpp::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    /* podesavamo modelview na 2D */
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glShadeModel(GL_SMOOTH);
+
+    //glShadeModel(GL_SMOOTH);
 }
 
 
 /* podesavanje za prikazivanje u 3D */
 void glutcpp::modelView3D(float x,float y,float z)
 {
+    /* brisemo stari sadrzaj buffera */
     glutcpp::clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    /* podesavamo modelview na 3D */
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
+    /* pozicija kamere */
     gluLookAt(x,y,z,0, 0, 0, 0, 1, 0);
-    glShadeModel(GL_SMOOTH);
+
+    //glShadeModel(GL_SMOOTH);
 }
 
 
@@ -163,7 +175,7 @@ void glutcpp::modelView3D(float x,float y,float z)
 void glutcpp::lookAt(Tacka oko, Tacka fokus)
 {
     gluLookAt(oko.get_x(), oko.get_y(), oko.get_z(),
-	      fokus.get_x(), fokus.get_y(), fokus.get_z(), 0, 1, 0);
+              fokus.get_x(), fokus.get_y(), fokus.get_z(), 0, 1, 0);
 }
 
 
@@ -175,39 +187,24 @@ void glutcpp::lightPosition(float x, float y, float z,float w)
 }
 
 
-/* tacka sa 3 koordinate i homogena koordinata */
-void glutcpp::vertex(float x, float y, float z,float w)
-{
-    glVertex4f(x,y,z,w);
-}
+/* tacka crtanja sa 3 koordinate i homogena koordinata */
+void glutcpp::vertex(float x, float y, float z,float w) {glVertex4f(x,y,z,w);}
 
 
-/* tacka sa 3 koordinate */
-void glutcpp::vertex(float x, float y, float z)
-{
-    glVertex3f(x,y,z);
-}
+/* tacka crtanja sa 3 koordinate */
+void glutcpp::vertex(float x, float y, float z) {glVertex3f(x,y,z);}
 
 
-/* tacka koja prima tacku */
-void glutcpp::vertex(Tacka t)
-{
-    glVertex3f(t.get_x(),t.get_y(),t.get_z());
-}
+/* tacka crtanja koja prima tacku */
+void glutcpp::vertex(Tacka t) {glVertex3f(t.get_x(),t.get_y(),t.get_z());}
 
 
-/* tacka koja prima tacku i homogenu koordinatu */
-void glutcpp::vertex(Tacka t, float w)
-{
-    glVertex4f(t.get_x(),t.get_y(),t.get_z(),w);
-}
+/* tacka crtanja koja prima tacku i homogenu koordinatu */
+void glutcpp::vertex(Tacka t, float w) {glVertex4f(t.get_x(),t.get_y(),t.get_z(),w);}
 
 
 /* normala definisana sa 3 koordinate */
-void glutcpp::normal(float x, float y, float z)
-{
-    glNormal3f(x,y,z);
-}
+void glutcpp::normal(float x, float y, float z) {glNormal3f(x,y,z);}
 
 
 /* normala definisana sa 3 koordinate i homogena koordinata */
@@ -221,17 +218,11 @@ void glutcpp::normal(float x, float y, float z, float w)
 
 
 /* normala definisana sa tackom */
-void glutcpp::normal(Tacka t)
-{
-    glutcpp::normal(t.get_x(),t.get_y(),t.get_z());
-}
+void glutcpp::normal(Tacka t) {glutcpp::normal(t.get_x(),t.get_y(),t.get_z());}
 
 
 /* normala definisana sa tackom i homogenom koordinatom */
-void glutcpp::normal(Tacka t, float w)
-{
-    glutcpp::normal(t.get_x(),t.get_y(),t.get_z(),w);
-}
+void glutcpp::normal(Tacka t, float w) {glutcpp::normal(t.get_x(),t.get_y(),t.get_z(),w);}
 
 
 /* pravougaonik definisan sa 4 tacke */
@@ -247,10 +238,7 @@ void glutcpp::pravougaonik(Tacka a, Tacka b, Tacka c, Tacka d)
 
 
 /* tekst na ekranu sa GLUT_BITMAP_HELVETICA_18 fontom */
-void glutcpp::text(float x, float y, std::string s)
-{
-    glutcpp::text(x,y,s,GLUT_BITMAP_HELVETICA_18);
-}
+void glutcpp::text(float x, float y, std::string s) {glutcpp::text(x,y,s,GLUT_BITMAP_HELVETICA_18);}
 
 
 /* tekst na ekranu sa proizvoljnim fontom */
@@ -263,115 +251,67 @@ void glutcpp::text(float x, float y, std::string s, void * font)
 
 
 /* funkcija transformacije za rotaciju koordinatnog sistema za ugao i odredjene koordinate */
-void glutcpp::rotate(float ugao, float x, float y, float z)
-{
-    glRotatef(ugao,x,y,z);
-}
+void glutcpp::rotate(float ugao, float x, float y, float z) {glRotatef(ugao,x,y,z);}
 
 
 /* funkcija transformacije za rotaciju koordinatnog sistema za ugao sa koordinatama tacke */
-void glutcpp::rotate(float ugao, Tacka t)
-{
-    glutcpp::rotate(ugao,t.get_x(),t.get_y(),t.get_z());
-}
+void glutcpp::rotate(float ugao, Tacka t) {glutcpp::rotate(ugao,t.get_x(),t.get_y(),t.get_z());}
 
 
 /* funkcija transformacije za pomeranje koordinatnog sistema pomocu 3 koordinate kao vektor */
-void glutcpp::translate(float x, float y, float z)
-{
-    glTranslatef(x,y,z);
-}
+void glutcpp::translate(float x, float y, float z) {glTranslatef(x,y,z);}
 
 
 /* funkcija transformacije za pomeranje koordinatnog sistema za tacku kao vektor */
-void glutcpp::translate(Tacka t)
-{
-    glutcpp::translate(t.get_x(),t.get_y(),t.get_z());
-}
+void glutcpp::translate(Tacka t) {glutcpp::translate(t.get_x(),t.get_y(),t.get_z());}
 
 
 /* stavljanje matrice za transformaciju na stek */
-void glutcpp::push()
-{
-    glPushMatrix();
-}
+void glutcpp::push() {glPushMatrix();}
 
 
 /* skidanje matrice za transformaciju sa steka */
-void glutcpp::pop()
-{
-    glPopMatrix();
-}
+void glutcpp::pop() {glPopMatrix();}
 
 
 /* kocka odredjenih dimenzija */
-void glutcpp::cube(float size)
-{
-    glutSolidCube(size);
-}
+void glutcpp::cube(float size) {glutSolidCube(size);}
 
 
 /* ponovo iscrtavanje */
-void glutcpp::reDisplay()
-{
-    glutPostRedisplay();
-}
+void glutcpp::reDisplay() {glutPostRedisplay();}
 
 
 /* brisanje buffera */
-void glutcpp::clear(GLenum arg)
-{
-    glClear(arg);
-}
+void glutcpp::clear(GLenum arg) {glClear(arg);}
 
 
 /* zamena buffera */
-void glutcpp::swapBuffers()
-{
-    glutSwapBuffers();
-}
+void glutcpp::swapBuffers() {glutSwapBuffers();}
 
 
 /* podesavanja za velicinu prozora */
-void glutcpp::reshapeWindow(int width, int height)
-{
-    glutReshapeWindow(width,height);
-}
+void glutcpp::reshapeWindow(int width, int height) {glutReshapeWindow(width,height);}
 
 
 /* funkcija transformacije za skaliranje pomocu koordinata */
-void glutcpp::scale(float x, float y, float z)
-{
-    glScalef(x,y,z);
-}
+void glutcpp::scale(float x, float y, float z) {glScalef(x,y,z);}
 
 
 /* funkcija transformacije za skaliranje pomocu tacke */
-void glutcpp::scale(Tacka t)
-{
-    glScalef(t.get_x(),t.get_y(),t.get_z());
-}
+void glutcpp::scale(Tacka t) {glScalef(t.get_x(),t.get_y(),t.get_z());}
 
 
 /* lopta velicine radius */
-void glutcpp::sphere(float radius)
-{
-    glutSolidSphere(radius,25+radius/5,25+radius/5);
-}
+void glutcpp::sphere(float radius) {glutSolidSphere(radius,25+radius/5,25+radius/5);}
 
 
 /* cilindar sa duzinom (height) i sirinom (radius) */
-void glutcpp::cylinder(float radius,float height)
-{
-    glutSolidCylinder(radius,height,25+radius/5,25+radius/5);
-}
+void glutcpp::cylinder(float radius,float height) {glutSolidCylinder(radius,height,25+radius/5,25+radius/5);}
 
 
 /* kupa sa visinom (height) i osnovom (radius) */
-void glutcpp::cone(float radius,float height)
-{
-    glutSolidCone(radius,height,25+radius/5,25+radius/5);
-}
+void glutcpp::cone(float radius,float height) {glutSolidCone(radius,height,25+radius/5,25+radius/5);}
 
 
 /* kvadar sa visinom sirinom i duzinom */
@@ -394,6 +334,7 @@ void glutcpp::kvadar(float duzina, float sirina, float visina)
     glutcpp::pravougaonik(Tacka(-x,y,z),Tacka(-x,-y,z),Tacka(-x,-y,-z),Tacka(-x,y,-z));
 }
 
+
 /* pravougaonik koji lezi u z ravni */
 void glutcpp::pravougaonik_z(float duzina, float sirina)
 {
@@ -401,6 +342,7 @@ void glutcpp::pravougaonik_z(float duzina, float sirina)
     float y=sirina/2;
     glutcpp::pravougaonik(Tacka(x,y,0),Tacka(x,-y,0),Tacka(-x,-y,0),Tacka(-x,y,0));
 }
+
 
 /* kvadar sa tackama */
 void glutcpp::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka c2,Tacka d2)
@@ -418,6 +360,7 @@ void glutcpp::kvadar(Tacka a1,Tacka b1,Tacka c1,Tacka d1,Tacka a2,Tacka b2,Tacka
     glutcpp::normal(Vektor3D::normala(a2,b2,b2,d2));
     glutcpp::pravougaonik(a2,b2,c2,d2);
 }
+
 
 /* grid za podlogu */
 void glutcpp::grid(int dimenzija, int korak, float r, float g, float b)
@@ -442,25 +385,22 @@ void glutcpp::grid(int dimenzija, int korak, float r, float g, float b)
     glutcpp::lineWidth(1);
 }
 
+
 /* funkcija za ulazak u FullScreen */
-void glutcpp::fullScreen()
-{
-    glutFullScreen();
-}
+void glutcpp::fullScreen() {glutFullScreen();}
 
 
 /* funkcija za ulazak/izlazak u FullScreen */
-void glutcpp::fullScreenToggle()
-{
-    glutFullScreenToggle();
-}
-
+void glutcpp::fullScreenToggle() {glutFullScreenToggle();}
 
 
 /* Funkcija koja menja iz 3D modusa u 2D modus za crtanje na display */
 void glutcpp::screenDisplayBegin3D()
 {
+    /* Iskljucujemo z-buffer da bi radili u 2D na ekranu */
     glDisable(GL_DEPTH_TEST);
+
+    /* Brisemo sve matrice za rad u 2D na ekran */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glMatrixMode(GL_MODELVIEW);
@@ -471,7 +411,10 @@ void glutcpp::screenDisplayBegin3D()
 /* Funkcija koja vraca iz 2D u 3D modus radi nastavka rada u 3D posle crtanja na display */
 void glutcpp::screenDisplayEnd3D(int ugao,int width,int height,int arg1,int arg2)
 {
+    /* ukljucujemo z-buffer da bi radili ponovo u 3D */
     glEnable(GL_DEPTH_TEST);
+
+    /* postavljamo projekciju na onu koja je bila pre ponistavanja matrice */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(ugao,(float)width/height,arg1,arg2);

@@ -33,6 +33,7 @@ public:
     int modus=0;
     int flag=0;
     bool paused=false;
+    bool finished=false;
 };
 
 

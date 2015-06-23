@@ -30,9 +30,8 @@
 
 /* Konstruktor za robotica 1 */
 Robot_1::Robot_1(float ticksPerSecond,int player,Tacka t)
-    : Robot(ticksPerSecond,player,t,Tacka(0,0,-20),0,
-            5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,5*ticksPerSecond,
-            Tacka(-15,0,-20),Tacka(15,0,-20),Tacka(15,0,20),Tacka(-15,0,20),20)
+    : Robot(ticksPerSecond,player,t,Tacka(0,0,-20),0,5*ticksPerSecond,
+            Tacka(-15,0,-20),Tacka(15,0,-20),Tacka(15,0,20),Tacka(-15,0,20),20,200)
 {
     _ability01=new Robot1_ability1();
     _ability02=new Robot1_ability2();
@@ -44,9 +43,6 @@ void Robot_1::draw()
     this->model();
     _ability01->draw();
     _ability02->draw();
-
-    //this->ability_1();
-    //this->ability_2();
     this->ability_3();
 }
 

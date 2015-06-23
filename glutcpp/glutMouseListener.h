@@ -34,8 +34,7 @@ public:
     virtual ~glutMouseListener(){}
 
     /* Desavanje na osnovu klika misa */
-    void mouse(int button,int state,int x,int y) const
-    {button=button;state=state;x=x;y=y;}
+    void mouse(int button,int state,int x,int y) const {button=button;state=state;x=x;y=y;}
 };
 
 
@@ -46,16 +45,16 @@ public:
     /* pokretanje glut osluskivac za poziciju misa */
     static void run(glutMouseListener * ml)
     {
+        /* brisemo stari mouse listener, da ne bi bilo curenje memorije */
         delete mouseListener;
+
+        /* upisemo novi mouse listener i pokrecemo ga */
         mouseListener=ml;
         glutMouseFunc(onMouse);
     }
 
     /* ukoliko je potrebno, moze da se uzme pokazivac na mouseListener */
-    static glutMouseListener * getMouseListener()
-    {
-        return mouseListener;
-    }
+    static glutMouseListener * getMouseListener() {return mouseListener;}
 
 private:
     /* promenljiva koja cuva osluskivac za dugmad misa */
@@ -66,10 +65,7 @@ private:
     ~glutMouseListenerInit(){}
 
     /* glut input funkcija za citanje stanje dugmad misa */
-    static void onMouse(int button,int state,int x,int y)
-    {
-        mouseListener->mouse(button,state,x,y);
-    }
+    static void onMouse(int button,int state,int x,int y) {mouseListener->mouse(button,state,x,y);}
 };
 /* inicijalizacija statickog pokazivaca na null */
 glutMouseListener * glutMouseListenerInit::mouseListener=nullptr;

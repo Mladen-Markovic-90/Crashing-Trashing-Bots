@@ -45,16 +45,16 @@ public:
     /* pokretanje displaya za glut */
     static void run(glutDisplay * d)
     {
+        /* brisemo stari display, da ne bi bilo curenje memorije */
         delete display;
+
+        /* upisemo novi display i pokrecemo ga */
         display=d;
         glutDisplayFunc(onDisplay);
     }
 
     /* ukoliko je potrebno, moze da se uzme pokazivac na Display */
-    static glutDisplay * getDisplay()
-    {
-        return display;
-    }
+    static glutDisplay * getDisplay() {return display;}
 
 private:
     /* promenljiva koja cuva trenutni display */
@@ -65,10 +65,7 @@ private:
     ~glutDisplayInit(){}
 
     /* glut input funkcija za crtanje */
-    static void onDisplay(void)
-    {
-        display->show();
-    }
+    static void onDisplay(void) {display->show();}
 };
 /* inicijalizacija statickog pokazivaca na null */
 glutDisplay * glutDisplayInit::display=nullptr;

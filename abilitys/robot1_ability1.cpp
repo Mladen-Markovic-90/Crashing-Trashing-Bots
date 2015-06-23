@@ -4,7 +4,7 @@
 
 Robot1_ability1::Robot1_ability1()//int cooldown,int ticksPerSecond)
     : Ability(100,20,5 , Tacka(0,0,-30) )
-{}
+{_damage=25;}
 
 
 void Robot1_ability1::draw()
@@ -81,7 +81,7 @@ void Robot1_ability1::draw()
 
     glutcpp::pop();
 
-    this->testDraw();
+    testDraw();
 
 
 
