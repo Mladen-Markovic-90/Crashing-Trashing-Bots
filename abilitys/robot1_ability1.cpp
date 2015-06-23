@@ -17,23 +17,26 @@
 */
 
 
+/* Ukljucivanje potrebnih zaglavlja */
 #include "ability.h"
 #include "robot1_ability1.h"
 
+
+/* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+ * kolko puta se iscrtava po sekundi */
 Robot1_ability1::Robot1_ability1(int cooldown,int ticksPerSecond)
     : Ability(cooldown,ticksPerSecond,5 , Tacka(0,0,-30) )
 {_damage=25;}
 
 
+/* crtanje ability */
 void Robot1_ability1::draw()
 {
-    /* NOTE: tacka udarca -> provera::position(tacka_cekic,_center,_ugao) i cekic_radius */
     /* MELEE ABILITY */
     /* Cekic */
 
     /* odredjivanje ugla cekica */
-    float ugao_cekic;
-    //std::cout << this->_time << " " << _ticksPerSecond << std::endl;
+    float ugao_cekic=0;
     if(_time>4.5*_ticksPerSecond)
         {
         ugao_cekic=(_time - 4.5*_ticksPerSecond)*2;
@@ -46,14 +49,11 @@ void Robot1_ability1::draw()
         ugao_cekic=_ticksPerSecond;
     ugao_cekic=ugao_cekic/_ticksPerSecond;
 
-
-    //std::cout << ugao_cekic << std::endl;
-
     glutcpp::push();
+        /* namestanje cekica */
         glutcpp::translate(_center);
         glutcpp::rotate(-_ugao,0,1,0);
         glutcpp::rotate(90,0,1,0);
-
         glutcpp::translate(10,13,0);
         glutcpp::rotate(90*ugao_cekic,0,0,1);
 
@@ -99,20 +99,12 @@ void Robot1_ability1::draw()
 
     glutcpp::pop();
 
+    /* debug crtanje */
     testDraw();
-
-
-
-    /* test *//*
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(provera::position(tacka_cekic,_center,_ugao));
-        glutcpp::rotate(90,1,0,0);
-        glutcpp::cylinder(10,1);
-    glutcpp::pop();*/
 }
 
 
+/* dodatna izracunvanja za tacku sudara */
 void Robot1_ability1::animation2(Tacka _centar_robota, float _ugao_robota)
 {
     this->_center=_centar_robota;

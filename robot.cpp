@@ -248,8 +248,8 @@ void Robot::animation(const vector<Robot*> &roboti, const vector<Prepreka*> &pre
 	this->_ugao+=getSpeed();
 	_speed = Vektor3D::rotate2D(_speed, getSpeed() * M_PI / 180);
     }
-    std::cout << _center.get_x() <<" "<< _center.get_y() <<" "<< _center.get_z() << endl;
-    std::cout << _front.get_x() <<" "<< _front.get_y() <<" "<< _front.get_z() << endl;
+    //std::cout << _center.get_x() <<" "<< _center.get_y() <<" "<< _center.get_z() << endl;
+    //std::cout << _front.get_x() <<" "<< _front.get_y() <<" "<< _front.get_z() << endl;
     /* azuriramo centar tako da bude tacan u svakom trenutku bez zavisnosti od gluta */
     Tacka pomeraj(0,0,0);
     double koef = 1.0;

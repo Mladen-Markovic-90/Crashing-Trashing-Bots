@@ -17,55 +17,31 @@
 */
 
 
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot3_ability1.h"
 #include "ability.h"
 
+
+/* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+ * kolko puta se iscrtava po sekundi */
 Robot3_ability1::Robot3_ability1(int cooldown,int ticksPerSecond)
     : Ability(cooldown,ticksPerSecond,0 , Tacka(0,0,0) )
 {_damage=15;}
 
 
-
-
-
-/* MELEE ABILITY */
-/* Nozici */
+/* crtanje ability */
 void Robot3_ability1::draw()
 {
+    /* MELEE ABILITY */
+    /* Nozici */
 
-    //if(_exist==false)
-       // return;
-    /* promenljive za poziciju nozveva */
-    /*this->_radius_nozevi=0;
-    float number=0;
-    if(this->_ability_1>4*_ticksPerSecond)
-        number=5*_ticksPerSecond-this->_ability_1;
-    else if(this->_ability_1>3.5*_ticksPerSecond)
-        number=_ticksPerSecond;
-    else if(this->_ability_1>2.5*_ticksPerSecond)
-        number=this->_ability_1 - 2.5*_ticksPerSecond;
-    else
-        number=0;
-    number=number/_ticksPerSecond;*/
-
-    /* potrebno za koliziju */
-    //this->_radius_nozevi=15.0*number+10;
-
-    /* ako je number veci od 0, onda su nozevi aktivirani */
+    /* ako je _time veci od 0, onda su nozevi aktivirani */
     if(_time > 0)
     {
         glutcpp::push();
             glutcpp::translate(0,11,0);
             glutcpp::translate(_center);
-
-            /* odredjivanje boje nozica */
-            /* _lava ce biti true kada je ability 4 aktiviran */
-            /*if(this->_lava==true)
-                glutcpp::color(2,0,0,1);
-            else
-                glutcpp::color(0.5,0.5,0.5,this->_fade);*/
             glutcpp::color(0.5,0.5,0.5,1);
-
             glutcpp::rotate(21*_time,0,1,0);
 
             /* nozici robota */
@@ -81,17 +57,12 @@ void Robot3_ability1::draw()
         glutcpp::pop();
     }
 
+    /* debug crtanje */
     testDraw();
-
-    /* test *//*
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(0,5,0);
-        glutcpp::translate(Tacka(-_radius_nozevi,0,0));
-        glutcpp::cube(5);
-    glutcpp::pop();*/
 }
 
+
+/* dodatna izracunvanja za tacku sudara */
 void Robot3_ability1::animation2(Tacka _centar_robota, float _ugao_robota)
 {
     _center=_centar_robota;

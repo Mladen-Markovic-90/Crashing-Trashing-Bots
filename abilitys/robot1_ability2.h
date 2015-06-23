@@ -20,25 +20,30 @@
 #ifndef ROBOT1_ABILITY2_H
 #define ROBOT1_ABILITY2_H
 
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "ability.h"
 
+
+/* ovaj ability je raketa za robot 1 */
 class Robot1_ability2 : public Ability
 {
 public:
+    /* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+     * kolko puta se iscrtava po sekundi */
     Robot1_ability2(int cooldown,int ticksPerSecond);
+    /* dekonstruktor */
     ~Robot1_ability2() {}
 
+    /* crtanje ability */
     void draw();
 
+    /* dodatna izracunvanja za tacku sudara */
     void animation2(Tacka _centar_robota, float _ugao_robota);
-private:
-    /* sluzi za poziciju i rotaciju rakete */
-    Tacka tacka_raketa=Tacka(0,0,0);
-    Tacka tacka_raketa_help=Tacka(0,0,0);
-    int ugao_raketa=0;
 };
 
 
 #include "robot1_ability2.cpp"
+
 
 #endif // ROBOT1_ABILITY2_H

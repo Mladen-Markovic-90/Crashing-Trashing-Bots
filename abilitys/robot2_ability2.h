@@ -20,26 +20,31 @@
 #ifndef ROBOT2_ABILITY2_H
 #define ROBOT2_ABILITY2_H
 
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "ability.h"
 
+
+/* ovaj ability je laser za robot 2 */
 class Robot2_ability2 : public Ability
 {
 public:
+    /* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+     * kolko puta se iscrtava po sekundi */
     Robot2_ability2(int cooldown,int ticksPerSecond);
+
+    /* dekonstruktor */
     ~Robot2_ability2() {}
 
+    /* crtanje ability */
     void draw();
-    void animation2(Tacka _centar_robota, float _ugao_robota);
 
-private:
-    /* sluzi za poziciju i rotaciju lasera */
-    Tacka tacka_laser=Tacka(0,0,0);
-    Tacka tacka_laser_help=Tacka(0,0,0);
-    int ugao_laser=0;
+    /* dodatna izracunvanja za tacku sudara */
+    void animation2(Tacka _centar_robota, float _ugao_robota);
 };
 
 
-
 #include "robot2_ability2.cpp"
+
 
 #endif // ROBOT2_ABILITY2_H

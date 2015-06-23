@@ -19,23 +19,31 @@
 #ifndef ROBOT2_ABILITY1_H
 #define ROBOT2_ABILITY1_H
 
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "ability.h"
 
+
+/* ovaj ability je kolac za robot 2 */
 class Robot2_ability1 : public Ability
 {
 public:
+    /* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+     * kolko puta se iscrtava po sekundi */
     Robot2_ability1(int cooldown,int ticksPerSecond);
+
+    /* dekonstruktor */
     ~Robot2_ability1() {}
 
+    /* dodatna izracunvanja za tacku sudara */
     void animation2(Tacka _centar_robota, float _ugao_robota);
-    void draw();
 
-private:
-    /* sluzi za poziciju udarca kolca */
-    Tacka tacka_kolac=Tacka(0,0,0);
+    /* crtanje ability */
+    void draw();
 };
 
 
 #include "robot2_ability1.cpp"
+
 
 #endif // ROBOT2_ABILITY1_H

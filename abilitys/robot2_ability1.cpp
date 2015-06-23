@@ -17,52 +17,35 @@
 */
 
 
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot2_ability1.h"
 #include "../provera.h"
 
+
+/* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+ * kolko puta se iscrtava po sekundi */
 Robot2_ability1::Robot2_ability1(int cooldown,int ticksPerSecond)
     : Ability(cooldown,ticksPerSecond,-1 , Tacka(0,0,0) )
 {_damage=15;}
 
 
+/* crtanje ability */
 void Robot2_ability1::draw()
 {
-    /* NOTE tacka udarca provera::position(tacka_kolac,_center,_ugao) */
     /* MELEE ABILITY */
     /* Kolac */
 
     if(_time <= 0)
         return;
 
-    /* promenljive za poziciju nozveva */
-    float number=0;
-    if(_time>4*_ticksPerSecond)
-        number=5*_ticksPerSecond-_time;
-    else if(_time>3.5*_ticksPerSecond)
-        number=_ticksPerSecond;
-    else if(_time>2.5*_ticksPerSecond)
-        number=_time - 2.5*_ticksPerSecond;
-    else
-        number=0;
-    number=number/_ticksPerSecond;
-
-    number*=15;
-    /* potrebno za koliziju */
-    //this->tacka_kolac=this->_center+Tacka(0,0,-1)*number;
-    //this->tacka_kolac=Tacka(0,0,-15)+Tacka(0,0,-1)*number;
-
-    if(number>-1)
+    if(_number>0)
     {
         glutcpp::push();
-            /* postavljamo laser na odredjeno mesto */
+            /* postavljamo kolac na odredjeno mesto */
             glutcpp::translate(0,5,0);
-
             glutcpp::translate(_center);
-
             glutcpp::rotate(-_ugao,0,1,0);
-
             glutcpp::translate(Tacka(0,0,15));
-
 
             /* Kolac */
             glutcpp::color(0.5,0.5,0.5,1);
@@ -72,35 +55,29 @@ void Robot2_ability1::draw()
         glutcpp::pop();
     }
 
+    /* debug crtanje */
     this->testDraw();
-
-    /*test*//*
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(provera::position(tacka_kolac,_center,_ugao));
-        glutcpp::cube(5);
-    glutcpp::pop();*/
 }
 
 
 
+/* dodatna izracunvanja za tacku sudara */
 void Robot2_ability1::animation2(Tacka _centar_robota, float _ugao_robota)
 {
-    float number=0;
+    _number=0;
     if(_time>4*_ticksPerSecond)
-        number=5*_ticksPerSecond-_time;
+        _number=5*_ticksPerSecond-_time;
     else if(_time>3.5*_ticksPerSecond)
-        number=_ticksPerSecond;
+        _number=_ticksPerSecond;
     else if(_time>2.5*_ticksPerSecond)
-        number=_time - 2.5*_ticksPerSecond;
+        _number=_time - 2.5*_ticksPerSecond;
     else
-        number=0;
-    number=number/_ticksPerSecond;
+        _number=0;
+    _number=_number/_ticksPerSecond;
 
-    number*=15;
-    /* potrebno za koliziju */
+    _number*=15;
 
-    this->_center=_centar_robota+provera::position(Tacka(0,0,-15)+Tacka(0,0,-1)*number,Tacka(0,0,0),_ugao);
+    this->_center=_centar_robota+provera::position(Tacka(0,0,-15)+Tacka(0,0,-1)*_number,Tacka(0,0,0),_ugao);
 
     this->_ugao=_ugao_robota;
 }

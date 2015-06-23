@@ -16,21 +16,35 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 #ifndef ROBOT3_ABILITY2_H
 #define ROBOT3_ABILITY2_H
 
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "ability.h"
 
 
+/* ovaj ability je radius laser za robot 3 */
 class Robot3_ability2 : public Ability
 {
 public:
+    /* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+     * kolko puta se iscrtava po sekundi */
     Robot3_ability2(int cooldown,int ticksPerSecond);
+
+    /* dekonstruktor */
     ~Robot3_ability2() {}
+
+    /* dodatna izracunvanja za tacku sudara */
     void animation2(Tacka _centar_robota, float _ugao_robota);
+
+    /* crtanje ability */
     void draw();
 };
 
+
 #include "robot3_ability2.cpp"
+
 
 #endif // ROBOT3_ABILITY2_H

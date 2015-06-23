@@ -20,17 +20,31 @@
 #ifndef ROBOT3_ABILITY1_H
 #define ROBOT3_ABILITY1_H
 
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "ability.h"
 
+
+/* ovaj ability je nozevi za robot 3 */
 class Robot3_ability1 : public Ability
 {
 public:
+    /* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+     * kolko puta se iscrtava po sekundi */
     Robot3_ability1(int cooldown,int ticksPerSecond);
+
+    /* dekonstruktor */
     ~Robot3_ability1() {}
+
+    /* dodatna izracunvanja za tacku sudara */
     void animation2(Tacka _centar_robota, float _ugao_robota);
+
+    /* crtanje ability */
     void draw();
 };
 
+
 #include "robot3_ability1.cpp"
+
 
 #endif // ROBOT3_ABILITY1_H

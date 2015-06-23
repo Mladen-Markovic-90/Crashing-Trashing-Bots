@@ -268,7 +268,7 @@ void Display::adjust_camera()
             this->camera_ugao=ugao_paused;
 
         if(status.paused==false)
-            this->cam_position=this->cam_position+(this->cam_position.vek(podnozje1)/100);
+            this->cam_position=this->cam_position+(this->cam_position.vek(podnozje1)/10);
 
 
         oko.set_x(this->cam_position.get_x()*std::sin(this->camera_ugao/180.0*M_PI));

@@ -20,69 +20,95 @@
 #ifndef ABILITY_H
 #define ABILITY_H
 
-//TODO: cemu bese sluzi ova klasa?
 
+/* ukljucujemo potrebna zaglavlja */
 #include "../glutcpp/tacka.h"
 #include "../glutcpp/glutAnimationTimer.h"
 #include "../prepreka.h"
 #include <vector>
 #include "../telo.h"
 
+
+/* Nadklasa za abilitys */
 class Ability
 {
 public:
+    /* konstruktor koji prima vreme kolko dugo se ceka za sledece koriscenje,
+     * kolko puta u sekundi se iscrtava, radius od ability i tacku gde je centar udara */
     Ability(int cooldown,int ticksPerSecond,int radius,Tacka tackaSudara);
+
+    /* dekonstruktor */
     virtual ~Ability() {}
 
+    /* Racunanje povrsine pomocu 4 trouglova, gde je spoljna u svakom trouglu */
     double povrsina(const Tacka &NW, const Tacka &NE,
                       const Tacka &SW, const Tacka &SE, const Tacka &spoljna);
 
+    /* posebna obrada kolizije, ako radius postoji za koliziju */
     bool kolizijaRadius(Telo & t);
 
+    /* kolizija za sva tela i ability */
     bool kolizija(Telo & t);
 
+    /* crtanje ability */
     virtual void draw() {}
 
+    /* crtanje za debug*/
     void testDraw();
 
+    /* crtanje za debug*/
     void testRadius();
 
+    /* getteri */
     Tacka getTackaSudara();
-
     int getCooldown();
+    int getTime();
+    int getDamage();
 
+    /* animacija za ability menja vreme i namesta promenljive za TackuSudara */
     void animation(Tacka _centar_robota, float _ugao_robota);
+
+    /* dodatna animacija za specijalizovanu ability */
     virtual void animation2(Tacka _centar_robota, float _ugao_robota) {_centar_robota=_centar_robota;_ugao_robota=_ugao_robota;}
 
-    int getTime();
-
-    bool use();//float & energy);
-
-    int getDamage();
+    /* koriscenje ability ako je moguce */
+    bool use();
 
 protected:
 
-
+    /* kolko dugo se ceka pre ponovog koriscenja */
     int _cooldown=100;
+
+    /* kolko puta u sekundi se iscrtava */
     int _ticksPerSecond=20;
+
+    /* radius za ability */
     int _radius=0;
 
+    /* centar tacke sudara od ability */
     Tacka _tackaSudara=Tacka(0,0,0);
+
+    /* ugao robota */
     float _ugao=0;
+
+    /* centar robota */
     Tacka _center=Tacka(0,0,0);
 
+    /* vreme proteklo od koriscenja ability */
     int _time=0;
-    int _cost=0;
 
+    /* da li radi dmg i za neke abilitys, da li se iscrtava */
     bool _exist=false;
 
+    /* kolko damage radi ability */
     int _damage=10;
 
+    /* pomocna promenljiva za racunanje */
     float _number=0;
-
-
 };
 
+
 #include "ability.cpp"
+
 
 #endif // ABILITY_H

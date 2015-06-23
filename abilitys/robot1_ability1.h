@@ -21,23 +21,30 @@
 #define ROBOT1_ABILITY1_H
 
 
+/* Ukljucivanje potrebnih zaglavlja */
 #include "ability.h"
 
+
+/* ovaj ability je cekic za robot 1 */
 class Robot1_ability1 : public Ability
 {
 public:
+    /* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+     * kolko puta se iscrtava po sekundi */
     Robot1_ability1(int cooldown,int ticksPerSecond);
+
+    /* dekonstruktor */
     ~Robot1_ability1() {}
+
+    /* dodatna izracunvanja za tacku sudara */
     void animation2(Tacka _centar_robota, float _ugao_robota);
+
+    /* crtanje ability */
     void draw();
-
-private:
-    int cekic_radius=5;
-    Tacka tacka_cekic=Tacka(0,0,-30);
-
 };
 
 
 #include "robot1_ability1.cpp"
+
 
 #endif // ROBOT1_ABILITY1_H

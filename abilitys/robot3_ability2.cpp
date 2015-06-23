@@ -16,22 +16,27 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+/* Ukljucivanje potrebnih zaglavlja */
 #include "robot3_ability2.h"
 #include "ability.h"
 
+
+/* konstruktor koji prima kolko dugo se ceka za sledece koriscenje,
+ * kolko puta se iscrtava po sekundi */
 Robot3_ability2::Robot3_ability2(int cooldown,int ticksPerSecond)
     : Ability(cooldown,ticksPerSecond,0 , Tacka(0,0,0) )
 {_damage=10;}
 
 
-
+/* crtanje ability */
 void Robot3_ability2::draw()
 {
+    /* RANGE ABILITY */
+    /* radius laser */
+
     if(_exist==false)
         return;
-
-    /* promenljiva potrebna za koliziju */
-    //this->_radius_laser=0;
 
     /* laser traje kratko */
     if(_time > 4.5*_ticksPerSecond)
@@ -46,20 +51,10 @@ void Robot3_ability2::draw()
         glutcpp::pop();
 
     }
-
-    /* test *//*
-    glutcpp::push();
-        glutcpp::color(1,1,1,1);
-        glutcpp::translate(0,5,0);
-        glutcpp::translate(Tacka(-_radius_laser,0,0));
-        glutcpp::cube(5);
-    glutcpp::pop();*/
-
-
-
 }
 
 
+/* dodatna izracunvanja za tacku sudara */
 void Robot3_ability2::animation2(Tacka _centar_robota, float _ugao_robota)
 {
     _center=_centar_robota;
@@ -73,6 +68,4 @@ void Robot3_ability2::animation2(Tacka _centar_robota, float _ugao_robota)
         /* za koliziju */
         _radius=(1.0-_number)*1000;
         }
-
-
 }
