@@ -47,7 +47,7 @@ public:
     void add(Tacka t);
 
     /* norma vektora polozaja, odnosno rastojanje tacke  od koord. pocetka */
-    float norm();
+    float norm() const ;
     float distance(Tacka &t2);
 
     Tacka vek(Tacka t);

@@ -95,7 +95,7 @@ void Tacka::add(Tacka t)
 
 
 /* norma vektora */
-float Tacka::norm()
+float Tacka::norm() const
 {
     return sqrt(get_x() * get_x() + get_y() * get_y() + get_z() * get_z());
 }
@@ -208,6 +208,16 @@ Tacka operator- (Tacka t1, Tacka t2)
 
 /* mnozenje tacke sa konstantom */
 Tacka operator* (Tacka t1, float k)
+{
+    Tacka rez;
+    rez.set_x(t1.get_x() * k);
+    rez.set_y(t1.get_y() * k);
+    rez.set_z(t1.get_z() * k);
+
+    return rez;
+}
+/* mnozenje tacke sa konstantom */
+Tacka operator* (float k, Tacka t1)
 {
     Tacka rez;
     rez.set_x(t1.get_x() * k);
